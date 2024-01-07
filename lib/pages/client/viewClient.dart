@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../res/icons/svg.dart';
+import 'clientHistory.dart';
 
 class ViewClient extends StatelessWidget {
    ViewClient({Key? key});
@@ -59,79 +61,84 @@ class ViewClient extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 29.h),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: clientName.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      ListTile(
-                        title: SizedBox(
-                          width: 130.38,
-                          child: Text(
-                            '${clientName[index]}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                            ),
-                          ),
-                        ),
-                        subtitle: SizedBox(
-                          width: 172,
-                          child: Text(
-                            'example-email@gmail.com',
-                            style: TextStyle(
-                              color: Color(0xFF9CA3AF),
-                              fontSize: 13,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w400,
-                              height: 0.07,
-                            ),
-                          ),
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Container(
-                                width: 32,
-                                height: 32,
-                                decoration: const ShapeDecoration(
-                                  color: Color(0xFF242529),
-                                  shape: OvalBorder(),
-                                ),
-                                child:  Center(
-                                  child: SvgPicture.string(Svgs.chetIcon),
-                                ),
-                                ),
-                              ),
-                            SizedBox(width: 16),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Container(
-                                width: 32,
-                                height: 32,
-                                decoration: const ShapeDecoration(
-                                  color: Color(0xFF242529),
-                                  shape: OvalBorder(),
-                                ),
-                                child: const Center(
-                                  child: Icon(Icons.more_horiz,color: Color(0xffFFFFFF),),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(thickness: 1,color: Color(0xff24272D)),
-                    ],
-                  );
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(ClientHistory.route);
                 },
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: clientName.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        ListTile(
+                          title: SizedBox(
+                            width: 130.38,
+                            child: Text(
+                              '${clientName[index]}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w400,
+                                height: 0.06,
+                              ),
+                            ),
+                          ),
+                          subtitle: SizedBox(
+                            width: 172,
+                            child: Text(
+                              'example-email@gmail.com',
+                              style: TextStyle(
+                                color: Color(0xFF9CA3AF),
+                                fontSize: 13,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w400,
+                                height: 0.07,
+                              ),
+                            ),
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: const ShapeDecoration(
+                                    color: Color(0xFF242529),
+                                    shape: OvalBorder(),
+                                  ),
+                                  child:  Center(
+                                    child: SvgPicture.string(Svgs.chetIcon),
+                                  ),
+                                  ),
+                                ),
+                              SizedBox(width: 16),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: const ShapeDecoration(
+                                    color: Color(0xFF242529),
+                                    shape: OvalBorder(),
+                                  ),
+                                  child: const Center(
+                                    child: Icon(Icons.more_horiz,color: Color(0xffFFFFFF),),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(thickness: 1,color: Color(0xff24272D)),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),

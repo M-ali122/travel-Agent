@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../pages/chet/view/inbox.dart';
 import '../../pages/home/view/homeView.dart';
+import '../../pages/profile/view/profileScreen.dart';
 import '../../pages/request/view/viewRequest.dart';
 import '../../res/icons/svg.dart';
 
@@ -23,8 +25,8 @@ class _BottomnavBarState extends State<BottomnavBar> {
     HomeView(),
     ViewRequest(),
     ViewClient(),
-    Text("Message"),
-    Text("Profile"),
+    Inbox(),
+    ProfileScreen(),
   ];
 
   @override

@@ -1,5 +1,6 @@
 import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
 import 'package:travelagentapp/pages/auth/view/loginscreen.dart';
+import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 import 'package:travelagentapp/pages/request/view/requestDetail.dart';
 import 'package:travelagentapp/pages/splash/screens/account_type.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +25,7 @@ class AppRoute {
     ProfileSetting.route: (p0) => ProfileSetting(),
     EditProfile.route: (p0) => EditProfile(),
     ChangePassword.route : (p0) => ChangePassword(),
+    Schedule.route : (p0) => Schedule(),
 
   };
 }

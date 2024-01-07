@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
+import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 
 class ProfileSetting extends StatelessWidget {
   static String route = 'ProfileSetting';
@@ -44,9 +45,9 @@ class ProfileSetting extends StatelessWidget {
             decoration: const BoxDecoration(color: Color(0xFF1E2025)),
           ),
           SizedBox(height: 24.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'ACCOUNT SETTINGS',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),
@@ -94,7 +95,7 @@ class ProfileSetting extends StatelessWidget {
                         onTap: (){
                           Get.toNamed(ChangePassword.route);
                         },
-                        child: Text(
+                        child: const Text(
                           'Change Password ',
                           style: TextStyle(
                             color: Colors.white,
@@ -105,7 +106,7 @@ class ProfileSetting extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                      const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
@@ -126,17 +127,22 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Schedule Unavailability',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(Schedule.route);
+                        },
+                        child: Text(
+                          'Schedule Unavailability',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.07,
+                          ),
                         ),
                       ),
                       Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
@@ -151,9 +157,9 @@ class ProfileSetting extends StatelessWidget {
           // Communication Preferences
 
           SizedBox(height: 32.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'COMMUNICATION PREFERENCE',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),
@@ -218,9 +224,9 @@ class ProfileSetting extends StatelessWidget {
           //Preferences Management
 
           SizedBox(height: 32.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'PREFERENCES MANAGEMENT',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),
@@ -284,9 +290,9 @@ class ProfileSetting extends StatelessWidget {
 
           // Notification Management
           SizedBox(height: 32.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'NOTIFICATION MANAGEMENT',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),
@@ -351,7 +357,7 @@ class ProfileSetting extends StatelessWidget {
 
           // Privacy
           SizedBox(height: 32.h,),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 16.0),
             child:  Text(
               'PRIVACY',
@@ -419,9 +425,9 @@ class ProfileSetting extends StatelessWidget {
 
           // SUPPORT AND HELP
           SizedBox(height: 32.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'SUPPORT AND HELP',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),
@@ -487,9 +493,9 @@ class ProfileSetting extends StatelessWidget {
 
           // OTHERS
           SizedBox(height: 32.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
               'OTHERS',
               style: TextStyle(
                 color: Color(0xFF9CA3AF),

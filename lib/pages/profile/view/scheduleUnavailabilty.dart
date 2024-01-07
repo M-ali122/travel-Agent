@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import '../../../helpers/views/button.dart';
 import '../../../res/icons/svg.dart';
 
-class ChangePassword extends StatelessWidget {
-  static String route = 'ChangePassword';
-  const ChangePassword({super.key});
+class Schedule extends StatelessWidget {
+  static String route = 'Schedule';
+  const Schedule({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class ChangePassword extends StatelessWidget {
                   icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 70.0),
+                padding: EdgeInsets.only(left: 40.0),
                 child: Text(
-                  'Change Password',
+                  'Schedule Unavailability',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -47,14 +47,27 @@ class ChangePassword extends StatelessWidget {
             height: 1,
             decoration: const BoxDecoration(color: Color(0xFF1E2025)),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(height: 16.h,),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              'While unavailable, your current requests will allot to\nanother manager. During this time you can still \nmessage clients with active requests.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          SizedBox(height: 24.h,),
           Padding(
             padding: const EdgeInsets.only(left: 16.0,right: 16),
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Old Password',
+                  'First Day',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -73,8 +86,8 @@ class ChangePassword extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
-                  hintText: "Enter your old Password",
+                  suffixIcon: Icon(Icons.calendar_month_outlined,color: Color(0xff6B7280),),
+                  hintText: "dd/mm/yy",
                 ),
               ),
             ),
@@ -86,7 +99,7 @@ class ChangePassword extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'New Password',
+                  'Last Day',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -105,8 +118,8 @@ class ChangePassword extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
-                  hintText: "Enter new password",
+                  suffixIcon: Icon(Icons.calendar_month_outlined,color: Color(0xff6B7280),),
+                  hintText: "dd/mm/yy",
                 ),
               ),
             ),
@@ -117,29 +130,45 @@ class ChangePassword extends StatelessWidget {
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Confrim Password',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w500,
-                    height: 0.11,
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Add a message for clients ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w500,
+                          height: 0.11,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '(Optional)',
+                        style: TextStyle(
+                          color: Color(0xFF6B7280),
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w400,
+                          height: 0.11,
+                        ),
+                      ),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),
           SizedBox(height: 8.h,),
-          SizedBox(
-            height: 55,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
-                  hintText: "Re-enter your password",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+            child: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(vertical: 40,horizontal: 10),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(1)
                 ),
+                hintText: "Buyers will see this message on your profile",
               ),
             ),
           ),

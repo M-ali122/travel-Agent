@@ -108,20 +108,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               8.height,
-              TextFormField(
-                decoration: InputDecoration(
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: SvgPicture.string(
-                      Svgs.textFieldIcon,
-                      height: 20,
-                      width: 20,
+                TextFormField(
+                  decoration: InputDecoration(
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: SvgPicture.string(
+                        Svgs.textFieldIcon,
+                        height: 20,
+                        width: 20,
+                      ),
                     ),
+                    hintText: "Enter your password",
+                    //hintStyle: const TextStyle(fontSize: 12,fontWeight: FontWeight.w400,)
                   ),
-                  hintText: "Enter your password",
-                  //hintStyle: const TextStyle(fontSize: 12,fontWeight: FontWeight.w400,)
                 ),
-              ),
               Row(
                 children: [
                   Checkbox(

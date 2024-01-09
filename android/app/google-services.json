@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "653999942770",
+    "project_id": "travelagentapp-5c995",
+    "storage_bucket": "travelagentapp-5c995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653999942770:android:4c61551e13444ae35366eb",
+        "android_client_info": {
+          "package_name": "com.example.travelagentapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrcb2nrCT8w5yzFyRZJQWRXr23Q4t7TDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -38,13 +38,9 @@ class TabbarView extends StatelessWidget {
                     height: 10.h,
                   ),
                   ListTile(
-                    leading: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: ShapeDecoration(
-                        color: Colors.black.withOpacity(0.10000000149011612),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                    leading: CircleAvatar(
+                      foregroundImage: AssetImage(
+                        'assets/emoji/profile.png'
                       ),
                     ),
                     title: Row(

@@ -21,6 +21,7 @@ class DarkTheme {
       primaryColor: primary,
       scaffoldBackgroundColor: const Color(0xff16171B),
       appBarTheme: AppBarTheme(
+        backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
         elevation: 0,
         foregroundColor: Colors.white,
         titleTextStyle: TextStyle(
@@ -54,6 +55,9 @@ class DarkTheme {
             color: Color.fromRGBO(25, 21, 28, 0.10),
           ),
           borderRadius: BorderRadius.circular(40.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent)
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40.0),

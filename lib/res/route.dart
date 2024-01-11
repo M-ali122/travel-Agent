@@ -1,3 +1,5 @@
+import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
+import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
 import 'package:travelagentapp/clientScreen/onboarding/onboardingScreen.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/clientScreen/screens/specialRequest.dart';
@@ -8,12 +10,18 @@ import 'package:travelagentapp/pages/request/view/requestDetail.dart';
 import 'package:travelagentapp/pages/splash/screens/account_type.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../clientScreen/ClientprofileScreen/ClientProfileSetting.dart';
+import '../clientScreen/ClientprofileScreen/clientEditProfile.dart';
+import '../clientScreen/ClientprofileScreen/clientchangePassword.dart';
+import '../clientScreen/clientChet/view/clientChetScreen.dart';
+import '../clientScreen/clientRequestScreen/view/clientRequestScreen.dart';
 import '../clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import '../clientScreen/screens/LocationDetial.dart';
 import '../clientScreen/screens/customizationOption.dart';
 import '../clientScreen/screens/languagePreferences.dart';
 import '../pages/chet/view/chatpage.dart';
 import '../pages/client/clientHistory.dart';
+import '../pages/profile/view/clientChangePasswordEmail.dart';
 import '../pages/profile/view/editProfile.dart';
 import '../pages/profile/view/passwordChange.dart';
 import '../pages/profile/view/profileSetting.dart';
@@ -33,14 +41,22 @@ class AppRoute {
     EditProfile.route: (p0) => EditProfile(),
     ChangePassword.route : (p0) => ChangePassword(),
     Schedule.route : (p0) => Schedule(),
-    OnboardingScreen.route : (p0) => OnboardingScreen(),
+
+    // Client Page Route
+    OnboardScreen.route : (p0) => OnboardScreen(),
     InterestScreen.route: (p0) => InterestScreen(),
     Customization.route: (p0) => Customization(),
     LanguagePrefence.route : (p0) => LanguagePrefence(),
     SpeciaRequest.route : (p0) => SpeciaRequest(),
     LocationDetail.route : (p0) => LocationDetail(),
     ClientNavbar.route : (p0) => ClientNavbar(),
-
-
+    BecomMemeber.route : (p0) => BecomMemeber(),
+    ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
+    ClientRequestDetail.route : (p0) => ClientRequestDetail(),
+    ClientChatScreen.route : (p0) => ClientChatScreen(),
+    ClientEditProfile.route : (p0) => ClientEditProfile(),
+    CLientProfileSetting.route : (p0) => CLientProfileSetting(),
+    ClientChangePassword.route : (p0) => ClientChangePassword(),
+    ConfrimPassChange.route : (p0) => ConfrimPassChange(),
   };
 }

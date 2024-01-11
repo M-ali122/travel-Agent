@@ -27,8 +27,8 @@ class _InterestScreenState extends State<InterestScreen> {
             SizedBox(height: 20.h,),
              const Align(
                  alignment: AlignmentDirectional.topStart,
-                 child: Icon(Icons.arrow_back_ios_new_rounded,size: 14,color: Colors.white,)),
-            SizedBox(height: 24.h,),
+                 child: Icon(Icons.arrow_back_ios_new_rounded,size: 24,color: Colors.white,)),
+            SizedBox(height: 16.h,),
             const Text(
               'Interest',
               style: TextStyle(
@@ -354,11 +354,12 @@ class _InterestScreenState extends State<InterestScreen> {
                     )
                   ],
                 ),
-                SizedBox(height: 100.h,),
+                SizedBox(height: 80.h,),
                 AppButton(
                     title: 'Next', onTap: (){
                       Get.toNamed(Customization.route);
-                })
+                }),
+                SizedBox(height: 20.h,),
               ],
             ),
           ],
@@ -367,3 +368,162 @@ class _InterestScreenState extends State<InterestScreen> {
     );
   }
 }
+//
+// import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:get/get.dart';
+// import 'package:travelagentapp/helpers/views/button.dart';
+//
+// import 'customizationOption.dart';
+//
+// class InterestScreen extends StatefulWidget {
+//   static String route = 'InterestScreen';
+//   const InterestScreen({super.key});
+//
+//   @override
+//   State<InterestScreen> createState() => _InterestScreenState();
+// }
+//
+// class _InterestScreenState extends State<InterestScreen> {
+//   int selectedIdx = -1; // Index of the selected container, -1 means none selected
+//
+//   List<InterestItem> interestItems = [
+//     InterestItem(icon: Icons.add, emoji: 'handshakeemoji.png', label: 'Meet & Greet'),
+//     InterestItem(icon: Icons.add, emoji: 'event.png', label: 'Event'),
+//     InterestItem(icon: Icons.add, emoji: 'airplane.png', label: 'Travel'),
+//     InterestItem(icon: Icons.add, emoji: 'plate.png', label: 'Dining'),
+//     InterestItem(icon: Icons.add, emoji: 'maditation.png', label: 'Wellness'),
+//     InterestItem(icon: Icons.add, emoji: 'gift.png', label: 'Gifting'),
+//     InterestItem(icon: Icons.add, emoji: 'others.png', label: 'Others'),
+//   ];
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Padding(
+//         padding: const EdgeInsets.only(left: 16.0, right: 16),
+//         child: ListView(
+//           children: [
+//             SizedBox(height: 20.h,),
+//             const Align(
+//               alignment: AlignmentDirectional.topStart,
+//               child: Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: Colors.white,),
+//             ),
+//             SizedBox(height: 16.h,),
+//             const Text(
+//               'Interest',
+//               style: TextStyle(
+//                 color: Colors.white,
+//                 fontSize: 20,
+//                 fontFamily: 'SF Pro Text',
+//                 fontWeight: FontWeight.w600,
+//               ),
+//             ),
+//             // ... rest of the code remains the same
+//
+//             // Map the interest items to containers with GestureDetector
+//             for (int i = 0; i < interestItems.length; i++)
+//               GestureDetector(
+//                 onTap: () {
+//                   setState(() {
+//                     selectedIdx = i; // Update the selected index
+//                   });
+//                 },
+//                 child: InterestContainer(
+//                   isSelected: selectedIdx == i,
+//                   icon: interestItems[i].icon,
+//                   emoji: interestItems[i].emoji,
+//                   label: interestItems[i].label,
+//                 ),
+//               ),
+//
+//             SizedBox(height: 80.h,),
+//             AppButton(
+//               title: 'Next',
+//               onTap: () {
+//                 Get.toNamed(Customization.route);
+//               },
+//             ),
+//             SizedBox(height: 20.h,),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class InterestContainer extends StatelessWidget {
+//   final bool isSelected;
+//   final IconData icon;
+//   final String emoji;
+//   final String label;
+//
+//   InterestContainer({
+//     required this.isSelected,
+//     required this.icon,
+//     required this.emoji,
+//     required this.label,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             Container(
+//               width: 181,
+//               height: 48,
+//               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+//               decoration: ShapeDecoration(
+//                 color: isSelected ? const Color(0xFF30879B) : const Color(0xFF1B1D22),
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(200),
+//                 ),
+//               ),
+//               child: Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: [
+//                   isSelected ? const Icon(Icons.done, color: Colors.white,) : const Icon(Icons.add, color: Colors.white,),
+//                   SizedBox(
+//                     height: 30,
+//                     width: 30,
+//                     child: Image.asset('assets/emoji/$emoji', fit: BoxFit.cover),
+//                   ),
+//                   // const Text(
+//                   //   '$label',
+//                   //   textAlign: TextAlign.center,
+//                   //   style: TextStyle(
+//                   //     color: isSelected ? Color(0xFFFDFBF9) : Colors.white,
+//                   //     fontSize: 15,
+//                   //     fontFamily: 'SF Pro Text',
+//                   //     fontWeight: FontWeight.w600,
+//                   //     height: 0.10,
+//                   //     letterSpacing: -0.41,
+//                   //   ),
+//                   // ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//         SizedBox(height: 12.h,),
+//       ],
+//     );
+//   }
+// }
+//
+// class InterestItem {
+//   final IconData icon;
+//   final String emoji;
+//   final String label;
+//
+//   InterestItem({
+//     required this.icon,
+//     required this.emoji,
+//     required this.label,
+//   });
+// }

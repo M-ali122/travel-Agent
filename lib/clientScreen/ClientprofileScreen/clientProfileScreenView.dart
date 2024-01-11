@@ -1,285 +1,265 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
-import 'package:travelagentapp/res/icons/svg.dart';
 
-import '../../clientChet/view/clientChetScreen.dart';
-import '../../clientPageSvgs/clientPageSvgs.dart';
+import '../../pages/profile/view/editProfile.dart';
+import '../../pages/profile/view/profileSetting.dart';
+import '../clientPageSvgs/clientPageSvgs.dart';
+import 'ClientProfileSetting.dart';
+import 'clientEditProfile.dart';
 
-class ClientHomeSreen extends StatelessWidget {
-  const ClientHomeSreen({super.key});
+class ClientProfileScreen extends StatelessWidget {
+  const ClientProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: ShapeDecoration(
-             image: DecorationImage(
-               image: AssetImage('assets/emoji/profile.png')
-             ),
-              color: Colors.white.withOpacity(0.05000000074505806),
-              shape: CircleBorder()
-            ),
-          ),
-        ),
-        title: Container(
-          width: 150,
-          height: 36,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF30879B),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          child:  Center(
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(BecomMemeber.route);
-              },
-              child: Text(
-                'Become a Member',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w500,
-                  height: 0,
-                  letterSpacing: 0.30,
-                ),
-              ),
-            ),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text(
+          'Profile',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0.06,
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 17.0),
-            child: GestureDetector(
-              onTap: () {
-                Get.toNamed(ClientChatScreen.route);
-              },
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: ShapeDecoration(
-                  shape: OvalBorder(
-                    side: BorderSide(
-                      width: 1.67,
-                      color: Colors.white.withOpacity(0.09000000357627869),
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: ShapeDecoration(
+                color: Colors.white.withOpacity(0.07000000029802322),
+                shape: const OvalBorder(),
+              ),
+              child: IconButton(
+                onPressed: () {
+                  Get.toNamed(CLientProfileSetting.route);
+                },
+                icon: const Center(child: Icon(Icons.settings_outlined, color: Colors.white,),
+                ),
+                padding: const EdgeInsets.only(bottom: 2,top: 4),
+              ),
+            ),
+          )
+        ],
+      ),
+      body: ListView(
+        children: [
+          Container(
+            width: 375,
+            height: 260,
+            decoration: const BoxDecoration(color: Color(0xFF1B1C21)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // SizedBox(height: 20.h,),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 120,
+                      decoration: const ShapeDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/emoji/profile.png')
+                        ),
+                        shape: OvalBorder(
+                          side: BorderSide(width: 4.98, color: Color(0x304E7B86)),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 105,
+                          top: 45
+                      ),
+                      child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: const ShapeDecoration(
+                            color: Color(0xFF30879B),
+                            shape: OvalBorder(),
+                          ),
+                          child: const Icon(Icons.camera_alt_outlined,size: 17,color: Colors.white,)
+                      ),
+                    ),
+                  ],
+                ),
+                const Text(
+                  'Sarah Shahi',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontFamily: 'SF Pro Text',
+                    fontWeight: FontWeight.w500,
+                    height: 0,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(ClientEditProfile.route);
+                  },
+                  child: Container(
+                    width: 105,
+                    height: 28,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF30879B),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.31),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(Icons.edit_outlined,size: 10,color: Colors.white,),
+                        Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11.35,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 0.11,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-                child: Center(
-                  child: SvgPicture.string(Svgs.clientMessageIcon,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      width: 87,
+                      height: 22,
+                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF191B20),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          borderRadius: BorderRadius.circular(38),
+                        ),
+                      ),
+                      child: const Text(
+                        '#Destination ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: -0.24,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 82,
+                      height: 22,
+                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF191B20),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          borderRadius: BorderRadius.circular(38),
+                        ),
+                      ),
+                      child: const Text(
+                        '#Adventure',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: -0.24,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 68,
+                      height: 22,
+                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF191B20),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          borderRadius: BorderRadius.circular(38),
+                        ),
+                      ),
+                      child: const Text(
+                        '#Cultural',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: -0.24,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 53,
+                      height: 22,
+                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF191B20),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          borderRadius: BorderRadius.circular(38),
+                        ),
+                      ),
+                      child: const Text(
+                        '#Yoga',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: 'SF Pro Text',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: -0.24,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              ),
+              ],
             ),
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 17.0),
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            SizedBox(height: 16.h,),
-            Container(
-              width: 343,
-              height: 1,
-              decoration: const BoxDecoration(color: Color(0xFF24262D)),
-            ),
-            SizedBox(height: 20.h,),
-            const Text(
-              'Explore',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w600,
-                height: 0.07,
-              ),
-            ),
-            SizedBox(height: 14.h,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.meetandGreetIcon),
-                   SizedBox(height: 6.h,),
-                    const Text(
-                      'Meet & Greet',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.eventSvg),
-                    SizedBox(height: 6.h,),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 3.0),
-                      child: Text(
-                        'Events',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.travel),
-                    SizedBox(height: 6.h,),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 3.0),
-                      child: Text(
-                        'Travel',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              Column(
-               children: [
-               SvgPicture.string(ClientSvgs.transportSvg),
-                SizedBox(height: 6.h,),
-               const Text(
-              'Transport',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w400,
-              ),
-               ),
-               ],
-              ),
-              ],
-            ),
-            SizedBox(height: 26.h,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.plateSvg),
-                    SizedBox(height: 6.h,),
-                    const Text(
-                      'Dining',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.wellness),
-                    SizedBox(height: 6.h,),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 3.0),
-                      child: Text(
-                        'Wellness',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.gifiting),
-                    SizedBox(height: 6.h,),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 3.0),
-                      child: Text(
-                        'Gifting',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SvgPicture.string(ClientSvgs.others),
-                    SizedBox(height: 6.h,),
-                    const Text(
-                      'Others',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 16.03,),
-            Container(
-              width: 343,
-              height: 1,
-              decoration: const BoxDecoration(color: Color(0xFF24262D)),
-            ),
-            const SizedBox(height: 16.03,),
-            const Text(
-              'Recommended Feed',
+          Container(
+            width: 376,
+            height: 4,
+            decoration: BoxDecoration(color: Color(0xFF1E2025)),
+          ),
+          SizedBox(height: 16.h,),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              'Favourites',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontFamily: 'SF Pro Text',
                 fontWeight: FontWeight.w600,
-                height: 0.09,
               ),
             ),
-            SizedBox(height: 16.h,),
-            Container(
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: Container(
               width: 343,
               height: 220,
               decoration: ShapeDecoration(
-
                 image: DecorationImage(
                     image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
@@ -301,7 +281,7 @@ class ClientHomeSreen extends StatelessWidget {
                           shape: OvalBorder(),
                         ),
                         child: Center(
-                          child: Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
+                          child: Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,),
                         ),
                       ),
                     ),
@@ -382,12 +362,14 @@ class ClientHomeSreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 16.h,),
-            Container(
+          ),
+          SizedBox(height: 15.h,),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: Container(
               width: 343,
               height: 220,
               decoration: ShapeDecoration(
-
                 image: DecorationImage(
                     image: AssetImage('assets/emoji/yogaClasses.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
@@ -409,7 +391,7 @@ class ClientHomeSreen extends StatelessWidget {
                           shape: OvalBorder(),
                         ),
                         child: Center(
-                          child: Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
+                          child: Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,),
                         ),
                       ),
                     ),
@@ -429,7 +411,7 @@ class ClientHomeSreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 12.0),
-                            child: SvgPicture.string(ClientSvgs.yogaSvg),
+                            child: SvgPicture.string(ClientSvgs.travelIcon),
                           ),
                           SizedBox(width: 3.w,),
                           Padding(
@@ -438,7 +420,7 @@ class ClientHomeSreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'Yoga Classes',
+                                  'Travel to Dubai',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -490,10 +472,8 @@ class ClientHomeSreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            const SizedBox(height: 30,),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

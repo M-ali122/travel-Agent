@@ -6,78 +6,60 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
 
-import '../../clientChet/view/clientChetScreen.dart';
 import '../../clientPageSvgs/clientPageSvgs.dart';
 
-class ClientHomeSreen extends StatelessWidget {
-  const ClientHomeSreen({super.key});
+class BecomMemeber extends StatelessWidget {
+  static String route = 'BecomeMember';
+  const BecomMemeber({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: ShapeDecoration(
-             image: DecorationImage(
-               image: AssetImage('assets/emoji/profile.png')
-             ),
-              color: Colors.white.withOpacity(0.05000000074505806),
-              shape: CircleBorder()
-            ),
-          ),
-        ),
-        title: Container(
-          width: 150,
-          height: 36,
-          decoration: ShapeDecoration(
-            color: const Color(0xFF30879B),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          child:  Center(
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(BecomMemeber.route);
-              },
-              child: Text(
-                'Become a Member',
+        automaticallyImplyLeading: false,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 73.0),
+          child: Column(
+            children: [
+              Text(
+                'Lifestyle Manager',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
+                  color: Color(0xFF9CA3AF),
+                  fontSize: 11,
                   fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w500,
-                  height: 0,
-                  letterSpacing: 0.30,
+                  fontWeight: FontWeight.w400,
+
                 ),
               ),
-            ),
+              Text(
+                'Zuhran Ahmad',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w600,
+                ),
+              )
+            ],
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 17.0),
-            child: GestureDetector(
-              onTap: () {
-                Get.toNamed(ClientChatScreen.route);
-              },
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: ShapeDecoration(
-                  shape: OvalBorder(
-                    side: BorderSide(
-                      width: 1.67,
-                      color: Colors.white.withOpacity(0.09000000357627869),
-                    ),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: ShapeDecoration(
+                shape: OvalBorder(
+                  side: BorderSide(
+                    width: 1.67,
+                    color: Colors.white.withOpacity(0.09000000357627869),
                   ),
                 ),
-                child: Center(
-                  child: SvgPicture.string(Svgs.clientMessageIcon,),
-                ),
+              ),
+              child: Center(
+                child: SvgPicture.string(Svgs.clientMessageIcon,),
               ),
             ),
           ),
@@ -86,7 +68,6 @@ class ClientHomeSreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 17.0),
         child: ListView(
-          shrinkWrap: true,
           children: [
             SizedBox(height: 16.h,),
             Container(
@@ -112,7 +93,7 @@ class ClientHomeSreen extends StatelessWidget {
                 Column(
                   children: [
                     SvgPicture.string(ClientSvgs.meetandGreetIcon),
-                   SizedBox(height: 6.h,),
+                    SizedBox(height: 6.h,),
                     const Text(
                       'Meet & Greet',
                       textAlign: TextAlign.center,
@@ -163,22 +144,22 @@ class ClientHomeSreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              Column(
-               children: [
-               SvgPicture.string(ClientSvgs.transportSvg),
-                SizedBox(height: 6.h,),
-               const Text(
-              'Transport',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w400,
-              ),
-               ),
-               ],
-              ),
+                Column(
+                  children: [
+                    SvgPicture.string(ClientSvgs.transportSvg),
+                    SizedBox(height: 6.h,),
+                    const Text(
+                      'Transport',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 26.h,),
@@ -279,9 +260,6 @@ class ClientHomeSreen extends StatelessWidget {
               width: 343,
               height: 220,
               decoration: ShapeDecoration(
-
-                image: DecorationImage(
-                    image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -387,9 +365,6 @@ class ClientHomeSreen extends StatelessWidget {
               width: 343,
               height: 220,
               decoration: ShapeDecoration(
-
-                image: DecorationImage(
-                    image: AssetImage('assets/emoji/yogaClasses.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),

@@ -25,43 +25,58 @@ class _SpeciaRequestState extends State<SpeciaRequest> {
         padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: ListView(
           children: [
-            SizedBox(height: 20.h,),
+            SizedBox(height: 5.h,),
             Align(
                 alignment: AlignmentDirectional.topStart,
                 child: IconButton(
                     onPressed: () {
                       Get.back();
                     },
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20, color: Colors.white,))),
-            SizedBox(height: 24.h,),
-            const Text(
-              'Special Request',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w600,
-                height: 0.04,
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: Colors.white,))),
+            SizedBox(height: 16.h,),
+            const Padding(
+              padding: EdgeInsets.only(left: 12.0),
+              child: Text(
+                'Special Request',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w600,
+                  height: 0.04,
+                ),
               ),
             ),
             SizedBox(height: 20.h,),
-            const Text(
-              'Any specific requirements or special requests? Let us\nknow, and well make sure to cater to your needs',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-              fontFamily: 'SF Pro Text',
-              fontWeight: FontWeight.w400,
+            const Padding(
+              padding: EdgeInsets.only(left: 14.0),
+              child: Text(
+                'Any specific requirements or special'
+                    ' requests? Let us\nknow, '
+                    'and well make sure to cater to your needs',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w400,
+              ),
+                    ),
             ),
-      ),
             SizedBox(height: 24.h,),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(100),
-                  hintText: 'Write request here...',
-                  alignLabelWithHint: true
+             Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Container(
+                width: double.infinity,
+                height: 150,
+                child: Align(
+                  child: TextField(//textAlign: TextAlign.start,
+                    textAlignVertical: TextAlignVertical.top,
+                    maxLines: null,
+                    expands: true,
+                    decoration: InputDecoration(
+                        hintText: 'Write request here...',
+                    ),
+                  ),
                 ),
               ),
             ),

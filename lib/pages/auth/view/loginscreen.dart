@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Contact Us',
+                      text: 'Register',
                       style: TextStyle(
                         color: Color(0xFF30879B),
                         fontSize: 13,

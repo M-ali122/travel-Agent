@@ -27,8 +27,8 @@ class _CustomizationState extends State<Customization> {
             SizedBox(height: 20.h,),
             const Align(
                 alignment: AlignmentDirectional.topStart,
-                child: Icon(Icons.arrow_back_ios_new_rounded,size: 14,color: Colors.white,)),
-            SizedBox(height: 24.h,),
+                child: Icon(Icons.arrow_back_ios_new_rounded,size: 24,color: Colors.white,)),
+            SizedBox(height: 16.h,),
             const Text(
               'Interest',
               style: TextStyle(
@@ -556,7 +556,8 @@ class _CustomizationState extends State<Customization> {
                 AppButton(
                     title: 'Next', onTap: (){
                       Get.toNamed(LanguagePrefence.route);
-                })
+                }),
+                SizedBox(height: 20.h,),
               ],
             ),
           ],

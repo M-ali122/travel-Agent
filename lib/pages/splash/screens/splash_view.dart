@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../res/icons/svg.dart';
 import '../controller/splashController.dart';
 
-class SplashView extends GetView<SplashController> {
-  static const String route = 'SplashView';
+class SplashView extends GetWidget<SplashController> {
+  static const String route = 'splashView';
 
   const SplashView({super.key});
   @override

@@ -16,34 +16,35 @@ class SplashController extends GetxController {
     var uid =box.read("uid") ;
     var userType =box.read("type") ;
     var staySignin =box.read("staySignIn") ;
-    if(uid.isNotEmpty){
-
-      if(staySignin == false){
-        Future.delayed(const Duration(seconds: 2), () {
-          // Navigate to the next screen after 2 seconds
-          Get.toNamed(AccountTypeScreen.route);
-        });
-      }else{
-
-        if (userType == "Admin") {
-          Get.offAllNamed(BottomnavBar.route);
-        } else {
-          print("clint Call");
-        }
-
-
-
-      }
-
-
-
-    }else{
+    // if(uid == null){
+    //
+    //   if(staySignin == false){
+    //     Future.delayed(const Duration(seconds: 2), () {
+    //       // Navigate to the next screen after 2 seconds
+    //       Get.toNamed(AccountTypeScreen.route);
+    //     });
+    //   }else{
+    //
+    //     if (userType == "Admin") {
+    //       Get.offAllNamed(BottomnavBar.route);
+    //     } else {
+    //       print("clint Call");
+    //       Get.offAllNamed(BottomnavBar.route);
+    //     }
+    //
+    //
+    //
+    //   }
+    //
+    //
+    //
+    // }else{
 
       Future.delayed(const Duration(seconds: 2), () {
         // Navigate to the next screen after 2 seconds
         Get.toNamed(AccountTypeScreen.route);
       });
-    }
+    // }
 
 
 

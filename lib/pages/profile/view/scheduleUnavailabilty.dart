@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../helpers/views/button.dart';
@@ -48,8 +47,8 @@ class Schedule extends StatelessWidget {
             decoration: const BoxDecoration(color: Color(0xFF1E2025)),
           ),
           SizedBox(height: 16.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
             child: Text(
               'While unavailable, your current requests will allot to\nanother manager. During this time you can still \nmessage clients with active requests.',
               style: TextStyle(
@@ -61,9 +60,9 @@ class Schedule extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -85,7 +84,7 @@ class Schedule extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   suffixIcon: Icon(Icons.calendar_month_outlined,color: Color(0xff6B7280),),
                   hintText: "dd/mm/yy",
                 ),
@@ -93,9 +92,9 @@ class Schedule extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -117,7 +116,7 @@ class Schedule extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   suffixIcon: Icon(Icons.calendar_month_outlined,color: Color(0xff6B7280),),
                   hintText: "dd/mm/yy",
                 ),
@@ -125,9 +124,9 @@ class Schedule extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text.rich(
@@ -164,7 +163,7 @@ class Schedule extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: TextField(
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 40,horizontal: 10),
+                contentPadding: const EdgeInsets.symmetric(vertical: 40,horizontal: 10),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(1)
                 ),

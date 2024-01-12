@@ -5,7 +5,7 @@ import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 
 class ProfileSetting extends StatelessWidget {
-  static String route = 'ProfileSetting';
+  static String route = 'profileSetting';
   const ProfileSetting({super.key});
 
   @override

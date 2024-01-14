@@ -24,7 +24,7 @@ class ClientHomeSreen extends StatelessWidget {
             height: 40,
             decoration: ShapeDecoration(
              image: DecorationImage(
-               image: AssetImage('assets/emoji/profile.png')
+               image: AssetImage('assets/emoji/profile2.png')
              ),
               color: Colors.white.withOpacity(0.05000000074505806),
               shape: CircleBorder()

@@ -47,7 +47,7 @@ class AppRoute {
     InterestScreen.route: (p0) => InterestScreen(),
     Customization.route: (p0) => Customization(),
     LanguagePrefence.route : (p0) => LanguagePrefence(),
-    SpeciaRequest.route : (p0) => SpeciaRequest(),
+    // SpeciaRequest.route : (p0) => SpeciaRequest(),
     LocationDetail.route : (p0) => LocationDetail(),
     ClientNavbar.route : (p0) => ClientNavbar(),
     BecomMemeber.route : (p0) => BecomMemeber(),

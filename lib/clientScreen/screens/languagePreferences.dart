@@ -5,6 +5,8 @@ import 'package:travelagentapp/clientScreen/screens/specialRequest.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/res/theme.dart';
 
+import 'LocationDetial.dart';
+
 class LanguagePrefence extends StatefulWidget {
   static String route = 'LanguagePreference';
   const LanguagePrefence({Key? key}) : super(key: key);
@@ -131,7 +133,7 @@ class _LanguagePrefenceState extends State<LanguagePrefence> {
             AppButton(
                 title: 'Next',
                 onTap: (){
-                  Get.toNamed(SpeciaRequest.route);
+                  Get.toNamed(LocationDetail.route);
                 }
             ),
             SizedBox(height: 10.h,),

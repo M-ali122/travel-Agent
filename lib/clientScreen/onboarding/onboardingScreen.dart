@@ -84,32 +84,58 @@ class _OnboardScreenState extends State<OnboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: PageView(
-        controller: pageControl,
-        onPageChanged: (index) {
-          setState(() {
-            isLastPage = index == 2; // Assuming you have 3 pages (0, 1, 2)
-          });
-        },
+      body: Column(
         children: [
-          OnboadScreenComponent(
-            svgString: OnboardingSvgs.fristOnboardSVG,
-            title: 'Welcome to 46concierge',
-            tagline:
-            'We provide impeccable services and deliver exceptional experiences that are effortlessly accessible to our esteemed clients. Our own expertise lies in two core pillars: Lifestyle and Events.',
+          Padding(
+            padding: const EdgeInsets.only(right: 10,top: 20),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: TextButton(onPressed: () {
+
+              }, child: Text(
+                'Skip',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w500,
+                  height: 0.09,
+                ),
+              )),
+            ),
           ),
-          OnboadScreenComponent(
-            svgString: OnboardingSvgs.seconSvg,
-            title: 'Your Own Lifestyle Manager',
-            tagline:
-            'Your lifestyle manager is your go-to guide, ready to assist in bookings, recommendations, and ensuring your experience is tailored just for you',
+          Expanded(
+            child: PageView(
+              controller: pageControl,
+              onPageChanged: (index) {
+                setState(() {
+                  isLastPage = index == 2; // Assuming you have 3 pages (0, 1, 2)
+                });
+              },
+              children: [
+                OnboadScreenComponent(
+                  svgString: OnboardingSvgs.fristOnboardSVG,
+                  title: 'Welcome to 46concierge',
+                  tagline:
+                  'We provide impeccable services and deliver exceptional experiences that are effortlessly accessible to our esteemed clients. Our own expertise lies in two core pillars: Lifestyle and Events.',
+                ),
+                OnboadScreenComponent(
+                  svgString: OnboardingSvgs.seconSvg,
+                  title: 'Your Own Lifestyle Manager',
+                  tagline:
+                  'Your lifestyle manager is your go-to guide, ready to assist in bookings, recommendations, and ensuring your experience is tailored just for you',
+                ),
+                OnboadScreenComponent(
+                  svgString: OnboardingSvgs.thirdSvg,
+                  title: 'Tailored Just for You',
+                  tagline:
+                  'Customize your Experience preferences for a personalized experience (e.g., favorite cuisines, travel preferences, event interests, and meet & greet)',
+                ),
+              ],
+            ),
           ),
-          OnboadScreenComponent(
-            svgString: OnboardingSvgs.thirdSvg,
-            title: 'Tailored Just for You',
-            tagline:
-            'Customize your Experience preferences for a personalized experience (e.g., favorite cuisines, travel preferences, event interests, and meet & greet)',
-          ),
+          
         ],
       ),
       floatingActionButton: Padding(
@@ -130,10 +156,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
             ),
             InkWell(
               onTap: () {
-                // Navigating to the login page or the next page as needed
-                // Replace this with your navigation logic
-                // For example, if you have a LoginView route:
-                // Navigator.pushReplacementNamed(context, '/login');
                 Get.toNamed(InterestScreen.route);
               },
               child: CircleAvatar(

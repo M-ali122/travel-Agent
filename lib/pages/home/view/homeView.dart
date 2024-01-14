@@ -239,7 +239,7 @@ class HomeView extends StatelessWidget {
                         children: [
                         CircleAvatar(
                           foregroundImage: AssetImage(
-                            'assets/emoji/profile.png'
+                            'assets/emoji/profile2.png'
                           ),
                         ),
                           Padding(

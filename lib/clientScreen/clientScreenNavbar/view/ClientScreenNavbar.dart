@@ -139,13 +139,12 @@ class _ClientNavbarState extends State<ClientNavbar> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               buildIconButton(1, Svgs.requests, "Requests"),
-
               buildIconButton(2, Svgs.profile, "Profile"),
             ],
           ),
         ),
       ),
-      floatingActionButton: _buildFloatingActionButton(0,),
+      floatingActionButton: _buildFloatingActionButton(0),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

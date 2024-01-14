@@ -12,27 +12,26 @@ class Inbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Messages',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 16.0,right: 16,top: 16),
+        padding: const EdgeInsets.only(left: 16.0,right: 16 ),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(height: 16.h,),
-              const Center(
-                child: Text(
-                  'Clients',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w600,
-                    height: 0.06,
-                  ),
-                ),
-              ),
-              SizedBox(height: 17.h),
               const Divider(thickness: 1,color: Color(0xff1E2026)),
               SizedBox(height: 13.h,),
               const SizedBox(
@@ -67,9 +66,9 @@ class Inbox extends StatelessWidget {
                  children: [
                    Row(
                      children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         foregroundImage: AssetImage(
-                            'assets/emoji/profile.png'
+                            'assets/emoji/profile2.png'
                         ),
                       ),
                        Expanded(
@@ -149,9 +148,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(
@@ -228,9 +227,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(
@@ -295,9 +294,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(
@@ -362,9 +361,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(
@@ -429,9 +428,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(
@@ -496,9 +495,9 @@ class Inbox extends StatelessWidget {
                    SizedBox(height: 20.h,),
                    Row(
                      children: [
-                       CircleAvatar(
+                       const CircleAvatar(
                          foregroundImage: AssetImage(
-                             'assets/emoji/profile.png'
+                             'assets/emoji/profile2.png'
                          ),
                        ),
                        Expanded(

@@ -7,6 +7,7 @@ import '../controller/splashController.dart';
 class SplashView extends GetWidget<SplashController> {
   static const String route = 'splashView';
 
+
   const SplashView({super.key});
   @override
   Widget build(BuildContext context) {

@@ -1,40 +1,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../helpers/views/button.dart';
-import '../../../res/icons/svg.dart';
 
-class EditProfile extends StatelessWidget {
-  static String route = 'EditProfile';
-  const EditProfile({super.key});
+class ClientEditProfile extends StatelessWidget {
+  static String route = 'ClientEditProfile';
+  const ClientEditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text(
+          'Edit Profile',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0.06,
+          ),
+        ),
         leading: IconButton(
             onPressed: () {
               Get.back();
             },
             icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)
-        ),
-        centerTitle: true,
-        title: const Padding(
-          padding: EdgeInsets.only(top: 8.0),
-          child: Text(
-            'Edit Profile',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: 'SF Pro Text',
-              fontWeight: FontWeight.w600,
-              height: 0.06,
-            ),
-          ),
         ),
       ),
       body: ListView(
@@ -46,9 +42,9 @@ class EditProfile extends StatelessWidget {
             decoration: const BoxDecoration(color: Color(0xFF1E2025)),
           ),
           SizedBox(height: 20.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0,right: 16),
-            child: Column(
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -70,16 +66,16 @@ class EditProfile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Name",
                 ),
               ),
             ),
           ),
           SizedBox(height: 18.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0,right: 16),
-            child: Column(
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -101,16 +97,16 @@ class EditProfile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Email",
                 ),
               ),
             ),
           ),
           SizedBox(height: 18.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0,right: 16),
-            child: Column(
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -132,7 +128,7 @@ class EditProfile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Number",
                 ),
               ),
@@ -140,8 +136,8 @@ class EditProfile extends StatelessWidget {
           ),
 
           SizedBox(height: 18.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0,right: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -414,7 +410,7 @@ class EditProfile extends StatelessWidget {
             onTap: (){
 
             },
-            title: 'Confrim',
+            title: 'Update',
           ),
           SizedBox(height: 10.h,),
         ],

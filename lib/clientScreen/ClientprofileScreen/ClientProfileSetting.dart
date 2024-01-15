@@ -4,37 +4,42 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 
-import '../../auth/view/loginscreen.dart';
+import 'clientchangePassword.dart';
 
-class ProfileSetting extends StatelessWidget {
-  static String route = 'profileSetting';
-  const ProfileSetting({super.key});
+class CLientProfileSetting extends StatelessWidget {
+  static String route = 'CLientProfileSetting';
+  const CLientProfileSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)
-        ),
-        title: Text(
-          'Setting',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: 'SF Pro Text',
-            fontWeight: FontWeight.w600,
-            height: 0.06,
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: ListView(
         children: [
+          SizedBox(height: 30.h,),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 110.0),
+                child: Text(
+                  'Setting',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'SF Pro Text',
+                    fontWeight: FontWeight.w600,
+                    height: 0.06,
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 17.h,),
           Container(
             width: 375,
@@ -85,24 +90,27 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                 InkWell(
+                  InkWell(
                     onTap: (){
-                      Get.toNamed(ChangePassword.route);
+                      Get.toNamed(ClientChangePassword.route);
                     },
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        // TextButton(
+                        //   onPressed:() {
+                        //   Get.toNamed(ClientChangePassword.route);
+                        // }, child:
+                        Text(
                           'Change Password ',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontFamily: 'SF Pro Display',
                             fontWeight: FontWeight.w400,
-                            height: 0.07,
                           ),
                         ),
-                        const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                        Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
                       ],
                     ),
                   ),
@@ -124,14 +132,14 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
                         onTap: (){
                           Get.toNamed(Schedule.route);
                         },
-                        child: Text(
+                        child: const Text(
                           'Schedule Unavailability',
                           style: TextStyle(
                             color: Colors.white,
@@ -142,7 +150,7 @@ class ProfileSetting extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                      const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
@@ -533,27 +541,22 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                   InkWell(
-                     onTap: (){
-                       Get.offAllNamed(LoginScreen.route);
-                     },
-                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Logout',
-                          style: TextStyle(
-                            color: Color(0xFFEB5757),
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Display',
-                            fontWeight: FontWeight.w400,
-                            height: 0.07,
-                          ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Logout',
+                        style: TextStyle(
+                          color: Color(0xFFEB5757),
+                          fontSize: 14,
+                          fontFamily: 'SF Pro Display',
+                          fontWeight: FontWeight.w400,
+                          height: 0.07,
                         ),
-                        Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                      ],
-                                       ),
-                   ),
+                      ),
+                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                    ],
+                  ),
                 ],
               ),
             ),

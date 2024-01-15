@@ -134,6 +134,10 @@ class LoginScreen extends GetWidget<AuthController> {
                   Row(
                     children: [
                       Checkbox(
+                        fillColor: MaterialStatePropertyAll(
+                            controller.isChecked.value == true ? Color(0xFF30879B) :Colors.transparent
+                        ),
+                        // activeColor: Color(0xFF30879B),
                         value: controller.isChecked.value,
                         onChanged: (value) {
                           controller.checkBoxToggle();
@@ -176,9 +180,9 @@ class LoginScreen extends GetWidget<AuthController> {
                   AppButton(
                     title: "Login",
                     onTap: () {
-                      controller.login();
+                      // controller.login();
                       // controller.registeredUser();
-                      // Get.toNamed(BottomnavBar.route);
+                      Get.toNamed(BottomnavBar.route);
                     },
                   )
                 ],

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/res/theme.dart';
+import 'package:travelagentapp/res/dark_theme.dart';
 
 import '../../res/icons/svg.dart';
 import '../clientScreenNavbar/view/ClientScreenNavbar.dart';
@@ -28,33 +28,39 @@ class _LocationDetailState extends State<LocationDetail> {
         padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: ListView(
           children: [
-            SizedBox(height: 20.h,),
+            SizedBox(height: 5.h,),
             Align(
                 alignment: AlignmentDirectional.topStart,
                 child: IconButton(
                     onPressed: () {
                       Get.back();
                     },
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20, color: Colors.white,))),
-            SizedBox(height: 24.h,),
-            const Text(
-              'LocationDetail',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w600,
-                height: 0.04,
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: Colors.white,))),
+            SizedBox(height: 16.h,),
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0),
+              child: const Text(
+                'LocationDetail',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w600,
+                  height: 0.04,
+                ),
               ),
             ),
             SizedBox(height: 20.h,),
-            const Text(
-              'Useful for location-based recommendations or services\nlike transportation and local events.',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-                fontFamily: 'SF Pro Text',
-                fontWeight: FontWeight.w400,
+            Padding(
+              padding: const EdgeInsets.only(left: 13.0),
+              child: const Text(
+                'Useful for location-based recommendations or services\nlike transportation and local events.',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontFamily: 'SF Pro Text',
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
             SizedBox(height: 65.h,),
@@ -107,22 +113,21 @@ class _LocationDetailState extends State<LocationDetail> {
 
                 }
             ),
-            SizedBox(height: 30.h,),
-            InkWell(
-              onTap: () {
-                Get.toNamed(ClientNavbar.route);
-              },
-              child: Text(
-                'Skip for now',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF9CA3AF),
-                  fontSize: 14,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w400,
-                  height: 0.11,
+            SizedBox(height: 10.h,),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed(ClientNavbar.route);
+                },
+                child:Text(
+                  'Skip for now',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF9CA3AF),
+                    fontSize: 14,
+                    fontFamily: 'SF Pro Text',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
             ),
             SizedBox(height: 30,),
           ],

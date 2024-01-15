@@ -8,11 +8,13 @@ import '../../pages/profile/view/profileScreen.dart';
 import '../../pages/request/view/viewRequest.dart';
 class BottomNavController extends GetxController {
 
-  var currentIndex = 0.obs;
+  RxInt currentIndex = 0.obs;
 
 
-  void changePage(int index) {
+  changePage(index) {
+    print(index);
     currentIndex.value = index;
+    update();
   }
 
 

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:travelagentapp/pages/profile/view/profileSetting.dart';
-import '../../../res/theme.dart';
+import '../../../res/dark_theme.dart';
 import 'editProfile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,50 +12,44 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text(
+          'Profile',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0.06,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: ShapeDecoration(
+                color: Colors.white.withOpacity(0.07000000029802322),
+                shape: const OvalBorder(),
+              ),
+              child: IconButton(
+                onPressed: () {
+                  Get.toNamed(ProfileSetting.route);
+                },
+                icon: const Center(child: Icon(Icons.settings_outlined, color: Colors.white,),
+                ),
+                padding: const EdgeInsets.only(bottom: 2,top: 4),
+              ),
+            ),
+          )
+        ],
+      ),
       body: ListView(
         children: [
-          SizedBox(height: 30.h,),
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0,top: 16),
-            child: Row(
-              children: [
-                const Padding(
-                    padding: EdgeInsets.only(left: 130.0),
-                    child: Text(
-                      'Profile',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w600,
-                        height: 0.06,
-                      ),
-                    )
-                ),
-                const Spacer(),
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: ShapeDecoration(
-                    color: Colors.white.withOpacity(0.07),
-                    shape: const OvalBorder(),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Get.toNamed(ProfileSetting.route);
-                      },
-                      icon: Center(child: Icon(Icons.settings_outlined, color: Colors.white,),
-                      ),
-                      padding: EdgeInsets.only(bottom: 2,top: 4),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           SizedBox(height: 18.h,),
           Container(
             width: 375,
@@ -64,18 +58,14 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // SizedBox(height: 20.h,),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: const ShapeDecoration(
-                        shape: OvalBorder(
-                          side: BorderSide(width: 4.98, color: Color(0x304E7B86)),
-                        ),
+                    CircleAvatar(
+                      foregroundImage: AssetImage(
+                          'assets/emoji/profile.png'
                       ),
+                      radius: 60,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(

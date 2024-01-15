@@ -1,106 +1,149 @@
 import 'package:flutter/material.dart';
-import 'package:travelagentapp/res/icons/onboardingSVG.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 
-class OnboardingScreen extends StatefulWidget {
-  static String route = 'OnboardingSscreen';
+import '../../res/icons/onboardingSVG.dart';
+
+class OnboadScreenComponent extends StatelessWidget {
+  String svgString, title, tagline;
+
+  OnboadScreenComponent({
+    required this.svgString,
+    required this.title,
+    required this.tagline,
+  });
+
   @override
-  _OnboardingScreenState createState() => _OnboardingScreenState();
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.45,
+            child: SvgPicture.string(
+              svgString,
+              fit: BoxFit.contain,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height / 5,
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Text(
+              tagline,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
+class OnboardScreen extends StatefulWidget {
+  static String route = 'OnboardScreen';
 
-  final List<Widget> _pages = [
-    OnboardingPage(
-      title: "Welcome to Onboarding",
-      description: "Swipe to learn more!",
-      image: OnboardingSvgs.fristOnboardSVG,
-    ),
-    OnboardingPage(
-      title: "Explore Features",
-      description: "Discover all the amazing features.",
-      image: "assets/onboarding2.png", // replace with your image
-    ),
-    OnboardingPage(
-      title: "Get Started",
-      description: "Start using our awesome app!",
-      image: "assets/onboarding3.png", // replace with your image
-    ),
-  ];
+  const OnboardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardScreen> createState() => _OnboardScreenState();
+}
+
+class _OnboardScreenState extends State<OnboardScreen> {
+  final PageController pageControl = PageController();
+  bool isLastPage = false;
+
+  @override
+  void dispose() {
+    pageControl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: PageView(
-        controller: _pageController,
-        onPageChanged: (int page) {
+        controller: pageControl,
+        onPageChanged: (index) {
           setState(() {
-            _currentPage = page;
+            isLastPage = index == 2; // Assuming you have 3 pages (0, 1, 2)
           });
         },
-        children: _pages,
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        elevation: 0,
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              _pages.length,
-                  (index) => buildDot(index),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildDot(int index) {
-    return Container(
-      margin: EdgeInsets.only(right: 8),
-      width: 8,
-      height: 8,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: _currentPage == index ? Colors.blue : Colors.grey,
-      ),
-    );
-  }
-}
-
-class OnboardingPage extends StatelessWidget {
-  final String title;
-  final String description;
-  final String image;
-
-  OnboardingPage({required this.title, required this.description, required this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            image,
-            height: 200,
+          OnboadScreenComponent(
+            svgString: OnboardingSvgs.fristOnboardSVG,
+            title: 'Welcome to 46concierge',
+            tagline:
+            'We provide impeccable services and deliver exceptional experiences that are effortlessly accessible to our esteemed clients. Our own expertise lies in two core pillars: Lifestyle and Events.',
           ),
-          SizedBox(height: 30),
-          Text(
-            title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          OnboadScreenComponent(
+            svgString: OnboardingSvgs.seconSvg,
+            title: 'Your Own Lifestyle Manager',
+            tagline:
+            'Your lifestyle manager is your go-to guide, ready to assist in bookings, recommendations, and ensuring your experience is tailored just for you',
           ),
-          SizedBox(height: 10),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
+          OnboadScreenComponent(
+            svgString: OnboardingSvgs.thirdSvg,
+            title: 'Tailored Just for You',
+            tagline:
+            'Customize your Experience preferences for a personalized experience (e.g., favorite cuisines, travel preferences, event interests, and meet & greet)',
           ),
         ],
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SmoothPageIndicator(
+              controller: pageControl,
+              count: 3,
+              effect: const ExpandingDotsEffect(
+                spacing: 5,
+                dotWidth: 5,
+                dotHeight: 5,
+                dotColor: Colors.white,
+                activeDotColor: Colors.white,
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Navigating to the login page or the next page as needed
+                // Replace this with your navigation logic
+                // For example, if you have a LoginView route:
+                // Navigator.pushReplacementNamed(context, '/login');
+                Get.toNamed(InterestScreen.route);
+              },
+              child: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.white,
+                child: Icon(Icons.arrow_forward),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

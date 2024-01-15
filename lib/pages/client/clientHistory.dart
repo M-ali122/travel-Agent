@@ -15,50 +15,54 @@ class ClientHistory extends StatelessWidget {
     'Meet & Greet',
   ];
 
+  
+  var imageUrl = [
+    'assets/emoji/dubia.png',
+    'assets/emoji/yogaClasses.png',
+    'assets/emoji/meetGreet.png',
+  ];
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Clients',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+            height: 0.06,
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        actions: [Padding(
+          padding: const EdgeInsets.only(right: 15.0),
+          child: SvgPicture.string(Svgs.clientPageIcon),
+        ),],
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0,right: 16,top: 16),
         child: ListView(
           shrinkWrap: true,
           children: [
-            SizedBox(height: 16.h,),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 130.0),
-                  child: Text(
-                    'Clients',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w600,
-                      height: 0.06,
-                    ),
-                  ),
-                ),
-                Spacer(),
-                SvgPicture.string(Svgs.clientPageIcon),
-              ],
-            ),
-            SizedBox(height: 17.h,),
             Center(
               child: Container(
                 width: 375,
                 height: 1,
-                decoration: BoxDecoration(color: Color(0xFF1E2025)),
+                decoration: const BoxDecoration(color: Color(0xFF1E2025)),
               ),
             ),
-
             SizedBox(height: 20.h,),
             Center(
               child: Container(
                 width: 120,
                 height: 120,
-                decoration: ShapeDecoration(
+                decoration:  ShapeDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/emoji/profile.png'),fit: BoxFit.cover),
                   shape: OvalBorder(
                     side: BorderSide(
                       width: 5,
@@ -70,7 +74,7 @@ class ClientHistory extends StatelessWidget {
               ),
             ),
             SizedBox(height: 12.h,),
-            Center(
+            const Center(
               child: Text(
                 'Faizan Ahmad',
                 textAlign: TextAlign.center,
@@ -92,13 +96,13 @@ class ClientHistory extends StatelessWidget {
                   height: 22,
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                   decoration: ShapeDecoration(
-                    color: Color(0xFF191B20),
+                    color: const Color(0xFF191B20),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                      side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                       borderRadius: BorderRadius.circular(38),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,13 +126,13 @@ class ClientHistory extends StatelessWidget {
                   height: 22,
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                   decoration: ShapeDecoration(
-                    color: Color(0xFF191B20),
+                    color: const Color(0xFF191B20),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                      side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                       borderRadius: BorderRadius.circular(38),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,13 +156,13 @@ class ClientHistory extends StatelessWidget {
                   height: 22,
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                   decoration: ShapeDecoration(
-                    color: Color(0xFF191B20),
+                    color: const Color(0xFF191B20),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                      side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                       borderRadius: BorderRadius.circular(38),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -182,13 +186,13 @@ class ClientHistory extends StatelessWidget {
                   height: 22,
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                   decoration: ShapeDecoration(
-                    color: Color(0xFF191B20),
+                    color: const Color(0xFF191B20),
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                      side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                       borderRadius: BorderRadius.circular(38),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -210,7 +214,7 @@ class ClientHistory extends StatelessWidget {
               ],
             ),
             SizedBox(height: 36.h,),
-            Row(
+            const Row(
               children: [
                 Text(
                   'Email',
@@ -240,10 +244,10 @@ class ClientHistory extends StatelessWidget {
             Container(
               width: 343,
               height: 1,
-              decoration: BoxDecoration(color: Color(0xFF24262D)),
+              decoration: const BoxDecoration(color: Color(0xFF24262D)),
             ),
             SizedBox(height: 16.h,),
-            Row(
+            const Row(
               children: [
                 Text(
                   'Phone Number',
@@ -273,10 +277,10 @@ class ClientHistory extends StatelessWidget {
             Container(
               width: 343,
               height: 1,
-              decoration: BoxDecoration(color: Color(0xFF24262D)),
+              decoration: const BoxDecoration(color: Color(0xFF24262D)),
             ),
             SizedBox(height: 16.h,),
-            Row(
+            const Row(
               children: [
                 Text(
                   'Country',
@@ -306,13 +310,13 @@ class ClientHistory extends StatelessWidget {
             Container(
               width: 343,
               height: 1,
-              decoration: BoxDecoration(color: Color(0xFF24262D)),
+              decoration: const BoxDecoration(color: Color(0xFF24262D)),
             ),
             SizedBox(height: 28.h,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'History',
                   style: TextStyle(
                     color: Colors.white,
@@ -325,11 +329,11 @@ class ClientHistory extends StatelessWidget {
                 Container(
                   width: 32,
                   height: 32,
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                     color: Color(0xFF242529),
                     shape: OvalBorder(),
                   ),
-                  child: Icon(CupertinoIcons.search,color: Colors.white,),
+                  child: const Icon(CupertinoIcons.search,color: Colors.white,),
                 )
               ],
             ),
@@ -338,7 +342,7 @@ class ClientHistory extends StatelessWidget {
               child: ListView.builder(
                 itemCount: clintHistory.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
@@ -346,9 +350,9 @@ class ClientHistory extends StatelessWidget {
                       width: 343,
                       height: 70,
                       decoration: ShapeDecoration(
-                        color: Color(0xFF191B1F),
+                        color: const Color(0xFF191B1F),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -357,6 +361,7 @@ class ClientHistory extends StatelessWidget {
                           width: 60,
                           height: 60,
                           decoration: ShapeDecoration(
+                            image: DecorationImage(image: AssetImage(imageUrl[index]),fit:BoxFit.cover),
                             color: Colors.black.withOpacity(0.10000000149011612),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -365,7 +370,7 @@ class ClientHistory extends StatelessWidget {
                         ),
                         title: Text(
                           '${clintHistory[index]}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
                             fontFamily: 'SF Pro Text',
@@ -375,9 +380,9 @@ class ClientHistory extends StatelessWidget {
                         ),
                         subtitle: Row(
                           children: [
-                            Icon(CupertinoIcons.clock,size: 12,color: Color(0xff6B7280),),
+                            const Icon(CupertinoIcons.clock,size: 12,color: Color(0xff6B7280),),
                             SizedBox(width: 4.w,),
-                            Text(
+                            const Text(
                               'Sat 9 Dec 07:00 AM',
                               style: TextStyle(
                                 color: Color(0xFF6B7280),
@@ -398,7 +403,7 @@ class ClientHistory extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Completed',
                               textAlign: TextAlign.center,

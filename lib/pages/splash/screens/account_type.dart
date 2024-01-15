@@ -37,6 +37,7 @@ class AccountTypeScreen extends StatelessWidget {
                   title: "Client",
                   onTap: () {
                     Get.toNamed(InterestScreen.route);
+                  // Get.toNamed(OnboardScreen.route);
                   },
                 ),
                 const SizedBox(

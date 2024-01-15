@@ -194,7 +194,7 @@ class HomeView extends StatelessWidget {
               height: 24,
             ),
             SizedBox(
-              height: 190,
+              height: 310,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: dateTime.length,

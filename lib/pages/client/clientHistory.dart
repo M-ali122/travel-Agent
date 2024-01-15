@@ -62,7 +62,7 @@ class ClientHistory extends StatelessWidget {
                 height: 120,
                 decoration:  ShapeDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/emoji/profile.png'),fit: BoxFit.cover),
+                      image: AssetImage('assets/emoji/profile2.png'),fit: BoxFit.cover),
                   shape: OvalBorder(
                     side: BorderSide(
                       width: 5,

@@ -27,7 +27,6 @@ class ClientProfileScreen extends StatelessWidget {
             fontSize: 18,
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w600,
-            height: 0.06,
           ),
         ),
         actions: [
@@ -46,7 +45,7 @@ class ClientProfileScreen extends StatelessWidget {
                 },
                 icon: const Center(child: Icon(Icons.settings_outlined, color: Colors.white,),
                 ),
-                padding: const EdgeInsets.only(bottom: 2,top: 4),
+                padding: const EdgeInsets.only(bottom: 3.8,top: 4),
               ),
             ),
           )
@@ -70,7 +69,7 @@ class ClientProfileScreen extends StatelessWidget {
                       height: 120,
                       decoration: const ShapeDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/emoji/profile.png')
+                            image: AssetImage('assets/emoji/profile2.png')
                         ),
                         shape: OvalBorder(
                           side: BorderSide(width: 4.98, color: Color(0x304E7B86)),

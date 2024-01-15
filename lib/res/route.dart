@@ -31,6 +31,7 @@ class AppRoute {
   final Map<String, Widget Function(BuildContext)> routes = {
 
 
+// <<<<<<< HEAD
 
     /// main routes
     SplashView.route: (p0) => SplashView(),
@@ -42,7 +43,7 @@ class AppRoute {
     InterestScreen.route:(p0) => InterestScreen(),
     Customization.route:(p0) => Customization(),
     LanguagePrefence.route:(p0) => LanguagePrefence(),
-    SpeciaRequest.route:(p0) => SpeciaRequest(),
+    // SpeciaRequest.route:(p0) => SpeciaRequest(),
     LocationDetail.route:(p0) => LocationDetail(),
     ClientNavbar.route:(p0) => ClientNavbar(),
     ClientEditProfile.route:(p0) => ClientEditProfile(),
@@ -108,5 +109,23 @@ class AppRoute {
 //     ClientChangePassword.route : (p0) => ClientChangePassword(),
 //     ConfrimPassChange.route : (p0) => ConfrimPassChange(),
 // >>>>>>> f42c0cf4298a32cdb0aba0272841ccf0b7ed3dd2
+// =======
+//     // Client Page Route
+//     OnboardScreen.route : (p0) => OnboardScreen(),
+//     InterestScreen.route: (p0) => InterestScreen(),
+//     Customization.route: (p0) => Customization(),
+//     LanguagePrefence.route : (p0) => LanguagePrefence(),
+//     // SpeciaRequest.route : (p0) => SpeciaRequest(),
+//     LocationDetail.route : (p0) => LocationDetail(),
+//     ClientNavbar.route : (p0) => ClientNavbar(),
+//     BecomMemeber.route : (p0) => BecomMemeber(),
+//     ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
+//     ClientRequestDetail.route : (p0) => ClientRequestDetail(),
+//     ClientChatScreen.route : (p0) => ClientChatScreen(),
+//     ClientEditProfile.route : (p0) => ClientEditProfile(),
+//     CLientProfileSetting.route : (p0) => CLientProfileSetting(),
+//     ClientChangePassword.route : (p0) => ClientChangePassword(),
+//     ConfrimPassChange.route : (p0) => ConfrimPassChange(),
+// >>>>>>> 8b58d87d59853bd9c7bade63c73aab1c0eda70e6
   };
 }

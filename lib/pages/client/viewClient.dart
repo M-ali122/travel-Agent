@@ -24,33 +24,32 @@ class ViewClient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text(
+          'Clients',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'SF Pro Text',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: SvgPicture.string(Svgs.clientPageIcon),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16),
           child: ListView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
-              SizedBox(height: 16.h),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 130.0),
-                    child: Text(
-                      'Clients',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w600,
-                        height: 0.06,
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  SvgPicture.string(Svgs.clientPageIcon),
-                ],
-              ),
               SizedBox(height: 16.h),
               const SizedBox(
                 height: 60,

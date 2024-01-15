@@ -23,7 +23,6 @@ class ProfileScreen extends StatelessWidget {
             fontSize: 18,
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w600,
-            height: 0.06,
           ),
         ),
         actions: [
@@ -42,10 +41,10 @@ class ProfileScreen extends StatelessWidget {
                 },
                 icon: const Center(child: Icon(Icons.settings_outlined, color: Colors.white,),
                 ),
-                padding: const EdgeInsets.only(bottom: 2,top: 4),
+                padding: const EdgeInsets.only(bottom: 3.8,top: 4),
               ),
             ),
-          )
+          ),
         ],
       ),
       body: ListView(
@@ -63,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       foregroundImage: AssetImage(
-                          'assets/emoji/profile.png'
+                          'assets/emoji/profile2.png'
                       ),
                       radius: 60,
                     ),

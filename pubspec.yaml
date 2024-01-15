@@ -47,6 +47,7 @@ dependencies:
   fluttertoast: ^8.2.4
   get_storage: ^2.1.1
   smooth_page_indicator: ^1.1.0
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:

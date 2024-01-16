@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:travelagentapp/pages/profile/view/profileSetting.dart';
-
-import '../../../res/theme.dart';
+import '../../../res/dark_theme.dart';
 import 'editProfile.dart';
 
 class ProfileScreen extends StatelessWidget {

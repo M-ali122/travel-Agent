@@ -6,3 +6,11 @@ const vspace = SizedBox(
 const hspace = SizedBox(
   width: 16,
 );
+
+class Strings{
+
+  String get kUser => 'Users';
+
+
+
+}

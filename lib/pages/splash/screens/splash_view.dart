@@ -5,7 +5,8 @@ import '../../../res/icons/svg.dart';
 import '../controller/splashController.dart';
 
 class SplashView extends GetWidget<SplashController> {
-  static const String route = 'SplashView';
+  static const String route = 'splashView';
+
 
   const SplashView({super.key});
   @override

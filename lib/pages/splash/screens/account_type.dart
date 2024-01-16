@@ -5,11 +5,12 @@ import 'package:travelagentapp/clientScreen/onboarding/onboardingScreen.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 
+import '../../../clientScreen/clientAuth/clientAuthView/clientLogin.dart';
 import '../../../res/icons/svg.dart';
 import '../../auth/view/loginscreen.dart';
 
 class AccountTypeScreen extends StatelessWidget {
-  static const String route = 'AccountTypeScreen';
+  static const String route = 'accountTypeScreen';
   const AccountTypeScreen({super.key});
 
   @override
@@ -36,8 +37,9 @@ class AccountTypeScreen extends StatelessWidget {
                 AppButton(
                   title: "Client",
                   onTap: () {
-                    //Get.toNamed(InterestScreen.route);
-                  Get.toNamed(OnboardScreen.route);
+                   // Get.toNamed(InterestScreen.route);
+                    Get.toNamed(ClientLogin.route);
+                    // Get.toNamed(OnboardScreen.route);
                   },
                 ),
                 const SizedBox(
@@ -45,7 +47,7 @@ class AccountTypeScreen extends StatelessWidget {
                 ),
                 AppButton(
                   title: "Lifestyle Manager",
-                  onTap: () async {
+                  onTap: (){
                     Get.toNamed(LoginScreen.route);
                   },
                   background: Colors.white,

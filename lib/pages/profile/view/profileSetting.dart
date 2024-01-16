@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 
+import '../../auth/view/loginscreen.dart';
+
 class ProfileSetting extends StatelessWidget {
-  static String route = 'ProfileSetting';
+  static String route = 'profileSetting';
   const ProfileSetting({super.key});
 
   @override
@@ -83,14 +85,14 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(ChangePassword.route);
-                        },
-                        child: const Text(
+                 InkWell(
+                    onTap: (){
+                      Get.toNamed(ChangePassword.route);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
                           'Change Password ',
                           style: TextStyle(
                             color: Colors.white,
@@ -100,9 +102,9 @@ class ProfileSetting extends StatelessWidget {
                             height: 0.07,
                           ),
                         ),
-                      ),
-                      const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
+                        const Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                      ],
+                    ),
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
                   const Row(
@@ -531,22 +533,27 @@ class ProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Logout',
-                        style: TextStyle(
-                          color: Color(0xFFEB5757),
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
+                   InkWell(
+                     onTap: (){
+                       Get.offAllNamed(LoginScreen.route);
+                     },
+                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                            color: Color(0xFFEB5757),
+                            fontSize: 14,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.07,
+                          ),
                         ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
-                  ),
+                        Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                      ],
+                                       ),
+                   ),
                 ],
               ),
             ),

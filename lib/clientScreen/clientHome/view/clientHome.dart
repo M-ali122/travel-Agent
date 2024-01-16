@@ -18,16 +18,16 @@ class ClientHomeSreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
         leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.only(left: 13.0),
           child: Container(
             width: 40,
             height: 40,
             decoration: ShapeDecoration(
-             image: DecorationImage(
+             image: const DecorationImage(
                image: AssetImage('assets/emoji/profile2.png')
              ),
               color: Colors.white.withOpacity(0.05000000074505806),
-              shape: CircleBorder()
+              shape: const CircleBorder()
             ),
           ),
         ),
@@ -43,7 +43,7 @@ class ClientHomeSreen extends StatelessWidget {
               onTap: () {
                 Get.toNamed(BecomMemeber.route);
               },
-              child: Text(
+              child: const Text(
                 'Become a Member',
                 style: TextStyle(
                   color: Colors.white,
@@ -280,7 +280,7 @@ class ClientHomeSreen extends StatelessWidget {
               height: 220,
               decoration: ShapeDecoration(
 
-                image: DecorationImage(
+                image: const DecorationImage(
                     image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
                 shape: RoundedRectangleBorder(
@@ -298,9 +298,9 @@ class ClientHomeSreen extends StatelessWidget {
                         height: 24,
                         decoration: ShapeDecoration(
                           color: Colors.black.withOpacity(0.6000000238418579),
-                          shape: OvalBorder(),
+                          shape: const OvalBorder(),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
                         ),
                       ),
@@ -342,12 +342,12 @@ class ClientHomeSreen extends StatelessWidget {
                                 SizedBox(height: 8.h,),
                                 Row(
                                   children: [
-                                    Padding(
+                                    const Padding(
                                       padding:  EdgeInsets.only(left: 13.0,),
                                       child: Icon(CupertinoIcons.clock,size: 12,color: Colors.white,),
                                     ),
                                     SizedBox(width: 4.w,),
-                                    Text(
+                                    const Text(
                                       'Sat 9 Dec 07:00 AM',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -361,9 +361,9 @@ class ClientHomeSreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12.0),
+                          const Spacer(),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 12.0),
                             child: Text(
                               'Request',
                               textAlign: TextAlign.right,
@@ -388,7 +388,7 @@ class ClientHomeSreen extends StatelessWidget {
               height: 220,
               decoration: ShapeDecoration(
 
-                image: DecorationImage(
+                image: const DecorationImage(
                     image: AssetImage('assets/emoji/yogaClasses.png'),fit: BoxFit.cover),
                 color: Colors.black.withOpacity(0.10000000149011612),
                 shape: RoundedRectangleBorder(
@@ -406,9 +406,9 @@ class ClientHomeSreen extends StatelessWidget {
                         height: 24,
                         decoration: ShapeDecoration(
                           color: Colors.black.withOpacity(0.6000000238418579),
-                          shape: OvalBorder(),
+                          shape: const OvalBorder(),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
                         ),
                       ),
@@ -450,12 +450,12 @@ class ClientHomeSreen extends StatelessWidget {
                                 SizedBox(height: 8.h,),
                                 Row(
                                   children: [
-                                    Padding(
+                                    const Padding(
                                       padding:  EdgeInsets.only(left: 13.0,),
                                       child: Icon(CupertinoIcons.clock,size: 12,color: Colors.white,),
                                     ),
                                     SizedBox(width: 4.w,),
-                                    Text(
+                                    const Text(
                                       'Sat 9 Dec 07:00 AM',
                                       style: TextStyle(
                                         color: Colors.white,
@@ -469,9 +469,9 @@ class ClientHomeSreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12.0),
+                          const Spacer(),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 12.0),
                             child: Text(
                               'Request',
                               textAlign: TextAlign.right,

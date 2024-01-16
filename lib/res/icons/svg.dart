@@ -14,6 +14,11 @@ static String textFieldIcon = '''
 </svg>
 ''';
 
+static String bottomNabbar = '''
+<svg width="375" height="75" viewBox="0 0 375 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M153.595 13.479C146.856 6.1238 138.165 0 128.189 0H1C0.447715 0 0 0.447714 0 0.999999V74C0 74.5523 0.44771 75 0.999995 75H374C374.552 75 375 74.5523 375 74V1C375 0.447715 374.552 0 374 0H246.811C236.835 0 228.144 6.1238 221.405 13.479C212.595 23.094 200.652 29 187.5 29C174.348 29 162.405 23.094 153.595 13.479Z" fill="#090A0B"/>
+</svg>
+''';
 
 static String home = '''
 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

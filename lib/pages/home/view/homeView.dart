@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travelagentapp/res/theme.dart';
+import 'package:get/get.dart';
+import 'package:travelagentapp/helpers/extensions/spacing.dart';
+import 'package:travelagentapp/res/dark_theme.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -111,7 +113,7 @@ class HomeView extends StatelessWidget {
             ),
             //top cards
             SizedBox(
-              height: 100,
+              height: Get.height * 0.120,
               child: ListView.builder(
                 itemCount: 3,
                 shrinkWrap: true,
@@ -121,7 +123,7 @@ class HomeView extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 12.0),
                     child: Container(
                       width: 106,
-                      height: 100,
+                      height: 00,
                       decoration: ShapeDecoration(
                         color: arrColor[index],
                         shape: RoundedRectangleBorder(
@@ -193,9 +195,14 @@ class HomeView extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            SizedBox(
-              height: 310,
+// <<<<<<< HEAD
+//             SizedBox(
+//               height: 310,
+// =======
+            Container(
+              height: Get.height *0.45,
               child: ListView.builder(
+                // physics: AlwaysScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: dateTime.length,
                 shrinkWrap: true,
@@ -317,7 +324,7 @@ class HomeView extends StatelessWidget {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

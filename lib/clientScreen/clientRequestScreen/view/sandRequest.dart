@@ -20,7 +20,6 @@ class ClientPageSandRequest extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-
           },
           icon: const Icon(CupertinoIcons.back,size: 24,color: Colors.white,),
         ),
@@ -287,10 +286,10 @@ class ClientPageSandRequest extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 16.h,),
-                Align(
+                const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: EdgeInsets.only(left: 10.0),
                     child: Text(
                       'Number of People',
                       style: TextStyle(

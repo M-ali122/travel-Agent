@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/res/theme.dart';
+import 'package:travelagentapp/res/dark_theme.dart';
 
 import '../../res/icons/svg.dart';
 import '../clientScreenNavbar/view/ClientScreenNavbar.dart';
@@ -24,43 +24,37 @@ class _LocationDetailState extends State<LocationDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: Colors.white,)
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16),
         child: ListView(
           children: [
-            SizedBox(height: 5.h,),
-            Align(
-                alignment: AlignmentDirectional.topStart,
-                child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 24, color: Colors.white,))),
-            SizedBox(height: 16.h,),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0),
-              child: const Text(
-                'LocationDetail',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w600,
-                  height: 0.04,
-                ),
+            SizedBox(height: 24.h,),
+            const Text(
+              'LocationDetail',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w600,
+                height: 0.04,
               ),
             ),
             SizedBox(height: 20.h,),
-            Padding(
-              padding: const EdgeInsets.only(left: 13.0),
-              child: const Text(
-                'Useful for location-based recommendations or services\nlike transportation and local events.',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w400,
-                ),
+            const Text(
+              'Useful for location-based recommendations or services\nlike transportation and local events.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(height: 65.h,),

@@ -59,7 +59,7 @@ class Inbox extends StatelessWidget {
               ),
               SizedBox(height: 27.h,),
              SizedBox(
-               height: 250,
+               height: Get.height * 0.53,
                child: ListView(
                  scrollDirection: Axis.vertical,
                  shrinkWrap: true,

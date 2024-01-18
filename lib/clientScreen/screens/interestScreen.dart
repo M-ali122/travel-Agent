@@ -56,14 +56,14 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(0);
+                          controller.toggleInterest('Meet & Greet');
                         },
                         child: Container(
                           width: 181,
                           height: 48,
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                           decoration: ShapeDecoration(
-                            color: controller.isInterestSelected(0) ? const Color(0xFF30879B) : Colors.transparent,
+                            color: controller.isInterestSelected('Meet & Greet') ? const Color(0xFF30879B) : Colors.transparent,
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                               borderRadius: BorderRadius.circular(40),
@@ -74,7 +74,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(controller.isInterestSelected(0) ? Icons.done : Icons.add, color: Colors.white,),
+                              Icon(controller.isInterestSelected('Meet & Greet') ? Icons.done : Icons.add, color: Colors.white,),
 
                               SizedBox(
                                   height: 30,
@@ -98,7 +98,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(1);
+                          controller.toggleInterest("Event");
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
@@ -107,7 +107,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             height: 48,
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isInterestSelected(1) ? const Color(0xFF30879B) : Colors.transparent,
+                              color: controller.isInterestSelected('Event') ? const Color(0xFF30879B) : Colors.transparent,
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                                 borderRadius: BorderRadius.circular(40),
@@ -118,7 +118,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isInterestSelected(1) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isInterestSelected('Event') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 SizedBox(
                                     height: 10,
@@ -149,14 +149,14 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(2);
+                          controller.toggleInterest('Travel');
                         },
                         child: Container(
                           width: 131,
                           height: 48,
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                           decoration: ShapeDecoration(
-                            color: controller.isInterestSelected(2) ? const Color(0xFF30879B) : Colors.transparent,
+                            color: controller.isInterestSelected('Travel') ? const Color(0xFF30879B) : Colors.transparent,
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                               borderRadius: BorderRadius.circular(40),
@@ -167,7 +167,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(controller.isInterestSelected(2) ? Icons.done : Icons.add, color: Colors.white,),
+                              Icon(controller.isInterestSelected('Travel') ? Icons.done : Icons.add, color: Colors.white,),
                               Image.asset('assets/emoji/airplane.png'),
                               const SizedBox(width: 5),
                               const Text(
@@ -188,7 +188,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(3);
+                          controller.toggleInterest('Transport');
                         },
                         child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -197,7 +197,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                               height: 48,
                               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isInterestSelected(3) ? const Color(0xFF30879B) : Colors.transparent,
+                                color: controller.isInterestSelected('Transport') ? const Color(0xFF30879B) : Colors.transparent,
                                 shape: RoundedRectangleBorder(
                                   side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                                   borderRadius: BorderRadius.circular(40),
@@ -208,7 +208,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isInterestSelected(3) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isInterestSelected('Transport') ? Icons.done : Icons.add, color: Colors.white,),
                                   const Text(
                                     '🚘  Transport',
                                     textAlign: TextAlign.center,
@@ -234,14 +234,14 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(4);
+                          controller.toggleInterest('Dining');
                         },
                         child: Container(
                           width: 133,
                           height: 48,
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                           decoration: ShapeDecoration(
-                            color: controller.isInterestSelected(4) ? const Color(0xFF30879B) : Colors.transparent,
+                            color: controller.isInterestSelected('Dining') ? const Color(0xFF30879B) : Colors.transparent,
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                               borderRadius: BorderRadius.circular(40),
@@ -252,7 +252,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(controller.isInterestSelected(4) ? Icons.done : Icons.add, color: Colors.white,),
+                              Icon(controller.isInterestSelected('Dining') ? Icons.done : Icons.add, color: Colors.white,),
                               Image.asset('assets/emoji/plate.png'),
                               SizedBox(width: 4.h,),
                               const Text(
@@ -273,7 +273,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(6);
+                          controller.toggleInterest('Wellness');
 
                         },
                         child: Padding(
@@ -283,7 +283,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                               height: 48,
                               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isInterestSelected(6) ? const Color(0xFF30879B) : Colors.transparent,
+                                color: controller.isInterestSelected('Wellness') ? const Color(0xFF30879B) : Colors.transparent,
                                 shape: RoundedRectangleBorder(
                                   side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                                   borderRadius: BorderRadius.circular(40),
@@ -294,7 +294,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isInterestSelected(6) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isInterestSelected('Wellness') ? Icons.done : Icons.add, color: Colors.white,),
 
                                   Image.asset('assets/emoji/maditation.png'),
                                   SizedBox(width: 2.h,),
@@ -323,14 +323,14 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(7);
+                          controller.toggleInterest('Gifting');
                         },
                         child: Container(
                           width: 136,
                           height: 48,
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                           decoration: ShapeDecoration(
-                            color: controller.isInterestSelected(7) ? const Color(0xFF30879B) : Colors.transparent,
+                            color: controller.isInterestSelected('Gifting') ? const Color(0xFF30879B) : Colors.transparent,
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                               borderRadius: BorderRadius.circular(40),
@@ -341,7 +341,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(controller.isInterestSelected(7) ? Icons.done : Icons.add, color: Colors.white,),
+                              Icon(controller.isInterestSelected('Gifting') ? Icons.done : Icons.add, color: Colors.white,),
 
                               const Text(
                                 '🎁  Gifting',
@@ -361,7 +361,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          controller.toggleInterest(8);
+                          controller.toggleInterest('others');
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
@@ -370,7 +370,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                             height: 48,
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isInterestSelected(8) ? const Color(0xFF30879B) : Colors.transparent,
+                              color: controller.isInterestSelected('others') ? const Color(0xFF30879B) : Colors.transparent,
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(width: 1, color: Color(0xFF30879B)),
                                 borderRadius: BorderRadius.circular(40),
@@ -381,8 +381,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isInterestSelected(8) ? Icons.done : Icons.add, color: Colors.white,),
-
+                                Icon(controller.isInterestSelected('others') ? Icons.done : Icons.add, color: Colors.white,),
                                 const Text(
                                   '❓ Others',
                                   textAlign: TextAlign.center,

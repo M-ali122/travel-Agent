@@ -53,10 +53,6 @@ class BottomnavBar extends GetWidget<BottomNavController> {
               //   buildIconButton(3, Svgs.messages, "Messages"),
               //   buildIconButton(4, Svgs.profile, "Profile"),
 
-
-
-
-
                 GestureDetector(
                   onTap: () {
                     controller.changePage(0);

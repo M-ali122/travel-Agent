@@ -10,9 +10,10 @@ import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
 import '../../../res/icons/svg.dart';
+import '../clientAuthController/clientAuthController.dart';
 import '../clientRegistorScreen.dart';
 
-class ClientLogin extends GetWidget<AuthController> {
+class ClientLogin extends GetWidget<ClientAuthController> {
   static const String route = 'ClientLogin';
   ClientLogin({super.key});
 
@@ -20,8 +21,8 @@ class ClientLogin extends GetWidget<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthController>(
-      init: AuthController(),
+    return GetBuilder<ClientAuthController>(
+      init: ClientAuthController(),
       builder: (controller) {
         return Scaffold(
           body: Padding(
@@ -41,7 +42,7 @@ class ClientLogin extends GetWidget<AuthController> {
                    Row(
                      crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
-                       Text('Don’t have an account?',
+                       const Text('Don’t have an account?',
                          style: TextStyle(
                            color: Colors.white,
                            fontSize: 13,
@@ -87,7 +88,7 @@ class ClientLogin extends GetWidget<AuthController> {
                     height: 8.h,
                   ),
                   TextFormField(
-                    onChanged: (val) => controller.userModel.value.email = val,
+                    onChanged: (val) => controller.clientModel.value.email = val,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       hintText: "Enter your email Address",
@@ -109,7 +110,7 @@ class ClientLogin extends GetWidget<AuthController> {
                   Obx(
                         () => TextFormField(
                       onChanged: (val) =>
-                      controller.userModel.value.password = val,
+                      controller.clientModel.value.password = val,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: controller.isPasswordVisible.value,
                       decoration: InputDecoration(
@@ -177,9 +178,9 @@ class ClientLogin extends GetWidget<AuthController> {
                   AppButton(
                     title: "Login",
                     onTap: () {
-                      // controller.login();
-                      // controller.registeredUser();
-                      Get.toNamed(InterestScreen.route);
+                      controller.login();
+                      //controller.registeredUser();
+                      //Get.toNamed(InterestScreen.route);
                     },
                   )
                 ],

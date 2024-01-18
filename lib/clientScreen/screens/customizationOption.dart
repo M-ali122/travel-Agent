@@ -66,7 +66,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            controller.toggleCustomization(0);
+                            controller.toggleCustomization('Meet & Greet');
                             // controller.toggl(0);
                           },
                           child: Container(
@@ -75,7 +75,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(0)
+                              color: controller.isCustomizationSelected('Meet & Greet')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -89,7 +89,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(0) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Meet & Greet') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 SizedBox(
                                   width: 5.h,
@@ -112,7 +112,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(1);
+                            controller.toggleCustomization('Event');
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -122,7 +122,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isCustomizationSelected(1)
+                                color: controller.isCustomizationSelected('Event')
                                     ? const Color(0xFF30879B)
                                     : Colors.transparent,
                                 shape: RoundedRectangleBorder(
@@ -136,7 +136,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isCustomizationSelected(1) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isCustomizationSelected('Event') ? Icons.done : Icons.add, color: Colors.white,),
 
                                   SizedBox(
                                     width: 2.h,
@@ -168,7 +168,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(2);
+                            controller.toggleCustomization('Luxury');
                           },
                           child: Container(
                             width: 115,
@@ -176,7 +176,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(2)
+                              color: controller.isCustomizationSelected('Luxury')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -190,7 +190,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(2) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Luxury') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 const SizedBox(width: 5),
                                 const Text(
@@ -211,7 +211,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(3);
+                            controller.toggleCustomization('Cultural');
                           },
                           child: Padding(
                               padding: const EdgeInsets.only(left: 8.0),
@@ -221,7 +221,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 13),
                                 decoration: ShapeDecoration(
-                                  color: controller.isCustomizationSelected(3)
+                                  color: controller.isCustomizationSelected('Cultural')
                                       ? const Color(0xFF30879B)
                                       : Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -235,7 +235,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Icon(controller.isCustomizationSelected(3) ? Icons.done : Icons.add, color: Colors.white,),
+                                    Icon(controller.isCustomizationSelected('Cultural') ? Icons.done : Icons.add, color: Colors.white,),
 
                                     const SizedBox(width: 5),
                                     const Text(
@@ -264,7 +264,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(4);
+                            controller.toggleCustomization('Cuisines');
                           },
                           child: Container(
                             width: 127,
@@ -272,7 +272,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(4)
+                              color: controller.isCustomizationSelected('Cuisines')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -286,7 +286,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(4) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Cuisines') ? Icons.done : Icons.add, color: Colors.white,),
                                 SizedBox(width: 5.h),
                                 const Text(
                                   'Cuisines',
@@ -306,7 +306,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(5);
+                            controller.toggleCustomization('Fine Dining');
 
                           },
                           child: Padding(
@@ -317,7 +317,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 13),
                                 decoration: ShapeDecoration(
-                                  color: controller.isCustomizationSelected(5)
+                                  color: controller.isCustomizationSelected('Fine Dining')
                                       ? const Color(0xFF30879B)
                                       : Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -331,7 +331,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Icon(controller.isCustomizationSelected(5) ? Icons.done : Icons.add, color: Colors.white,),
+                                    Icon(controller.isCustomizationSelected('Fine Dining') ? Icons.done : Icons.add, color: Colors.white,),
 
                                     const Text(
                                       'Fine Dining',
@@ -359,7 +359,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(6);
+                            controller.toggleCustomization('Casual');
                           },
                           child: Container(
                             width: 114,
@@ -367,7 +367,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(6)
+                              color: controller.isCustomizationSelected('Casual')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -381,7 +381,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(6) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Casual') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 SizedBox(
                                   width: 3.w,
@@ -404,7 +404,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(7);
+                            controller.toggleCustomization('Vegan');
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 3.0),
@@ -414,7 +414,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isCustomizationSelected(7)
+                                color: controller.isCustomizationSelected('Vegan')
                                     ? const Color(0xFF30879B)
                                     : Colors.transparent,
                                 shape: RoundedRectangleBorder(
@@ -428,7 +428,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isCustomizationSelected(7) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isCustomizationSelected('Vegan') ? Icons.done : Icons.add, color: Colors.white,),
 
                                   const Text(
                                     'Vegan',
@@ -449,7 +449,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(8);
+                            controller.toggleCustomization('Spa');
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -461,7 +461,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isCustomizationSelected(8)
+                                color: controller.isCustomizationSelected('Spa')
                                     ? const Color(0xFF30879B)
                                     : Colors.transparent,
                                 shape: RoundedRectangleBorder(
@@ -475,7 +475,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isCustomizationSelected(8) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isCustomizationSelected('Spa') ? Icons.done : Icons.add, color: Colors.white,),
                                   const Text(
                                     'Spa',
                                     textAlign: TextAlign.center,
@@ -503,7 +503,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(9);
+                            controller.toggleCustomization('Yoga');
                           },
                           child: Container(
                             width: 102,
@@ -511,7 +511,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(9)
+                              color: controller.isCustomizationSelected('Yoga')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -525,7 +525,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(9) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Yoga') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 const Text(
                                   'Yoga',
@@ -545,7 +545,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(10);
+                            controller.toggleCustomization('Meditation');
                           },
                           child: Padding(
                               padding: const EdgeInsets.only(left: 8.0),
@@ -555,7 +555,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 13),
                                 decoration: ShapeDecoration(
-                                  color: controller.isCustomizationSelected(10)
+                                  color: controller.isCustomizationSelected('Meditation')
                                       ? const Color(0xFF30879B)
                                       : Colors.transparent,
                                   shape: RoundedRectangleBorder(
@@ -569,7 +569,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Icon(controller.isCustomizationSelected(10) ? Icons.done : Icons.add, color: Colors.white,),
+                                    Icon(controller.isCustomizationSelected('Meditation') ? Icons.done : Icons.add, color: Colors.white,),
 
                                     const Text(
                                       'Meditation',
@@ -597,7 +597,7 @@ class Customization extends GetWidget<DataCollectionController> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(11);
+                            controller.toggleCustomization('Occasions');
                           },
                           child: Container(
                             width: 140,
@@ -605,7 +605,7 @@ class Customization extends GetWidget<DataCollectionController> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 13),
                             decoration: ShapeDecoration(
-                              color: controller.isCustomizationSelected(11)
+                              color: controller.isCustomizationSelected('Occasions')
                                   ? const Color(0xFF30879B)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
@@ -619,7 +619,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(controller.isCustomizationSelected(11) ? Icons.done : Icons.add, color: Colors.white,),
+                                Icon(controller.isCustomizationSelected('Occasions') ? Icons.done : Icons.add, color: Colors.white,),
 
                                 const Text(
                                   'Occasions',
@@ -639,7 +639,7 @@ class Customization extends GetWidget<DataCollectionController> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            controller.toggleCustomization(12);
+                            controller.toggleCustomization('Types of Gifts');
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -649,7 +649,7 @@ class Customization extends GetWidget<DataCollectionController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 13),
                               decoration: ShapeDecoration(
-                                color: controller.isCustomizationSelected(12)
+                                color: controller.isCustomizationSelected('Types of Gifts')
                                     ? const Color(0xFF30879B)
                                     : Colors.transparent,
                                 shape: RoundedRectangleBorder(
@@ -663,7 +663,7 @@ class Customization extends GetWidget<DataCollectionController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Icon(controller.isCustomizationSelected(12) ? Icons.done : Icons.add, color: Colors.white,),
+                                  Icon(controller.isCustomizationSelected('Types of Gifts') ? Icons.done : Icons.add, color: Colors.white,),
 
                                   const Text(
                                     'Types of Gifts',

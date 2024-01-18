@@ -180,9 +180,9 @@ class LoginScreen extends GetWidget<AuthController> {
                   AppButton(
                     title: "Login",
                     onTap: () {
-                      // controller.login();
+                       // controller.login();
                       // controller.registeredUser();
-                      Get.toNamed(BottomnavBar.route);
+                     // Get.toNamed(BottomnavBar.route);
                     },
                   )
                 ],

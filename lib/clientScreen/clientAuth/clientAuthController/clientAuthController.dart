@@ -1,24 +1,34 @@
+// import 'package:get/get.dart';
+// import 'package:get/get_state_manager/get_state_manager.dart';
+// import 'package:travelagentapp/clientScreen/clientAuth/clientAutModel/clientModel.dart';
+//
+// class ClientAuthController extends GetxController {
+//   Rx<ClientModel> clientModel = ClientModel().obs;
+//
+// }
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/clientAutModel/clientModel.dart';
+import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/views/toast.dart';
 import 'package:travelagentapp/pages/auth/model/user_model.dart';
 import 'package:travelagentapp/res/String.dart';
 
 import '../../../navBar/view/bottomNavBar.dart';
 
-class AuthController extends GetxController {
+class ClientAuthController extends GetxController {
   var firestore = FirebaseFirestore.instance;
-  Rx<UserModel> userModel = UserModel().obs;
+  Rx<ClientModel> clientModel = ClientModel().obs;
   final box = GetStorage();
 
   void login() async {
     try {
-      // _toggle();
+      _toggle();
       QuerySnapshot querySnapshot = await firestore
-          .collection(Strings().kUser)
-          .where('email', isEqualTo: userModel.value.email)
-          .where('password', isEqualTo: userModel.value.password)
+          .collection(Strings().kClient)
+          .where('email', isEqualTo: clientModel.value.email)
+          .where('password', isEqualTo: clientModel.value.password)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
@@ -28,18 +38,21 @@ class AuthController extends GetxController {
           print('Document ID: ${doc.id}');
           print('Data: ${data}');
           String userType = data['userType'];
-          print(userType);
-          await firestore
-              .collection(Strings().kUser)
-              .doc(doc.id)
-              .update({"staySignedIn": isChecked.value});
+          print("your userType is $userType");
+          // await firestore
+          //     .collection(Strings().kClient)
+          //     .doc(doc.id)
+          //     .update({"staySignedIn": isChecked.value}
+          // );
           if (userType == "Admin") {
-            box.write("uid", doc.id);
-            box.write("type", userType);
-            box.write("staySignIn", isChecked.value);
-            // Get.offAllNamed(BottomnavBar.route);
-          } else {
-            print("clint Call");
+          //   box.write("uid", doc.id);
+          //   box.write("type", userType);
+          //   box.write("staySignIn", isChecked.value);
+               Get.offAllNamed(BottomnavBar.route);
+            print('your userType is $userType');
+          } else{
+            Get.offAllNamed(InterestScreen.route);
+            // print("this is clint side user data $userType");
           }
         }
       }
@@ -72,13 +85,16 @@ class AuthController extends GetxController {
 
   void registeredUser() async {
     var id = DateTime.now().microsecondsSinceEpoch;
-    userModel.value.staySignedIn = isChecked.value;
-    userModel.value.uid = id.toString();
+    clientModel.value.staySignedIn = isChecked.value;
+    clientModel.value.uid = id.toString();
+    clientModel.value.userType = "Client";
+    clientModel.value.registrationstatus = false;
+
     try {
       await firestore
-          .collection(Strings().kUser)
+          .collection(Strings().kClient)
           .doc(id.toString())
-          .set(userModel.toJson())
+          .set(clientModel.toJson())
           .then((value) {
         showErrorMessage("User Registered");
         // Get.offAllNamed(BottomnavBar.route);

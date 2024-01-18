@@ -61,7 +61,7 @@ class _LocationDetailState extends State<LocationDetail> {
             Container(
               width: 300,
               height: 300,
-              decoration: ShapeDecoration(
+              decoration: const ShapeDecoration(
                 color: Color(0xFF181A1F),
                 shape: OvalBorder(),
               ),
@@ -79,8 +79,8 @@ class _LocationDetailState extends State<LocationDetail> {
                     ),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 10.0),
                           child: Text('CURRENT LOCATION',
                           style: TextStyle(
                             color: Colors.black,
@@ -112,7 +112,7 @@ class _LocationDetailState extends State<LocationDetail> {
                 onPressed: () {
                   Get.toNamed(ClientNavbar.route);
                 },
-                child:Text(
+                child:const Text(
                   'Skip for now',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -123,7 +123,7 @@ class _LocationDetailState extends State<LocationDetail> {
                   ),
                 ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
           ],
         ),
       ),

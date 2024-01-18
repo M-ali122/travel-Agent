@@ -10,6 +10,7 @@ import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 
 import '../../../res/icons/svg.dart';
 import '../../res/dark_theme.dart';
+import 'clientAuthController/clientAuthController.dart';
 
 class ClientregisterScreen extends GetWidget<AuthController> {
   static const String route = 'ClientregisterScreen';
@@ -19,8 +20,8 @@ class ClientregisterScreen extends GetWidget<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthController>(
-      init: AuthController(),
+    return GetBuilder<ClientAuthController>(
+      init: ClientAuthController(),
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
@@ -30,7 +31,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Create Account ',
                     style: TextStyle(fontSize: 20),
                   ),
@@ -38,7 +39,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Already have an account?',
+                      const Text('Already have an account?',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
@@ -93,9 +94,9 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   SizedBox(
                     height: 8.h,
                   ),
-                  TextFormField(
-                    onChanged: (val) => controller.userModel.value.email = val,
-                    keyboardType: TextInputType.emailAddress,
+                   TextFormField(
+                    onChanged: (val) =>
+                    controller.clientModel.value.name = val,
                     decoration: const InputDecoration(
                       hintText: "Enter your full name",
                       //   hintStyle: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,)
@@ -136,7 +137,8 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   //   ),
                   // ),
                   TextFormField(
-                    onChanged: (val) => controller.userModel.value.email = val,
+                    onChanged: (val) =>
+                    controller.clientModel.value.email= val,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       hintText: "Enter your email",
@@ -156,8 +158,9 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   ),
                   8.height,
                   TextFormField(
-                    onChanged: (val) => controller.userModel.value.email = val,
-                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (val) =>
+                    controller.clientModel.value.phone= val,
+                    keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
                       hintText: "Enter your phone number",
                       //   hintStyle: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,)
@@ -178,7 +181,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   Obx(
                         () => TextFormField(
                       onChanged: (val) =>
-                      controller.userModel.value.password = val,
+                      controller.clientModel.value.password = val,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: controller.isPasswordVisible.value,
                       decoration: InputDecoration(
@@ -212,7 +215,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   Obx(
                         () => TextFormField(
                        onChanged: (val) =>
-                       controller.userModel.value.password = val,
+                       controller.clientModel.value.password = val,
                        keyboardType: TextInputType.visiblePassword,
                        obscureText: controller.isPasswordVisible.value,
                         decoration: InputDecoration(
@@ -260,7 +263,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                   AppButton(
                       title: 'Create Account',
                       onTap: (){
-
+                        controller.registeredUser();
                       }
                   ),
                   const SizedBox(height: 20,),

@@ -1,6 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
-import 'package:travelagentapp/pages/request/view/requestDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

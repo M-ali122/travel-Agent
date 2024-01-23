@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 
+import '../clientAuth/clientAuthController/clientAuthController.dart';
 import 'customizationOption.dart';
 
 class InterestScreen extends GetWidget<DataCollectionController> {
@@ -404,6 +405,9 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                   SizedBox(height: 80.h,),
                   AppButton(
                       title: 'Next', onTap: (){
+                    ClientAuthController _controller = Get.put(ClientAuthController());
+                    _controller.clientModel.value.interest = controller.selectedInterests.value;
+                    _controller.firstTimeDataStore();
                     Get.toNamed(Customization.route);
                   }),
                   SizedBox(height: 20.h,),

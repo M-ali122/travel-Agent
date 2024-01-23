@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import 'package:travelagentapp/pages/splash/screens/account_type.dart';
+import 'package:travelagentapp/res/String.dart';
 
 import '../../../navBar/view/bottomNavBar.dart';
 
@@ -11,44 +14,33 @@ class SplashController extends GetxController {
     splashService();
   }
   final box = GetStorage();
-  void splashService() {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-    var uid =box.read("uid") ;
-    var userType =box.read("type") ;
-    var staySignin =box.read("staySignIn") ;
-    // if(uid == null){
-    //
-    //   if(staySignin == false){
-    //     Future.delayed(const Duration(seconds: 2), () {
-    //       // Navigate to the next screen after 2 seconds
-    //       Get.toNamed(AccountTypeScreen.route);
-    //     });
-    //   }else{
-    //
-    //     if (userType == "Admin") {
-    //       Get.offAllNamed(BottomnavBar.route);
-    //     } else {
-    //       print("clint Call");
-    //       Get.offAllNamed(BottomnavBar.route);
-    //     }
-    //
-    //
-    //
-    //   }
-    //
-    //
-    //
-    // }else{
+  void splashService()async {
+    var uid = box.read("uid");
 
+    if (uid != null) {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection(Strings().kUser)
+          .doc(uid)
+          .get();
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+
+        String userType = userData['userType'];
+        if (userType == "Admin") {
+          Get.offAllNamed(BottomnavBar.route);
+        } else {
+          Get.offAllNamed(ClientNavbar.route);
+        }
+      }else{
+      /// this block for no data found
+      }
+    } else {
       Future.delayed(const Duration(seconds: 2), () {
-        // Navigate to the next screen after 2 seconds
         Get.toNamed(AccountTypeScreen.route);
       });
-    // }
-
-
-
-
+    }
 
   }
 }

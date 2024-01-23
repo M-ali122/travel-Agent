@@ -1,13 +1,9 @@
 import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
-
-import '../../../res/icons/svg.dart';
 
 class LoginScreen extends GetWidget<AuthController> {
   static const String route = 'LoginScreen';
@@ -34,45 +30,45 @@ class LoginScreen extends GetWidget<AuthController> {
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  const Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Don’t have an account?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                            height: 0.09,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' ',
-                          style: TextStyle(
-                            color: Color(0xFF30879B),
-                            fontSize: 13,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w500,
-                            height: 0.09,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Contact Us',
-                          style: TextStyle(
-                            color: Color(0xFF30879B),
-                            fontSize: 13,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w600,
-                            height: 0.09,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 12.h,
+                  // ),
+                  // const Text.rich(
+                  //   TextSpan(
+                  //     children: [
+                  //       TextSpan(
+                  //         text: 'Don’t have an account?',
+                  //         style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontSize: 13,
+                  //           fontFamily: 'SF Pro Text',
+                  //           fontWeight: FontWeight.w400,
+                  //           height: 0.09,
+                  //         ),
+                  //       ),
+                  //       TextSpan(
+                  //         text: ' ',
+                  //         style: TextStyle(
+                  //           color: Color(0xFF30879B),
+                  //           fontSize: 13,
+                  //           fontFamily: 'SF Pro Text',
+                  //           fontWeight: FontWeight.w500,
+                  //           height: 0.09,
+                  //         ),
+                  //       ),
+                  //       TextSpan(
+                  //         text: 'Contact Us',
+                  //         style: TextStyle(
+                  //           color: Color(0xFF30879B),
+                  //           fontSize: 13,
+                  //           fontFamily: 'SF Pro Text',
+                  //           fontWeight: FontWeight.w600,
+                  //           height: 0.09,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 52.h,
                   ),
@@ -90,7 +86,8 @@ class LoginScreen extends GetWidget<AuthController> {
                     height: 8.h,
                   ),
                   TextFormField(
-                    onChanged: (val) => controller.userModel.value.email = val,
+                    controller: controller.emailController,
+                    // onChanged: (val) => controller.userModel.value.email = val,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       hintText: "Enter your email Address",
@@ -111,8 +108,9 @@ class LoginScreen extends GetWidget<AuthController> {
                   8.height,
                   Obx(
                     () => TextFormField(
-                      onChanged: (val) =>
-                          controller.userModel.value.password = val,
+                      controller: controller.passwordController,
+                      // onChanged: (val) =>
+                      //     controller.userModel.value.password = val,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: controller.isPasswordVisible.value,
                       decoration: InputDecoration(
@@ -180,9 +178,8 @@ class LoginScreen extends GetWidget<AuthController> {
                   AppButton(
                     title: "Login",
                     onTap: () {
-                       // controller.login();
-                      // controller.registeredUser();
-                     // Get.toNamed(BottomnavBar.route);
+
+                      controller.login();
                     },
                   )
                 ],

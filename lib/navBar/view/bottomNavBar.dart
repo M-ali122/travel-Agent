@@ -14,8 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import '../../pages/home/view/homeView.dart';
-import '../../pages/request/view/viewRequest.dart';
 import '../../res/icons/svg.dart';
 import '../controller/navBarController.dart';
 

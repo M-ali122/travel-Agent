@@ -1,14 +1,10 @@
-import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
-
-import '../../../res/icons/svg.dart';
+import '../../helpers/views/toast.dart';
 import '../../res/dark_theme.dart';
 import 'clientAuthController/clientAuthController.dart';
 
@@ -114,28 +110,6 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                     ),
                   ),
                   8.height,
-                  // Obx(
-                  //       () => TextFormField(
-                  //     onChanged: (val) =>
-                  //     controller.userModel.value.password = val,
-                  //     keyboardType: TextInputType.visiblePassword,
-                  //     obscureText: controller.isPasswordVisible.value,
-                  //     decoration: InputDecoration(
-                  //       suffixIcon: IconButton(
-                  //         icon: Icon(
-                  //           controller.isPasswordVisible.value
-                  //               ? Icons.visibility_off
-                  //               : Icons.visibility,
-                  //         ),
-                  //         onPressed: () {
-                  //           controller.togglePasswordVisibility();
-                  //         },
-                  //       ),
-                  //       hintText: "Enter your password",
-                  //       //hintStyle: const TextStyle(fontSize: 12,fontWeight: FontWeight.w400,)
-                  //     ),
-                  //   ),
-                  // ),
                   TextFormField(
                     onChanged: (val) =>
                     controller.clientModel.value.email= val,
@@ -260,10 +234,14 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                     ],
                   ),
                   SizedBox(height: 26.h,),
-                  AppButton(
+                 controller.isBusy() ?Center(child: CircularProgressIndicator(color:  Color(0xFF30879B),)) : AppButton(
                       title: 'Create Account',
                       onTap: (){
-                        controller.registeredUser();
+                        if(controller.isChecked.isTrue){
+                          controller.registeredUser();
+                        }else{
+                          showErrorMessage("agree the Terms & Conditions");
+                        }
                       }
                   ),
                   const SizedBox(height: 20,),

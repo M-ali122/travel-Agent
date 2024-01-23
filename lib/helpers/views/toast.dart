@@ -6,7 +6,7 @@ void showErrorMessage(String message) {
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.TOP,
-    backgroundColor: Colors.grey,
+    backgroundColor: Color(0xFF30879B),
     textColor: Colors.white,
   );
 }

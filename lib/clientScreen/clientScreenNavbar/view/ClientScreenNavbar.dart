@@ -114,8 +114,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/helpers/extensions/spacing.dart';
-
 import '../../../res/icons/svg.dart';
 import '../../ClientprofileScreen/clientProfileScreenView.dart';
 import '../../clientHome/view/clientHome.dart';
@@ -191,7 +189,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
       },
       child: Container(
         color: Colors.transparent,
-        padding: EdgeInsets.only(top: 15.2),
+        padding: EdgeInsets.only(top: 12.2),
         child: Column(
           children: [
             SvgPicture.string(

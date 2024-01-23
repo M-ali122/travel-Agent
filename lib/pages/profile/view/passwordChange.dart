@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../../helpers/views/button.dart';
-import '../../../res/icons/svg.dart';
+
 
 class ChangePassword extends StatelessWidget {
   static String route = 'ChangePassword';
@@ -22,8 +20,8 @@ class ChangePassword extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_new,color: Colors.white,)
         ),
         centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 8.0),
           child: Text(
             'Change Password',
             textAlign: TextAlign.center,
@@ -46,9 +44,9 @@ class ChangePassword extends StatelessWidget {
             decoration: const BoxDecoration(color: Color(0xFF1E2025)),
           ),
           SizedBox(height: 20.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -70,7 +68,7 @@ class ChangePassword extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
                   hintText: "Enter your old Password",
                 ),
@@ -78,9 +76,9 @@ class ChangePassword extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -102,7 +100,7 @@ class ChangePassword extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
                   hintText: "Enter new password",
                 ),
@@ -110,9 +108,9 @@ class ChangePassword extends StatelessWidget {
             ),
           ),
           SizedBox(height: 18.h,),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: const Column(
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0,right: 16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -134,7 +132,7 @@ class ChangePassword extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   suffixIcon: Icon(CupertinoIcons.eye,color: Color(0xff6B7280),),
                   hintText: "Re-enter your password",
                 ),

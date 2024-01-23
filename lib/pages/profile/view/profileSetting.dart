@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
-
-import '../../auth/view/loginscreen.dart';
+import '../../splash/screens/account_type.dart';
 
 class ProfileSetting extends StatelessWidget {
   static String route = 'profileSetting';
@@ -535,7 +535,9 @@ class ProfileSetting extends StatelessWidget {
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
                    InkWell(
                      onTap: (){
-                       Get.offAllNamed(LoginScreen.route);
+                       final box = GetStorage();
+                       box.remove('uid');
+                       Get.offAllNamed(AccountTypeScreen.route);
                      },
                      child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

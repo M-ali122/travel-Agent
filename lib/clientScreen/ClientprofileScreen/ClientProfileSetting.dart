@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/pages/profile/view/passwordChange.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
+import 'package:travelagentapp/pages/splash/screens/account_type.dart';
 
 import 'clientchangePassword.dart';
 
@@ -541,21 +542,29 @@ class CLientProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Logout',
-                        style: TextStyle(
-                          color: Color(0xFFEB5757),
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
+                  GestureDetector(
+                    onTap: (){
+                      final box = GetStorage();
+                      box.remove('uid');
+                      Get.offAllNamed(AccountTypeScreen.route);
+
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Logout',
+                          style: TextStyle(
+                            color: Color(0xFFEB5757),
+                            fontSize: 14,
+                            fontFamily: 'SF Pro Display',
+                            fontWeight: FontWeight.w400,
+                            height: 0.07,
+                          ),
                         ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
+                        Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                      ],
+                    ),
                   ),
                 ],
               ),

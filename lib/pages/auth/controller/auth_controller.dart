@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/helpers/views/toast.dart';
@@ -9,7 +10,13 @@ import '../../../navBar/view/bottomNavBar.dart';
 
 class AuthController extends GetxController {
   var firestore = FirebaseFirestore.instance;
-  Rx<UserModel> userModel = UserModel().obs;
+
+
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
   final box = GetStorage();
 
   void login() async {
@@ -17,8 +24,8 @@ class AuthController extends GetxController {
       // _toggle();
       QuerySnapshot querySnapshot = await firestore
           .collection(Strings().kUser)
-          .where('email', isEqualTo: userModel.value.email)
-          .where('password', isEqualTo: userModel.value.password)
+          .where('email', isEqualTo: emailController.text.toString())
+          .where('password', isEqualTo: passwordController.text.toString())
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
@@ -29,64 +36,44 @@ class AuthController extends GetxController {
           print('Data: ${data}');
           String userType = data['userType'];
           print(userType);
-          await firestore
-              .collection(Strings().kUser)
-              .doc(doc.id)
-              .update({"staySignedIn": isChecked.value});
+          // await firestore
+          //     .collection(Strings().kUser)
+          //     .doc(doc.id)
+          //     .update({"staySignedIn": isChecked.value});
+
+
           if (userType == "Admin") {
             box.write("uid", doc.id);
-            box.write("type", userType);
-            box.write("staySignIn", isChecked.value);
-            // Get.offAllNamed(BottomnavBar.route);
+            Get.offAllNamed(BottomnavBar.route);
           } else {
-            print("clint Call");
+            showErrorMessage("You Not An Admin");
           }
         }
       }
 
-      // if (querySnapshot.docs.isNotEmpty) {
-      // for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-      //   Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      //   print('Document ID: ${doc.id}');
-      //   print('Data: ${data}');
-      //   String userType = data['userType'];
-      //   String password = data['password'];
-      //   String userEmail = data["email"];
-      //   // if (data['password'] == userModel.value.password) {
-      //   //   print("password");
-      //   //   if (userType == 'Admin') {
-      //   //     print("admin");
-      //   //
-      //   //     Get.offAllNamed(BottomnavBar.route);
-      //   //   } else if (userType == 'Student') {
-      //   //     print("client");
-      //   //     // Get.offAllNamed(StudentHomeView.route);
-      //   //   }
-      //   // }
-      // }
-      // } else {}
+
     } catch (e) {
       showErrorMessage("Login Fail $e");
     }
   }
 
-  void registeredUser() async {
-    var id = DateTime.now().microsecondsSinceEpoch;
-    userModel.value.staySignedIn = isChecked.value;
-    userModel.value.uid = id.toString();
-    try {
-      await firestore
-          .collection(Strings().kUser)
-          .doc(id.toString())
-          .set(userModel.toJson())
-          .then((value) {
-        showErrorMessage("User Registered");
-        // Get.offAllNamed(BottomnavBar.route);
-      });
-    } catch (e) {
-      showErrorMessage("Error $e");
-    }
-  }
+  // void registeredUser() async {
+  //   var id = DateTime.now().microsecondsSinceEpoch;
+  //   userModel.value.staySignedIn = isChecked.value;
+  //   userModel.value.uid = id.toString();
+  //   try {
+  //     await firestore
+  //         .collection(Strings().kUser)
+  //         .doc(id.toString())
+  //         .set(userModel.toJson())
+  //         .then((value) {
+  //       showErrorMessage("User Registered");
+  //       // Get.offAllNamed(BottomnavBar.route);
+  //     });
+  //   } catch (e) {
+  //     showErrorMessage("Error $e");
+  //   }
+  // }
 
   var isPasswordVisible = true.obs;
 

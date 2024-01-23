@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-
 import 'languagePreferences.dart';
 
 class Customization extends GetWidget<DataCollectionController> {
@@ -715,7 +715,10 @@ class Customization extends GetWidget<DataCollectionController> {
                      SizedBox(height: 26.h,),
                     AppButton(
                         title: 'Next',
-                        onTap: () {
+                        onTap: () async{
+                          ClientAuthController _controller = Get.put(ClientAuthController());
+                          _controller.clientModel.value.interestSecond = controller.selectedCustomization.value;
+                          _controller.firstTimeDataStore();
                           Get.toNamed(LanguagePrefence.route);
                         }),
                     SizedBox(

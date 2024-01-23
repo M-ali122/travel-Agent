@@ -1,15 +1,12 @@
-import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
+
 import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
-import '../../../res/icons/svg.dart';
 import '../clientAuthController/clientAuthController.dart';
 import '../clientRegistorScreen.dart';
 
@@ -71,9 +68,6 @@ class ClientLogin extends GetWidget<ClientAuthController> {
                        ),
                      ],
                    ),
-                  // SizedBox(
-                  //   height: 10.h,
-                  // ),
                   const Text(
                     'Email Address',
                     style: TextStyle(
@@ -156,7 +150,9 @@ class ClientLogin extends GetWidget<ClientAuthController> {
                       Padding(
                         padding: const EdgeInsets.only(right: 6.0),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           child: const Text(
                             'Forgot Password?',
                             style: TextStyle(
@@ -179,8 +175,6 @@ class ClientLogin extends GetWidget<ClientAuthController> {
                     title: "Login",
                     onTap: () {
                       controller.login();
-                      //controller.registeredUser();
-                      //Get.toNamed(InterestScreen.route);
                     },
                   )
                 ],

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -9,7 +11,7 @@ import '../../res/icons/onboardingSVG.dart';
 class OnboadScreenComponent extends StatelessWidget {
   String svgString, title, tagline;
 
-  OnboadScreenComponent({
+  OnboadScreenComponent({super.key,
     required this.svgString,
     required this.title,
     required this.tagline,

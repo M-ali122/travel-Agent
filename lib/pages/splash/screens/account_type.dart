@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/clientScreen/onboarding/onboardingScreen.dart';
-import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-
 import '../../../clientScreen/clientAuth/clientAuthView/clientLogin.dart';
 import '../../../res/icons/svg.dart';
 import '../../auth/view/loginscreen.dart';

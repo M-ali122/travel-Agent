@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
-import 'package:travelagentapp/clientScreen/screens/specialRequest.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
+import '../clientAuth/clientAuthController/clientAuthController.dart';
 import 'LocationDetial.dart';
 
 class LanguagePrefence extends GetWidget<DataCollectionController> {
@@ -61,12 +61,7 @@ class LanguagePrefence extends GetWidget<DataCollectionController> {
                     padding: const EdgeInsets.only(top: 12.0),
                     child: GestureDetector(
                       onTap: () {
-
-                        controller.changeLanguage(index);
-                        // setState(() {
-                        //   selectedLanguageIndex = index;
-                        //   print(selectedLanguageIndex);
-                        // });
+                        controller.changeLanguage(controller.languages[index]);
                       },
                       child: Container(
                         width: 343,
@@ -83,7 +78,7 @@ class LanguagePrefence extends GetWidget<DataCollectionController> {
                                 width: 20,
                                 height: 20,
                                 decoration: BoxDecoration(
-                                  color: controller.selectedLanguage == index
+                                  color: controller.selectedLanguage == controller.languages[index]
                                       ? DarkTheme.primary
                                       : const Color(0xFF1B1C21),
                                   shape: BoxShape.circle,
@@ -93,14 +88,13 @@ class LanguagePrefence extends GetWidget<DataCollectionController> {
                                   ),
                                 ),
                                 child: Center(
-                                  child: controller.selectedLanguage == index
+                                  child: controller.selectedLanguage == controller.languages[index]
                                       ? const Icon(Icons.done, size: 14, color: Colors.white)
                                       : null,
                                 ),
                               ),
                             ),
                             SizedBox(width: 10.w,),
-                            // domymodel.value.language = listname[selectedLanguage.value]
                             Text(
                               '${controller.languages[index]}',
                               style: const TextStyle(
@@ -122,6 +116,9 @@ class LanguagePrefence extends GetWidget<DataCollectionController> {
               AppButton(
                   title: 'Next',
                   onTap: (){
+                    ClientAuthController _controller = Get.put(ClientAuthController());
+                    _controller.clientModel.value.languagePreference = controller.selectedLanguage.value;
+                    _controller.firstTimeDataStore();
                     Get.toNamed(LocationDetail.route);
                   }
               ),

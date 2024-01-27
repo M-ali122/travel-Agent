@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
           //
           // theme: DarkTheme.darkTheme,
           routes: AppRoute().routes,
-          // initialRoute: SplashView.route,
-          initialRoute: AdminHome.route,
+          initialRoute: SplashView.route,
+          // initialRoute: AdminHome.route,
         );
       },
     );

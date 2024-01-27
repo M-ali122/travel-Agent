@@ -1,3 +1,6 @@
+import 'package:travelagentapp/Admin/pages/life_style_manager.dart';
+import 'package:travelagentapp/Admin/pages/recommandation.dart';
+import 'package:travelagentapp/Admin/pages/users.dart';
 import 'package:travelagentapp/Admin/view/admin_home.dart';
 import 'package:travelagentapp/clientScreen/clientAuth/clientAuthView/clientLogin.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
@@ -63,6 +66,9 @@ class AppRoute {
 
     /// Admin Route
     AdminHome.route :(p0) => AdminHome(),
+    LifeStyleManageScreen.route:(p0) => LifeStyleManageScreen(),
+    RecommanationScreen.route:(p0) => RecommanationScreen(),
+    UsersScreen.route:(p0) => UsersScreen(),
 
   };
 }

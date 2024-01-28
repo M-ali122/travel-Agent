@@ -14,6 +14,7 @@ import '../clientScreen/ClientprofileScreen/clientEditProfile.dart';
 import '../clientScreen/ClientprofileScreen/clientchangePassword.dart';
 import '../clientScreen/clientAuth/clientRegistorScreen.dart';
 import '../clientScreen/clientChet/view/clientChetScreen.dart';
+import '../clientScreen/clientRequestScreen/view/sandRequest.dart';
 import '../clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import '../clientScreen/screens/LocationDetial.dart';
 import '../clientScreen/screens/customizationOption.dart';
@@ -48,6 +49,7 @@ class AppRoute {
     LoginScreen.route :(p0) => LoginScreen(),
     ClientLogin.route : (p0) => ClientLogin(),
     ClientregisterScreen.route : (p0) => ClientregisterScreen(),
+    ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
 
 
     /// life cycle manager

@@ -132,9 +132,9 @@ class _ClientNavbarState extends State<ClientNavbar> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    ClientHomeSreen(),
-    ClientPageRequest(),
-    ClientProfileScreen(),
+    const ClientHomeSreen(),
+    const ClientPageRequest(),
+    const ClientProfileScreen(),
   ];
 
   @override
@@ -189,12 +189,12 @@ class _ClientNavbarState extends State<ClientNavbar> {
       },
       child: Container(
         color: Colors.transparent,
-        padding: EdgeInsets.only(top: 12.2),
+        padding: const EdgeInsets.only(top: 12.2),
         child: Column(
           children: [
             SvgPicture.string(
               iconName,
-              color: _currentIndex == index ? Colors.white : Color(0xff5E5E67),
+              color: _currentIndex == index ? Colors.white : const Color(0xff5E5E67),
               height: 24.h,
               width: 24.w,
             ),
@@ -204,7 +204,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
                 fontSize: 11,
                 color: _currentIndex == index
                     ? Colors.white
-                    : Color(0xff5E5E67),
+                    : const Color(0xff5E5E67),
               ),
             )
           ],
@@ -224,12 +224,12 @@ class _ClientNavbarState extends State<ClientNavbar> {
             });
           },
           child: SvgPicture.string(Svgs.image),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
       );
     } else {
       // Hide FloatingActionButton on other pages
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   }
 

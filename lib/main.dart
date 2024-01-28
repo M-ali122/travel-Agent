@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:travelagentapp/Admin/view/admin_home.dart';
 import 'package:travelagentapp/pages/splash/screens/splash_view.dart';
 import 'package:travelagentapp/res/light_theme.dart';
 import 'package:travelagentapp/res/route.dart';

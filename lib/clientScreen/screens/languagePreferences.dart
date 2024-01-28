@@ -127,7 +127,8 @@ class LanguagePrefence extends GetWidget<DataCollectionController> {
           ),
         ),
       );
-    },);
+      },
+    );
   }
 }
 

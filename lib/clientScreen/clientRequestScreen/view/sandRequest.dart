@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/clientScreen/clientPageSvgs/clientPageSvgs.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
@@ -15,6 +16,9 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
  final RequestController requestController = Get.put(RequestController());
 
   ClientPageSandRequest({super.key});
+
+  var arg = Get.arguments;
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +59,11 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
             width: 375,
             height: 240.52,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.10000000149011612),
+              color: Colors.black.withOpacity(0.1),
+              image: DecorationImage(
+                image: NetworkImage('${arg.image}'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(height: 14.h,),
@@ -65,9 +73,9 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
               children: [
                 SvgPicture.string(ClientSvgs.travel, height: 30, width: 30,),
                 SizedBox(width: 10.w,),
-                const Text(
-                  'Travel to Dubai',
-                  style: TextStyle(
+                 Text(
+                  '${arg.title}',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontFamily: 'SF Pro Text',
@@ -82,7 +90,9 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
           Container(
             width: 376,
             height: 4,
-            decoration: const BoxDecoration(color: Color(0xFF1E2025)),
+            decoration: const BoxDecoration(
+                color: Color(0xFF1E2025),
+            ),
           ),
           SizedBox(height: 16.h,),
           Padding(
@@ -143,7 +153,7 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
                               child: Visibility(
                                 visible: requestController.departureDate.value != null,
                                 child: Obx(() => Text(
-                                  "${requestController.departureDate.value.toLocal()}".split(' ')[0],
+                                  "${controller.departureDate}".split(' ')[0],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -258,7 +268,7 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
                               child: Visibility(
                                 visible: requestController.returnDate.value != null,
                                 child: Obx(() => Text(
-                                  "${requestController.returnDate.value.toLocal()}".split(' ')[0],
+                                  "${controller.returnDate}".split(' ')[0],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -305,7 +315,8 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
                                     fontWeight: FontWeight.w500,
                                     height: 0.11,
                                   ),
-                                ),)
+                                ),
+                                ),
                               ),
                             ),
                             const Padding(
@@ -369,36 +380,23 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 15.0),
-                          child: IconButton(
-                            onPressed: () async {
-                              int? selectedValue = await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text('Select Number of People'),
-                                    content: DropdownButton<int>(
-                                      value: controller.selectedNumberOfPeople.value,
-                                      items: controller.numberOfPeopleOptions
-                                          .map((int value) {
-                                        return DropdownMenuItem<int>(
-                                          value: value,
-                                          child: Text(value.toString()),
-                                        );
-                                      }).toList(),
-                                      onChanged: (value) {
-                                        Navigator.of(context).pop(value);
-                                      },
-                                    ),
-                                  );
-                                },
-                              );
-                              if (selectedValue != null) {
-                                controller.updateNumberOfPeople(selectedValue);
-                              }
-                            },
-                            icon: const Icon(Icons.keyboard_arrow_down_rounded, color: Color(0xFF6B7280)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<int>(
+                              value: controller.selectedNumberOfPeople.value,
+                              items: controller.numberOfPeopleOptions.map((int value) {
+                                return DropdownMenuItem<int>(
+                                  value: value,
+                                  child: Text(value.toString()), // Change the color here
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                controller.updateNumberOfPeople(value!);
+                              },
+                              icon: const Icon(Icons.keyboard_arrow_down_rounded, color: Color(0xFF6B7280)),
+                            ),
                           ),
                         ),
+
                       ],
                     ),
                   ),

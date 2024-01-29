@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
-import 'package:travelagentapp/clientScreen/clientHome/model/recomModel.dart';
 import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
 
@@ -284,18 +283,19 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     // itemCount: controller.laodRecommedList.length,
-                    itemCount: data.length,
+                    itemCount: controller.recommandList.length,
                       itemBuilder: (context, index) {
-                      RecommendedModel model = data[index];
+                        // RecommandModel model = data[index];
                         return Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: Container(
                             width: 343,
                             height: 220,
                             decoration: ShapeDecoration(
-                              image:  DecorationImage(
-                              //    image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover,
-                              image: NetworkImage(model.image),
+                               image:  DecorationImage(
+                                  // image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover,
+                              image: NetworkImage(controller.recommandList.value[index].image),
+                                 fit: BoxFit.cover
                               ),
                               color: Colors.black.withOpacity(0.10000000149011612),
                               shape: RoundedRectangleBorder(
@@ -348,8 +348,9 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 15.0),
                                                 child: Text(
+                                                  "${controller.recommandList.value[index].title}",
                                                   // model[index]['title'],
-                                                  model.title,
+                                                  // model.title,
                                                   style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 14,
@@ -368,8 +369,9 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                                   ),
                                                   SizedBox(width: 4.w,),
                                                    Text(
+                                                     "${controller.recommandList.value[index].depDate}",
                                                     //controller.laodRecommedList[index]['date'],
-                                                    model.dateAndTime.toString(),
+                                                    // model.dateAndTime.toString(),
                                                      style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 11,
@@ -387,8 +389,9 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                           padding: EdgeInsets.only(right: 12.0),
                                           child: TextButton(
                                               onPressed: () {
+                                                //print(model.title);
                                                 Get.toNamed(ClientPageSandRequest.route,
-                                                    arguments: model
+                                                    arguments: controller.recommandList [index]
                                                 );
                                               },
                                             child: const Text(

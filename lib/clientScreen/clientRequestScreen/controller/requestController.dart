@@ -120,8 +120,29 @@ class RequestController extends GetxController {
   Rx<RequestModel>  request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
 
-  Future<void> addRequest(RecommendedModel model) async {
+  // Future<void> addRequest(RecommandModel model) async {
+  //   try {
+  //     Map<String, dynamic> requestData = request.value.toJson();
+  //     requestData['departureTime'] = '${departureTime.value.hour}:${departureTime.value.minute}';
+  //     requestData['returnTime'] = '${returnTime.value.hour}:${returnTime.value.minute}';
+  //
+  //     requestData['departureDate'] = departureDate.value;
+  //     requestData['returnDate'] = returnDate.value;
+  //     requestData['numberOfPeople'] = selectedNumberOfPeople.value;
+  //     requestData['requestDetail'] = model.toJson();
+  //
+  //     await FirebaseFirestore.instance.collection(Strings().kRequest).add(requestData);
+  //     print('request adding successfully');
+  //     update();
+  //   } catch (e) {
+  //     print('Error adding request: $e');
+  //   }
+  // }
+  Future<void> addRequest(RecommandModel model) async {
     try {
+      // Show loading indicator
+      //Get.dialog(Center(child: CircularProgressIndicator()), barrierDismissible: false);
+
       Map<String, dynamic> requestData = request.value.toJson();
       requestData['departureTime'] = '${departureTime.value.hour}:${departureTime.value.minute}';
       requestData['returnTime'] = '${returnTime.value.hour}:${returnTime.value.minute}';
@@ -132,10 +153,30 @@ class RequestController extends GetxController {
       requestData['requestDetail'] = model.toJson();
 
       await FirebaseFirestore.instance.collection(Strings().kRequest).add(requestData);
-      print('request adding successfully');
+
+      // Hide loading indicator
+      Get.back();
+
+      // Show success message
+      Get.snackbar(
+        'Success',
+        'Request added successfully',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
       update();
     } catch (e) {
+      Get.back();
+
       print('Error adding request: $e');
+
+      Get.snackbar(
+        'Error',
+        'Failed to add request. Please try again.',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +14,9 @@ class HomeController extends GetxController {
     loadRecommended(); // Call your function here
   }
 
-  Rx<RecommendedModel>  request = RecommendedModel().obs;
+  Rx<RecommandModel>  request = RecommandModel().obs;
+
+
   var firestore = FirebaseFirestore.instance;
 
   Future<void> addRequest() async {
@@ -22,10 +26,10 @@ class HomeController extends GetxController {
       print('Error adding request: $e');
     }
   }
-  
-  
-  
-  List laodRecommedList = [];
+
+
+
+  final RxList<RecommandModel> recommandList = <RecommandModel>[].obs;
 
   void loadRecommended ()async{
     CollectionReference reference = firestore.collection(Strings().kRecom);
@@ -33,10 +37,14 @@ class HomeController extends GetxController {
     //var res = await firestore.collection(Strings().kRecom).get();
    if(querySnapshot.docs.isNotEmpty){
      print('loadRecommended function work');
+     // for (var data in )
 
     querySnapshot.docs.forEach((element) {
-      laodRecommedList.add(element.data());
-      print('your data is ${element.data()}');
+
+      RecommandModel recommandModel =
+      RecommandModel.fromJson(element.data() as Map<String,dynamic>);
+      recommandList.add(recommandModel);
+      // print('your data is ${element.data()}');
       update();
     });
 

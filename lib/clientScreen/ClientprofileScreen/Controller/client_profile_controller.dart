@@ -24,6 +24,7 @@ class ClientProfileController extends GetxController {
     var box = GetStorage();
     String id = box.read("uid");
 
+     print('user id is $id');
     DocumentSnapshot res =
         await firestore.collection(Strings().kUser).doc(id).get();
 

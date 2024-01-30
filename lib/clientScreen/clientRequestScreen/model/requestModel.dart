@@ -67,6 +67,8 @@
 
 import 'dart:convert';
 
+import 'package:travelagentapp/clientScreen/clientHome/model/recomModel.dart';
+
 List<RequestModel> requestModelFromJson(String str) => List<RequestModel>.from(json.decode(str).map((x) => RequestModel.fromJson(x)));
 
 String requestModelToJson(List<RequestModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -80,13 +82,14 @@ class RequestModel {
   dynamic uid;
   dynamic recommandType;
   dynamic person;
-  dynamic requestTo;
+  dynamic requestTo,recommendation;
   dynamic requestBy;
   dynamic requestStatus;
 
   RequestModel({
      this.recommandId,
      this.title,
+ this.recommendation,
      this.depDate,
      this.returnDate,
      this.image,
@@ -102,11 +105,12 @@ class RequestModel {
     recommandId: json["recommandId"],
     title: json["title"],
     depDate: json["depDate"],
-    returnDate: json["returnData"],
+    returnDate: json["returnDate"],
     image: json["image"],
     uid: json["uid"],
     recommandType: json["recommandType"],
     person: json["person"],
+    recommendation: RecommandModel.fromJson(json['requestDetail']),
     requestTo: json["requestTo"],
     requestBy: json["requestBy"],
     requestStatus: json["requestStatus"],
@@ -119,6 +123,7 @@ class RequestModel {
     "returnData": returnDate,
     "image": image,
     "uid": uid,
+    'requestDetail':recommendation.toJson(),
     "recommandType": recommandType,
     "person": person,
     "requestTo": requestTo,

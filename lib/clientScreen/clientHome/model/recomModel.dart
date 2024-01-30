@@ -88,6 +88,7 @@ class RecommandModel {
   dynamic depDate;
   dynamic returnDate;
   dynamic image;
+  dynamic requestStatus;
 
   RecommandModel({
      this.recommandId,
@@ -95,6 +96,7 @@ class RecommandModel {
      this.depDate,
      this.returnDate,
      this.image,
+    this.requestStatus
   });
 
   factory RecommandModel.fromJson(Map<String, dynamic> json) => RecommandModel(
@@ -103,6 +105,7 @@ class RecommandModel {
     depDate: json["depDate"],
     returnDate: json["returnData"],
     image: json["image"],
+    requestStatus: json["requestStatus"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -111,5 +114,6 @@ class RecommandModel {
     "depDate": depDate,
     "returnData": returnDate,
     "image": image,
+    "requestStatus": requestStatus,
   };
 }

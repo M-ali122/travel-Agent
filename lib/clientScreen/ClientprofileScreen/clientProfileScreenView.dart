@@ -8,13 +8,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
+import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
 
 import '../clientPageSvgs/clientPageSvgs.dart';
 import 'ClientProfileSetting.dart';
 import 'clientEditProfile.dart';
 
 class ClientProfileScreen extends GetWidget<ClientProfileController> {
-  const ClientProfileScreen({super.key});
+   ClientProfileScreen({super.key});
+
+   HomeController homeController = HomeController();
 
   @override
   Widget build(BuildContext context) {

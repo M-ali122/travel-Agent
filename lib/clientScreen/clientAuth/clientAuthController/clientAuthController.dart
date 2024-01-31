@@ -15,11 +15,9 @@ import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/views/toast.dart';
 import 'package:travelagentapp/res/String.dart';
 
-
 class ClientAuthController extends GetxController {
   var firestore = FirebaseFirestore.instance;
   Rx<ClientModel> clientModel = ClientModel().obs;
-
 
   void login() async {
     final box = GetStorage();
@@ -40,7 +38,7 @@ class ClientAuthController extends GetxController {
           print('Data: ${data}');
           // String email = data['email'];
           // clientModel.value.email = email;
-          var interest= data['interest'];
+          var interest = data['interest'];
           var interestSecond = data['interestSecond'];
           var languagePreference = data['languagePreference'];
           var location = data['location'];
@@ -59,10 +57,13 @@ class ClientAuthController extends GetxController {
           String userType = data['userType'];
           clientModel.value.userType = userType;
           update();
-          if(interest == null || interestSecond == null || languagePreference == null || location == null){
+          if (interest == null ||
+              interestSecond == null ||
+              languagePreference == null ||
+              location == null) {
             // box.write("uid", uid.toString());
             Get.toNamed(InterestScreen.route);
-          }else{
+          } else {
             // box.write("uid", uid.toString());
             Get.offAllNamed(ClientNavbar.route);
           }
@@ -73,17 +74,18 @@ class ClientAuthController extends GetxController {
     }
   }
 
-
-  void firstTimeDataStore()async{
+  void firstTimeDataStore() async {
     _toggle();
-    try{
-      await firestore.collection(Strings().kUser).doc(clientModel.value.uid).update(clientModel.toJson());
-     }catch(e){
+    try {
+      await firestore
+          .collection(Strings().kUser)
+          .doc(clientModel.value.uid)
+          .update(clientModel.toJson());
+    } catch (e) {
       _toggle();
       showErrorMessage("Check Your Connection! $e");
-     }
+    }
   }
-
 
   void registeredUser() async {
     _toggle();

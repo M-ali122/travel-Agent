@@ -147,35 +147,6 @@ import '../clientHome/controller/recomController.dart';
 class ClientScreenTabbar extends GetWidget<RequestController> {
   ClientScreenTabbar({super.key});
 
-  var requestType = [
-    'Travel To Dubia',
-    'Yoga Class',
-    'Meet & Greet',
-    'Lamborghini'
-  ];
-  var clintHistory = [
-    'Travel to Dubai',
-    'Yoga Classes',
-    'Meet & Greet',
-    'Lamborggini'
-  ];
-
-  var imageurl = [
-    'assets/emoji/dubia.png',
-    'assets/emoji/yogaClasses.png',
-    'assets/emoji/meetGreet.png',
-    'assets/emoji/lamborghini.png',
-  ];
-
-  var color = [
-    Color(0xffF2994A),
-    Color(0xffF2994A),
-    Color(0xff27AE60),
-    Color(0xffF2994A),
-  ];
-
-
-
   @override
   Widget build(BuildContext context) {
     controller.loadrequest();
@@ -197,9 +168,9 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                       width: 343,
                       height: 70,
                       decoration: ShapeDecoration(
-                        color: Color(0xFF191B1F),
+                        color: const Color(0xFF191B1F),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -259,7 +230,10 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                               '${controller.reqList.value[index].recommendation.requestStatus}',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: color[index],
+                                color: controller.reqList.value[index].recommendation.requestStatus == 'Completed'
+                                ? const Color(0xff27AE60):
+                                    controller.reqList.value[index].requestStatus == 'Cancelled' ?
+                                        Color(0xffFF0000) : Color(0xffF2994A),
                                 fontSize: 10,
                                 fontFamily: 'SF Pro Text',
                                 fontWeight: FontWeight.w500,

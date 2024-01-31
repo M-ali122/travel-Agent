@@ -252,6 +252,10 @@ class RequestController extends GetxController {
     }
   }
 
+
+
+
+
   void updateNumberOfPeople(int value) {
     int selectedIndex = numberOfPeopleOptions.indexOf(value);
     numberOfPeopleOptions.removeAt(selectedIndex);
@@ -267,8 +271,12 @@ class RequestController extends GetxController {
     var box = GetStorage();
     var id = box.read('uid');
 
+
     var res =await firestore.collection(Strings().kRequest).where("uid",isEqualTo: id.toString()).get();
-  if(res.docs.isNotEmpty){
+    //var res = await firestore.collection(Strings().kRecom).get();
+
+    if(res.docs.isNotEmpty){
+
 
     reqList.clear();
 

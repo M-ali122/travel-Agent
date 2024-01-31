@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:travelagentapp/clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
+import '../clientAuth/controller/clientAuthController.dart';
 import 'languagePreferences.dart';
 
 class Customization extends GetWidget<DataCollectionController> {

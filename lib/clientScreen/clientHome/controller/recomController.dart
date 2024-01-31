@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../res/String.dart';
 import '../model/recomModel.dart';
@@ -28,10 +29,52 @@ class HomeController extends GetxController {
   }
 
 
+  bool isRequestFavorited(String requestId) {
+    var box = GetStorage();
+    var id = box.read('uid');
+
+    // Check if the request ID is present in the user's favorites list
+    return recommandList
+        .any((recommendation) => recommendation.recommandId.toString() == requestId &&
+        recommendation.fav.contains(id));
+  }
+
+
+  void addfav (String rId)async{
+
+    var box = GetStorage();
+    var id  = box.read('uid');
+
+
+    await firestore.collection(Strings().kRecom).doc(rId.toString()).update(
+        {
+          'fav' : FieldValue.arrayUnion([id]),
+        }
+    ).then((value) {
+      loadRecommended();
+    });
+
+
+  }
+
+  void removeFav(String rId)async {
+    var box = GetStorage();
+    var id = box.read('uid');
+
+   await firestore.collection(Strings().kRecom).doc(rId).update(
+      {
+        'fav': FieldValue.arrayRemove([id]),
+      },
+    ).then((value) {
+      loadRecommended();
+   });
+  }
+
 
   final RxList<RecommandModel> recommandList = <RecommandModel>[].obs;
 
   void loadRecommended ()async{
+    recommandList.clear();
     CollectionReference reference = firestore.collection(Strings().kRecom);
     QuerySnapshot querySnapshot = await reference.get();
     //var res = await firestore.collection(Strings().kRecom).get();
@@ -44,7 +87,7 @@ class HomeController extends GetxController {
       RecommandModel recommandModel =
       RecommandModel.fromJson(element.data() as Map<String,dynamic>);
       recommandList.add(recommandModel);
-      // print('your data is ${element.data()}');
+       print('your data is ${element.data()}');
       update();
     });
 

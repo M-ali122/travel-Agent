@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-
-import '../clientAuth/clientAuthController/clientAuthController.dart';
+import '../clientAuth/controller/clientAuthController.dart';
 import 'customizationOption.dart';
 
 class InterestScreen extends GetWidget<DataCollectionController> {

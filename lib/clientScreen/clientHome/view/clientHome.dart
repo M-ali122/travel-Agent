@@ -13,6 +13,7 @@ import '../../clientRequestScreen/view/sandRequest.dart';
 
 class ClientHomeSreen extends GetWidget<HomeController> {
   const ClientHomeSreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -281,7 +282,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   SizedBox(height: 16.h,),
                   ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     // itemCount: controller.laodRecommedList.length,
                     itemCount: controller.recommandList.length,
                       itemBuilder: (context, index) {
@@ -315,8 +316,41 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                         color: Colors.black.withOpacity(0.6000000238418579),
                                         shape: const OvalBorder(),
                                       ),
-                                      child: const Center(
-                                        child: Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
+                                      child:  Center(
+                                        // child:  IconButton(
+                                        //     onPressed: (){
+                                        //       print('on tap work ');
+                                        //       controller.addfav(
+                                        //           controller.recommandList[index].recommandId.toString());
+                                        //     },
+                                        //     icon: Icon(
+                                        //       CupertinoIcons.heart,size: 16,color: Colors.white,
+                                        //     ),
+                                        // )
+                                        child: IconButton(
+                                          onPressed: () {
+                                            print('on tap work ');
+                                            String requestId = controller.recommandList[index].recommandId.toString();
+                                            if (controller.isRequestFavorited(requestId)) {
+                                              controller.removeFav(requestId);
+                                              print('remove requestId is $requestId');
+                                            } else {
+                                              // controller.addFav(requestId);
+                                              controller.addfav(requestId);
+                                              print('addfav is $requestId');
+                                            }
+                                          },
+                                          // icon: Icon(
+                                          //   CupertinoIcons.heart,
+                                          //   size: 16,
+                                          //   color: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
+                                          //       ? Colors.red
+                                          //       : Colors.white,
+                                          // ),
+                                          icon: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
+                                            ? Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,)
+                                              : Icon(CupertinoIcons.heart,size: 16,color: Colors.white,)
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -372,7 +406,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                                      "${controller.recommandList.value[index].depDate}",
                                                     //controller.laodRecommedList[index]['date'],
                                                     // model.dateAndTime.toString(),
-                                                     style: TextStyle(
+                                                     style: const TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 11,
                                                       fontFamily: 'SF Pro Text',
@@ -386,7 +420,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                         ),
                                         const Spacer(),
                                         Padding(
-                                          padding: EdgeInsets.only(right: 12.0),
+                                          padding: const EdgeInsets.only(right: 12.0),
                                           child: TextButton(
                                               onPressed: () {
                                                 //print(model.title);

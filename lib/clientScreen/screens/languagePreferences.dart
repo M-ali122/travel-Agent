@@ -5,7 +5,7 @@ import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionCon
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
-import '../clientAuth/clientAuthController/clientAuthController.dart';
+import '../clientAuth/controller/clientAuthController.dart';
 import 'LocationDetial.dart';
 
 class LanguagePrefence extends GetWidget<DataCollectionController> {

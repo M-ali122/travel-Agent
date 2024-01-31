@@ -5,7 +5,7 @@
 // import '../../../res/icons/svg.dart';
 // import '../../ClientprofileScreen/clientProfileScreenView.dart';
 // import '../../clientHome/view/clientHome.dart';
-// import '../../clientRequestScreen/view/clientHistoryPage.dart';
+// import '../../clientRequestScreen/view/clientTabbar.dart';
 //
 // class ClientNavbar extends StatefulWidget {
 //   static const String route = 'ClientBottomNavBar';
@@ -117,7 +117,7 @@ import 'package:get/get.dart';
 import '../../../res/icons/svg.dart';
 import '../../ClientprofileScreen/clientProfileScreenView.dart';
 import '../../clientHome/view/clientHome.dart';
-import '../../clientRequestScreen/view/clientHistoryPage.dart';
+import '../../clientTabbarScreen/clientTabbar.dart';
 
 class ClientNavbar extends StatefulWidget {
   static const String route = 'ClientBottomNavBar';

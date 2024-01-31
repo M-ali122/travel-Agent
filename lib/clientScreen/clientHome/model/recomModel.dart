@@ -78,6 +78,8 @@
 
 import 'dart:convert';
 
+import 'package:travelagentapp/clientScreen/fav/model/favModel.dart';
+
 List<RecommandModel> recommandModelFromJson(String str) => List<RecommandModel>.from(json.decode(str).map((x) => RecommandModel.fromJson(x)));
 
 String recommandModelToJson(List<RecommandModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -89,6 +91,7 @@ class RecommandModel {
   dynamic returnDate;
   dynamic image;
   dynamic requestStatus;
+  dynamic fav;
 
   RecommandModel({
      this.recommandId,
@@ -96,16 +99,18 @@ class RecommandModel {
      this.depDate,
      this.returnDate,
      this.image,
-    this.requestStatus
+    this.requestStatus,
+    this.fav,
   });
 
   factory RecommandModel.fromJson(Map<String, dynamic> json) => RecommandModel(
     recommandId: json["recommandId"],
     title: json["title"],
     depDate: json["depDate"],
-    returnDate: json["returnData"],
+      returnDate: json["returnData"],
     image: json["image"],
-    requestStatus: json["requestStatus"]
+    requestStatus: json["requestStatus"],
+    fav: json["fav"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -115,5 +120,8 @@ class RecommandModel {
     "returnData": returnDate,
     "image": image,
     "requestStatus": requestStatus,
+    "fav":fav,
   };
+
+
 }

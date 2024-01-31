@@ -1,4 +1,4 @@
-import 'package:travelagentapp/helpers/extensions/spacing.dart';
+  import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 import '../../helpers/views/toast.dart';
 import '../../res/dark_theme.dart';
-import 'clientAuthController/clientAuthController.dart';
+import 'controller/clientAuthController.dart';
+import 'view/clientLogin.dart';
 
 class ClientregisterScreen extends GetWidget<AuthController> {
   static const String route = 'ClientregisterScreen';
@@ -234,11 +235,14 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                     ],
                   ),
                   SizedBox(height: 26.h,),
-                 controller.isBusy() ?Center(child: CircularProgressIndicator(color:  Color(0xFF30879B),)) : AppButton(
+                 controller.isBusy() ?const Center(
+                     child: CircularProgressIndicator(color:  Color(0xFF30879B),)) :
+                 AppButton(
                       title: 'Create Account',
                       onTap: (){
                         if(controller.isChecked.isTrue){
                           controller.registeredUser();
+                          Get.offAllNamed(ClientLogin.route);
                         }else{
                           showErrorMessage("agree the Terms & Conditions");
                         }

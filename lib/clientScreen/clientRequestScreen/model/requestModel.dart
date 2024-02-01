@@ -81,6 +81,7 @@ class RequestModel {
   dynamic image;
   dynamic uid;
   dynamic recommandType;
+  dynamic accepterId;
   dynamic person;
   dynamic requestTo,recommendation;
   dynamic requestBy;
@@ -91,6 +92,7 @@ class RequestModel {
      this.title,
  this.recommendation,
      this.depDate,
+    this.accepterId,
      this.returnDate,
      this.image,
      this.uid,
@@ -105,6 +107,7 @@ class RequestModel {
     recommandId: json["recommandId"],
     title: json["title"],
     depDate: json["depDate"],
+    accepterId : json["accepterId"],
     returnDate: json["returnDate"],
     image: json["image"],
     uid: json["uid"],
@@ -123,6 +126,7 @@ class RequestModel {
     "returnData": returnDate,
     "image": image,
     "uid": uid,
+    "accepterId" : accepterId,
     'requestDetail':recommendation.toJson(),
     "recommandType": recommandType,
     "person": person,

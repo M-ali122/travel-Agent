@@ -161,14 +161,14 @@ class _ClientNavbarState extends State<ClientNavbar> {
             child: BottomAppBar(
               color: Colors.transparent,
               elevation: 0.3,
-              //  notchMargin: 2,
-              // clipBehavior: Clip.antiAlias,
-              // color: Color(0xff090A0B),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   buildIconButton(1, Svgs.requests, "Requests"),
-                  buildIconButton(2, Svgs.profile, "Profile"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 90.0),
+                    child: buildIconButton(2, Svgs.profile, "Profile"),
+                  ),
                 ],
               ),
             ),
@@ -189,7 +189,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
       },
       child: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.only(top: 12.2),
+        padding: const EdgeInsets.only(top: 12.2,),
         child: Column(
           children: [
             SvgPicture.string(

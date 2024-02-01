@@ -17,6 +17,8 @@ import '../clientScreen/clientChet/view/clientChetScreen.dart';
 import '../clientScreen/clientRequestScreen/view/AddRequestScreen.dart';
 import '../clientScreen/clientRequestScreen/view/sandRequest.dart';
 import '../clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
+import '../clientScreen/offers/view/events.dart';
+import '../clientScreen/offers/view/offersView.dart';
 import '../clientScreen/screens/LocationDetial.dart';
 import '../clientScreen/screens/customizationOption.dart';
 import '../clientScreen/screens/languagePreferences.dart';
@@ -52,6 +54,8 @@ class AppRoute {
     ClientregisterScreen.route : (p0) => ClientregisterScreen(),
     ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
     AddRequest.route : (p0) => AddRequest(),
+    OffersScreen.route : (p0) =>  OffersScreen(),
+    EventsOffers.route : (p0) => EventsOffers(),
 
 
     /// life cycle manager

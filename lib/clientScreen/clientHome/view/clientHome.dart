@@ -10,6 +10,8 @@ import 'package:travelagentapp/res/icons/svg.dart';
 import '../../clientChet/view/clientChetScreen.dart';
 import '../../clientPageSvgs/clientPageSvgs.dart';
 import '../../clientRequestScreen/view/sandRequest.dart';
+import '../../offers/view/events.dart';
+import '../../offers/view/offersView.dart';
 
 class ClientHomeSreen extends GetWidget<HomeController> {
   const ClientHomeSreen({super.key});
@@ -114,30 +116,16 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          SvgPicture.string(ClientSvgs.meetandGreetIcon),
-                          SizedBox(height: 6.h,),
-                          const Text(
-                            'Meet & Greet',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          SvgPicture.string(ClientSvgs.eventSvg),
-                          SizedBox(height: 6.h,),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 3.0),
-                            child: Text(
-                              'Events',
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(OffersScreen.route);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.string(ClientSvgs.meetandGreetIcon),
+                            SizedBox(height: 6.h,),
+                            const Text(
+                              'Meet & Greet',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -146,8 +134,32 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(EventsOffers.route);
+                        },
+                        child: Column(
+                          children: [
+                            SvgPicture.string(ClientSvgs.eventSvg),
+                            SizedBox(height: 6.h,),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 3.0),
+                              child: Text(
+                                'Events',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Column(
                         children: [
@@ -262,7 +274,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.03,),
                   Container(
                     width: 343,
                     height: 1,
@@ -433,7 +444,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                             ),
                                           ),
                                           )
-                                        )
+                                        ),
                                       ],
                                     )
                                 ),

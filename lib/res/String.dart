@@ -10,5 +10,6 @@ const hspace = SizedBox(
 class Strings{
   String get kUser => 'Client';
   String get kRecom => 'Recommands';
-  String get kRequest => 'requests';
+  String get kRequest => 'Requests';
+  String get kOffers => 'Offers';
 }

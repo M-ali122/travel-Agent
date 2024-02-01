@@ -122,6 +122,7 @@ class RequestController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     request.value = RequestModel();
     loadrequest(); // Call your function here
     //print('Loaded request: ${loadrequest()}');
@@ -160,6 +161,7 @@ class RequestController extends GetxController {
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       requestData['requestDetail'] = model.toJson();
+      requestData['requestStatus'] = 'Pandding';
       var box = GetStorage();
       String id = box.read("uid");
 
@@ -285,10 +287,10 @@ class RequestController extends GetxController {
             RequestModel.fromJson(element.data());
         reqList.add(requestModel);
        print("elemet data here ${element.data()}");
-       update();
-     });
 
-  }else{
+     });
+    update();
+    }else{
     print("dara b found");
   }
 

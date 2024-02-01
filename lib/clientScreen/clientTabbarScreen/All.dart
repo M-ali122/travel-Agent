@@ -158,7 +158,7 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
               onTap: () {
                 Get.toNamed(ClientPageSandRequest.route);
               },
-              child: ListView.builder(
+              child: controller.reqList.isEmpty ? Center(child: Text("No Request Found"))  : ListView.builder(
                 itemCount: controller.reqList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -194,10 +194,9 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                           '${controller.reqList.value[index].recommendation.title}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            height: 0.10,
                           ),
                         ),
                         subtitle: Row(
@@ -227,7 +226,7 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${controller.reqList.value[index].recommendation.requestStatus}',
+                              '${controller.reqList.value[index].requestStatus}',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: controller.reqList.value[index].recommendation.requestStatus == 'Completed'

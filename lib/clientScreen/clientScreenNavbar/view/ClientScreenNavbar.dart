@@ -134,7 +134,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
   final List<Widget> _pages = [
     const ClientHomeSreen(),
     const ClientPageRequest(),
-    const ClientProfileScreen(),
+     ClientProfileScreen(),
   ];
 
   @override

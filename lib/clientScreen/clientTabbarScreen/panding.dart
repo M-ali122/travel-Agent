@@ -158,11 +158,12 @@ class PandingView extends GetWidget<RequestController> {
             onTap: () {
               Get.toNamed(ClientPageSandRequest.route);
             },
-            child: ListView.builder(
+            child: controller.reqList.isEmpty ? Text('No Panding data') :
+            ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                if(controller.reqList[index].recommendation.requestStatus == "Pandding"){
+                if(controller.reqList[index].requestStatus == "Pandding"){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(
@@ -195,10 +196,9 @@ class PandingView extends GetWidget<RequestController> {
                           '${controller.reqList.value[index].recommendation.title}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
-                            height: 0.10,
                           ),
                         ),
                         subtitle: Row(
@@ -228,7 +228,7 @@ class PandingView extends GetWidget<RequestController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${controller.reqList.value[index].recommendation.requestStatus}',
+                              '${controller.reqList.value[index].requestStatus}',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xffF2994A),

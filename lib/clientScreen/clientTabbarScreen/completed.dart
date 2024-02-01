@@ -19,11 +19,12 @@ class CompletedScreen extends GetWidget<RequestController> {
             onTap: () {
               Get.toNamed(ClientPageSandRequest.route);
             },
-            child: ListView.builder(
+            child: controller.reqList.isEmpty? Center(child: Text('No Completed Resquest Found'))
+                : ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                if(controller.reqList[index].recommendation.requestStatus == 'Completed'){
+                if(controller.reqList[index].requestStatus == 'Completed'){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(

@@ -327,8 +327,8 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                         //       CupertinoIcons.heart,size: 16,color: Colors.white,
                                         //     ),
                                         // )
-                                        child: IconButton(
-                                          onPressed: () {
+                                        child: GestureDetector(
+                                          onTap: () {
                                             print('on tap work ');
                                             String requestId = controller.recommandList[index].recommandId.toString();
                                             if (controller.isRequestFavorited(requestId)) {
@@ -340,17 +340,10 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                               print('addfav is $requestId');
                                             }
                                           },
-                                          // icon: Icon(
-                                          //   CupertinoIcons.heart,
-                                          //   size: 16,
-                                          //   color: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
-                                          //       ? Colors.red
-                                          //       : Colors.white,
-                                          // ),
-                                          icon: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
-                                            ? Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,)
-                                              : Icon(CupertinoIcons.heart,size: 16,color: Colors.white,)
-                                        ),
+                                          child: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
+                                          ? const Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,)
+                                          : const Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
+                                        )
                                       ),
                                     ),
                                   ),

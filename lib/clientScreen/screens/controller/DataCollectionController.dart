@@ -1,7 +1,8 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import '../../clientAuth/clientAutModel/clientModel.dart';
-import '../../clientAuth/clientAuthController/clientAuthController.dart';
+
+import '../../clientAuth/controller/clientAuthController.dart';
+import '../../clientAuth/model/clientModel.dart';
 
 class DataCollectionController extends GetxController {
   // Rx<ClintModel> clintModel=<ClintModel>.obs;

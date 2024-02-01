@@ -1,19 +1,11 @@
-// import 'package:get/get.dart';
-// import 'package:get/get_state_manager/get_state_manager.dart';
-// import 'package:travelagentapp/clientScreen/clientAuth/clientAutModel/clientModel.dart';
-//
-// class ClientAuthController extends GetxController {
-//   Rx<ClientModel> clientModel = ClientModel().obs;
-//
-// }
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:travelagentapp/clientScreen/clientAuth/clientAutModel/clientModel.dart';
 import 'package:travelagentapp/clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/helpers/views/toast.dart';
 import 'package:travelagentapp/res/String.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/model/clientModel.dart';
 
 class ClientAuthController extends GetxController {
   var firestore = FirebaseFirestore.instance;

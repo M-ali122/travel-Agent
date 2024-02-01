@@ -1,7 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../clientTabbarScreen/tabbar.dart';
+import '../clientRequestScreen/view/AddRequestScreen.dart';
+import 'cancelScreen.dart';
+import 'completed.dart';
+import 'panding.dart';
+import 'All.dart';
 
 
 class ClientPageRequest extends StatelessWidget {
@@ -25,14 +30,19 @@ class ClientPageRequest extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          actions: const [
+          actions:  [
             Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: Icon(
-                Icons.add_circle_outline,
-                color: Colors.white,
-                size: 24,
-              ),
+              child: IconButton(
+                  onPressed: () {
+                    Get.toNamed(AddRequest.route);
+                  },
+                  icon: const Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+              )
             )
           ],
         ),
@@ -68,18 +78,18 @@ class ClientPageRequest extends StatelessWidget {
                     ),
                     // Content for Tab 2
                     Container(
-                      child: const Center(
-                        child: Text('Tab 2 Content'),
+                      child: Center(
+                        child: PandingView(),
                       ),
                     ),
                     Container(
-                      child: const Center(
-                        child: Text('Tab 3 Content'),
+                      child: Center(
+                        child: CompletedScreen(),
                       ),
                     ),
                     Container(
-                      child: const Center(
-                        child: Text('Tab 4 Content'),
+                      child:  Center(
+                        child: CancellScreen(),
                       ),
                     ),
                   ],

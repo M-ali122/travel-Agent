@@ -2,7 +2,6 @@ import 'package:travelagentapp/Admin/pages/life_style_manager.dart';
 import 'package:travelagentapp/Admin/pages/recommandation.dart';
 import 'package:travelagentapp/Admin/pages/users.dart';
 import 'package:travelagentapp/Admin/view/admin_home.dart';
-import 'package:travelagentapp/clientScreen/clientAuth/clientAuthView/clientLogin.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
 import 'package:travelagentapp/pages/auth/view/loginscreen.dart';
@@ -13,7 +12,10 @@ import '../clientScreen/ClientprofileScreen/ClientProfileSetting.dart';
 import '../clientScreen/ClientprofileScreen/clientEditProfile.dart';
 import '../clientScreen/ClientprofileScreen/clientchangePassword.dart';
 import '../clientScreen/clientAuth/clientRegistorScreen.dart';
+import '../clientScreen/clientAuth/view/clientLogin.dart';
 import '../clientScreen/clientChet/view/clientChetScreen.dart';
+import '../clientScreen/clientRequestScreen/view/AddRequestScreen.dart';
+import '../clientScreen/clientRequestScreen/view/sandRequest.dart';
 import '../clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import '../clientScreen/screens/LocationDetial.dart';
 import '../clientScreen/screens/customizationOption.dart';
@@ -48,6 +50,8 @@ class AppRoute {
     LoginScreen.route :(p0) => LoginScreen(),
     ClientLogin.route : (p0) => ClientLogin(),
     ClientregisterScreen.route : (p0) => ClientregisterScreen(),
+    ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
+    AddRequest.route : (p0) => AddRequest(),
 
 
     /// life cycle manager

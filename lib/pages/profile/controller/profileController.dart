@@ -6,9 +6,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:travelagentapp/clientScreen/clientAuth/clientAutModel/clientModel.dart';
 import 'package:travelagentapp/pages/auth/model/user_model.dart';
 import 'package:travelagentapp/res/String.dart';
+
+import '../../../clientScreen/clientAuth/model/clientModel.dart';
 
 class ProfileController extends GetxController {
   Rx<ClientModel> loadUserModel = ClientModel().obs;

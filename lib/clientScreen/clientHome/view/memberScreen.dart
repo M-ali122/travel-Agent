@@ -16,8 +16,8 @@ class BecomMemeber extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
         automaticallyImplyLeading: false,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 73.0),
+        title: const Padding(
+          padding:  EdgeInsets.only(left: 73.0),
           child: Column(
             children: [
               Text(

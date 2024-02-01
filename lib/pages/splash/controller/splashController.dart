@@ -28,7 +28,7 @@ class SplashController extends GetxController {
         Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
 
         String userType = userData['userType'];
-        if (userType == "Admin") {
+        if (userType == "LifeStyleManager") {
           Get.offAllNamed(BottomnavBar.route);
         } else {
           Get.offAllNamed(ClientNavbar.route);

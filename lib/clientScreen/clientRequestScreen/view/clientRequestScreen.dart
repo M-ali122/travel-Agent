@@ -226,7 +226,7 @@ class ClientRequestDetail extends StatelessWidget {
                   child:  Column(
                     children: [
                       SizedBox(height: 21.h,),
-                      Text(
+                      const Text(
                         'Hey, Great News, I have arranged your 2\nDubai '
                             'tickets on requested time. I'
                             ' have \nattached them below. Thanks',
@@ -237,11 +237,11 @@ class ClientRequestDetail extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: 13,),
-                      Align(
+                      const SizedBox(height: 13,),
+                      const Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 36.0),
+                          padding: EdgeInsets.only(left: 36.0),
                           child: Text(
                             '10:30 AM',
                             textAlign: TextAlign.right,
@@ -263,7 +263,7 @@ class ClientRequestDetail extends StatelessWidget {
                             Container(
                               width: 24,
                               height: 24,
-                              decoration: ShapeDecoration(
+                              decoration: const ShapeDecoration(
                                 color: Color(0xFF24262D),
                                 shape: OvalBorder(),
                               ),
@@ -275,7 +275,7 @@ class ClientRequestDetail extends StatelessWidget {
                               ),
                             ),
                             SizedBox(width: 8.w,),
-                            Text(
+                            const Text(
                               'Ticket 1',
                               style: TextStyle(
                                 color: Color(0xFF30879B),
@@ -296,7 +296,7 @@ class ClientRequestDetail extends StatelessWidget {
                             Container(
                               width: 24,
                               height: 24,
-                              decoration: ShapeDecoration(
+                              decoration: const ShapeDecoration(
                                 color: Color(0xFF24262D),
                                 shape: OvalBorder(),
                               ),
@@ -308,7 +308,7 @@ class ClientRequestDetail extends StatelessWidget {
                               ),
                             ),
                             SizedBox(width: 8.w,),
-                            Text(
+                            const Text(
                               'Ticket 2',
                               style: TextStyle(
                                 color: Color(0xFF30879B),

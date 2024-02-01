@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../ClientprofileScreen/clientProfileScreenView.dart';
 import '../../clientHome/view/clientHome.dart';
-import '../../clientRequestScreen/view/clientHistoryPage.dart';
+import '../../clientTabbarScreen/clientTabbar.dart';
 
 
 class ClientNavbarController extends GetxController {

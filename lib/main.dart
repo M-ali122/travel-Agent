@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:travelagentapp/Admin/view/admin_home.dart';
 import 'package:travelagentapp/pages/splash/screens/splash_view.dart';
 import 'package:travelagentapp/res/light_theme.dart';
+import 'package:travelagentapp/res/notification.dart';
 import 'package:travelagentapp/res/route.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseApi().initNotification();
   await GetStorage.init();
   runApp(const MyApp());
 }

@@ -57,7 +57,8 @@ class LightTheme {
           borderRadius: BorderRadius.circular(40.0),
         ),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent)
+            borderSide: const BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(30)
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40.0),
@@ -86,6 +87,6 @@ class LightTheme {
         backgroundColor: primary,
         foregroundColor: Colors.white,
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           unselectedIconTheme: IconThemeData(color: Colors.black)));
 }

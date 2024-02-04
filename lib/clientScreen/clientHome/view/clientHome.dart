@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
 import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
 import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
@@ -20,6 +21,8 @@ class ClientHomeSreen extends GetWidget<HomeController> {
     'Dining','Wellness','Gifting','Others'
   ];
 
+  ClientProfileController clientProfileController = Get.put(ClientProfileController());
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -28,20 +31,52 @@ class ClientHomeSreen extends GetWidget<HomeController> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 13.0),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: ShapeDecoration(
-                      image: const DecorationImage(
-                          image: AssetImage('assets/emoji/profile2.png')
+              // leading: Padding(
+              //   padding: const EdgeInsets.only(left: 13.0),
+              //   child: Container(
+              //     width: 40,
+              //     height: 40,
+              //     decoration: ShapeDecoration(
+              //         image: const DecorationImage(
+              //             image: AssetImage('assets/emoji/profile2.png')
+              //         ),
+              //         color: Colors.white.withOpacity(0.05000000074505806),
+              //         shape: const CircleBorder()
+              //     ),
+              //   ),
+              // ),
+              leading: clientProfileController.user.value.profile != null
+                  ? Padding(
+                    padding: const EdgeInsets.only(left: 13.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: ShapeDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image:
+                      //FileImage(File(controller.user.value.profile!)),
+                      NetworkImage(clientProfileController.user.value.profile),
+                    ),
+                    shape:  const CircleBorder()
                       ),
-                      color: Colors.white.withOpacity(0.05000000074505806),
-                      shape: const CircleBorder()
+                    ),
+                  )
+                  : Padding(
+                    padding: const EdgeInsets.only(left: 13.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: const ShapeDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                            'assets/emoji/profile2.png'),
+                        fit: BoxFit.cover
+                    ),
+                          shape: CircleBorder()
+                      ),
+                    ),
                   ),
-                ),
-              ),
               title: Container(
                 width: 150,
                 height: 36,

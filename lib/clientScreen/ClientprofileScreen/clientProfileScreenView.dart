@@ -15,6 +15,7 @@ import 'ClientProfileSetting.dart';
 import 'clientEditProfile.dart';
 
 class ClientProfileScreen extends GetWidget<ClientProfileController> {
+
   HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        controller.image != null
+                        controller.user.value.profile != null
                             ? Container(
                           width: 120,
                           height: 120,
@@ -82,7 +83,8 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image:
-                              FileImage(File(controller.image!.path)),
+                              //FileImage(File(controller.user.value.profile!)),
+                            NetworkImage(controller.user.value.profile),
                             ),
                             shape: const OvalBorder(
                               side: BorderSide(

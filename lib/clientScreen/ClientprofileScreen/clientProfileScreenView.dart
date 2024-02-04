@@ -15,9 +15,7 @@ import 'ClientProfileSetting.dart';
 import 'clientEditProfile.dart';
 
 class ClientProfileScreen extends GetWidget<ClientProfileController> {
-
   HomeController homeController = Get.put(HomeController());
-  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ClientProfileController>(
@@ -98,10 +96,12 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                           decoration: const ShapeDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
-                                    'assets/emoji/profile2.png')),
+                                    'assets/emoji/profile2.png'),fit: BoxFit.cover
+                            ),
                             shape: OvalBorder(
                               side: BorderSide(
-                                  width: 4.98, color: Color(0x304E7B86)),
+                                  width: 4.98, color: Color(0x304E7B86)
+                              ),
                             ),
                           ),
                         ),

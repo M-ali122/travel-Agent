@@ -132,7 +132,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const ClientHomeSreen(),
+     ClientHomeSreen(),
     const ClientPageRequest(),
      ClientProfileScreen(),
   ];

@@ -12,4 +12,5 @@ class Strings{
   String get kRecom => 'Recommands';
   String get kRequest => 'Requests';
   String get kOffers => 'Offers';
+  String get kMessage => 'Message';
 }

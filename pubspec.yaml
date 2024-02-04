@@ -59,6 +59,7 @@ dependencies:
   firebase_messaging: ^14.7.10
   audioplayers: ^5.2.1
   flutter_ringtone_player: ^4.0.0+2
+  chat_bubbles: ^1.6.0
 
 dev_dependencies:
   flutter_test:

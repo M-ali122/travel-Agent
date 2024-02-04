@@ -11,6 +11,7 @@ import '../../clientRequestScreen/view/sandRequest.dart';
 class OffersScreen extends GetWidget<HomeController> {
   static String route = 'OffersScreen';
 
+  var arg = Get.arguments;
 
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
@@ -23,19 +24,38 @@ class OffersScreen extends GetWidget<HomeController> {
                onPressed: () {
                  Get.back();
                },
-               icon: Icon(CupertinoIcons.back,size: 24,color: Colors.white,),
+               icon: const Icon(CupertinoIcons.back,size: 24,color: Colors.white,),
              ),
-             title: Text('Offers'),
+             title: Text(arg+' Offers'),
             ),
             body: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17),
-              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 17),
+              child: controller.offerlist.isEmpty || !controller.offerlist.any((element) => element.offerType == arg)
+                  ? Center(
+                    child: Container(
+                      height: 100.h,
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.grey.shade900
+                      ),
+                      child: Center(
+                      child: Text(
+                      'No offers found for $arg',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: -0.4
+                        ),
+                      )),
+                    ),
+                  ):
+              ListView.builder(
                 shrinkWrap: true,
                 itemCount: controller.offerlist.length,
                 itemBuilder: (context, index) {
-                  if(controller.offerlist[index].offerType == 'Meet & Greet'){
+                  if(controller.offerlist[index].offerType == arg){
                     return Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Container(
                         width: 343.w,
                         height: 220.h,
@@ -45,54 +65,12 @@ class OffersScreen extends GetWidget<HomeController> {
                           ),
                           image: DecorationImage(
                               image: NetworkImage(controller.offerlist.value[index].image),
+                              //  image: NetworkImage(arg[index]),
                               fit: BoxFit.cover
                           ),
                         ),
                         child: Column(
                           children: [
-                            // Align(
-                            //   alignment:Alignment.topRight,
-                            //   child: Padding(
-                            //     padding: const EdgeInsets.only(right: 14.0,top: 15),
-                            //     child: Container(
-                            //       width: 24,
-                            //       height: 24,
-                            //       decoration: ShapeDecoration(
-                            //         color: Colors.black.withOpacity(0.6000000238418579),
-                            //         shape: const OvalBorder(),
-                            //       ),
-                            //       child:  Center(
-                            //         // child:  IconButton(
-                            //         //     onPressed: (){
-                            //         //       print('on tap work ');
-                            //         //       controller.addfav(
-                            //         //           controller.recommandList[index].recommandId.toString());
-                            //         //     },
-                            //         //     icon: Icon(
-                            //         //       CupertinoIcons.heart,size: 16,color: Colors.white,
-                            //         //     ),
-                            //         // )
-                            //           child: GestureDetector(
-                            //             onTap: () {
-                            //               print('on tap work ');
-                            //               String requestId = controller.recommandList[index].recommandId.toString();
-                            //               if (controller.isRequestFavorited(requestId)) {
-                            //                 controller.removeFav(requestId);
-                            //                 print('remove requestId is $requestId');
-                            //               } else {
-                            //                 // controller.addFav(requestId);
-                            //                 controller.addfav(requestId);
-                            //                 print('addfav is $requestId');
-                            //               }
-                            //             },
-                            //             child: controller.isRequestFavorited(controller.recommandList[index].recommandId.toString())
-                            //                 ? const Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,)
-                            //                 : const Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
-                            //           )
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                             const Spacer(),
                             Container(
                                 height: 50.h,

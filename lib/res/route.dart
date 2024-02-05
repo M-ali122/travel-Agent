@@ -2,6 +2,7 @@ import 'package:travelagentapp/Admin/pages/life_style_manager.dart';
 import 'package:travelagentapp/Admin/pages/recommandation.dart';
 import 'package:travelagentapp/Admin/pages/users.dart';
 import 'package:travelagentapp/Admin/view/admin_home.dart';
+import 'package:travelagentapp/clientScreen/clientChet/view/client_chat_list.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
 import 'package:travelagentapp/pages/auth/view/loginscreen.dart';
@@ -52,6 +53,9 @@ class AppRoute {
     ClientregisterScreen.route : (p0) => ClientregisterScreen(),
     ClientPageSandRequest.route : (p0) => ClientPageSandRequest(),
     AddRequest.route : (p0) => AddRequest(),
+    ClientChatListScreen.route:(p0) => ClientChatListScreen(),
+    ClientChatScreen.route:(p0) => ClientChatScreen(),
+
 
 
     /// life cycle manager

@@ -32,21 +32,12 @@ class AuthController extends GetxController {
         print("doc is not empty");
         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-          print('Document ID: ${doc.id}');
-          print('Data: ${data}');
           String userType = data['userType'];
-          print(userType);
-          // await firestore
-          //     .collection(Strings().kUser)
-          //     .doc(doc.id)
-          //     .update({"staySignedIn": isChecked.value});
-
-
-          if (userType == "Admin") {
+          if (userType == "LifeStyleManager") {
             box.write("uid", doc.id);
             Get.offAllNamed(BottomnavBar.route);
           } else {
-            showErrorMessage("You Not An Admin");
+            showErrorMessage("You Not An Life Style Manager");
           }
         }
       }

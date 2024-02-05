@@ -85,6 +85,7 @@ class RequestModel {
   dynamic requestTo,recommendation;
   dynamic requestBy;
   dynamic requestStatus;
+  dynamic accepterId;
 
   RequestModel({
      this.recommandId,
@@ -99,6 +100,7 @@ class RequestModel {
      this.requestTo,
      this.requestBy,
      this.requestStatus,
+    this.accepterId,
   });
 
   factory RequestModel.fromJson(Map<String, dynamic> json) => RequestModel(
@@ -114,6 +116,7 @@ class RequestModel {
     requestTo: json["requestTo"],
     requestBy: json["requestBy"],
     requestStatus: json["requestStatus"],
+    accepterId: json["accepterId"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -129,5 +132,6 @@ class RequestModel {
     "requestTo": requestTo,
     "requestBy": requestBy,
     "requestStatus": requestStatus,
+    "accepterId":accepterId,
   };
 }

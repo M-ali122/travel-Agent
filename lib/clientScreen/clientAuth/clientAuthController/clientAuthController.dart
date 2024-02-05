@@ -12,9 +12,10 @@ class ClientAuthController extends GetxController {
   Rx<ClientModel> clientModel = ClientModel().obs;
 
   void login() async {
+    _toggle();
     final box = GetStorage();
     try {
-      _toggle();
+
       QuerySnapshot querySnapshot = await firestore
           .collection(Strings().kUser)
           .where('email', isEqualTo: clientModel.value.email)
@@ -25,7 +26,6 @@ class ClientAuthController extends GetxController {
         print("doc is not empty");
         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-
           // print('Document ID: ${doc.id}');
           print('Data: ${data}');
           // String email = data['email'];
@@ -60,8 +60,11 @@ class ClientAuthController extends GetxController {
             Get.offAllNamed(ClientNavbar.route);
           }
         }
+      }else{
+        _toggle();
       }
     } catch (e) {
+      _toggle();
       showErrorMessage("Login Fail $e");
     }
   }

@@ -162,6 +162,7 @@ class RequestController extends GetxController {
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pandding';
+      requestData['accepterId'] = "";
       var box = GetStorage();
       String id = box.read("uid");
 
@@ -272,7 +273,7 @@ class RequestController extends GetxController {
   void loadrequest ()async{
     var box = GetStorage();
     var id = box.read('uid');
-
+    reqList.clear();
 
     var res =await firestore.collection(Strings().kRequest).where("uid",isEqualTo: id.toString()).get();
     //var res = await firestore.collection(Strings().kRecom).get();
@@ -280,7 +281,7 @@ class RequestController extends GetxController {
     if(res.docs.isNotEmpty){
 
 
-    reqList.clear();
+
 
      res.docs.forEach((element) {
         RequestModel requestModel =

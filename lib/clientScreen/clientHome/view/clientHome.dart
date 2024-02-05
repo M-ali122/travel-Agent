@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/clientScreen/clientChet/view/client_chat_list.dart';
 import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
 import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
@@ -67,7 +68,8 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   padding: const EdgeInsets.only(right: 17.0),
                   child: GestureDetector(
                     onTap: () {
-                      Get.toNamed(ClientChatScreen.route);
+                      Get.toNamed(ClientChatListScreen.route);
+                      // Get.toNamed(ClientChatScreen.route);
                     },
                     child: Container(
                       width: 40,

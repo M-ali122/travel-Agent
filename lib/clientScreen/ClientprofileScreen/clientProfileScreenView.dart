@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
+import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
 import '../clientHome/controller/recomController.dart';
 import '../clientPageSvgs/clientPageSvgs.dart';
 import 'ClientProfileSetting.dart';
@@ -16,7 +17,6 @@ import 'clientEditProfile.dart';
 class ClientProfileScreen extends GetWidget<ClientProfileController> {
 
   HomeController homeController = Get.put(HomeController());
-  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ClientProfileController>(
@@ -62,7 +62,7 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
               )
             ],
           ),
-          body: ListView(
+          body: Obx(() => ListView(
             children: [
               Container(
                 width: 375,
@@ -75,35 +75,38 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        controller.image != null
+                        controller.user.value.profile != null
                             ? Container(
-                                width: 120,
-                                height: 120,
-                                decoration: ShapeDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image:
-                                        FileImage(File(controller.image!.path)),
-                                  ),
-                                  shape: const OvalBorder(
-                                    side: BorderSide(
-                                        width: 4.98, color: Color(0x304E7B86)),
-                                  ),
-                                ),
-                              )
+                          width: 120,
+                          height: 120,
+                          decoration: ShapeDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image:
+                              //FileImage(File(controller.user.value.profile!)),
+                            NetworkImage(controller.user.value.profile),
+                            ),
+                            shape: const OvalBorder(
+                              side: BorderSide(
+                                  width: 4.98, color: Color(0x304E7B86)),
+                            ),
+                          ),
+                        )
                             : Container(
-                                width: 120,
-                                height: 120,
-                                decoration: const ShapeDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/emoji/profile2.png')),
-                                  shape: OvalBorder(
-                                    side: BorderSide(
-                                        width: 4.98, color: Color(0x304E7B86)),
-                                  ),
-                                ),
+                          width: 120,
+                          height: 120,
+                          decoration: const ShapeDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/emoji/profile2.png'),fit: BoxFit.cover
+                            ),
+                            shape: OvalBorder(
+                              side: BorderSide(
+                                  width: 4.98, color: Color(0x304E7B86)
                               ),
+                            ),
+                          ),
+                        ),
                         GestureDetector(
                           onTap: () {
                             controller.picImage();
@@ -300,270 +303,164 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 16.0, right: 16),
-              //   child: Container(
-              //     width: 343,
-              //     height: 220,
-              //     decoration: ShapeDecoration(
-              //       image: const DecorationImage(
-              //           image: AssetImage('assets/emoji/dubia.png'),
-              //           fit: BoxFit.cover),
-              //       color: Colors.black.withOpacity(0.10000000149011612),
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(16),
-              //       ),
-              //     ),
-              //     child: Column(
-              //       children: [
-              //         Align(
-              //           alignment: Alignment.topRight,
-              //           child: Padding(
-              //             padding: const EdgeInsets.only(right: 14.0, top: 15),
-              //             child: Container(
-              //               width: 24,
-              //               height: 24,
-              //               decoration: ShapeDecoration(
-              //                 color:
-              //                     Colors.black.withOpacity(0.6000000238418579),
-              //                 shape: const OvalBorder(),
-              //               ),
-              //               child: const Center(
-              //                 child: Icon(
-              //                   CupertinoIcons.heart_fill,
-              //                   size: 16,
-              //                   color: Colors.red,
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //         const Spacer(),
-              //         Container(
-              //             height: 50.h,
-              //             width: double.infinity,
-              //             decoration: const BoxDecoration(
-              //               borderRadius: BorderRadius.only(
-              //                 bottomLeft: Radius.circular(12),
-              //                 bottomRight: Radius.circular(12),
-              //               ),
-              //               color: Color(0xff24272E),
-              //             ),
-              //             child: Row(
-              //               children: [
-              //                 Padding(
-              //                   padding: const EdgeInsets.only(left: 12.0),
-              //                   child: SvgPicture.string(ClientSvgs.travelIcon),
-              //                 ),
-              //                 SizedBox(
-              //                   width: 3.w,
-              //                 ),
-              //                 Padding(
-              //                   padding: const EdgeInsets.only(top: 8.0),
-              //                   child: Column(
-              //                     mainAxisAlignment: MainAxisAlignment.center,
-              //                     children: [
-              //                       const Text(
-              //                         'Travel to Dubai',
-              //                         style: TextStyle(
-              //                           color: Colors.white,
-              //                           fontSize: 14,
-              //                           fontFamily: 'SF Pro Text',
-              //                           fontWeight: FontWeight.w500,
-              //                           height: 0.12,
-              //                         ),
-              //                       ),
-              //                       SizedBox(
-              //                         height: 8.h,
-              //                       ),
-              //                       Row(
-              //                         children: [
-              //                           const Padding(
-              //                             padding: EdgeInsets.only(
-              //                               left: 13.0,
-              //                             ),
-              //                             child: Icon(
-              //                               CupertinoIcons.clock,
-              //                               size: 12,
-              //                               color: Colors.white,
-              //                             ),
-              //                           ),
-              //                           SizedBox(
-              //                             width: 4.w,
-              //                           ),
-              //                           const Text(
-              //                             'Sat 9 Dec 07:00 AM',
-              //                             style: TextStyle(
-              //                               color: Colors.white,
-              //                               fontSize: 11,
-              //                               fontFamily: 'SF Pro Text',
-              //                               fontWeight: FontWeight.w400,
-              //                             ),
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     ],
-              //                   ),
-              //                 ),
-              //                 const Spacer(),
-              //                 const Padding(
-              //                   padding: EdgeInsets.only(right: 12.0),
-              //                   child: Text(
-              //                     'Request',
-              //                     textAlign: TextAlign.right,
-              //                     style: TextStyle(
-              //                       color: Color(0xFF30879B),
-              //                       fontSize: 14,
-              //                       fontFamily: 'SF Pro Text',
-              //                       fontWeight: FontWeight.w600,
-              //                       height: 0.12,
-              //                     ),
-              //                   ),
-              //                 )
-              //               ],
-              //             )),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 15.h,
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 16.0, right: 16),
-              //   child: Container(
-              //     width: 343,
-              //     height: 220,
-              //     decoration: ShapeDecoration(
-              //       image: const DecorationImage(
-              //           image: AssetImage('assets/emoji/yogaClasses.png'),
-              //           fit: BoxFit.cover),
-              //       color: Colors.black.withOpacity(0.10000000149011612),
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(16),
-              //       ),
-              //     ),
-              //     child: Column(
-              //       children: [
-              //         Align(
-              //           alignment: Alignment.topRight,
-              //           child: Padding(
-              //             padding: const EdgeInsets.only(right: 14.0, top: 15),
-              //             child: Container(
-              //               width: 24,
-              //               height: 24,
-              //               decoration: ShapeDecoration(
-              //                 color:
-              //                     Colors.black.withOpacity(0.6000000238418579),
-              //                 shape: const OvalBorder(),
-              //               ),
-              //               child: const Center(
-              //                 child: Icon(
-              //                   CupertinoIcons.heart_fill,
-              //                   size: 16,
-              //                   color: Colors.red,
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //         const Spacer(),
-              //         Container(
-              //             height: 50.h,
-              //             width: double.infinity,
-              //             decoration: const BoxDecoration(
-              //               borderRadius: BorderRadius.only(
-              //                 bottomLeft: Radius.circular(12),
-              //                 bottomRight: Radius.circular(12),
-              //               ),
-              //               color: Color(0xff24272E),
-              //             ),
-              //             child: Row(
-              //               children: [
-              //                 Padding(
-              //                   padding: const EdgeInsets.only(left: 12.0),
-              //                   child: SvgPicture.string(ClientSvgs.travelIcon),
-              //                 ),
-              //                 SizedBox(
-              //                   width: 3.w,
-              //                 ),
-              //                 Padding(
-              //                   padding: const EdgeInsets.only(top: 8.0),
-              //                   child: Column(
-              //                     mainAxisAlignment: MainAxisAlignment.center,
-              //                     children: [
-              //                       const Text(
-              //                         'Travel to Dubai',
-              //                         style: TextStyle(
-              //                           color: Colors.white,
-              //                           fontSize: 14,
-              //                           fontFamily: 'SF Pro Text',
-              //                           fontWeight: FontWeight.w500,
-              //                           height: 0.12,
-              //                         ),
-              //                       ),
-              //                       SizedBox(
-              //                         height: 8.h,
-              //                       ),
-              //                       Row(
-              //                         children: [
-              //                           const Padding(
-              //                             padding: EdgeInsets.only(
-              //                               left: 13.0,
-              //                             ),
-              //                             child: Icon(
-              //                               CupertinoIcons.clock,
-              //                               size: 12,
-              //                               color: Colors.white,
-              //                             ),
-              //                           ),
-              //                           SizedBox(
-              //                             width: 4.w,
-              //                           ),
-              //                           const Text(
-              //                             'Sat 9 Dec 07:00 AM',
-              //                             style: TextStyle(
-              //                               color: Colors.white,
-              //                               fontSize: 11,
-              //                               fontFamily: 'SF Pro Text',
-              //                               fontWeight: FontWeight.w400,
-              //                             ),
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     ],
-              //                   ),
-              //                 ),
-              //                 const Spacer(),
-              //                 const Padding(
-              //                   padding: EdgeInsets.only(right: 12.0),
-              //                   child: Text(
-              //                     'Request',
-              //                     textAlign: TextAlign.right,
-              //                     style: TextStyle(
-              //                       color: Color(0xFF30879B),
-              //                       fontSize: 14,
-              //                       fontFamily: 'SF Pro Text',
-              //                       fontWeight: FontWeight.w600,
-              //                       height: 0.12,
-              //                     ),
-              //                   ),
-              //                 )
-              //               ],
-              //             )),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: homeController.recommandList.length,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 17.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: homeController.recommandList.length,
                   itemBuilder: (context, index) {
-                    return Text(homeController.recommandList.value[index].title);
-                  },
-              )
+                    return homeController.isRequestFavorited(homeController.recommandList[index].recommandId.toString())?
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Container(
+                        width: 343,
+                        height: 220,
+                        decoration: ShapeDecoration(
+                          image:  DecorationImage(
+                              image: NetworkImage(homeController.recommandList.value[index].image),
+                              fit: BoxFit.cover
+                          ),
+                          color: Colors.black.withOpacity(0.10000000149011612),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment:Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 14.0,top: 15),
+                                child: Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: ShapeDecoration(
+                                    color: Colors.black.withOpacity(0.6000000238418579),
+                                    shape: const OvalBorder(),
+                                  ),
+                                  child:  Center(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          print('on tap work ');
+                                          String requestId = homeController.recommandList[index].recommandId.toString();
+                                          if (homeController.isRequestFavorited(requestId)) {
+                                            homeController.removeFav(requestId);
+                                            print('remove requestId is $requestId');
+                                          } else {
+                                            // controller.addFav(requestId);
+                                            homeController.addfav(requestId);
+                                            print('addfav is $requestId');
+                                          }
+                                        },
+                                        child: homeController.isRequestFavorited(homeController.recommandList[index].recommandId.toString())
+                                            ? const Icon(CupertinoIcons.heart_fill,size: 16,color: Colors.red,)
+                                            : const Icon(CupertinoIcons.heart,size: 16,color: Colors.white,),
+                                      )
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                                height: 50.h,
+                                width: double.infinity,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12),
+                                  ),
+                                  color: Color(0xff24272E),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 12.0),
+                                      child: SvgPicture.string(ClientSvgs.travelIcon),
+                                    ),
+                                    SizedBox(width: 3.w,),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 15.0),
+                                            child: Text(
+                                              "${homeController.recommandList.value[index].title}",
+                                              // model[index]['title'],
+                                              // model.title,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.12,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 8.h,),
+                                          Row(
+                                            children: [
+                                              const Padding(
+                                                padding:  EdgeInsets.only(left: 13.0,),
+                                                child: Icon(CupertinoIcons.clock,size: 12,color: Colors.white,),
+                                              ),
+                                              SizedBox(width: 4.w,),
+                                              Text(
+                                                "${homeController.recommandList.value[index].depDate}",
+                                                //controller.laodRecommedList[index]['date'],
+                                                // model.dateAndTime.toString(),
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 11,
+                                                  fontFamily: 'SF Pro Text',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Padding(
+                                        padding: const EdgeInsets.only(right: 12.0),
+                                        child: TextButton(
+                                          onPressed: () {
+                                            //print(model.title);
+                                            Get.toNamed(ClientPageSandRequest.route,
+                                                arguments: homeController.recommandList [index]
+                                            );
+                                          },
+                                          child: const Text(
+                                            'Request',
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              color: Color(0xFF30879B),
+                                              fontSize: 14,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w600,
+                                              height: 0.12,
+                                            ),
+                                          ),
+                                        )
+                                    )
+                                  ],
+                                )
+                            ),
+                          ],
+                        ),
+                      ),
+                    ):
+                    const Center(child: Text('No data Found',style: TextStyle(fontWeight: FontWeight.w300),));
+                  },),
+              ),
+              const SizedBox(height: 30,),
+
             ],
-          ),
+          ),)
         );
       },
     );

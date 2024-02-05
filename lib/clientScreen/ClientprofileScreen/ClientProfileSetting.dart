@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/pages/home/view/homeView.dart';
 import 'package:travelagentapp/pages/profile/view/scheduleUnavailabilty.dart';
 import 'package:travelagentapp/pages/splash/screens/account_type.dart';
 
@@ -546,8 +547,23 @@ class CLientProfileSetting extends StatelessWidget {
                     onTap: (){
                       final box = GetStorage();
                       box.remove('uid');
-                      Get.offAllNamed(AccountTypeScreen.route);
-
+                      Get.defaultDialog(
+                        title: 'Log Out',
+                        titleStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300
+                        ),
+                        content: const Text('Are you sure to log Out'),
+                        confirmTextColor: Colors.white,
+                        cancelTextColor: Colors.white,
+                        onConfirm: () {
+                          Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
+                        },
+                        backgroundColor: const Color(0xFF1B1C21),
+                        onCancel: () {
+                          Get.off(HomeView());
+                        },
+                      );
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

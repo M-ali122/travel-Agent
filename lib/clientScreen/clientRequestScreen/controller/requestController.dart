@@ -162,7 +162,8 @@ class RequestController extends GetxController {
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pandding';
-      requestData['accepterId'] = "";
+      requestData['accepterId'] = null;
+
       var box = GetStorage();
       String id = box.read("uid");
 

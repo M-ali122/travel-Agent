@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../res/String.dart';
+import '../../offers/model/offersModel.dart';
 import '../model/recomModel.dart';
 
 class HomeController extends GetxController {
@@ -13,6 +14,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     loadRecommended(); // Call your function here
+    loadOffers();
   }
 
   Rx<RecommandModel>  request = RecommandModel().obs;
@@ -71,6 +73,8 @@ class HomeController extends GetxController {
   }
 
 
+
+
   final RxList<RecommandModel> recommandList = <RecommandModel>[].obs;
 
   void loadRecommended ()async{
@@ -96,7 +100,33 @@ class HomeController extends GetxController {
    }
     
   }
-  
-  
+
+
+  final RxList<OfferModel> offerlist = <OfferModel>[].obs;
+
+  void loadOffers ()async{
+    //recommandList.clear();
+    CollectionReference reference = firestore.collection(Strings().kOffers);
+    QuerySnapshot querySnapshot = await reference.get();
+    //var res = await firestore.collection(Strings().kRecom).get();
+    if(querySnapshot.docs.isNotEmpty){
+      print('loadOffers function work');
+      // for (var data in )
+
+      querySnapshot.docs.forEach((element) {
+
+        OfferModel offerModel =
+        OfferModel.fromJson(element.data() as Map<String,dynamic>);
+        offerlist.add(offerModel);
+        print('your offers data is ${element.data()}');
+        update();
+      });
+
+    }else{
+      print('loadOffers function not work');
+    }
+
+  }
+
   
 }

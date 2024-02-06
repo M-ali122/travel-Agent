@@ -118,13 +118,14 @@ class LocationDetail extends GetWidget<DataCollectionController> {
                 AppButton(title: 'Use my location', onTap: () {
 
                   controller.getLocation();
-                  Get.offAllNamed(ClientNavbar.route);
+
                 }),
                 SizedBox(
                   height: 10.h,
                 ),
                 TextButton(
                   onPressed: () {
+                    // controller.dataModel.value.location = "Skip";
                     Get.offAllNamed(ClientNavbar.route);
                   },
                   child: const Text(

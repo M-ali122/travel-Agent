@@ -156,14 +156,13 @@ class PandingView extends GetWidget<RequestController> {
         return Scaffold(
           body: GestureDetector(
             onTap: () {
-              Get.toNamed(ClientPageSandRequest.route);
             },
             child: controller.reqList.isEmpty ? Text('No Panding data') :
             ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                if(controller.reqList[index].requestStatus == "Pandding"){
+                if(controller.reqList[index].requestStatus == "Pending"){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(

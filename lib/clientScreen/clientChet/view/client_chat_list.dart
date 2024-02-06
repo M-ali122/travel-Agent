@@ -150,7 +150,8 @@ class ClientChatListScreen extends GetWidget<RequestController> {
                     ),
                   ),
                 ),
-              );}else{
+              );
+              }else{
                 return Container();
               }
             },

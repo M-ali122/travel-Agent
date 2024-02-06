@@ -153,29 +153,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       height: 0.07,
                     ),
                   ),
-                  // GridView.builder(
-                  //   itemCount: 8,
-                  //     shrinkWrap: true,
-                  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
-                  //     itemBuilder: (context, index) {
-                  //       return Column(
-                  //         children: [
-                  //           SizedBox(height: 5.h,),
-                  //           arrSvg[index],
-                  //           Text(
-                  //             '${arrText[index]}',
-                  //             textAlign: TextAlign.center,
-                  //             style: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: 12,
-                  //               fontFamily: 'SF Pro Text',
-                  //               fontWeight: FontWeight.w400,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       );
-                  //     },
-                  // ),
                   SizedBox(height: 14.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -545,9 +522,8 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                                           padding: const EdgeInsets.only(right: 12.0),
                                           child: TextButton(
                                               onPressed: () {
-                                                //print(model.title);
                                                 Get.toNamed(ClientPageSandRequest.route,
-                                                    arguments: controller.recommandList [index]
+                                                    arguments: controller.recommandList[index]
                                                 );
                                               },
                                             child: const Text(

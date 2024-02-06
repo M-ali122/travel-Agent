@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/intl.dart';
 import 'package:travelagentapp/pages/request/view/requestDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,11 @@ class CompletedView extends GetWidget<ManagerRequestController> {
               shrinkWrap: true,
               itemCount: controller.reqList.length,
               itemBuilder: (context, index) {
+
+                Timestamp? timestamp = controller.reqList[index].returnDate;
+                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+
                 if(controller.reqList[index].requestStatus == "Accepted"){
                   return Padding(
                     padding: const EdgeInsets.only(top: 10.0),
@@ -323,7 +329,7 @@ class CompletedView extends GetWidget<ManagerRequestController> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    controller.reqList.value[index].returnDate.toString(),
+                                    formatedReturnTime,
                                     style: const TextStyle(
                                       color: Color(0xFF6B7280),
                                       fontSize: 12,

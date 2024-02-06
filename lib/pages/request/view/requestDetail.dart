@@ -308,14 +308,20 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                         ],
                       ),
                       const SizedBox(height: 10,),
+                      arg.requestStatus == 'Accepted' ? AppButton(
+                          title: 'Cancel',
+                          onTap: (){
+                            controller.statusChanger(arg.requestId.toString(),"Cancelled");
+                            Get.back();
+                          }
+                      ):
                       SizedBox(
                         height: 54.h,
                         child: AppButton(
                           title: 'Request Accept',
                           onTap: (){
-                            if(arg.requestStatus == 'Pending'){
-                              controller.requestAccepet(arg.uid);
-                            }
+                              controller.statusChanger(arg.requestId.toString(),"Accepted");
+                              Get.back();
                           },
                         ),
                       ),

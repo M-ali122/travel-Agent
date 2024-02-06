@@ -128,10 +128,10 @@ class ManagerRequestController extends GetxController {
 
 
 
-void statusChanger (String id,status) async {
+void statusChanger (String id,status,userid) async {
 
     await firestore.collection(Strings().kRequest).doc(id.toString()).update({
-      "accepterId": id.toString(),
+      "accepterId": userid,
       "requestStatus": status,
       "currentTime": DateTime.now(),
     }).then((value) {

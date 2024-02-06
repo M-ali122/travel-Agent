@@ -35,9 +35,6 @@ class MyApp extends StatelessWidget {
           title: 'App',
           theme: LightTheme.lightTheme,
           darkTheme: DarkTheme.darkTheme,
-          // darkTheme: ThemeData.dark(),
-          //
-          // theme: DarkTheme.darkTheme,
           routes: AppRoute().routes,
           initialRoute: SplashView.route,
           // initialRoute: AdminHome.route,

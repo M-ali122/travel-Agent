@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
+import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
 
 import '../../../res/icons/svg.dart';
@@ -12,11 +15,15 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
   static const String route = 'RequestDetail';
 
   RequestDetail({super.key});
-
   var arg = Get.arguments;
-  
+
   @override
   Widget build(BuildContext context) {
+
+
+    Timestamp? timestamp = arg.returnDate;
+    DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+    String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
     return GetBuilder<ManagerRequestController>(
       init: ManagerRequestController(),
         builder: (controller) {
@@ -106,7 +113,7 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                           ),
                         ),
                         child: Center(child: Text(
-                          '${arg.recommendation.requestStatus}',
+                          '${arg.requestStatus}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Color(0xFFF2C94C),
@@ -181,7 +188,7 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                           ),
                           const Spacer(),
                           Text(
-                            '${arg.recommendation.returnDate}',
+                            '$formatedReturnTime',
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                               color: Colors.white,
@@ -210,7 +217,7 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                           ),
                           const Spacer(),
                           Text(
-                            '${arg.recommendation.title}',
+                            '${arg.numberOfPeople}',
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                               color: Colors.white,
@@ -301,6 +308,18 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                         ],
                       ),
                       const SizedBox(height: 10,),
+                      SizedBox(
+                        height: 54.h,
+                        child: AppButton(
+                          title: 'Request Accept',
+                          onTap: (){
+                            if(arg.requestStatus == 'Pending'){
+                              controller.requestAccepet(arg.uid);
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 30,),
                     ],
                   ),
                 ),

@@ -122,12 +122,24 @@ class ManagerRequestController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-loadRecommended();
-    request.value = RequestModel();
-    loadrequest(); // Call your function here
-    //print('Loaded request: ${loadrequest()}');
+    loadrequest();
   }
 
+
+
+
+void requestAccepet (String id) async {
+
+
+
+    await firestore.collection(Strings().kRequest).doc(id.toString()).update({
+      "accepterId": id.toString(),
+      "requestStatus": 'Accepted'
+    }).then((value) {
+      loadrequest();
+      print('Request Accepted');
+    });
+}
 
   Rx<RequestModel>  request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
@@ -165,7 +177,9 @@ loadRecommended();
       res.docs.forEach((element) {
         RequestModel requestModel =
         RequestModel.fromJson(element.data());
+        print('element data is ${element.data()}');
         reqList.add(requestModel);
+        print('your element ${element.data()}');
       });
       update();
     }else{

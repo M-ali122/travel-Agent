@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/pages/tabbar/cancelled.dart';
 
+import '../../tabbar/completed.dart';
+import '../../tabbar/pandding.dart';
 import '../../tabbar/tabbar_view.dart';
 import '../controller/managerRequestController.dart';
 
@@ -79,18 +82,18 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                           ),
                           // Content for Tab 2
                           Container(
-                            child: const Center(
-                              child: Text('Tab 2 Content'),
+                            child:  Center(
+                              child: PanddingView(),
                             ),
                           ),
                           Container(
-                            child: const Center(
-                              child: Text('Tab 3 Content'),
+                            child:  Center(
+                              child: CompletedView(),
                             ),
                           ),
                           Container(
-                            child: const Center(
-                              child: Text('Tab 4 Content'),
+                            child: Center(
+                              child: CancellScreen()
                             ),
                           ),
                         ],

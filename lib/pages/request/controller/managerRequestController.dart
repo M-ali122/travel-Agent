@@ -128,18 +128,24 @@ class ManagerRequestController extends GetxController {
 
 
 
-void requestAccepet (String id) async {
-
-var box = GetStorage();
-var uid = box.read('uid');
+void statusChanger (String id,status,userid) async {
 
     await firestore.collection(Strings().kRequest).doc(id.toString()).update({
-      "accepterId": uid.toString(),
-      "requestStatus": 'Accepted'
+      "accepterId": userid,
+      "requestStatus": status,
+      "currentTime": DateTime.now(),
     }).then((value) {
+      if (status == 'Accepted') {
+        Get.snackbar('Request Accepted', 'The request has been accepted.');
+      } else if (status == 'Cancelled') {
+        Get.snackbar('Request Cancelled', 'The request has been cancelled.');
+      }
       loadrequest();
       print('Request Accepted');
     });
+
+
+
 }
 
   Rx<RequestModel>  request = RequestModel().obs;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
@@ -308,14 +309,22 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                         ],
                       ),
                       const SizedBox(height: 10,),
+                      arg.requestStatus == 'Accepted' ? AppButton(
+                          title: 'Cancel',
+                          onTap: (){
+                            controller.statusChanger(arg.requestId.toString(),"Cancelled","");
+                            Get.back();
+                          }
+                      ):
                       SizedBox(
                         height: 54.h,
                         child: AppButton(
                           title: 'Request Accept',
                           onTap: (){
-                            if(arg.requestStatus == 'Pending'){
-                              controller.requestAccepet(arg.uid);
-                            }
+                            var box = GetStorage();
+                            var uid = box.read('uid');
+                              controller.statusChanger(arg.requestId.toString(),"Accepted",uid);
+                              Get.back();
                           },
                         ),
                       ),

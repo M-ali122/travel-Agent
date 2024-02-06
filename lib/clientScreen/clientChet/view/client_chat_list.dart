@@ -29,7 +29,7 @@ class ClientChatListScreen extends GetWidget<RequestController> {
           onTap: () {
             // Get.toNamed(ClientPageSandRequest.route);
           },
-          child: controller.reqList.isEmpty ? Center(child: Text("No Request Found"))  : ListView.builder(
+          child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == "Accepted")? Center(child: Text("No Chats Found"))  : ListView.builder(
             itemCount: controller.reqList.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {

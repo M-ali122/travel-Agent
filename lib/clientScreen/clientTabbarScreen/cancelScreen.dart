@@ -21,7 +21,7 @@ class CancellScreen extends GetWidget<RequestController> {
             onTap: () {
               // Get.toNamed(ClientPageSandRequest.route);
             },
-            child: controller.reqList.isEmpty ? Center(child: Text('Cancel Data not found'),) :
+            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Cancelled') ? Center(child: Text('Cancel Data not found'),) :
             ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,

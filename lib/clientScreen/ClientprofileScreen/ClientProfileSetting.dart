@@ -546,7 +546,7 @@ class CLientProfileSetting extends StatelessWidget {
                   GestureDetector(
                     onTap: (){
                       final box = GetStorage();
-                      box.remove('uid');
+
                       Get.defaultDialog(
                         title: 'Log Out',
                         titleStyle: const TextStyle(
@@ -557,7 +557,9 @@ class CLientProfileSetting extends StatelessWidget {
                         confirmTextColor: Colors.white,
                         cancelTextColor: Colors.white,
                         onConfirm: () {
+                          box.remove('uid');
                           Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
+
                         },
                         backgroundColor: const Color(0xFF1B1C21),
                         onCancel: () {

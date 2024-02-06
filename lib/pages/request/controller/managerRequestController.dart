@@ -136,9 +136,17 @@ void statusChanger (String id,status) async {
       "currentTime": DateTime.now(),
     }).then((value) {
       if (status == 'Accepted') {
-        Get.snackbar('Request Accepted', 'The request has been accepted.');
+        Get.snackbar(
+            'Request Accepted',
+            'The request has been accepted.',
+        snackPosition: SnackPosition.BOTTOM
+        );
       } else if (status == 'Cancelled') {
-        Get.snackbar('Request Cancelled', 'The request has been cancelled.');
+        Get.snackbar(
+            'Request Cancelled',
+            'The request has been cancelled.',
+            snackPosition: SnackPosition.BOTTOM
+        );
       }
       loadrequest();
       print('Request Accepted');

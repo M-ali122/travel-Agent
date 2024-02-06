@@ -536,8 +536,26 @@ class ProfileSetting extends StatelessWidget {
                    InkWell(
                      onTap: (){
                        final box = GetStorage();
-                       box.remove('uid');
-                       Get.offAllNamed(AccountTypeScreen.route);
+
+                       Get.defaultDialog(
+                         title: 'Log Out',
+                         titleStyle: const TextStyle(
+                             color: Colors.white,
+                             fontWeight: FontWeight.w300
+                         ),
+                         content: const Text('Are you sure to log Out'),
+                         confirmTextColor: Colors.white,
+                         cancelTextColor: Colors.white,
+                         onConfirm: () {
+                           box.remove('uid');
+                           Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
+
+                         },
+                         backgroundColor: const Color(0xFF1B1C21),
+                         onCancel: () {
+                           Get.off(ProfileSetting());
+                         },
+                       );
                      },
                      child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

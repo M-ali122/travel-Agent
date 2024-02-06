@@ -157,7 +157,7 @@ class PandingView extends GetWidget<RequestController> {
           body: GestureDetector(
             onTap: () {
             },
-            child: controller.reqList.isEmpty ? Text('No Panding data') :
+            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Pending')? Text('No Panding data') :
             ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,

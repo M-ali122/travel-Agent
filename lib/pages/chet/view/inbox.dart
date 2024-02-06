@@ -58,23 +58,6 @@ class Inbox extends GetWidget<ChatController> {
                   SizedBox(
                     height: 26.h,
                   ),
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Unread messages (2)',
-                      style: TextStyle(
-                        color: Color(0xFF9CA3AF),
-                        fontSize: 14,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w500,
-                        height: 0.07,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 27.h,
-                  ),
-
                   SizedBox(
                     height: Get.height * 0.53,
                     child: ListView.builder(
@@ -93,7 +76,7 @@ class Inbox extends GetWidget<ChatController> {
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Text("");
+                                  return const Text("");
                                 } else if (snapshot.hasError) {
                                   return Text('Error: ${snapshot.error}');
                                 }
@@ -113,12 +96,12 @@ class Inbox extends GetWidget<ChatController> {
                                                   .toString());
                                         },
                                         title: Padding(
-                                          padding: EdgeInsets.only(left: 50.0),
+                                          padding: const EdgeInsets.only(left: 50.0),
                                           child: Row(
                                             children: [
                                               Text(
                                                 '${snapshot.data!['name']}',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 16,
                                                   fontFamily: 'SF Pro Text',
@@ -126,8 +109,8 @@ class Inbox extends GetWidget<ChatController> {
                                                   height: 0.06,
                                                 ),
                                               ),
-                                              Spacer(),
-                                              Text(
+                                              const Spacer(),
+                                              const Text(
                                                 '12:00 PM',
                                                 style: TextStyle(
                                                   color: Color(0xFF9CA3AF),
@@ -141,14 +124,14 @@ class Inbox extends GetWidget<ChatController> {
                                           ),
                                         ),
                                         subtitle: Padding(
-                                          padding:  EdgeInsets.only(
+                                          padding:  const EdgeInsets.only(
                                               left: 50.0, top: 16),
                                           child: Row(
                                             children: [
                                               Text(
                                                 // 'This is demo message text'
                                                 "${snapshot.data!['email']}",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 14,
                                                   fontFamily: 'SF Pro Text',

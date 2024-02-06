@@ -19,11 +19,12 @@ class RequestModel {
   dynamic returnDate;
   dynamic image;
   dynamic uid;
+  dynamic name;
   dynamic recommandType;
   dynamic accepterId;
   dynamic person;
   dynamic requestTo,recommendation;
-  dynamic requestBy;
+  dynamic requestBy,numberOfPeople;
   dynamic requestStatus;
 
 
@@ -31,10 +32,12 @@ class RequestModel {
      this.recommandId,
      this.title,
  this.recommendation,
+    this.numberOfPeople,
      this.depDate,
     this.accepterId,
      this.returnDate,
      this.image,
+    this.name,
      this.uid,
      this.recommandType,
      this.person,
@@ -47,11 +50,13 @@ class RequestModel {
   factory RequestModel.fromJson(Map<String, dynamic> json) => RequestModel(
     recommandId: json["recommandId"],
     title: json["title"],
+    numberOfPeople: json["numberOfPeople"],
     depDate: json["depDate"],
     accepterId : json["accepterId"],
     returnDate: json["returnDate"],
     image: json["image"],
     uid: json["uid"],
+    name: json["name"],
     recommandType: json["recommandType"],
     person: json["person"],
     recommendation: RecommandModel.fromJson(json['requestDetail']),
@@ -63,6 +68,7 @@ class RequestModel {
   Map<String, dynamic> toJson() => {
     "recommandId": recommandId,
     "title": title,
+    "name": name,
     "depDate": depDate,
     "returnData": returnDate,
     "image": image,
@@ -71,6 +77,7 @@ class RequestModel {
     'requestDetail':recommendation.toJson(),
     "recommandType": recommandType,
     "person": person,
+    "numberOfPeople": numberOfPeople,
     "requestTo": requestTo,
     "requestBy": requestBy,
     "requestStatus": requestStatus,

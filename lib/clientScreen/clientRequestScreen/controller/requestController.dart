@@ -118,46 +118,25 @@ import '../../../res/String.dart';
 import '../../clientHome/model/recomModel.dart';
 
 class RequestController extends GetxController {
-
   @override
   void onInit() {
     super.onInit();
 
     request.value = RequestModel();
     loadrequest(); // Call your function here
-    //print('Loaded request: ${loadrequest()}');
   }
 
-
-  Rx<RequestModel>  request = RequestModel().obs;
+  Rx<RequestModel> request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
-
-  // Future<void> addRequest(RecommandModel model) async {
-  //   try {
-  //     Map<String, dynamic> requestData = request.value.toJson();
-  //     requestData['departureTime'] = '${departureTime.value.hour}:${departureTime.value.minute}';
-  //     requestData['returnTime'] = '${returnTime.value.hour}:${returnTime.value.minute}';
-  //
-  //     requestData['departureDate'] = departureDate.value;
-  //     requestData['returnDate'] = returnDate.value;
-  //     requestData['numberOfPeople'] = selectedNumberOfPeople.value;
-  //     requestData['requestDetail'] = model.toJson();
-  //
-  //     await FirebaseFirestore.instance.collection(Strings().kRequest).add(requestData);
-  //     print('request adding successfully');
-  //     update();
-  //   } catch (e) {
-  //     print('Error adding request: $e');
-  //   }
-  // }
   Future<void> addRequest(RecommandModel model) async {
     try {
-
       var id = DateTime.now().microsecondsSinceEpoch;
-      request.value.requestId = id.toString();
+      // request.value.requestId = id.toString();
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
-      requestData['departureTime'] = '${departureTime.value.hour}:${departureTime.value.minute}';
-      requestData['returnTime'] = '${returnTime.value.hour}:${returnTime.value.minute}';
+      requestData['departureTime'] =
+          '${departureTime.value.hour}:${departureTime.value.minute}';
+      requestData['returnTime'] =
+          '${returnTime.value.hour}:${returnTime.value.minute}';
 
       requestData['departureDate'] = departureDate.value;
       requestData['returnDate'] = returnDate.value;
@@ -165,14 +144,17 @@ class RequestController extends GetxController {
       requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = null;
-
+      requestData['requestId'] = id;
 
       var box = GetStorage();
       String uid = box.read("uid");
 
       requestData['uid'] = uid.toString();
 
-      await FirebaseFirestore.instance.collection(Strings().kRequest).doc(id.toString()).set(requestData);
+      await FirebaseFirestore.instance
+          .collection(Strings().kRequest)
+          .doc(id.toString())
+          .set(requestData);
       Get.back();
       Get.snackbar(
         'Success',
@@ -185,7 +167,7 @@ class RequestController extends GetxController {
     } catch (e) {
       Get.back();
 
-      print('Error adding request: $e');
+
 
       Get.snackbar(
         'Error',
@@ -213,10 +195,8 @@ class RequestController extends GetxController {
     ))!;
     if (picked != null && picked != departureDate.value) {
       departureDate.value = picked;
-      print('Departure date selected: $departureDate');
       update(); // Notify the UI about the change
     } else {
-      print('Departure date selection canceled');
     }
   }
 
@@ -229,10 +209,9 @@ class RequestController extends GetxController {
     ))!;
     if (picked != null && picked != returnDate.value) {
       returnDate.value = picked;
-      print('not work');
       update();
     }
-    print('work');
+
   }
 
   Future<void> selectDepartureTime(BuildContext context) async {
@@ -257,48 +236,32 @@ class RequestController extends GetxController {
     }
   }
 
-
-
-
-
   void updateNumberOfPeople(int value) {
     int selectedIndex = numberOfPeopleOptions.indexOf(value);
     numberOfPeopleOptions.removeAt(selectedIndex);
     numberOfPeopleOptions.insert(0, value);
     selectedNumberOfPeople.value = value;
-    print('Selected number of people: $selectedNumberOfPeople');
     update();
   }
 
-   RxList<RequestModel> reqList = <RequestModel>[].obs;
+  RxList<RequestModel> reqList = <RequestModel>[].obs;
 
-  void loadrequest ()async{
+  void loadrequest() async {
     var box = GetStorage();
     var id = box.read('uid');
     reqList.clear();
 
-    var res =await firestore.collection(Strings().kRequest).where("uid",isEqualTo: id.toString()).get();
-    //var res = await firestore.collection(Strings().kRecom).get();
+    var res = await firestore
+        .collection(Strings().kRequest)
+        .where("uid", isEqualTo: id.toString())
+        .get();
 
-    if(res.docs.isNotEmpty){
-
-
-
-
-     res.docs.forEach((element) {
-        RequestModel requestModel =
-            RequestModel.fromJson(element.data());
+    if (res.docs.isNotEmpty) {
+      res.docs.forEach((element) {
+        RequestModel requestModel = RequestModel.fromJson(element.data());
         reqList.add(requestModel);
-       print("elemet data here ${element.data()}");
-
-     });
-    update();
-    }else{
-    print("dara b found");
+      });
+      update();
+    } else {}
   }
-
-
-  }
-
-
 }

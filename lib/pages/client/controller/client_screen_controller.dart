@@ -26,6 +26,7 @@ class ClientScreenController extends GetxController {
           .where("accepterId", isEqualTo: uid.toString())
           .get();
       if (res.docs.isNotEmpty) {
+        print("Ds");
         for (var doc in res.docs) {
           var data = doc.data(); // Extract data from the DocumentSnapshot
           // Assuming RequestModel has a constructor that accepts Map<String, dynamic>

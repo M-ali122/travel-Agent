@@ -130,10 +130,11 @@ class ManagerRequestController extends GetxController {
 
 void requestAccepet (String id) async {
 
-
+var box = GetStorage();
+var uid = box.read('uid');
 
     await firestore.collection(Strings().kRequest).doc(id.toString()).update({
-      "accepterId": id.toString(),
+      "accepterId": uid.toString(),
       "requestStatus": 'Accepted'
     }).then((value) {
       loadrequest();

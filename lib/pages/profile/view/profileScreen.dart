@@ -73,15 +73,14 @@ class ProfileScreen extends GetWidget<ProfileController> {
                       alignment: Alignment.center,
                       children: [
                         controller.loadUserModel.value.profile == null
-                            ? controller.image != null
+                            ? controller.loadUserModel.value.profile!= null
                                 ? Container(
                                     width: 120,
                                     height: 120,
                                     decoration: ShapeDecoration(
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: FileImage(
-                                            File(controller.image!.path)),
+                                        image: NetworkImage(controller.loadUserModel.value.profile)
                                       ),
                                       shape: const OvalBorder(
                                         side: BorderSide(
@@ -90,7 +89,7 @@ class ProfileScreen extends GetWidget<ProfileController> {
                                       ),
                                     ),
                                   )
-                                : CircleAvatar(
+                                : const CircleAvatar(
                                     foregroundImage:
                                         AssetImage('assets/emoji/profile2.png'),
                                     radius: 60,
@@ -134,7 +133,7 @@ class ProfileScreen extends GetWidget<ProfileController> {
                     Text(
                       '${controller.loadUserModel.value.name}',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         fontFamily: 'SF Pro Text',

@@ -153,6 +153,8 @@ class RequestController extends GetxController {
   Future<void> addRequest(RecommandModel model) async {
     try {
 
+      var id = DateTime.now().microsecondsSinceEpoch;
+      request.value.requestId = id.toString();
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
       requestData['departureTime'] = '${departureTime.value.hour}:${departureTime.value.minute}';
       requestData['returnTime'] = '${returnTime.value.hour}:${returnTime.value.minute}';
@@ -161,19 +163,17 @@ class RequestController extends GetxController {
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       requestData['requestDetail'] = model.toJson();
-      requestData['requestStatus'] = 'Pandding';
+      requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = null;
 
 
       var box = GetStorage();
-      String id = box.read("uid");
+      String uid = box.read("uid");
 
-      requestData['uid'] = id.toString();
+      requestData['uid'] = uid.toString();
 
-      await FirebaseFirestore.instance.collection(Strings().kRequest).add(requestData);
-
+      await FirebaseFirestore.instance.collection(Strings().kRequest).doc(id.toString()).set(requestData);
       Get.back();
-
       Get.snackbar(
         'Success',
         'Request added successfully',

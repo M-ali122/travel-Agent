@@ -1,46 +1,76 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
+import 'package:travelagentapp/pages/chet/controller/message_controller.dart';
 
-class ChatScreen extends StatelessWidget {
+import '../../../helpers/views/message_bubble.dart';
+import '../../../res/String.dart';
+
+class ChatScreen extends GetWidget<ChatController> {
   static String route = 'ChatScreen';
+  String arg = Get.arguments;
   ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(CupertinoIcons.back,color: Colors.white,),
-        ),
-        actions: [
-          IconButton(
+    return GetBuilder<ChatController>(
+      init: ChatController(),
+      builder: (controller) {
+      return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
             onPressed: () {
+              Get.back();
             },
-            icon: Icon(Icons.more_horiz,color: Colors.white,),
+            icon: const Icon(
+              CupertinoIcons.back,
+              color: Colors.white,
+            ),
           ),
-        ],
-        title: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Column(
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Sarah Shahi',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w600,
-                  height: 0.08,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection(Strings().kUser)
+                      .doc(arg)
+                      .snapshots(),
+                  builder:
+                      (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Text("Loading..");
+                    }
+                    if (snapshot.hasError) {
+                      return const Text('Loading...');
+                    }
+                    if (!snapshot.hasData) {
+                      return const Text('Loading...');
+                    }
+                    Map<String, dynamic> userData =
+                    snapshot.data!.data() as Map<String, dynamic>;
+                    return Text(
+                      "${userData!['name']}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'SF Pro Text',
+                        fontWeight: FontWeight.w600,
+                        height: 0.08,
+                      ),
+                    );
+                  },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 50.0,top: 7),
+              const Padding(
+                padding: EdgeInsets.only(right: 66.0, top: 5),
                 child: Text(
                   'Online',
                   style: TextStyle(
@@ -54,279 +84,132 @@ class ChatScreen extends StatelessWidget {
               ),
             ],
           ),
+          actions: [
+            const Icon(
+              Icons.more_horiz,
+              color: Colors.white,
+            )
+          ],
         ),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            width: 375,
-            height: 1,
-            decoration: BoxDecoration(color: Color(0xFF1E2025)),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 16.0,right: 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 16.h,),
-                Container(
-                  width: 291,
-                  height: 80,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFF30879B),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
-                        bottomLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(15),
-                      ),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Hi Sarah! This is Zuhran, your personal \nmanager. I noticed your interset in a \n '
-                          'Dubai tour. How can I assist you today?',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  )
-                ),
-                SizedBox(height: 8.h,),
-                Text(
-                  '10:30 AM',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-                SizedBox(height: 32.h,),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                      width: 291,
-                      height: 80,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFF212329),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(5),
-                            bottomRight: Radius.circular(15),
-                          ),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Hi Sarah! Yes, Im excited about \nexploring Dubai. Id like to book a tour\nfor next week. Can you help with that?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      )
-                  ),
-                ),
-                SizedBox(height: 8.h,),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    '10:30 AM',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 32.h,),
-                Container(
-                    width: 291,
-                    height: 60,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF30879B),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                          bottomLeft: Radius.circular(5),
-                          bottomRight: Radius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                        child: Text(
-                          'Absolutely, Sarah! What dates are you \nconsidering for the tour?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                    )
-                ),
-                SizedBox(height: 8.h,),
-                Text(
-                  '10:30 AM',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-                SizedBox(height: 32.h,),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                      width: 291,
-                      height: 60,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFF212329),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(5),
-                            bottomRight: Radius.circular(15),
-                          ),
-                        ),
-                      ),
-                      child: Center(
-                          child: Text(
-                            'Im thinking Wednesday or Thursday next\nweek, whichever works better.',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: 'SF Pro Text',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
-                      )
-                  ),
-                ),
-                SizedBox(height: 8.h,),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: const Text(
-                    '10:30 AM',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'SF Pro Text',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 32.h,),
-                Container(
-                    width: 291,
-                    height: 60,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF212329),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                          bottomLeft: Radius.circular(5),
-                          bottomRight: Radius.circular(15),
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                        child: Text(
-                          'Alex! Ill be in touch shortly with the \nconfirmed details. Have a wonderful day!',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                    )
-                ),
-                SizedBox(height: 8.h,),
-                const Text(
-                  '10:30 AM',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontFamily: 'SF Pro Text',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      bottomSheet: Container(
-        height: 80,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            color:  Color(0xff16171B),
-            border: Border(top: BorderSide(width: 1,color: Color(0xff1E2026)))
-        ),
-        child: Row(
+        body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: SizedBox(
-                height: 50,
-                width: 250,
-                child: TextField(
-                  decoration: InputDecoration(
-                      prefixIcon: Transform.rotate(
-                          angle: 12,
-                          child: const Icon(Icons.attachment_outlined,color: Color(0xff8A96B3),)),
-                      hintText: "Message",
-                      hintStyle: const TextStyle(color:Color(0xff8A96B3),fontSize: 11,),
-                      suffixIcon: const Icon(Icons.emoji_emotions_outlined,color:Color(0xff8A96B3)),
-                      fillColor: Colors.grey.withOpacity(0.2),
-                      filled: true
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: Container(
-                width: 44.94,
-                height: 44.94,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF30879B),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.97),
-                  ),
-                ),
-                child: const Icon(Icons.send,color: Colors.white,size: 19,),
+            Container(
+              height: Get.height *0.77,
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection(Strings().kMessage)
+                    .orderBy('dateTime', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child:
+                        CircularProgressIndicator()); // Show a loader while waiting for data
+                  }
+                  else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
+                  else if (!snapshot.hasData) {
+                    return const Text('Loading...');
+                  }
+
+                  var box = GetStorage();
+                  var id = box.read("uid");
+                  // Filter messages based on participants
+                  List filteredMessages = snapshot.data!.docs.where((doc) {
+                    List participants = doc['participants'];
+                    return participants.contains("$id") &&
+                        participants.contains(arg);
+                  }).toList();
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    reverse: true,
+                    itemCount: filteredMessages.length,
+                    itemBuilder: (context, index) {
+                      var messageData = filteredMessages[index].data();
+                      Timestamp? timestamp = messageData?["dateTime"];
+                      DateTime dateTime = timestamp?.toDate() ?? DateTime.now(); // Use current time if timestamp is null
+                      String formattedDateTime = DateFormat('hh:mm a').format(dateTime);
+
+                      return MessageBubble(
+                          sender: "me",
+                          text: messageData['msg'],
+                          time: formattedDateTime,
+                          isMe: messageData['sendBy'] == id
+                              ? true
+                              : false); // Assuming 'message' is the key for message content
+                    },
+                  );
+                },
               ),
             ),
           ],
         ),
-      ),
-    );
+        bottomSheet: Container(
+          height: 80,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            // color: Colors.transparent,
+              color: Color(0xff16171B),
+              border: Border(
+                  top: BorderSide(width: 1, color: Color(0xff1E2026)))),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: SizedBox(
+                  height: 50,
+                  width: 250,
+                  child: TextField(
+                    controller: controller.msgController,
+                    decoration: InputDecoration(
+                        prefixIcon: Transform.rotate(
+                            angle: 12,
+                            child: const Icon(
+                              Icons.attachment_outlined,
+                              color: Color(0xff8A96B3),
+                            )),
+                        hintText: "Message",
+                        hintStyle: const TextStyle(
+                          color: Color(0xff8A96B3),
+                          fontSize: 11,
+                        ),
+                        suffixIcon: const Icon(Icons.emoji_emotions_outlined,
+                            color: Color(0xff8A96B3)),
+                        fillColor: Colors.grey.withOpacity(0.2),
+                        filled: true),
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: InkWell(
+                  onTap: () {
+                    controller.sendMessage(arg);
+                  },
+                  child: Container(
+                    width: 44.94,
+                    height: 44.94,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF30879B),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.97),
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                      size: 19,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },);
   }
 }

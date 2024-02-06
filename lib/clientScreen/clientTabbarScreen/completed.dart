@@ -17,7 +17,7 @@ class CompletedScreen extends GetWidget<RequestController> {
         return Scaffold(
           body: GestureDetector(
             onTap: () {
-              Get.toNamed(ClientPageSandRequest.route);
+              // Get.toNamed(ClientPageSandRequest.route);
             },
             child: controller.reqList.isEmpty? Center(child: Text('No Completed Resquest Found'))
                 : ListView.builder(

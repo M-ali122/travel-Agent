@@ -154,15 +154,15 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
       init: RequestController(),
         builder: (controller) {
           return Scaffold(
-            body: GestureDetector(
-              onTap: () {
-                Get.toNamed(ClientPageSandRequest.route);
-              },
-              child: controller.reqList.isEmpty ? Center(child: Text("No Request Found"))  : ListView.builder(
-                itemCount: controller.reqList.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Padding(
+            body: controller.reqList.isEmpty ? Center(child: Text("No Request Found"))  : ListView.builder(
+              itemCount: controller.reqList.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: (){
+                    // Get.toNamed(ClientPageSandRequest.route,arguments: controller.reqList[index]);
+                  },
+                  child: Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(
                       width: 343,
@@ -243,9 +243,9 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           );
         },

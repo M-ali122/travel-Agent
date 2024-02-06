@@ -60,6 +60,9 @@ class ClientAuthController extends GetxController {
             Get.offAllNamed(ClientNavbar.route);
           }
         }
+      }else{
+        _toggle();
+        showErrorMessage("Invalid Email & Password");
       }
     } catch (e) {
       showErrorMessage("Login Fail $e");

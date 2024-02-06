@@ -127,11 +127,9 @@ class ClientChatScreen extends GetWidget<MessageController> {
                       itemCount: filteredMessages.length,
                       itemBuilder: (context, index) {
                         var messageData = filteredMessages[index].data();
-                        Timestamp timestamp = messageData["dateTime"];
-                        DateTime dateTime = timestamp.toDate();
-                        String formattedDateTime =
-                            DateFormat('hh:mm a').format(dateTime);
-
+                        Timestamp? timestamp = messageData?["dateTime"];
+                        DateTime dateTime = timestamp?.toDate() ?? DateTime.now(); // Use current time if timestamp is null
+                        String formattedDateTime = DateFormat('hh:mm a').format(dateTime);
                         return MessageBubble(
                             sender: "me",
                             text: messageData['msg'],

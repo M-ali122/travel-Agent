@@ -3,11 +3,13 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:travelagentapp/res/String.dart';
 
+import '../../../helpers/views/toast.dart';
 import '../../clientAuth/model/clientModel.dart';
 
 class ClientProfileController extends GetxController {
@@ -83,6 +85,34 @@ class ClientProfileController extends GetxController {
       // Notify listeners
       update();
     });
+  }
+
+
+
+
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController number = TextEditingController();
+
+  void updateProfile() async {
+    _toggle();
+    try {
+      await firestore
+          .collection(Strings().kUser)
+          .doc(user.value.uid)
+          .update({
+        "name": name.text.toString(),
+        "email": email.text.toString(),
+        "phone": number.text.toString(),
+      }).then((value) {
+        _toggle();
+        loadUser();
+        showErrorMessage("Profile Updated");
+      });
+    } catch (e) {
+      _toggle();
+      showErrorMessage("error $e");
+    }
   }
 
   RxBool busy = false.obs;

@@ -12,14 +12,14 @@ import 'package:travelagentapp/res/String.dart';
 import '../../../clientScreen/clientAuth/model/clientModel.dart';
 
 class ProfileController extends GetxController {
-  Rx<ClientModel> loadUserModel = ClientModel().obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     loadUser();
   }
-
+  Rx<ClientModel> loadUserModel = ClientModel().obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   loadUser() async {
     _toogle();

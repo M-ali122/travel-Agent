@@ -43,21 +43,28 @@ class ClientAuthController extends GetxController {
           bool registrationstatus = data['registrationstatus'];
           clientModel.value.registrationstatus = registrationstatus;
           String uid = data['uid'];
-          box.write("uid", uid.toString());
-          print("Data UID $uid");
+
           clientModel.value.uid = uid;
           String userType = data['userType'];
           clientModel.value.userType = userType;
-          update();
-          if (interest == null ||
-              interestSecond == null ||
-              languagePreference == null ||
-              location == null) {
-            // box.write("uid", uid.toString());
-            Get.toNamed(InterestScreen.route);
-          } else {
-            // box.write("uid", uid.toString());
-            Get.offAllNamed(ClientNavbar.route);
+          if (userType == "Client") {
+
+            update();
+            if (interest == null ||
+                interestSecond == null ||
+                languagePreference == null ||
+                location == null) {
+              // box.write("uid", uid.toString());
+              box.write("uid", uid.toString());
+              Get.toNamed(InterestScreen.route);
+            } else {
+              // box.write("uid", uid.toString());
+              box.write("uid", uid.toString());
+              Get.offAllNamed(ClientNavbar.route);
+            }
+
+          }else{
+            showErrorMessage("Invalid Account");
           }
         }
       }else{

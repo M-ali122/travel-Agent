@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
@@ -41,7 +40,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
     const Icon(Icons.keyboard_arrow_up, color: Colors.white, size: 10),
   ];
 
-  var iconPercent = ['2 new tasks', '15%', '15%'];
+  var iconPercent = [' new tasks', '15%', '15%'];
 
   @override
   Widget build(BuildContext context) {
@@ -117,73 +116,189 @@ class HomeView extends GetWidget <ManagerRequestController>{
                   SizedBox(
                     height: 16.h,
                   ),
-                  //top cards
-                  SizedBox(
-                    height: Get.height * 0.120,
-                    child: ListView.builder(
-                      itemCount: 3,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: Container(
-                            width: 106,
-                            height: 00,
-                            decoration: ShapeDecoration(
-                              color: arrColor[index],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 9.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    arrtext[index],
-                                    style: const TextStyle(
-                                      color: Color(0xFF111827),
-                                      fontSize: 12,
-                                      fontFamily: 'SF Pro Text',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.16,
-                                    ),
-                                  ),
-                                  Text(
-                                    arrNumbers[index],
-                                    style: const TextStyle(
-                                      color: Color(0xFF111827),
-                                      fontSize: 28,
-                                      fontFamily: 'SF Pro Text',
-                                      fontWeight: FontWeight.w600,
-                                      height: 0.03,
-                                    ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      arrIcon[index],
-                                      Text(
-                                        iconPercent[index],
-                                        style: const TextStyle(
-                                          color: Color(0xFF111827),
-                                          fontSize: 12,
-                                          fontFamily: 'SF Pro Text',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.16,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Container(
+                          width: 90,
+                          height: 100,
+                          decoration: ShapeDecoration(
+                            color: arrColor[0],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 9.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  arrtext[0],
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.16,
+                                  ),
+                                ),
+                                Text(
+                                  "${controller.filterRequestsByCurrentDate().length}", // Using filtered list length
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 28,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.03,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${controller.afterDate().length}',
+                                      style: const TextStyle(
+                                        color: Color(0xFF111827),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.16,
+                                      ),
+                                    ),
+                                    Text(
+                                      iconPercent[0],
+                                      style: const TextStyle(
+                                        color: Color(0xFF111827),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.16,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Container(
+                          width: 90,
+                          height: 100,
+                          decoration: ShapeDecoration(
+                            color: arrColor[1],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 9.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  arrtext[1],
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.16,
+                                  ),
+                                ),
+                                Text(
+                                  '${controller.afterDate().length}',
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 28,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.03,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      iconPercent[0],
+                                      style: const TextStyle(
+                                        color: Color(0xFF111827),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Container(
+                          width: 90,
+                          height: 100,
+                          decoration: ShapeDecoration(
+                            color: arrColor[2],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 9.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  arrtext[2],
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.16,
+                                  ),
+                                ),
+                                Text(
+                                  '${controller.beforeDate().length}',
+                                  style: const TextStyle(
+                                    color: Color(0xFF111827),
+                                    fontSize: 28,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0.03,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    arrIcon[2],
+                                    Text(
+                                      iconPercent[2],
+                                      style: const TextStyle(
+                                        color: Color(0xFF111827),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0.16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 32),
@@ -202,132 +317,137 @@ class HomeView extends GetWidget <ManagerRequestController>{
                     height: 24,
                   ),
                   Container(
-                    height: Get.height *0.45,
+                    height: Get.height * 0.32,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: controller.reqList.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        Timestamp? timestamp = controller.reqList[index].returnDate;
+                        Timestamp? timestamp = controller.reqList[index].recommendation.depDate;
                         DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                        String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
-                        return controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Accepted') ?
-                            Text('No Accepted Requests found') :
-                        Column(
-                          children: [
-                            Row(
+                        if (dateTime.year == DateTime.now().year &&
+                            dateTime.month == DateTime.now().month &&
+                            dateTime.day == DateTime.now().day) {
+                          String formattedDepDate =
+                          DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                          if (controller.reqList[index].requestStatus == 'Accepted') {
+                            return Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: SizedBox(
-                                    width: 38,
-                                    height: 14,
-                                    child: Text(
-                                      arrTime[index],
-                                      style: const TextStyle(
-                                        color: Color(0xFF9CA3AF),
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.18,
-                                        letterSpacing: 0.30,
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: SizedBox(
+                                        width: 38,
+                                        height: 14,
+                                        child: Text(
+                                          arrTime[index],
+                                          style: const TextStyle(
+                                            color: Color(0xFF9CA3AF),
+                                            fontSize: 12,
+                                            fontFamily: 'SF Pro Text',
+                                            fontWeight: FontWeight.w400,
+                                            height: 0.18,
+                                            letterSpacing: 0.30,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Container(
-                                  width: 282,
-                                  height: 1,
-                                  decoration:
-                                  const BoxDecoration(
-                                      color: Color(0xFF21262F)
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const CircleAvatar(
-                                  foregroundImage: AssetImage(
-                                      'assets/emoji/profile2.png'
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Container(
-                                    width: 261,
-                                    height: 80.h,
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xff23262D),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
+                                    const SizedBox(
+                                      width: 6,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 12.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 22.h,
+                                    Container(
+                                      width: 282,
+                                      height: 1,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFF21262F),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const CircleAvatar(
+                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20.0),
+                                      child: Container(
+                                        width: 261,
+                                        height: 80.h,
+                                        decoration: ShapeDecoration(
+                                          color: Color(0xff23262D),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(14),
                                           ),
-                                          Text(
-                                            '${controller.reqList.value[index].recommendation.title}',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13,
-                                              fontFamily: 'SF Pro Text',
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.14,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 16.h,
-                                          ),
-                                          Row(
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 12.0),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              const Icon(
-                                                CupertinoIcons.clock,
-                                                color: Color(0xff6B7280),
-                                                size: 12,
-                                              ),
                                               SizedBox(
-                                                width: 4.w,
+                                                height: 22.h,
                                               ),
                                               Text(
-                                                '${controller.reqList.value[index].recommendation.depDate}',
+                                                '${controller.reqList.value[index].recommendation.title}',
                                                 style: const TextStyle(
-                                                  color: Color(0xFF6B7280),
-                                                  fontSize: 11,
+                                                  color: Colors.white,
+                                                  fontSize: 13,
                                                   fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0.19,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 0.14,
                                                 ),
                                               ),
-                                              const Spacer(),
-                                              const Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: 12.0, bottom: 10),
-                                                child: Icon(
-                                                  Icons.circle_outlined,
-                                                  color: Color(0xffFFFFFF),
-                                                  size: 24,
-                                                ),
-                                              )
+                                              SizedBox(
+                                                height: 16.h,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    CupertinoIcons.clock,
+                                                    color: Color(0xff6B7280),
+                                                    size: 12,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 4.w,
+                                                  ),
+                                                  Text(
+                                                    '${formattedDepDate}',
+                                                    style: const TextStyle(
+                                                      color: Color(0xFF6B7280),
+                                                      fontSize: 11,
+                                                      fontFamily: 'SF Pro Text',
+                                                      fontWeight: FontWeight.w400,
+                                                      height: 0.19,
+                                                    ),
+                                                  ),
+                                                  const Spacer(),
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                                                    child: Icon(
+                                                      Icons.circle_outlined,
+                                                      color: Color(0xffFFFFFF),
+                                                      size: 24,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ],
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
-                            ),
-                          ],
-                        );
+                            );
+                          } else {
+                            return Container(); // or return null;
+                          }
+                        } else {
+                          return Container(); // or return null;
+                        }
                       },
                     ),
                   ),

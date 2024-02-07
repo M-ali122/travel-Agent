@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/pages/tabbar/cancelled.dart';
 
+import '../../tabbar/accepted.dart';
 import '../../tabbar/completed.dart';
 import '../../tabbar/pandding.dart';
 import '../../tabbar/tabbar_view.dart';
@@ -17,7 +18,7 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
       init: ManagerRequestController(),
       builder: (controller) {
           return DefaultTabController(
-            length: 4, // Number of tabs
+            length: 5, // Number of tabs
             child: Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
@@ -39,8 +40,8 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                actions: [
-                  const Padding(
+                actions: const [
+                  Padding(
                     padding: EdgeInsets.only(right: 20.0),
                     child: Icon(
                       Icons.add_circle_outline,
@@ -68,6 +69,7 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                         Tab(text: 'Pending'),
                         Tab(text: 'Completed'),
                         Tab(text: 'Cancelled'),
+                        Tab(text: 'Accepted'),
                       ],
                     ),
                     // Add the TabBarView
@@ -94,6 +96,11 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                           Container(
                             child: Center(
                               child: CancellScreen()
+                            ),
+                          ),
+                          Container(
+                            child: Center(
+                                child: AcceptedScreen()
                             ),
                           ),
                         ],

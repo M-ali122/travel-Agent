@@ -10,8 +10,8 @@ import 'package:travelagentapp/res/String.dart';
 import '../../clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
 import '../request/controller/managerRequestController.dart';
 
-class CompletedView extends GetWidget<ManagerRequestController> {
-  CompletedView({super.key});
+class AcceptedScreen extends GetWidget<ManagerRequestController> {
+  AcceptedScreen({super.key});
 
 
   ClientAuthController clientAuthController = Get.put(ClientAuthController());
@@ -22,20 +22,21 @@ class CompletedView extends GetWidget<ManagerRequestController> {
       init: ManagerRequestController(),
       builder: (controller) {
         return Scaffold(
-          body: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Completed')
-              ? Center(child: const Text('No Complated Data found')):
+          body: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Accepted') ? const Text('No Complated Data found'):
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: controller.reqList.length,
               itemBuilder: (context, index) {
+
                 Timestamp? timestamp = controller.reqList[index].returnDate;
                 DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
                 String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
                 Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
                 DateTime date = datestamp?.toDate() ?? DateTime.now();
                 String depDate = DateFormat('yyyy-mm-dd hh:mm a').format(date);
-                if(controller.reqList[index].requestStatus == "Completed"){
+
+                if(controller.reqList[index].requestStatus == "Accepted"){
                   return Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: Container(
@@ -135,35 +136,6 @@ class CompletedView extends GetWidget<ManagerRequestController> {
                                 ),
                               ],
                             ),
-                            // subtitle: const Text.rich(
-                            //   TextSpan(
-                            //     children: [
-                            //       TextSpan(
-                            //         text: 'Requested by ',
-                            //         style: TextStyle(
-                            //           color: Color(0xFF6B7280),
-                            //           fontSize: 12,
-                            //           fontFamily: 'SF Pro Text',
-                            //           fontWeight: FontWeight.w400,
-                            //           height: 0,
-                            //           letterSpacing: 0.30,
-                            //         ),
-                            //       ),
-                            //       TextSpan(
-                            //         text: 'Sarah Shahi',
-                            //         style: TextStyle(
-                            //           color: Color(0xFF30879B),
-                            //           fontSize: 12,
-                            //           fontFamily: 'SF Pro Text',
-                            //           fontWeight: FontWeight.w400,
-                            //           height: 0,
-                            //           letterSpacing: 0.30,
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-
                             subtitle: Row(
                               children: [
                                 const Text('Requested by',
@@ -220,35 +192,6 @@ class CompletedView extends GetWidget<ManagerRequestController> {
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Row(
                               children: [
-                                // const Padding(
-                                //   padding: EdgeInsets.only(left: 8.0),
-                                //   child: Text(
-                                //     'Request number:',
-                                //     style: TextStyle(
-                                //       color: Colors.white,
-                                //       fontSize: 12,
-                                //       fontFamily: 'SF Pro Text',
-                                //       fontWeight: FontWeight.w500,
-                                //       height: 0,
-                                //       letterSpacing: 0.50,
-                                //     ),
-                                //   ),
-                                // ),
-                                // const SizedBox(
-                                //   width: 4,
-                                // ),
-                                // const Text(
-                                //   '352096',
-                                //   style: TextStyle(
-                                //     color: Color(0xFF6B7280),
-                                //     fontSize: 12,
-                                //     fontFamily: 'SF Pro Text',
-                                //     fontWeight: FontWeight.w400,
-                                //     height: 0,
-                                //     letterSpacing: 0.50,
-                                //   ),
-                                // ),
-                                //const Spacer(),
                                 const Padding(
                                   padding: EdgeInsets.only(left: 8.0),
                                   child: Text(
@@ -266,7 +209,7 @@ class CompletedView extends GetWidget<ManagerRequestController> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                  depDate,
+                                    depDate,
                                     style: const TextStyle(
                                       color: Color(0xFF6B7280),
                                       fontSize: 12,

@@ -27,6 +27,7 @@ class RequestModel {
   dynamic requestBy,numberOfPeople;
   dynamic requestStatus;
   dynamic requestId;
+  dynamic currentTime;
 
   RequestModel({
      this.recommandId,
@@ -45,6 +46,7 @@ class RequestModel {
      this.requestBy,
      this.requestStatus,
     this.requestId,
+    this.currentTime,
 
   });
 
@@ -65,6 +67,7 @@ class RequestModel {
     requestBy: json["requestBy"],
     requestStatus: json["requestStatus"],
       requestId:json["requestId"],
+      currentTime:json['currentTime'],
   );
 
   Map<String, dynamic> toJson() => {
@@ -84,5 +87,6 @@ class RequestModel {
     "requestBy": requestBy,
     "requestStatus": requestStatus,
     "requestId":requestId,
+    "currentTime":currentTime,
   };
 }

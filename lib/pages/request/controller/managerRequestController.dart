@@ -118,161 +118,100 @@ import '../../../clientScreen/clientHome/model/recomModel.dart';
 import '../../../res/String.dart';
 
 class ManagerRequestController extends GetxController {
-
   @override
   void onInit() {
     super.onInit();
+    loadHomeTask();
     loadrequest();
   }
 
-
-
-
-
-
-void statusChanger (String id,status,userid) async {
-
+  void statusChanger(String id, status, userid) async {
     await firestore.collection(Strings().kRequest).doc(id.toString()).update({
       "accepterId": userid,
       "requestStatus": status,
       "currentTime": DateTime.now(),
     }).then((value) {
       if (status == 'Accepted') {
-        Get.snackbar(
-            'Request Accepted',
-            'The request has been accepted.',
-        snackPosition: SnackPosition.BOTTOM
-        );
+        Get.snackbar('Request Accepted', 'The request has been accepted.',
+            snackPosition: SnackPosition.BOTTOM);
       } else if (status == 'Cancelled') {
-        Get.snackbar(
-            'Request Cancelled',
-            'The request has been cancelled.',
-            snackPosition: SnackPosition.BOTTOM
-        );
+        Get.snackbar('Request Cancelled', 'The request has been cancelled.',
+            snackPosition: SnackPosition.BOTTOM);
       }
       loadrequest();
       print('Request Accepted');
     });
+  }
 
-
-
-}
-
-  Rx<RequestModel>  request = RequestModel().obs;
+  Rx<RequestModel> request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
 
   final RxList<RecommandModel> recommandList = <RecommandModel>[].obs;
 
-  void loadRecommended ()async{
+  void loadRecommended() async {
     recommandList.clear();
     CollectionReference reference = firestore.collection(Strings().kRecom);
     QuerySnapshot querySnapshot = await reference.get();
-    if(querySnapshot.docs.isNotEmpty){
+    if (querySnapshot.docs.isNotEmpty) {
       querySnapshot.docs.forEach((element) {
-
         RecommandModel recommandModel =
-        RecommandModel.fromJson(element.data() as Map<String,dynamic>);
+            RecommandModel.fromJson(element.data() as Map<String, dynamic>);
         recommandList.add(recommandModel);
         update();
       });
-
-    }else{
-    }
-
+    } else {}
   }
-
 
   RxList<RequestModel> reqList = <RequestModel>[].obs;
 
-  void loadrequest ()async{
-    var box = GetStorage();
-    var id = box.read('uid');
+  void loadrequest() async {
+    print("LoadReq");
     reqList.clear();
     var res = await firestore.collection(Strings().kRequest).get();
 
-    if(res.docs.isNotEmpty){
+    if (res.docs.isNotEmpty) {
+      DateTime today = DateTime.now();
       res.docs.forEach((element) {
-        RequestModel requestModel =
-        RequestModel.fromJson(element.data());
-        print('element data is ${element.data()}');
+        RequestModel requestModel = RequestModel.fromJson(element.data());
         reqList.add(requestModel);
-        print('your element ${element.data()}');
-
-
       });
       update();
-    }else{
-    }
-
-
+    } else {}
   }
-  //
-  // List<RequestModel> filterRequestsByCurrentDate() {
-  //   List<RequestModel> filteredList = [];
-  //   reqList.forEach((request) {
-  //     // Check if departureDate is not null and is today's date
-  //     if (request.recommendation.returnDate != null &&
-  //         request.recommendation.returnDate.day == DateTime.now().day &&
-  //         request.recommendation.returnDate.month == DateTime.now().month &&
-  //         request.recommendation.returnDate.year == DateTime.now().year) {
-  //       filteredList.add(request); // Add the request to the filtered list
-  //       print('request date is $filteredList ${request.depDate}');
-  //     }
-  //   });
-  //   return filteredList; // Return the filtered list
-  // }
 
-  List<RequestModel> filterRequestsByCurrentDate() {
-    List<RequestModel> filteredList = [];
-    reqList.forEach((request) {
-      // Check if recommendation.returnDate is not null and is today's date
-      if (request.recommendation != null &&
-          request.recommendation.depDate != null) {
-        // Convert Timestamp to DateTime
-        DateTime returnDateTime = request.recommendation.depDate.toDate();
-        if (returnDateTime.day == DateTime.now().day &&
-            returnDateTime.month == DateTime.now().month &&
-            returnDateTime.year == DateTime.now().year) {
-          filteredList.add(request); // Add the request to the filtered list
-          print('request date is $filteredList ${request.depDate}');
-        }
+  int priorityToday = 0;
+  int todoTask = 0;
+  int complected = 0;
+
+  void loadHomeTask() async {
+    var box = GetStorage();
+    var id = box.read('uid');
+    try {
+      var res = await firestore.collection(Strings().kRequest).where("accepterId",isEqualTo: id).get();
+      if (res.docs.isNotEmpty) {
+        DateTime today = DateTime.now();
+        res.docs.forEach((element) {
+          Timestamp timestamp = element.data()["requestDetail"][
+              "depDate"]; // Assuming 'timestamp' is the field storing the server timestamp
+          DateTime requestDate = timestamp.toDate();
+//
+          if (requestDate.year == today.year &&
+              requestDate.month == today.month &&
+              requestDate.day == today.day) {
+            priorityToday += 1;
+          } else if (requestDate.isAfter(today)) {
+            todoTask += 1;
+          } else {
+            complected += 1;
+          }
+
+          update();
+        });
       }
-    });
-    return filteredList; // Return the filtered list
+    } catch (e) {}
   }
 
 
-  List<RequestModel> afterDate() {
-    List<RequestModel> afterList = [];
-    reqList.forEach((request) {
-      if (request.recommendation != null &&
-          request.recommendation.depDate != null) {
-        DateTime returnDateTime = request.recommendation.depDate.toDate();
-        // Check if the recommendation departure date is after today
-        if (returnDateTime.isAfter(DateTime.now())) {
-          afterList.add(request);
-          print('request date is $afterList ${request.depDate}');
-        }
-      }
-    });
-    return afterList;
-  }
 
-
-  List<RequestModel> beforeDate() {
-    List<RequestModel> beforeList = [];
-    reqList.forEach((request) {
-      if (request.recommendation != null &&
-          request.recommendation.depDate != null) {
-        DateTime returnDateTime = request.recommendation.depDate.toDate();
-        // Check if the recommendation departure date is after today
-        if (returnDateTime.isBefore(DateTime.now())) {
-          beforeList.add(request);
-          print('request date is $beforeList ${request.depDate}');
-        }
-      }
-    });
-    return beforeList;
-  }
 
 }

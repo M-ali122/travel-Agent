@@ -242,7 +242,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                       onTap: (){
                         if(controller.isChecked.isTrue){
                           controller.registeredUser();
-                          Get.offAllNamed(ClientLogin.route);
+                          // Get.offAllNamed(ClientLogin.route);
                         }else{
                           showErrorMessage("agree the Terms & Conditions");
                         }

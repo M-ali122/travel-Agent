@@ -147,7 +147,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                   ),
                                 ),
                                 Text(
-                                  "${controller.filterRequestsByCurrentDate().length}", // Using filtered list length
+                                  "${controller.priorityToday}", // Using filtered list length
                                   style: const TextStyle(
                                     color: Color(0xFF111827),
                                     fontSize: 28,
@@ -158,9 +158,9 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                 ),
                                 Row(
                                   children: [
-                                    Text(
-                                      '${controller.afterDate().length}',
-                                      style: const TextStyle(
+                                    const Text(
+                                      '',
+                                      style: TextStyle(
                                         color: Color(0xFF111827),
                                         fontSize: 12,
                                         fontFamily: 'SF Pro Text',
@@ -213,7 +213,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                   ),
                                 ),
                                 Text(
-                                  '${controller.afterDate().length}',
+                                  '${controller.todoTask}',
                                   style: const TextStyle(
                                     color: Color(0xFF111827),
                                     fontSize: 28,
@@ -269,7 +269,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                   ),
                                 ),
                                 Text(
-                                  '${controller.beforeDate().length}',
+                                  '${controller.complected}',
                                   style: const TextStyle(
                                     color: Color(0xFF111827),
                                     fontSize: 28,
@@ -376,7 +376,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                         width: 261,
                                         height: 80.h,
                                         decoration: ShapeDecoration(
-                                          color: Color(0xff23262D),
+                                          color: const Color(0xff23262D),
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(14),
                                           ),

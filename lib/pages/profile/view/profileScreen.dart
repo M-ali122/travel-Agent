@@ -79,7 +79,7 @@ class ProfileScreen extends GetWidget<ProfileController> {
                                     height: 120,
                                     decoration: ShapeDecoration(
                                       image: DecorationImage(
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                         image: NetworkImage(controller.loadUserModel.value.profile)
                                       ),
                                       shape: const OvalBorder(
@@ -90,7 +90,7 @@ class ProfileScreen extends GetWidget<ProfileController> {
                                     ),
                                   )
                                 : const CircleAvatar(
-                                    foregroundImage:
+                                    backgroundImage:
                                         AssetImage('assets/emoji/profile2.png'),
                                     radius: 60,
                                   )

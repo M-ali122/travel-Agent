@@ -110,7 +110,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   child: GestureDetector(
                     onTap: () {
                       Get.toNamed(ClientChatListScreen.route);
-                      // Get.toNamed(ClientChatScreen.route);
                     },
                     child: Container(
                       width: 40,

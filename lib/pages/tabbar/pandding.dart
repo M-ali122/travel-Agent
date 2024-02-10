@@ -41,6 +41,9 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                 Timestamp? timestamp = controller.reqList[index].returnDate;
                 DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
                 String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+                Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
+                DateTime date = datestamp?.toDate() ?? DateTime.now();
+                String depDate = DateFormat('yyyy-mm-dd hh:mm a').format(date);
 
                 if(controller.reqList[index].requestStatus == "Pending"){
                   return Padding(
@@ -273,7 +276,7 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    controller.reqList.value[index].recommendation.depDate,
+                                    depDate,
                                     style: const TextStyle(
                                       color: Color(0xFF6B7280),
                                       fontSize: 12,

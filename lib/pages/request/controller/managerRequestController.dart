@@ -128,6 +128,8 @@ class ManagerRequestController extends GetxController {
 
 
 
+
+
 void statusChanger (String id,status,userid) async {
 
     await firestore.collection(Strings().kRequest).doc(id.toString()).update({
@@ -195,6 +197,8 @@ void statusChanger (String id,status,userid) async {
         print('element data is ${element.data()}');
         reqList.add(requestModel);
         print('your element ${element.data()}');
+
+
       });
       update();
     }else{
@@ -202,6 +206,73 @@ void statusChanger (String id,status,userid) async {
 
 
   }
+  //
+  // List<RequestModel> filterRequestsByCurrentDate() {
+  //   List<RequestModel> filteredList = [];
+  //   reqList.forEach((request) {
+  //     // Check if departureDate is not null and is today's date
+  //     if (request.recommendation.returnDate != null &&
+  //         request.recommendation.returnDate.day == DateTime.now().day &&
+  //         request.recommendation.returnDate.month == DateTime.now().month &&
+  //         request.recommendation.returnDate.year == DateTime.now().year) {
+  //       filteredList.add(request); // Add the request to the filtered list
+  //       print('request date is $filteredList ${request.depDate}');
+  //     }
+  //   });
+  //   return filteredList; // Return the filtered list
+  // }
 
+  List<RequestModel> filterRequestsByCurrentDate() {
+    List<RequestModel> filteredList = [];
+    reqList.forEach((request) {
+      // Check if recommendation.returnDate is not null and is today's date
+      if (request.recommendation != null &&
+          request.recommendation.depDate != null) {
+        // Convert Timestamp to DateTime
+        DateTime returnDateTime = request.recommendation.depDate.toDate();
+        if (returnDateTime.day == DateTime.now().day &&
+            returnDateTime.month == DateTime.now().month &&
+            returnDateTime.year == DateTime.now().year) {
+          filteredList.add(request); // Add the request to the filtered list
+          print('request date is $filteredList ${request.depDate}');
+        }
+      }
+    });
+    return filteredList; // Return the filtered list
+  }
+
+
+  List<RequestModel> afterDate() {
+    List<RequestModel> afterList = [];
+    reqList.forEach((request) {
+      if (request.recommendation != null &&
+          request.recommendation.depDate != null) {
+        DateTime returnDateTime = request.recommendation.depDate.toDate();
+        // Check if the recommendation departure date is after today
+        if (returnDateTime.isAfter(DateTime.now())) {
+          afterList.add(request);
+          print('request date is $afterList ${request.depDate}');
+        }
+      }
+    });
+    return afterList;
+  }
+
+
+  List<RequestModel> beforeDate() {
+    List<RequestModel> beforeList = [];
+    reqList.forEach((request) {
+      if (request.recommendation != null &&
+          request.recommendation.depDate != null) {
+        DateTime returnDateTime = request.recommendation.depDate.toDate();
+        // Check if the recommendation departure date is after today
+        if (returnDateTime.isBefore(DateTime.now())) {
+          beforeList.add(request);
+          print('request date is $beforeList ${request.depDate}');
+        }
+      }
+    });
+    return beforeList;
+  }
 
 }

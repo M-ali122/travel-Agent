@@ -51,7 +51,6 @@ class ClientAuthController extends GetxController {
 
             update();
             if (interest == null ||
-                interestSecond == null ||
                 languagePreference == null ||
                 location == null) {
               // box.write("uid", uid.toString());

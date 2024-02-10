@@ -454,7 +454,7 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                         ),
                       ),
                     ):
-                    const Center(child: Text('No data Found',style: TextStyle(fontWeight: FontWeight.w300),));
+                    Container();
                   },),
               ),
               const SizedBox(height: 30,),

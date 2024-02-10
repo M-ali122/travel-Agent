@@ -65,7 +65,7 @@ class ClientAuthController extends GetxController {
         showErrorMessage("Invalid Email & Password");
       }
     } catch (e) {
-      showErrorMessage("Login Fail $e");
+      showErrorMessage("Login Fail");
     }
   }
 
@@ -76,7 +76,8 @@ class ClientAuthController extends GetxController {
       await firestore.collection(Strings().kUser).doc(clientModel.value.uid).update(clientModel.toJson());
      }catch(e){
       _toggle();
-      showErrorMessage("Check Your Connection! $e");
+      showErrorMessage("Login Fail");
+      // showErrorMessage("Check Your Connection!");
      }
   }
 

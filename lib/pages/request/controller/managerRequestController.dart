@@ -179,6 +179,22 @@ class ManagerRequestController extends GetxController {
     } else {}
   }
 
+
+  List<RequestModel> filterRequestsByCurrentDate() {
+    List<RequestModel> filteredList = [];
+    reqList.forEach((request) {
+      // Check if departureDate is not null and is today's date
+      if (request.recommendation.returnDate != null &&
+          request.recommendation.returnDate.day == DateTime.now().day &&
+          request.recommendation.returnDate.month == DateTime.now().month &&
+          request.recommendation.returnDate.year == DateTime.now().year) {
+        filteredList.add(request); // Add the request to the filtered list
+        print('request date is $filteredList ${request.depDate}');
+      }
+    });
+    return filteredList; // Return the filtered list
+  }
+
   int priorityToday = 0;
   int todoTask = 0;
   int complected = 0;

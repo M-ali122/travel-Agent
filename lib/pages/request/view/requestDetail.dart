@@ -21,10 +21,12 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
   @override
   Widget build(BuildContext context) {
 
-
     Timestamp? timestamp = arg.returnDate;
     DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
     String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+    Timestamp? datestamp = arg.returnDate;
+    DateTime date = datestamp?.toDate() ?? DateTime.now();
+    String depdate = DateFormat('yyyy-mm-dd hh:mm a').format(date);
     return GetBuilder<ManagerRequestController>(
       init: ManagerRequestController(),
         builder: (controller) {
@@ -160,7 +162,7 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                           ),
                           const Spacer(),
                           Text(
-                            '${arg.recommendation.depDate}',
+                            depdate,
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                               color: Colors.white,

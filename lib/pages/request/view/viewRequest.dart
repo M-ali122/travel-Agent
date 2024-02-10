@@ -5,7 +5,7 @@ import 'package:travelagentapp/pages/tabbar/cancelled.dart';
 
 import '../../tabbar/accepted.dart';
 import '../../tabbar/completed.dart';
-import '../../tabbar/pandding.dart';
+import '../../tabbar/pending.dart';
 import '../../tabbar/tabbar_view.dart';
 import '../controller/managerRequestController.dart';
 

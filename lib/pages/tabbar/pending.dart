@@ -31,7 +31,7 @@ class PanddingView extends GetWidget<ManagerRequestController> {
         return Scaffold(
           body: controller.reqList.isEmpty ||
               !controller.reqList.any((element) => element.requestStatus == 'Pending')
-              ? Center(child: const Text('No Pandding Data found')):
+              ? Center(child: const Text('No Pending Data found')):
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
@@ -145,35 +145,6 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                                 ),
                               ],
                             ),
-                            // subtitle: const Text.rich(
-                            //   TextSpan(
-                            //     children: [
-                            //       TextSpan(
-                            //         text: 'Requested by ',
-                            //         style: TextStyle(
-                            //           color: Color(0xFF6B7280),
-                            //           fontSize: 12,
-                            //           fontFamily: 'SF Pro Text',
-                            //           fontWeight: FontWeight.w400,
-                            //           height: 0,
-                            //           letterSpacing: 0.30,
-                            //         ),
-                            //       ),
-                            //       TextSpan(
-                            //         text: 'Sarah Shahi',
-                            //         style: TextStyle(
-                            //           color: Color(0xFF30879B),
-                            //           fontSize: 12,
-                            //           fontFamily: 'SF Pro Text',
-                            //           fontWeight: FontWeight.w400,
-                            //           height: 0,
-                            //           letterSpacing: 0.30,
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-            
                             subtitle: Row(
                               children: [
                                 const Text('Requested by',

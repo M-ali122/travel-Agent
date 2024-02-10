@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
+import '../../../clientScreen/clientRequestScreen/model/requestModel.dart';
+
 class HomeView extends GetWidget <ManagerRequestController>{
   HomeView({super.key});
 
@@ -316,141 +318,407 @@ class HomeView extends GetWidget <ManagerRequestController>{
                   const SizedBox(
                     height: 24,
                   ),
-                  Container(
+                  // Container(
+                  //   height: Get.height * 0.32,
+                  //   child: ListView.builder(
+                  //     scrollDirection: Axis.vertical,
+                  //     itemCount: controller.reqList.length,
+                  //     shrinkWrap: true,
+                  //     itemBuilder: (context, index) {
+                  //       Timestamp? timestamp = controller.reqList[index].recommendation.depDate;
+                  //       // DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                  //       // if (dateTime.year == DateTime.now().year &&
+                  //       //     dateTime.month == DateTime.now().month &&
+                  //       //     dateTime.day == DateTime.now().day) {
+                  //       //   String formattedDepDate =
+                  //       //   DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                  //         if (controller.reqList[index].requestStatus == "Accepted") {
+                  //           return Column(
+                  //             children: [
+                  //               Row(
+                  //                 children: [
+                  //                   Padding(
+                  //                     padding: const EdgeInsets.only(top: 10.0),
+                  //                     child: SizedBox(
+                  //                       width: 38,
+                  //                       height: 14,
+                  //                       child: Text(
+                  //                         arrTime[index],
+                  //                         style: const TextStyle(
+                  //                           color: Color(0xFF9CA3AF),
+                  //                           fontSize: 12,
+                  //                           fontFamily: 'SF Pro Text',
+                  //                           fontWeight: FontWeight.w400,
+                  //                           height: 0.18,
+                  //                           letterSpacing: 0.30,
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                   const SizedBox(
+                  //                     width: 6,
+                  //                   ),
+                  //                   Container(
+                  //                     width: 282,
+                  //                     height: 1,
+                  //                     decoration: const BoxDecoration(
+                  //                       color: Color(0xFF21262F),
+                  //                     ),
+                  //                   )
+                  //                 ],
+                  //               ),
+                  //               Row(
+                  //                 children: [
+                  //                   const CircleAvatar(
+                  //                     foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                  //                   ),
+                  //                   Padding(
+                  //                     padding: const EdgeInsets.only(left: 20.0),
+                  //                     child: Container(
+                  //                       width: 261,
+                  //                       height: 80.h,
+                  //                       decoration: ShapeDecoration(
+                  //                         color: Color(0xff23262D),
+                  //                         shape: RoundedRectangleBorder(
+                  //                           borderRadius: BorderRadius.circular(14),
+                  //                         ),
+                  //                       ),
+                  //                       child: Padding(
+                  //                         padding: const EdgeInsets.only(left: 12.0),
+                  //                         child: Column(
+                  //                           crossAxisAlignment: CrossAxisAlignment.start,
+                  //                           children: [
+                  //                             SizedBox(
+                  //                               height: 22.h,
+                  //                             ),
+                  //                             Text(
+                  //                               '${controller.reqList.value[index].recommendation.title}',
+                  //                               style: const TextStyle(
+                  //                                 color: Colors.white,
+                  //                                 fontSize: 13,
+                  //                                 fontFamily: 'SF Pro Text',
+                  //                                 fontWeight: FontWeight.w500,
+                  //                                 height: 0.14,
+                  //                               ),
+                  //                             ),
+                  //                             SizedBox(
+                  //                               height: 16.h,
+                  //                             ),
+                  //                             Row(
+                  //                               children: [
+                  //                                 const Icon(
+                  //                                   CupertinoIcons.clock,
+                  //                                   color: Color(0xff6B7280),
+                  //                                   size: 12,
+                  //                                 ),
+                  //                                 SizedBox(
+                  //                                   width: 4.w,
+                  //                                 ),
+                  //                                 Text(
+                  //                                   '${controller.reqList.value[index].recommendation.depdate}',
+                  //                                   style: const TextStyle(
+                  //                                     color: Color(0xFF6B7280),
+                  //                                     fontSize: 11,
+                  //                                     fontFamily: 'SF Pro Text',
+                  //                                     fontWeight: FontWeight.w400,
+                  //                                     height: 0.19,
+                  //                                   ),
+                  //                                 ),
+                  //                                 const Spacer(),
+                  //                                 const Padding(
+                  //                                   padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                  //                                   child: Icon(
+                  //                                     Icons.circle_outlined,
+                  //                                     color: Color(0xffFFFFFF),
+                  //                                     size: 24,
+                  //                                   ),
+                  //                                 )
+                  //                               ],
+                  //                             ),
+                  //                           ],
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //             ],
+                  //           );
+                  //         } else {
+                  //           return Container();
+                  //         }
+                  //       // } else {
+                  //       //   return Container(); // or return null;
+                  //       // }
+                  //     },
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: Get.height * 0.32,
+                  //   child: ListView.builder(
+                  //     scrollDirection: Axis.vertical,
+                  //     itemCount: controller.filterRequestsByCurrentDate().length,
+                  //     shrinkWrap: true,
+                  //     itemBuilder: (context, index) {
+                  //       RequestModel request = controller.filterRequestsByCurrentDate()[index];
+                  //       Timestamp? timestamp = request.recommendation.depDate;
+                  //       // DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                  //       // if (dateTime.year == DateTime.now().year &&
+                  //       //     dateTime.month == DateTime.now().month &&
+                  //       //     dateTime.day == DateTime.now().day) {
+                  //       //   String formattedDepDate =
+                  //       //   DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                  //       if (request.requestStatus == "Accepted") {
+                  //         return Column(
+                  //           children: [
+                  //             Row(
+                  //               children: [
+                  //                 Padding(
+                  //                   padding: const EdgeInsets.only(top: 10.0),
+                  //                   child: SizedBox(
+                  //                     width: 38,
+                  //                     height: 14,
+                  //                     child: Text(
+                  //                       arrTime[index],
+                  //                       style: const TextStyle(
+                  //                         color: Color(0xFF9CA3AF),
+                  //                         fontSize: 12,
+                  //                         fontFamily: 'SF Pro Text',
+                  //                         fontWeight: FontWeight.w400,
+                  //                         height: 0.18,
+                  //                         letterSpacing: 0.30,
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(
+                  //                   width: 6,
+                  //                 ),
+                  //                 Container(
+                  //                   width: 282,
+                  //                   height: 1,
+                  //                   decoration: const BoxDecoration(
+                  //                     color: Color(0xFF21262F),
+                  //                   ),
+                  //                 )
+                  //               ],
+                  //             ),
+                  //             Row(
+                  //               children: [
+                  //                 const CircleAvatar(
+                  //                   foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                  //                 ),
+                  //                 Padding(
+                  //                   padding: const EdgeInsets.only(left: 20.0),
+                  //                   child: Container(
+                  //                     width: 261,
+                  //                     height: 80.h,
+                  //                     decoration: ShapeDecoration(
+                  //                       color: Color(0xff23262D),
+                  //                       shape: RoundedRectangleBorder(
+                  //                         borderRadius: BorderRadius.circular(14),
+                  //                       ),
+                  //                     ),
+                  //                     child: Padding(
+                  //                       padding: const EdgeInsets.only(left: 12.0),
+                  //                       child: Column(
+                  //                         crossAxisAlignment: CrossAxisAlignment.start,
+                  //                         children: [
+                  //                           SizedBox(
+                  //                             height: 22.h,
+                  //                           ),
+                  //                           Text(
+                  //                             '${request.recommendation.title}',
+                  //                             style: const TextStyle(
+                  //                               color: Colors.white,
+                  //                               fontSize: 13,
+                  //                               fontFamily: 'SF Pro Text',
+                  //                               fontWeight: FontWeight.w500,
+                  //                               height: 0.14,
+                  //                             ),
+                  //                           ),
+                  //                           SizedBox(
+                  //                             height: 16.h,
+                  //                           ),
+                  //                           Row(
+                  //                             children: [
+                  //                               const Icon(
+                  //                                 CupertinoIcons.clock,
+                  //                                 color: Color(0xff6B7280),
+                  //                                 size: 12,
+                  //                               ),
+                  //                               SizedBox(
+                  //                                 width: 4.w,
+                  //                               ),
+                  //                               Text(
+                  //                                 '${timestamp?.toDate().toString()}', // Convert timestamp to date and then to string
+                  //                                 style: const TextStyle(
+                  //                                   color: Color(0xFF6B7280),
+                  //                                   fontSize: 11,
+                  //                                   fontFamily: 'SF Pro Text',
+                  //                                   fontWeight: FontWeight.w400,
+                  //                                   height: 0.19,
+                  //                                 ),
+                  //                               ),
+                  //
+                  //                               const Spacer(),
+                  //                               const Padding(
+                  //                                 padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                  //                                 child: Icon(
+                  //                                   Icons.circle_outlined,
+                  //                                   color: Color(0xffFFFFFF),
+                  //                                   size: 24,
+                  //                                 ),
+                  //                               )
+                  //                             ],
+                  //                           ),
+                  //                         ],
+                  //                       ),
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ],
+                  //         );
+                  //       } else {
+                  //         return Container(height: 200,width: 200,color: Colors.green,);
+                  //       }
+                  //       // } else {
+                  //       //   return Container(); // or return null;
+                  //       // }
+                  //     },
+                  //   ),
+                  // ),
+                  SizedBox(
                     height: Get.height * 0.32,
-                    child: ListView.builder(
+                    child: Obx(() => ListView.builder(
                       scrollDirection: Axis.vertical,
-                      itemCount: controller.reqList.length,
+                      itemCount: controller.filterRequestsByCurrentDate().length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        Timestamp? timestamp = controller.reqList[index].recommendation.depDate;
-                        DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                        if (dateTime.year == DateTime.now().year &&
-                            dateTime.month == DateTime.now().month &&
-                            dateTime.day == DateTime.now().day) {
-                          String formattedDepDate =
-                          DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
-                          if (controller.reqList[index].requestStatus == 'Accepted') {
-                            return Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
-                                      child: SizedBox(
-                                        width: 38,
-                                        height: 14,
-                                        child: Text(
-                                          arrTime[index],
-                                          style: const TextStyle(
-                                            color: Color(0xFF9CA3AF),
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Text',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.18,
-                                            letterSpacing: 0.30,
-                                          ),
+                        RequestModel request = controller.filterRequestsByCurrentDate()[index];
+                        Timestamp? timestamp = request.recommendation.depDate;
+                        print('request is ${request.depDate}');
+                        print('request is ${timestamp.toString()}');
+
+                        if (request.requestStatus == "Accepted") {
+                          return Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: SizedBox(
+                                      width: 38,
+                                      height: 14,
+                                      child: Text(
+                                        arrTime[index],
+                                        style: const TextStyle(
+                                          color: Color(0xFF9CA3AF),
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Text',
+                                          fontWeight: FontWeight.w400,
+                                          height: 0.18,
+                                          letterSpacing: 0.30,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 6,
+                                  ),
+                                  const SizedBox(
+                                    width: 6,
+                                  ),
+                                  Container(
+                                    width: 282,
+                                    height: 1,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFF21262F),
                                     ),
-                                    Container(
-                                      width: 282,
-                                      height: 1,
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const CircleAvatar(
+                                    foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Container(
+                                      width: 261,
+                                      height: 80,
                                       decoration: const BoxDecoration(
-                                        color: Color(0xFF21262F),
+                                        color: Color(0xff23262D),
+                                        borderRadius: BorderRadius.all(Radius.circular(14)),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const CircleAvatar(
-                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0),
-                                      child: Container(
-                                        width: 261,
-                                        height: 80.h,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xff23262D),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(14),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 12.0),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height: 22.h,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 12.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 22,
+                                            ),
+                                            Text(
+                                              '${request.recommendation.title}',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w500,
+                                                height: 0.14,
                                               ),
-                                              Text(
-                                                '${controller.reqList.value[index].recommendation.title}',
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 13,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w500,
-                                                  height: 0.14,
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            Row(
+                                              children: [
+                                                const Icon(
+                                                  CupertinoIcons.clock,
+                                                  color: Color(0xff6B7280),
+                                                  size: 12,
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: 16.h,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    CupertinoIcons.clock,
-                                                    color: Color(0xff6B7280),
-                                                    size: 12,
+                                                SizedBox(
+                                                  width: 4,
+                                                ),
+                                                Text(
+                                                  '${timestamp?.toDate().toString()}', // Convert timestamp to date and then to string
+                                                  style: const TextStyle(
+                                                    color: Color(0xFF6B7280),
+                                                    fontSize: 11,
+                                                    fontFamily: 'SF Pro Text',
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 0.19,
                                                   ),
-                                                  SizedBox(
-                                                    width: 4.w,
+                                                ),
+                                                Spacer(),
+                                                const Padding(
+                                                  padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                                                  child: Icon(
+                                                    Icons.circle_outlined,
+                                                    color: Color(0xffFFFFFF),
+                                                    size: 24,
                                                   ),
-                                                  Text(
-                                                    '${formattedDepDate}',
-                                                    style: const TextStyle(
-                                                      color: Color(0xFF6B7280),
-                                                      fontSize: 11,
-                                                      fontFamily: 'SF Pro Text',
-                                                      fontWeight: FontWeight.w400,
-                                                      height: 0.19,
-                                                    ),
-                                                  ),
-                                                  const Spacer(),
-                                                  const Padding(
-                                                    padding: EdgeInsets.only(right: 12.0, bottom: 10),
-                                                    child: Icon(
-                                                      Icons.circle_outlined,
-                                                      color: Color(0xffFFFFFF),
-                                                      size: 24,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          } else {
-                            return Container(); // or return null;
-                          }
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
                         } else {
-                          return Container(); // or return null;
+                          return Container(height: 200, width: 200, color: Colors.green);
                         }
                       },
-                    ),
+                    )),
                   ),
+
                 ],
               ),
             ),

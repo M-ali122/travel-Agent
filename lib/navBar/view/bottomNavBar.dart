@@ -14,13 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import '../../pages/chet/controller/message_controller.dart';
 import '../../res/icons/svg.dart';
 import '../controller/navBarController.dart';
 
 class BottomnavBar extends GetWidget<BottomNavController> {
   static const String route = 'BNavBar';
-  const BottomnavBar({super.key});
-
+   BottomnavBar({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomNavController>(

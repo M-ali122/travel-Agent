@@ -119,6 +119,8 @@ import '../../../res/String.dart';
 
 class ManagerRequestController extends GetxController {
 
+
+
   @override
   void onInit() {
     super.onInit();
@@ -207,22 +209,6 @@ void statusChanger (String id,status,userid) async {
 
   }
 
-  //
-  // List<RequestModel> filterRequestsByCurrentDate() {
-  //   List<RequestModel> filteredList = [];
-  //   reqList.forEach((request) {
-  //     // Check if departureDate is not null and is today's date
-  //     if (request.recommendation.returnDate != null &&
-  //         request.recommendation.returnDate.day == DateTime.now().day &&
-  //         request.recommendation.returnDate.month == DateTime.now().month &&
-  //         request.recommendation.returnDate.year == DateTime.now().year) {
-  //       filteredList.add(request); // Add the request to the filtered list
-  //       print('request date is $filteredList ${request.depDate}');
-  //     }
-  //   });
-  //   return filteredList; // Return the filtered list
-  // }
-
   List<RequestModel> filterRequestsByCurrentDate() {
     List<RequestModel> filteredList = [];
     reqList.forEach((request) {
@@ -266,7 +252,6 @@ void statusChanger (String id,status,userid) async {
       if (request.recommendation != null &&
           request.recommendation.depDate != null) {
         DateTime returnDateTime = request.recommendation.depDate.toDate();
-        // Check if the recommendation departure date is after today
         if (returnDateTime.isBefore(DateTime.now())) {
           beforeList.add(request);
           print('request date is $beforeList ${request.depDate}');

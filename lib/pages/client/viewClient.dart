@@ -73,7 +73,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                   SizedBox(height: 29.h),
                   Container(
                     height: Get.height * 0.58,
-                    child: ListView.builder(
+                    child: Obx(() => ListView.builder(
                       shrinkWrap: true,
                       itemCount: controller.loadClient.length,
                       itemBuilder: (context, index) {
@@ -128,7 +128,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                                     children: [
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 8.0),
+                                        const EdgeInsets.only(right: 8.0),
                                         child: Container(
                                           width: 32,
                                           height: 32,
@@ -145,7 +145,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                                       const SizedBox(width: 16),
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 8.0),
+                                        const EdgeInsets.only(right: 8.0),
                                         child: Container(
                                           width: 32,
                                           height: 32,
@@ -171,7 +171,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                           ],
                         );
                       },
-                    ),
+                    ),)
                   ),
                 ],
               ),

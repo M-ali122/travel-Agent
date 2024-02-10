@@ -713,7 +713,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                             ],
                           );
                         } else {
-                          return Container(height: 200, width: 200, color: Colors.green);
+                          return Container();
                         }
                       },
                     )),

@@ -563,7 +563,7 @@ class CLientProfileSetting extends StatelessWidget {
                         },
                         backgroundColor: const Color(0xFF1B1C21),
                         onCancel: () {
-                          Get.off(HomeView());
+                          Get.back();
                         },
                       );
                     },

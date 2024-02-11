@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/view/block_screen.dart';
 import 'package:travelagentapp/clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import 'package:travelagentapp/pages/splash/screens/account_type.dart';
 import 'package:travelagentapp/res/String.dart';
@@ -28,11 +29,17 @@ class SplashController extends GetxController {
         Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
 
         String userType = userData['userType'];
+        bool active = userData['activeStatus'];
+      if(active == true){
         if (userType == "LifeStyleManager") {
           Get.offAllNamed(BottomnavBar.route);
         } else {
           Get.offAllNamed(ClientNavbar.route);
         }
+      }else{
+        Get.offAllNamed(BlockScreen.route);
+
+      }
       }else{
       /// this block for no data found
       }

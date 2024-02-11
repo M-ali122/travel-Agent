@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/helpers/extensions/spacing.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
+import 'package:travelagentapp/pages/splash/controller/splashController.dart';
 
+import '../../../pages/splash/screens/account_type.dart';
 import '../controller/clientAuthController.dart';
 
 class BlockScreen extends GetWidget<ClientAuthController>{
@@ -27,28 +30,50 @@ class BlockScreen extends GetWidget<ClientAuthController>{
                   SizedBox(
                     height: 40,
                   ),
-                  Container(
-                      width: Get.width,
-                      height: 40,
-                      color: Get.theme.primaryColor,
-                      child: Center(child: Text("Note",style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22
-                      ),))),
-                  SizedBox(
-                    height: 16,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text("Your Request : ",style: TextStyle(
+                          color: Get.theme.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                      ),),
+                      Text(" Panding",style: TextStyle(
+                        color: Colors.red
+                      ),),
+                      Spacer(),
+                      InkWell(
+                        onTap: (){
+                          SplashController sc=Get.put(SplashController());
+                          sc.splashService();
+
+                        },
+                        child: Row(
+                          children: [
+                            Text("Refresh",style: TextStyle(
+                                color: Colors.red,
+                              fontSize: 12
+                            ),),
+                            Icon(Icons.refresh,color: Colors.red,size: 15,),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
+                  SizedBox(
+                    height: 40,
+                  ),
+
                   Text(
                     "your request is received in our system for review. Our team carefully examines the details you've submitted. After this review process, when your account becomes active, When your account becomes active, you will be able to start using the app immediately. Once activated, you can begin exploring all the features and functionalities it offers. If you have any questions or need assistance, our support team is here to help. Thank you!",textAlign: TextAlign.justify,),
-
-                  Row(
-                    children: [
-
-
-
-
-                    ],
-                  )
+                 SizedBox(
+                   height: 80,
+                 ),
+                 AppButton(title: "Logout", onTap: (){
+                   var box = GetStorage();
+                   box.remove('uid');
+                   Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
+                 }),
                 ],
               ),
             ),

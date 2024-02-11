@@ -25,7 +25,7 @@ class ClientModel {
   dynamic interestSecond;
   dynamic languagePreference;
   dynamic location;
-  dynamic registrationstatus;
+  dynamic managerId;
   dynamic profile;
   dynamic lat;
   dynamic lon;
@@ -45,7 +45,7 @@ class ClientModel {
     this.interestSecond,
     this.languagePreference,
     this.location,
-    this.registrationstatus,
+    this.managerId,
     this.profile,
     this.lat,
     this.lon,
@@ -66,7 +66,7 @@ class ClientModel {
         interestSecond: json["interestSecond"],
         languagePreference: json["languagePreference"],
         location: json["location"],
-        registrationstatus: json["registrationstatus"],
+        managerId: json["managerId"],
         profile: json["profile"],
         lat: json["lat"],
         lon: json["lon"],
@@ -89,7 +89,7 @@ class ClientModel {
         "location": location,
         "lat": lat,
         "lon": lon,
-        "registrationstatus": registrationstatus,
+        "managerId": managerId,
         "profile": profile,
       };
 }

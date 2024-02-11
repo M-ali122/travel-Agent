@@ -28,6 +28,7 @@ class RequestModel {
   dynamic requestStatus;
   dynamic requestId;
   dynamic currentTime;
+  dynamic offersMessage;
 
   RequestModel({
      this.recommandId,
@@ -39,6 +40,7 @@ class RequestModel {
      this.returnDate,
      this.image,
     this.name,
+    this.offersMessage,
      this.uid,
      this.recommandType,
      this.person,
@@ -60,6 +62,7 @@ class RequestModel {
     image: json["image"],
     uid: json["uid"],
     name: json["name"],
+    offersMessage : json["offersMessage"],
     recommandType: json["recommandType"],
     person: json["person"],
     recommendation: RecommandModel.fromJson(json['requestDetail']),
@@ -88,5 +91,6 @@ class RequestModel {
     "requestStatus": requestStatus,
     "requestId":requestId,
     "currentTime":currentTime,
+    "offersMessage":offersMessage
   };
 }

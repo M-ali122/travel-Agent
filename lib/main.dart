@@ -27,17 +27,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
-      minTextAdapt: true,
+      minTextAdapt: true, // Set minTextAdapt to true
       splitScreenMode: true,
       builder: (_, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'App',
-          theme: LightTheme.lightTheme,
-          darkTheme: DarkTheme.darkTheme,
-          routes: AppRoute().routes,
-          initialRoute: SplashView.route,
-          // initialRoute: AdminHome.route,
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'App',
+            theme: LightTheme.lightTheme,
+            darkTheme: DarkTheme.darkTheme,
+            routes: AppRoute().routes,
+            initialRoute: SplashView.route,
+            // initialRoute: AdminHome.route,
+          ),
         );
       },
     );

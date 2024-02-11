@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/res/String.dart';
 
 import '../../clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
+import '../../clientScreen/clientAuth/controller/clientAuthController.dart';
 import '../request/controller/managerRequestController.dart';
 
 class TabbarView extends GetWidget<ManagerRequestController> {

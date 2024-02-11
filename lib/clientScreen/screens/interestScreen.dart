@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/clientScreen/screens/LocationDetial.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import '../clientAuth/controller/clientAuthController.dart';
@@ -407,7 +408,8 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                     ClientAuthController _controller = Get.put(ClientAuthController());
                     _controller.clientModel.value.interest = controller.selectedInterests.value;
                     _controller.firstTimeDataStore();
-                    Get.toNamed(Customization.route);
+                    Get.toNamed(LocationDetail.route);
+                    // Get.toNamed(Customization.route);
                   }),
                   SizedBox(height: 20.h,),
                 ],

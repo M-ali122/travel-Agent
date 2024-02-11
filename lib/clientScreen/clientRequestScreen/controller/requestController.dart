@@ -113,17 +113,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/model/requestModel.dart';
+import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 
 import '../../../res/String.dart';
 import '../../clientHome/model/recomModel.dart';
 
 class RequestController extends GetxController {
+
+
   @override
   void onInit() {
     super.onInit();
 
     request.value = RequestModel();
-    loadrequest(); // Call your function here
+    loadrequest();
   }
 
   Rx<RequestModel> request = RequestModel().obs;
@@ -148,9 +151,7 @@ class RequestController extends GetxController {
 
       var box = GetStorage();
       String uid = box.read("uid");
-
       requestData['uid'] = uid.toString();
-
       await FirebaseFirestore.instance
           .collection(Strings().kRequest)
           .doc(id.toString())
@@ -264,4 +265,108 @@ class RequestController extends GetxController {
       update();
     } else {}
   }
+
+
+
+
+
+  void addDataFromTextField(String text) {
+    // Example of adding data to the recommendation field
+    request.update((val) {
+      val!.recommendation['textFieldData'] = text;
+    });
+  }
+
+  Rx<RequestModel> offeresRequest = RequestModel().obs;
+
+  Future<void> addOffersRequest(String offersMessage) async {
+    try {
+      var id = DateTime.now().microsecondsSinceEpoch;
+      Map<String, dynamic> requestData = request.value.recommendation ?? {};
+      requestData['departureTime'] =
+      '${departureTime.value.hour}:${departureTime.value.minute}';
+      requestData['returnTime'] =
+      '${returnTime.value.hour}:${returnTime.value.minute}';
+
+      requestData['offersMessage'] = offersMessage;
+      requestData['departureDate'] = departureDate.value;
+      requestData['returnDate'] = returnDate.value;
+      requestData['numberOfPeople'] = selectedNumberOfPeople.value;
+      // requestData['requestDetail'] = model.toJson();
+      requestData['requestStatus'] = 'Pending';
+      requestData['accepterId'] = null;
+      requestData['requestId'] = id; // Adding text field data
+
+      var box = GetStorage();
+      String uid = box.read("uid");
+      requestData['uid'] = uid.toString();
+      await FirebaseFirestore.instance
+          .collection(Strings().kRequest)
+          .doc(id.toString())
+          .set(requestData);
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Offers added successfully',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      update();
+
+    }catch (e){
+      Get.back();
+      Get.snackbar(
+        'Error',
+        'Failed to add Offers. Please try again.',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+
+  Rx<RequestModel> meetGreetOffers = RequestModel().obs;
+
+  Future<void> addMeetGreetOffers(String offersMessage) async {
+    try {
+      var id = DateTime.now().microsecondsSinceEpoch;
+      Map<String, dynamic> requestData = request.value.recommendation ?? {};
+
+      requestData['offersMessage'] = offersMessage;
+      requestData['requestStatus'] = 'Pending';
+
+      requestData['accepterId'] = null;
+      requestData['requestId'] = id; // Adding text field data
+      var box = GetStorage();
+      String uid = box.read("uid");
+      requestData['uid'] = uid.toString();
+      await FirebaseFirestore.instance
+          .collection(Strings().kRequest)
+          .doc(id.toString())
+          .set(requestData);
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Offers added successfully',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      update();
+
+    }catch (e){
+      Get.back();
+      Get.snackbar(
+        'Error',
+        'Failed to add Offers. Please try again.',
+        duration: const Duration(seconds: 3),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+
+
+
 }

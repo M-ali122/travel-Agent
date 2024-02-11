@@ -13,4 +13,6 @@ class Strings{
   String get kRequest => 'Requests';
   String get kOffers => 'Offers';
   String get kMessage => 'Message';
+  String get kOfferRequest => 'OfferRequest';
+
 }

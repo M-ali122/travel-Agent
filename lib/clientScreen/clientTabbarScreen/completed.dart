@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +21,22 @@ class CompletedScreen extends GetWidget<RequestController> {
             onTap: () {
               // Get.toNamed(ClientPageSandRequest.route);
             },
-            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Accepted')? Center(child: Text('No Completed Resquest Found'))
+            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Completed')? Center(child: Text('No Completed Resquest Found'))
                 : ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
+                Timestamp? timestamp = controller.reqList[index].returnDate;
+                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                String formatedReturnTime =
+                DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+
+                Timestamp? datestamp =
+                    controller.reqList[index].recommendation.depDate;
+                DateTime date = datestamp?.toDate() ?? DateTime.now();
+                String depDate =
+                DateFormat('yyyy-mm-dd hh:mm a').format(date);
+
                 if(controller.reqList[index].requestStatus == 'Accepted'){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
@@ -68,7 +81,7 @@ class CompletedScreen extends GetWidget<RequestController> {
                             const Icon(CupertinoIcons.clock,size: 12,color: Color(0xff6B7280),),
                             SizedBox(width: 4.w,),
                             Text(
-                              '${controller.reqList.value[index].recommendation.depDate}',
+                              '${depDate}',
                               style: const TextStyle(
                                 color: Color(0xFF6B7280),
                                 fontSize: 11,

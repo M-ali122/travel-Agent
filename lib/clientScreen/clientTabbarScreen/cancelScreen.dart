@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,19 @@ class CancellScreen extends GetWidget<RequestController> {
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
+
+                Timestamp? timestamp = controller.reqList[index].returnDate;
+                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                String formatedReturnTime =
+                DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+
+                Timestamp? datestamp =
+                    controller.reqList[index].recommendation.depDate;
+                DateTime date = datestamp?.toDate() ?? DateTime.now();
+                String depDate =
+                DateFormat('yyyy-mm-dd hh:mm a').format(date);
+
+
                 if(controller.reqList[index].recommendation.requestStatus == 'Cancelled'){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
@@ -70,7 +85,7 @@ class CancellScreen extends GetWidget<RequestController> {
                             const Icon(CupertinoIcons.clock,size: 12,color: Color(0xff6B7280),),
                             SizedBox(width: 4.w,),
                             Text(
-                              '${controller.reqList.value[index].recommendation.depDate}',
+                              '${depDate}',
                               style: const TextStyle(
                                 color: Color(0xFF6B7280),
                                 fontSize: 11,

@@ -67,9 +67,9 @@ class ClientModel {
         languagePreference: json["languagePreference"],
         location: json["location"],
         managerId: json["managerId"],
-        profile: json["profile"],
-        lat: json["lat"],
-        lon: json["lon"],
+       profile: json["profile"],
+         lat: json["lat"],
+         lon: json["lon"],
       );
 
   Map<String, dynamic> toJson() => {

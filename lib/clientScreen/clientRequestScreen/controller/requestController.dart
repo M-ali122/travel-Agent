@@ -112,6 +112,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/controller/clientAuthController.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/model/requestModel.dart';
 import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 
@@ -120,11 +122,11 @@ import '../../clientHome/model/recomModel.dart';
 
 class RequestController extends GetxController {
 
+  ClientProfileController profileController = Get.put(ClientProfileController());
 
   @override
   void onInit() {
     super.onInit();
-
     request.value = RequestModel();
     loadrequest();
   }
@@ -294,7 +296,7 @@ class RequestController extends GetxController {
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       // requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pending';
-      requestData['accepterId'] = null;
+      requestData['accepterId'] = profileController.user.value.managerId;
       requestData['requestId'] = id; // Adding text field data
 
       var box = GetStorage();
@@ -336,8 +338,8 @@ class RequestController extends GetxController {
       requestData['offersMessage'] = offersMessage;
       requestData['requestStatus'] = 'Pending';
 
-      requestData['accepterId'] = null;
-      requestData['requestId'] = id; // Adding text field data
+      requestData['accepterId'] = profileController.user.value.managerId;
+      requestData['requestId'] = id;
       var box = GetStorage();
       String uid = box.read("uid");
       requestData['uid'] = uid.toString();
@@ -352,7 +354,6 @@ class RequestController extends GetxController {
         duration: const Duration(seconds: 3),
         snackPosition: SnackPosition.BOTTOM,
       );
-
       update();
 
     }catch (e){

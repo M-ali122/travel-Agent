@@ -2,6 +2,7 @@ import 'package:travelagentapp/Admin/pages/life_style_manager.dart';
 import 'package:travelagentapp/Admin/pages/recommandation.dart';
 import 'package:travelagentapp/Admin/pages/users.dart';
 import 'package:travelagentapp/Admin/view/admin_home.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/view/block_screen.dart';
 import 'package:travelagentapp/clientScreen/clientChet/view/client_chat_list.dart';
 import 'package:travelagentapp/clientScreen/screens/interestScreen.dart';
 import 'package:travelagentapp/navBar/view/bottomNavBar.dart';
@@ -60,6 +61,7 @@ class AppRoute {
     OffersScreen.route : (p0) =>  OffersScreen(),
     TravelScreen.route : (p0) => TravelScreen(),
 
+    BlockScreen.route:(p0) => BlockScreen(),
     /// life cycle manager
 
     // LoginScreen.route:(p0) => LoginScreen(),

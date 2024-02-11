@@ -229,7 +229,8 @@ class OffersScreen extends GetWidget<RequestController>{
                   AppButton(
                       title: 'Submit',
                       onTap: (){
-                        controller.addMeetGreetOffers(offersMessage.text.toString());
+                        controller.addMeetGreetOffers(offersMessage.text.toString(),
+                        );
                       }
                   ),
                 ],

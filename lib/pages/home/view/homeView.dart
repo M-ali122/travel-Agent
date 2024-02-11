@@ -328,8 +328,6 @@ class HomeView extends GetWidget <ManagerRequestController>{
                       itemBuilder: (context, index) {
                         RequestModel reqlist = controller.reqList[index];
                         Timestamp? timestamp = reqlist.recommendation.depDate;
-
-
                         DateTime today = DateTime.now();
                         DateTime? requestDate = timestamp?.toDate();
                         if(requestDate!.year == today.year

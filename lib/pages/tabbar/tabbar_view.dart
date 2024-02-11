@@ -24,7 +24,7 @@ class TabbarView extends GetWidget<ManagerRequestController> {
       init: ManagerRequestController(),
         builder: (controller) {
           return Scaffold(
-            body: controller.reqList.isEmpty ? Center(child: Text('No Request found')):
+            body: controller.reqList.isEmpty ? const Center(child: Text('No Request found')):
             ListView.builder(
               shrinkWrap: true,
               itemCount: controller.reqList.length,
@@ -182,10 +182,10 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                                 builder: (context, snapshot) {
 
                                   if(snapshot.hasError){
-                                    return Text("");
+                                    return const Text("");
                                   }
                                   if(!snapshot.hasData){
-                                    return Text("");
+                                    return const Text("");
                                   }
                                   return  Padding(
                                     padding: const EdgeInsets.only(left: 4.0),

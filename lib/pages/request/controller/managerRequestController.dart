@@ -199,35 +199,40 @@ class ManagerRequestController extends GetxController {
   int todoTask = 0;
   int complected = 0;
 
-  void loadHomeTask() async {
-    var box = GetStorage();
-    var id = box.read('uid');
-    try {
-      var res = await firestore.collection(Strings().kRequest).where("accepterId",isEqualTo: id).get();
-      if (res.docs.isNotEmpty) {
-        DateTime today = DateTime.now();
-        res.docs.forEach((element) {
-          Timestamp timestamp = element.data()["requestDetail"][
-              "depDate"]; // Assuming 'timestamp' is the field storing the server timestamp
-          DateTime requestDate = timestamp.toDate();
-//
-          if (requestDate.year == today.year &&
-              requestDate.month == today.month &&
-              requestDate.day == today.day) {
-            priorityToday += 1;
-          } else if (requestDate.isAfter(today)) {
-            todoTask += 1;
-          } else {
-            complected += 1;
-          }
+    void loadHomeTask() async {
+      var box = GetStorage();
+      var id = box.read('uid');
+      try {
+        var res = await firestore.collection(Strings().kRequest).where("accepterId",isEqualTo: id).get();
+        if (res.docs.isNotEmpty) {
+          DateTime today = DateTime.now();
+          res.docs.forEach((element) {
+            Timestamp timestamp = element.data()["requestDetail"]["depDate"]; // Assuming 'timestamp' is the field storing the server timestamp
+            DateTime requestDate = timestamp.toDate();
 
-          update();
-        });
+            if (requestDate.year == today.year &&
+                requestDate.month == today.month &&
+                requestDate.day == today.day) {
+              element.reference.update({
+                "requestStatus": "Accepted"
+              });
+              priorityToday += 1;
+            } else if (requestDate.isAfter(today)) {
+              todoTask += 1;
+            } else {
+              element.reference.update({
+                "requestStatus": "Completed"
+              });
+              complected += 1;
+            }
+
+            update();
+          });
+        }
+      } catch (e) {
+        print(e);
       }
-    } catch (e) {
-      print(e);
     }
-  }
 
 
   List<RequestModel> beforeDate() {

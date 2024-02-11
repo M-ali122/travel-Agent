@@ -162,7 +162,8 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                   itemCount: controller.reqList.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    Timestamp? timestamp = controller.reqList[index].returnDate;
+
+                   Timestamp? timestamp = controller.reqList[index].returnDate;
                     DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
                     String formatedReturnTime =
                         DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
@@ -226,7 +227,7 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
                                   width: 4.w,
                                 ),
                                 Text(
-                                  '${depDate}',
+                                  depDate,
                                   style: const TextStyle(
                                     color: Color(0xFF6B7280),
                                     fontSize: 11,

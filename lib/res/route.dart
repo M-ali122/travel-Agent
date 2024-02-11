@@ -20,6 +20,7 @@ import '../clientScreen/clientRequestScreen/view/AddRequestScreen.dart';
 import '../clientScreen/clientRequestScreen/view/sandRequest.dart';
 import '../clientScreen/clientScreenNavbar/view/ClientScreenNavbar.dart';
 import '../clientScreen/offers/view/offersView.dart';
+import '../clientScreen/offers/view/travel.dart';
 import '../clientScreen/screens/LocationDetial.dart';
 import '../clientScreen/screens/customizationOption.dart';
 import '../clientScreen/screens/languagePreferences.dart';
@@ -57,8 +58,9 @@ class AppRoute {
     AddRequest.route : (p0) => AddRequest(),
     ClientChatListScreen.route:(p0) => ClientChatListScreen(),
     ClientChatScreen.route:(p0) => ClientChatScreen(),
-
     OffersScreen.route : (p0) =>  OffersScreen(),
+    TravelScreen.route : (p0) => TravelScreen(),
+
     BlockScreen.route:(p0) => BlockScreen(),
     /// life cycle manager
 

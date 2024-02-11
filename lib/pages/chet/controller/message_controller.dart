@@ -23,7 +23,6 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
 RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
 
   void loadMessage()async{
-
     var box = GetStorage();
     var uid = box.read("uid");
     try {
@@ -66,7 +65,6 @@ void sendMessage(String sendToId)async{
   messageModel.value.participants = [uid,sendToId];
   messageModel.value.msg = msgController.text.toString();
   messageModel.value.msgType = "text";
-
   try{
     await firestore.collection(Strings().kMessage).doc(id.toString()).set(messageModel.toJson()).then((value) {
       msgController.clear();
@@ -75,7 +73,6 @@ void sendMessage(String sendToId)async{
   }catch(e){
     showErrorMessage("Error While Loading");
   }
-
 
 }
 

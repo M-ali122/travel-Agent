@@ -13,6 +13,7 @@ import '../../clientChet/view/client_chat_list.dart';
 import '../../clientPageSvgs/clientPageSvgs.dart';
 import '../../clientRequestScreen/view/sandRequest.dart';
 import '../../offers/view/offersView.dart';
+import '../../offers/view/travel.dart';
 
 class ClientHomeSreen extends GetWidget<HomeController> {
    ClientHomeSreen({super.key});
@@ -210,7 +211,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       GestureDetector(
                         onTap: (){
                           Get.toNamed(
-                            OffersScreen.route,
+                            TravelScreen.route,
                             arguments: offersTitle[2],
                           );
                       },
@@ -237,7 +238,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(
-                            OffersScreen.route,
+                            TravelScreen.route,
                             arguments: offersTitle[3],
                           );
                         },
@@ -368,6 +369,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 6.h,),
                   Container(
                     width: 343,
                     height: 1,

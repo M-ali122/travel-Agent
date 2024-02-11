@@ -118,6 +118,7 @@ import '../../../clientScreen/clientHome/model/recomModel.dart';
 import '../../../res/String.dart';
 
 class ManagerRequestController extends GetxController {
+
   @override
   void onInit() {
     super.onInit();
@@ -179,7 +180,6 @@ class ManagerRequestController extends GetxController {
     } else {}
   }
 
-
   List<RequestModel> filterRequestsByCurrentDate() {
     List<RequestModel> filteredList = [];
     reqList.forEach((request) {
@@ -224,10 +224,25 @@ class ManagerRequestController extends GetxController {
           update();
         });
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
 
-
+  List<RequestModel> beforeDate() {
+    List<RequestModel> beforeList = [];
+    reqList.forEach((request) {
+      if (request.recommendation != null &&
+          request.recommendation.depDate != null) {
+        DateTime returnDateTime = request.recommendation.depDate.toDate();
+        if (returnDateTime.isBefore(DateTime.now())) {
+          beforeList.add(request);
+          print('request date is $beforeList ${request.depDate}');
+        }
+      }
+    });
+    return beforeList;
+  }
 
 }

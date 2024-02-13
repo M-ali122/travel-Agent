@@ -20,7 +20,7 @@ class ClientModel {
   dynamic token;
   dynamic staySignedIn;
   dynamic userType;
-  dynamic loginStatus;
+  dynamic block;
   dynamic interest;
   dynamic interestSecond;
   dynamic languagePreference;
@@ -40,7 +40,7 @@ class ClientModel {
     this.token,
     this.staySignedIn,
     this.userType,
-    this.loginStatus,
+    this.block,
     this.interest,
     this.interestSecond,
     this.languagePreference,
@@ -61,15 +61,15 @@ class ClientModel {
         token: json["token"],
         staySignedIn: json["staySignedIn"],
         userType: json["userType"],
-        loginStatus: json["loginStatus"],
+        block: json["block"],
         interest: json["interest"],
         interestSecond: json["interestSecond"],
         languagePreference: json["languagePreference"],
         location: json["location"],
         managerId: json["managerId"],
-       profile: json["profile"],
-         lat: json["lat"],
-         lon: json["lon"],
+        profile: json["profile"],
+        lat: json["lat"],
+        lon: json["lon"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,7 +82,7 @@ class ClientModel {
         "token": token,
         "staySignedIn": staySignedIn,
         "userType": userType,
-        "loginStatus": loginStatus,
+        "block": block,
         "interest": interest,
         "interestSecond": interestSecond,
         "languagePreference": languagePreference,

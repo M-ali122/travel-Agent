@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/res/String.dart';
 
-import '../../clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
 import '../../clientScreen/clientAuth/controller/clientAuthController.dart';
 import '../request/controller/managerRequestController.dart';
 

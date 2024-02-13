@@ -173,7 +173,7 @@ class RequestController extends GetxController {
 
 
       Get.snackbar(
-        'Error',
+        'Error.',
         'Failed to add request. Please try again.',
         duration: const Duration(seconds: 3),
         snackPosition: SnackPosition.BOTTOM,
@@ -303,7 +303,7 @@ class RequestController extends GetxController {
       String uid = box.read("uid");
       requestData['uid'] = uid.toString();
       await FirebaseFirestore.instance
-          .collection(Strings().kRequest)
+          .collection(Strings().kOfferRequest)
           .doc(id.toString())
           .set(requestData);
       Get.back();
@@ -344,7 +344,7 @@ class RequestController extends GetxController {
       String uid = box.read("uid");
       requestData['uid'] = uid.toString();
       await FirebaseFirestore.instance
-          .collection(Strings().kRequest)
+          .collection(Strings().kOfferRequest)
           .doc(id.toString())
           .set(requestData);
       Get.back();

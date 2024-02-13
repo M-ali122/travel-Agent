@@ -51,32 +51,32 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                           height: 10.h,
                         ),
                         ListTile(
-                          leading: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: StreamBuilder(
-                              stream: FirebaseFirestore.instance
-                                  .collection(Strings().kUser)
-                                  .doc(controller.reqList[index].uid.toString())
-                                  .snapshots(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasError || !snapshot.hasData) {
-                                  return const CircleAvatar(
-                                    foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                  );
-                                }
-                                final data = snapshot.data;
-                                if (data == null || data['profile'] == null) {
-                                  return const CircleAvatar(
-                                    foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                  );
-                                }
-                                return CircleAvatar(
-                                  foregroundImage: NetworkImage(data['profile'].toString()),
-                                );
-                              },
-                            ),
-                          ),
+                          // leading: SizedBox(
+                          //   width: 50,
+                          //   height: 50,
+                          //   child: StreamBuilder(
+                          //     stream: FirebaseFirestore.instance
+                          //         .collection(Strings().kUser)
+                          //         .doc(controller.reqList[index].uid.toString())
+                          //         .snapshots(),
+                          //     builder: (context, snapshot) {
+                          //       if (snapshot.hasError || !snapshot.hasData) {
+                          //         return const CircleAvatar(
+                          //           foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                          //         );
+                          //       }
+                          //       final data = snapshot.data;
+                          //       if (data == null || data['profile'] == null) {
+                          //         return const CircleAvatar(
+                          //           foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                          //         );
+                          //       }
+                          //       return CircleAvatar(
+                          //         foregroundImage: NetworkImage(data['profile'].toString()),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
                           title: Row(
                             children: [
                               Text(
@@ -131,35 +131,6 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                               ),
                             ],
                           ),
-                          // subtitle: const Text.rich(
-                          //   TextSpan(
-                          //     children: [
-                          //       TextSpan(
-                          //         text: 'Requested by ',
-                          //         style: TextStyle(
-                          //           color: Color(0xFF6B7280),
-                          //           fontSize: 12,
-                          //           fontFamily: 'SF Pro Text',
-                          //           fontWeight: FontWeight.w400,
-                          //           height: 0,
-                          //           letterSpacing: 0.30,
-                          //         ),
-                          //       ),
-                          //       TextSpan(
-                          //         text: 'Sarah Shahi',
-                          //         style: TextStyle(
-                          //           color: Color(0xFF30879B),
-                          //           fontSize: 12,
-                          //           fontFamily: 'SF Pro Text',
-                          //           fontWeight: FontWeight.w400,
-                          //           height: 0,
-                          //           letterSpacing: 0.30,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-
                           subtitle: Row(
                             children: [
                               const Text('Requested by',
@@ -172,34 +143,34 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                                   letterSpacing: 0.30,
                                 ),
                               ),
-                              StreamBuilder(
-                                stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(
-                                    controller.reqList[index].uid.toString()
-                                ).snapshots(),
-                                builder: (context, snapshot) {
-
-                                  if(snapshot.hasError){
-                                    return const Text("");
-                                  }
-                                  if(!snapshot.hasData){
-                                    return const Text("");
-                                  }
-                                  return  Padding(
-                                    padding: const EdgeInsets.only(left: 4.0),
-                                    child: Text(snapshot.data!['name'],
-                                      style: const TextStyle(
-                                        color: Color(0xFF30879B),
-                                        fontSize: 12,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                        letterSpacing: 0.30,
-                                      ),
-                                    ),
-                                  );
-
-                                },
-                              )
+                              // StreamBuilder(
+                              //   stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(
+                              //       controller.reqList[index].uid.toString()
+                              //   ).snapshots(),
+                              //   builder: (context, snapshot) {
+                              //
+                              //     if(snapshot.hasError){
+                              //       return const Text("");
+                              //     }
+                              //     if(!snapshot.hasData){
+                              //       return const Text("");
+                              //     }
+                              //     return  Padding(
+                              //       padding: const EdgeInsets.only(left: 4.0),
+                              //       child: Text(snapshot.data!['name'],
+                              //         style: const TextStyle(
+                              //           color: Color(0xFF30879B),
+                              //           fontSize: 12,
+                              //           fontFamily: 'SF Pro Text',
+                              //           fontWeight: FontWeight.w400,
+                              //           height: 0,
+                              //           letterSpacing: 0.30,
+                              //         ),
+                              //       ),
+                              //     );
+                              //
+                              //   },
+                              // )
                             ],
                           ),
 

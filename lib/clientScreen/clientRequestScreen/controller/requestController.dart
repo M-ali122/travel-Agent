@@ -281,7 +281,7 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> offeresRequest = RequestModel().obs;
 
-  Future<void> addOffersRequest(String offersMessage) async {
+  Future<void> addOffersRequest(String offersMessage,) async {
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
@@ -294,7 +294,7 @@ class RequestController extends GetxController {
       requestData['departureDate'] = departureDate.value;
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
-      // requestData['requestDetail'] = model.toJson();
+       // requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = profileController.user.value.managerId;
       requestData['requestId'] = id; // Adding text field data
@@ -330,7 +330,7 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> meetGreetOffers = RequestModel().obs;
 
-  Future<void> addMeetGreetOffers(String offersMessage) async {
+  Future<void> addMeetGreetOffers(String offersMessage,) async {
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
       Map<String, dynamic> requestData = request.value.recommendation ?? {};

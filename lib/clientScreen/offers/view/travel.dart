@@ -343,7 +343,8 @@ class TravelScreen extends GetWidget<RequestController>{
                   child: AppButton(
                       title: 'Submit',
                       onTap: (){
-                        controller.addOffersRequest(offersMessage.text.toString());
+                        controller.addOffersRequest(offersMessage.text.toString(),
+                        );
                       }
                   ),
                 ),

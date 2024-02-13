@@ -45,12 +45,6 @@ class BottomnavBar extends GetWidget<BottomNavController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-              //   buildIconButton(0, Svgs.home, "Home"),
-              //   buildIconButton(1, Svgs.requests, "Requests"),
-              //   buildIconButton(2, Svgs.clients, "Clients"),
-              //   buildIconButton(3, Svgs.messages, "Messages"),
-              //   buildIconButton(4, Svgs.profile, "Profile"),
-
                 GestureDetector(
                   onTap: () {
                     controller.changePage(0);
@@ -83,8 +77,6 @@ class BottomnavBar extends GetWidget<BottomNavController> {
                 ),
                 GestureDetector(
                   onTap: () {
-
-                    print("jsda");
                     controller.changePage(1);
                   },
                   child: Container(
@@ -115,10 +107,7 @@ class BottomnavBar extends GetWidget<BottomNavController> {
                 ),
                 GestureDetector(
                   onTap: () {
-
-                    print("jsda");
                     controller.changePage(2);
-
                   },
                   child: Container(
                     padding: EdgeInsets.all(2.0),

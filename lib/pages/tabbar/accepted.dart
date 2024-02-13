@@ -22,7 +22,7 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
       init: ManagerRequestController(),
       builder: (controller) {
         return Scaffold(
-          body: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Accepted') ? const Text('No Complated Data found'):
+          body: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Accepted') ? Center(child: const Text('No Complated Data found')):
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,

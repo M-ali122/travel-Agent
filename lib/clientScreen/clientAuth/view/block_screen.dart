@@ -38,7 +38,7 @@ class BlockScreen extends GetWidget<ClientAuthController>{
                         fontWeight: FontWeight.bold,
                         fontSize: 20
                       ),),
-                      Text(" Panding",style: TextStyle(
+                      Text("Pending",style: TextStyle(
                         color: Colors.red
                       ),),
                       Spacer(),
@@ -65,7 +65,7 @@ class BlockScreen extends GetWidget<ClientAuthController>{
                   ),
 
                   Text(
-                    "your request is received in our system for review. Our team carefully examines the details you've submitted. After this review process, when your account becomes active, When your account becomes active, you will be able to start using the app immediately. Once activated, you can begin exploring all the features and functionalities it offers. If you have any questions or need assistance, our support team is here to help. Thank you!",textAlign: TextAlign.justify,),
+                    "Congratulations you have successfully requested an account! We will review and approve your account in 10 working days and let you know. After approval you will be able to use the app. Thank you for your patience",textAlign: TextAlign.justify,),
                  SizedBox(
                    height: 80,
                  ),

@@ -10,7 +10,6 @@ import 'chatpage.dart';
 
 class Inbox extends GetWidget<ChatController> {
   Inbox({super.key});
-  final Set<String> _uniqueClientIds = <String>{};
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatController>(
@@ -180,16 +179,12 @@ class Inbox extends GetWidget<ChatController> {
                   //     },
                   //   ),
                   // ),
-                  SizedBox(
+                  Obx(() => SizedBox(
                     height: Get.height * 0.53,
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: controller.loadMessageList.length,
                       itemBuilder: (context, index) {
-                        if (_uniqueClientIds.contains(controller.loadMessageList[index].uid)) {
-                          return const SizedBox.shrink(); // If duplicate, return an empty SizedBox
-                        }
-                        _uniqueClientIds.add(controller.loadMessageList[index].uid); // Add client ID to set
                         return ListView(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -277,7 +272,7 @@ class Inbox extends GetWidget<ChatController> {
                         );
                       },
                     ),
-                  ),
+                  ),)
                 ],
               ),
             ),

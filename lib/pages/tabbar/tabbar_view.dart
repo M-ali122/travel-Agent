@@ -24,14 +24,16 @@ class TabbarView extends GetWidget<ManagerRequestController> {
             body: controller.reqList.isEmpty ? const Center(child: Text('No Request found')):
             ListView.builder(
               shrinkWrap: true,
+
               itemCount: controller.reqList.length,
               itemBuilder: (context, index) {
                 Timestamp? timestamp = controller.reqList[index].returnDate;
                 DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+                String formatedReturnTime = DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
                 Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
                 DateTime date = datestamp?.toDate() ?? DateTime.now();
-                String depDate = DateFormat('yyyy-mm-dd hh:mm a').format(date);
+
+                String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
                 return Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Container(

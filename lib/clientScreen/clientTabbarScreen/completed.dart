@@ -29,13 +29,13 @@ class CompletedScreen extends GetWidget<RequestController> {
                 Timestamp? timestamp = controller.reqList[index].returnDate;
                 DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
                 String formatedReturnTime =
-                DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+                DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
 
                 Timestamp? datestamp =
                     controller.reqList[index].recommendation.depDate;
                 DateTime date = datestamp?.toDate() ?? DateTime.now();
                 String depDate =
-                DateFormat('yyyy-mm-dd hh:mm a').format(date);
+                DateFormat('yyyy-MM-dd hh:mm a').format(date);
 
                 if(controller.reqList[index].requestStatus == 'Accepted'){
                   return Padding(

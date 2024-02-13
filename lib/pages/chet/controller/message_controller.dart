@@ -31,6 +31,7 @@ RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
           .where("accepterId", isEqualTo: uid.toString())
           .get();
       if (res.docs.isNotEmpty) {
+        loadMessageList.clear(); // Clear the list before adding new data
         for (var doc in res.docs) {
           var data = doc.data(); // Extract data from the DocumentSnapshot
           // Assuming RequestModel has a constructor that accepts Map<String, dynamic>
@@ -38,7 +39,7 @@ RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
           loadMessageList.add(requestModel);
         }
         // Move update() out of the loop to update the UI only once after adding all data
-        update();
+        // update();
       }
     } catch (e) {
       showErrorMessage("Check Connection");
@@ -53,6 +54,7 @@ RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
 TextEditingController msgController = TextEditingController();
 
 Rx<MessageModel> messageModel = MessageModel().obs;
+
 void sendMessage(String sendToId)async{
   var id = DateTime.now().microsecondsSinceEpoch;
   var box = GetStorage();

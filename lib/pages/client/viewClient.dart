@@ -12,16 +12,6 @@ import 'clientHistory.dart';
 class ViewClient extends GetWidget<ClientScreenController> {
   ViewClient({Key? key});
 
-  // var clientName = [
-  //   'Faizan Ahmend',
-  //   'Sarah Shahi',
-  //   'Cooper Saris',
-  //   'Zaire Schleifer',
-  //   'Jaydon Rhiel Madsen',
-  //   'Cristofer Korsgaard',
-  //   'Angel Saris',
-  //   'Marley Franci'
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +67,6 @@ class ViewClient extends GetWidget<ClientScreenController> {
                       shrinkWrap: true,
                       itemCount: controller.loadClient.length,
                       itemBuilder: (context, index) {
-                        // Future<Map<String, dynamic>?> usersData =  controller
-                        // .getUserData(controller.loadClient[index].uid);
                         return Column(
                           children: [
                             StreamBuilder(

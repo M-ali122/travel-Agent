@@ -18,6 +18,7 @@ class HomeController extends GetxController {
   }
 
   Rx<RecommandModel>  request = RecommandModel().obs;
+  RxMap requestStatus = {}.obs; // Map to track request status
 
 
   var firestore = FirebaseFirestore.instance;
@@ -91,14 +92,16 @@ class HomeController extends GetxController {
       RecommandModel recommandModel =
       RecommandModel.fromJson(element.data() as Map<String,dynamic>);
       recommandList.add(recommandModel);
-       print('your data is ${element.data()}');
+      requestStatus[recommandModel.recommandId.toString()] =
+      false; // Initialize request status for each item
+      print('your data is ${element.data()}');
       update();
     });
 
    }else{
      print('loadRecommended function not work');
    }
-    
+
   }
 
 
@@ -127,6 +130,4 @@ class HomeController extends GetxController {
     }
 
   }
-
-  
 }

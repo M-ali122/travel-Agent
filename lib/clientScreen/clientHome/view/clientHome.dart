@@ -390,10 +390,8 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    // itemCount: controller.laodRecommedList.length,
                     itemCount: controller.recommandList.length,
                       itemBuilder: (context, index) {
-                        // RecommandModel model = data[index];
                         return Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: Container(
@@ -401,7 +399,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             height: 220,
                             decoration: ShapeDecoration(
                                image:  DecorationImage(
-                                  // image: AssetImage('assets/emoji/dubia.png'),fit: BoxFit.cover,
                               image: NetworkImage(controller.recommandList.value[index].image),
                                  fit: BoxFit.cover
                               ),

@@ -124,6 +124,9 @@ class RequestController extends GetxController {
 
   ClientProfileController profileController = Get.put(ClientProfileController());
 
+  bool requestSent = false; // Track the state of request
+
+
   @override
   void onInit() {
     super.onInit();
@@ -133,6 +136,7 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
+
   Future<void> addRequest(Map<String,dynamic> model) async {
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
@@ -158,6 +162,7 @@ class RequestController extends GetxController {
           .collection(Strings().kRequest)
           .doc(id.toString())
           .set(requestData);
+       requestSent = true;
       Get.back();
       Get.snackbar(
         'Success',
@@ -366,6 +371,7 @@ class RequestController extends GetxController {
       );
     }
   }
+
 
 
 

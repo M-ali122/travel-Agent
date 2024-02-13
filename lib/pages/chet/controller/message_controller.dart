@@ -31,6 +31,7 @@ Set<String> addedUids = {};
           .where("accepterId", isEqualTo: uid.toString())
           .get();
       if (res.docs.isNotEmpty) {
+        loadMessageList.clear(); // Clear the list before adding new data
         for (var doc in res.docs) {
           var data = doc.data(); // Extract data from the DocumentSnapshot
           var requestModel = RequestModel.fromJson(data);
@@ -42,6 +43,7 @@ Set<String> addedUids = {};
           }
         }
         update();
+
       }
     } catch (e) {
       showErrorMessage("Check Connection");
@@ -52,6 +54,7 @@ Set<String> addedUids = {};
 TextEditingController msgController = TextEditingController();
 
 Rx<MessageModel> messageModel = MessageModel().obs;
+
 void sendMessage(String sendToId)async{
   var id = DateTime.now().microsecondsSinceEpoch;
   var box = GetStorage();

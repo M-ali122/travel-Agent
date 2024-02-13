@@ -41,6 +41,7 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                       String depDate =
                           DateFormat('yyyy-mm-dd hh:mm a').format(date);
 
+<<<<<<< HEAD
                       if (controller.reqList[index].requestStatus ==
                           "Accepted") {
                         return Padding(
@@ -54,6 +55,59 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                                 side: const BorderSide(
                                     width: 0.20, color: Color(0x4C808080)),
                                 borderRadius: BorderRadius.circular(12),
+=======
+                Timestamp? timestamp = controller.reqList[index].returnDate;
+                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                String formatedReturnTime = DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
+                DateTime date = datestamp?.toDate() ?? DateTime.now();
+                String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
+
+                if(controller.reqList[index].requestStatus == "Accepted"){
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Container(
+                      width: 343,
+                      height: 150,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF191B20),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(width: 0.20, color: Color(0x4C808080)),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          ListTile(
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection(Strings().kUser)
+                                    .doc(controller.reqList[index].uid.toString())
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError || !snapshot.hasData) {
+                                    return const CircleAvatar(
+                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                    );
+                                  }
+                                  final data = snapshot.data;
+                                  if (data == null || data['profile'] == null) {
+                                    return const CircleAvatar(
+                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                    );
+                                  }
+                                  return CircleAvatar(
+                                    foregroundImage: NetworkImage(data['profile'].toString()),
+                                  );
+                                },
+>>>>>>> a05d6da5682e7db6f2df85c0aa28e9fc129a466a
                               ),
                             ),
                             child: Column(

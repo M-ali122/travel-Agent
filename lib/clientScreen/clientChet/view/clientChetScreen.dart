@@ -9,13 +9,17 @@ import 'package:travelagentapp/clientScreen/clientChet/controller/message_contro
 import 'package:travelagentapp/helpers/views/message_bubble.dart';
 import 'package:travelagentapp/res/String.dart';
 
+import '../../ClientprofileScreen/Controller/client_profile_controller.dart';
+
 class ClientChatScreen extends GetWidget<MessageController> {
   static String route = 'ClientChatScresdsdsn';
-  String arg = Get.arguments;
+  // String arg = Get.arguments;
   ClientChatScreen({super.key});
 
+  ClientProfileController clientProfileController = Get.put(ClientProfileController());
   @override
   Widget build(BuildContext context) {
+    var managerId = clientProfileController.user.value.managerId;
     return GetBuilder<MessageController>(
       init: MessageController(),
       builder: (controller) {
@@ -40,7 +44,7 @@ class ClientChatScreen extends GetWidget<MessageController> {
                   child: StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection(Strings().kUser)
-                        .doc(arg)
+                        .doc(managerId)
                         .snapshots(),
                     builder:
                         (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -117,7 +121,7 @@ class ClientChatScreen extends GetWidget<MessageController> {
                     List filteredMessages = snapshot.data!.docs.where((doc) {
                       List participants = doc['participants'];
                       return participants.contains("$id") &&
-                          participants.contains(arg);
+                          participants.contains(managerId);
                     }).toList();
 
                     return ListView.builder(
@@ -185,7 +189,7 @@ class ClientChatScreen extends GetWidget<MessageController> {
                   padding: const EdgeInsets.only(right: 15.0),
                   child: InkWell(
                     onTap: () {
-                      controller.sendMessage(arg);
+                      controller.sendMessage(managerId);
                     },
                     child: Container(
                       width: 44.94,

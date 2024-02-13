@@ -21,7 +21,7 @@ class ChatController extends GetxController{
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
-
+Set<String> addedUids = {};
   void loadMessage()async{
     var box = GetStorage();
     var uid = box.read("uid");
@@ -33,20 +33,19 @@ RxList<RequestModel> loadMessageList = <RequestModel>[].obs;
       if (res.docs.isNotEmpty) {
         for (var doc in res.docs) {
           var data = doc.data(); // Extract data from the DocumentSnapshot
-          // Assuming RequestModel has a constructor that accepts Map<String, dynamic>
           var requestModel = RequestModel.fromJson(data);
-          loadMessageList.add(requestModel);
+
+          if (!addedUids.contains(requestModel.uid)) {
+            // Add the model to the list and mark its UID as added
+            loadMessageList.add(requestModel);
+            addedUids.add(requestModel.uid);
+          }
         }
-        // Move update() out of the loop to update the UI only once after adding all data
         update();
       }
     } catch (e) {
       showErrorMessage("Check Connection");
     }
-
-
-
-
   }
 
 

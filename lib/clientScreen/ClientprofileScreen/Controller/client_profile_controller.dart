@@ -27,13 +27,11 @@ class ClientProfileController extends GetxController {
     var box = GetStorage();
     String id = box.read("uid");
 
-     print('user id is $id');
     DocumentSnapshot res =
         await firestore.collection(Strings().kUser).doc(id).get();
 
     if (res.exists) {
       user.value = ClientModel.fromJson(res.data() as Map<String, dynamic>);
-      print('profile is ${user.value.profile}');
       update();
     }
   }
@@ -51,20 +49,6 @@ class ClientProfileController extends GetxController {
       update();
     }
   }
-  // FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-  // uploadProfile() async {
-  //   final box = GetStorage();
-  //   String uid = box.read("uid");
-  //   String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-  //   var ref = FirebaseStorage.instance.ref().child('images/$fileName.jpg');
-  //   await ref.putFile(File(image!.path));
-  //   await ref.getDownloadURL().then((value) async {
-  //     await firestore
-  //         .collection(Strings().kUser)
-  //         .doc(uid)
-  //         .update({"profile": value.toString()});
-  //   });
-  // }
   uploadProfile() async {
     final box = GetStorage();
     String uid = box.read("uid");

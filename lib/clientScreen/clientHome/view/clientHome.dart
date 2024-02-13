@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:travelagentapp/clientScreen/clientHome/controller/recomControlle
 import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
 
+import '../../../res/String.dart';
 import '../../ClientprofileScreen/Controller/client_profile_controller.dart';
 import '../../clientChet/view/clientChetScreen.dart';
 import '../../clientChet/view/client_chat_list.dart';
@@ -393,6 +395,10 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.recommandList.length,
                       itemBuilder: (context, index) {
+                        bool isSubmitted = controller.isRequestFavorited(controller.recommandList[index].recommandId.toString());
+                        // Determine the text to display on the TextButton based on the submission status
+                        String buttonText = isSubmitted ? 'Submitted' : 'Request';
+
                         return Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: Container(

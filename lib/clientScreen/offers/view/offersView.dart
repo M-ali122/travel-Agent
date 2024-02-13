@@ -226,7 +226,7 @@ class OffersScreen extends GetWidget<RequestController>{
                     ),
                   ),
                   SizedBox(height: 200.h,),
-                  AppButton(
+                controller.isBusy()?Center(child: CircularProgressIndicator()) :  AppButton(
                       title: 'Submit',
                       onTap: (){
                         controller.addMeetGreetOffers(offersMessage.text.toString(),

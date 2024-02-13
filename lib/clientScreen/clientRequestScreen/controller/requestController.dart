@@ -121,8 +121,8 @@ import '../../../res/String.dart';
 import '../../clientHome/model/recomModel.dart';
 
 class RequestController extends GetxController {
-
-  ClientProfileController profileController = Get.put(ClientProfileController());
+  ClientProfileController profileController =
+      Get.put(ClientProfileController());
 
   @override
   void onInit() {
@@ -133,7 +133,7 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
-  Future<void> addRequest(Map<String,dynamic> model) async {
+  Future<void> addRequest(Map<String, dynamic> model) async {
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
       // request.value.requestId = id.toString();
@@ -170,8 +170,6 @@ class RequestController extends GetxController {
     } catch (e) {
       Get.back();
 
-
-
       Get.snackbar(
         'Error.',
         'Failed to add request. Please try again.',
@@ -199,8 +197,7 @@ class RequestController extends GetxController {
     if (picked != null && picked != departureDate.value) {
       departureDate.value = picked;
       update(); // Notify the UI about the change
-    } else {
-    }
+    } else {}
   }
 
   Future<void> selectReturnDate(BuildContext context) async {
@@ -214,7 +211,6 @@ class RequestController extends GetxController {
       returnDate.value = picked;
       update();
     }
-
   }
 
   Future<void> selectDepartureTime(BuildContext context) async {
@@ -268,10 +264,6 @@ class RequestController extends GetxController {
     } else {}
   }
 
-
-
-
-
   void addDataFromTextField(String text) {
     // Example of adding data to the recommendation field
     request.update((val) {
@@ -281,20 +273,23 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> offeresRequest = RequestModel().obs;
 
-  Future<void> addOffersRequest(String offersMessage,) async {
+  Future<void> addOffersRequest(
+    String offersMessage,
+  ) async {
     try {
+      _toggle();
       var id = DateTime.now().microsecondsSinceEpoch;
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
       requestData['departureTime'] =
-      '${departureTime.value.hour}:${departureTime.value.minute}';
+          '${departureTime.value.hour}:${departureTime.value.minute}';
       requestData['returnTime'] =
-      '${returnTime.value.hour}:${returnTime.value.minute}';
+          '${returnTime.value.hour}:${returnTime.value.minute}';
 
       requestData['offersMessage'] = offersMessage;
       requestData['departureDate'] = departureDate.value;
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
-       // requestData['requestDetail'] = model.toJson();
+      // requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = profileController.user.value.managerId;
       requestData['requestId'] = id; // Adding text field data
@@ -307,30 +302,28 @@ class RequestController extends GetxController {
           .doc(id.toString())
           .set(requestData);
       Get.back();
-      Get.snackbar(
-        'Success',
-        'Offers added successfully',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar('Success', 'Offers added successfully',
+          duration: const Duration(seconds: 3),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white);
 
       update();
-
-    }catch (e){
+    } catch (e) {
+      _toggle();
       Get.back();
-      Get.snackbar(
-        'Error',
-        'Failed to add Offers. Please try again.',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar('Error', 'Failed to add Offers. Please try again.',
+          duration: const Duration(seconds: 3),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white);
     }
   }
 
-
   Rx<RequestModel> meetGreetOffers = RequestModel().obs;
 
-  Future<void> addMeetGreetOffers(String offersMessage,) async {
+  Future<void> addMeetGreetOffers(
+    String offersMessage,
+  ) async {
+    _toggle();
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
@@ -348,26 +341,25 @@ class RequestController extends GetxController {
           .doc(id.toString())
           .set(requestData);
       Get.back();
-      Get.snackbar(
-        'Success',
-        'Offers added successfully',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar('Success', 'Offers added successfully',
+          duration: const Duration(seconds: 3),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white);
       update();
-
-    }catch (e){
+    } catch (e) {
+      _toggle();
       Get.back();
-      Get.snackbar(
-        'Error',
-        'Failed to add Offers. Please try again.',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar('Error', 'Failed to add Offers. Please try again.',
+          duration: const Duration(seconds: 3),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white);
     }
   }
 
-
-
-
+  RxBool busy = false.obs;
+  bool isBusy() => busy.isTrue;
+  void _toggle() {
+    busy.toggle();
+    update();
+  }
 }

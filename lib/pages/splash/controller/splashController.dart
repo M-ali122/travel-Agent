@@ -14,10 +14,11 @@ class SplashController extends GetxController {
     super.onInit();
     splashService();
   }
+
   final box = GetStorage();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void splashService()async {
+  void splashService() async {
     var uid = box.read("uid");
 
     if (uid != null) {
@@ -25,29 +26,30 @@ class SplashController extends GetxController {
           .collection(Strings().kUser)
           .doc(uid)
           .get();
+
+
       if (userDoc.exists) {
         Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
 
         String userType = userData['userType'];
         bool active = userData['activeStatus'];
-      if(active == true){
-        if (userType == "LifeStyleManager") {
-          Get.offAllNamed(BottomnavBar.route);
+        if (active == true) {
+          if (userType == "LifeStyleManager") {
+            Get.offAllNamed(BottomnavBar.route);
+          } else {
+            Get.offAllNamed(ClientNavbar.route);
+          }
         } else {
-          Get.offAllNamed(ClientNavbar.route);
+          Get.offAllNamed(BlockScreen.route);
         }
-      }else{
-        Get.offAllNamed(BlockScreen.route);
-
-      }
-      }else{
-      /// this block for no data found
+      } else {
+        throw Exception('no data found');
+        /// this block for no data found
       }
     } else {
       Future.delayed(const Duration(seconds: 2), () {
         Get.toNamed(AccountTypeScreen.route);
       });
     }
-
   }
 }

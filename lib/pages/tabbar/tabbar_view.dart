@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:intl/intl.dart';
 import 'package:travelagentapp/pages/request/view/requestDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/res/String.dart';
-
-import '../../clientScreen/clientAuth/clientAuthController/clientAuthController.dart';
 import '../../clientScreen/clientAuth/controller/clientAuthController.dart';
 import '../request/controller/managerRequestController.dart';
 

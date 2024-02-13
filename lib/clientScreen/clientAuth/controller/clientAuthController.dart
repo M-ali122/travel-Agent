@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -36,6 +38,7 @@ class ClientAuthController extends GetxController {
         print("doc is not empty");
         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          clientModel.value =ClientModel.fromJson(data);
           var interest = data['interest'];
           var languagePreference = data['languagePreference'];
           var location = data['location'];
@@ -98,6 +101,7 @@ class ClientAuthController extends GetxController {
     clientModel.value.uid = id.toString();
     clientModel.value.userType = "Client";
     clientModel.value.activeStatus = false;
+    clientModel.value.block=true;
     try {
     var res =   await firestore
           .collection(Strings().kUser)

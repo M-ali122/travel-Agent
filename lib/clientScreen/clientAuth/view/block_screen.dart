@@ -46,7 +46,6 @@ class BlockScreen extends GetWidget<ClientAuthController>{
                         onTap: (){
                           SplashController sc=Get.put(SplashController());
                           sc.splashService();
-
                         },
                         child: Row(
                           children: [

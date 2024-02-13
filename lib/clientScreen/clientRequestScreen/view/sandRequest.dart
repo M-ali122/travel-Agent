@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientPageSvgs/clientPageSvgs.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
@@ -410,7 +412,22 @@ class ClientPageSandRequest extends GetWidget<RequestController> {
             child: AppButton(
               title: 'Send Request',
               onTap: () {
-                controller.addRequest(Get.arguments);
+                print(arg.depDate);
+                // dateTime = DateFormat("yyyy-MM-dd hh:mm a").parse(arg.depDate);
+                // DateTime dateTime = DateTime.parse(arg.depDate);
+                DateTime dateTime = DateFormat("yyyy-MM-dd hh:mm a").parse(arg.depDate);
+
+                // Convert DateTime to Firebase Timestamp
+                Timestamp timestamp = Timestamp.fromDate(dateTime);
+                Map<String,dynamic> dataBody = {
+                  'depDate': timestamp,
+                  "fav":[],
+                  'image': arg.image,
+                  'recommandId': arg.recommandId,
+                  'title': arg.title,
+                };
+                // print(dataBody);
+                controller.addRequest(dataBody);
                 //Get.toNamed(ClientRequestDetail.route);
               },
             ),

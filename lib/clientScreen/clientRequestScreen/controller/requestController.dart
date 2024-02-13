@@ -133,7 +133,7 @@ class RequestController extends GetxController {
 
   Rx<RequestModel> request = RequestModel().obs;
   var firestore = FirebaseFirestore.instance;
-  Future<void> addRequest(RecommandModel model) async {
+  Future<void> addRequest(Map<String,dynamic> model) async {
     try {
       var id = DateTime.now().microsecondsSinceEpoch;
       // request.value.requestId = id.toString();
@@ -146,7 +146,7 @@ class RequestController extends GetxController {
       requestData['departureDate'] = departureDate.value;
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
-      requestData['requestDetail'] = model.toJson();
+      requestData['requestDetail'] = model;
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = null;
       requestData['requestId'] = id;

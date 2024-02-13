@@ -319,7 +319,17 @@ class HomeView extends GetWidget <ManagerRequestController>{
                     height: 24,
                   ),
 
-                  SizedBox(
+                controller.reqList.isEmpty ? Column(
+
+                  children: [
+                    SizedBox(
+                      height: 150,
+                    ),
+                    Text("No Task For Today",style: TextStyle(
+                      color: Colors.grey
+                    ),),
+                  ],
+                ):  SizedBox(
                     height: Get.height * 0.32,
                     child: Obx(() => ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -445,10 +455,12 @@ class HomeView extends GetWidget <ManagerRequestController>{
                               ],
                             );
                           } else {
-                            return Container();
+                            return Container(
+                            );
                           }
                         }else {
-                          return Container();
+                          return Container(
+                          );
                         }
 
                       },

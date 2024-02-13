@@ -35,20 +35,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
-              // leading: Padding(
-              //   padding: const EdgeInsets.only(left: 13.0),
-              //   child: Container(
-              //     width: 40,
-              //     height: 40,
-              //     decoration: ShapeDecoration(
-              //         image: const DecorationImage(
-              //             image: AssetImage('assets/emoji/profile2.png')
-              //         ),
-              //         color: Colors.white.withOpacity(0.05000000074505806),
-              //         shape: const CircleBorder()
-              //     ),
-              //   ),
-              // ),
               leading: clientProfileController.user.value.profile != null
                   ? Padding(
                     padding: const EdgeInsets.only(left: 13.0),
@@ -59,7 +45,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image:
-                      //FileImage(File(controller.user.value.profile!)),
                       NetworkImage(clientProfileController.user.value.profile),
                     ),
                     shape:  const CircleBorder()

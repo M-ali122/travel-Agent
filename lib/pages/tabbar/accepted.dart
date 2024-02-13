@@ -54,7 +54,6 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                                 side: const BorderSide(
                                     width: 0.20, color: Color(0x4C808080)),
                                 borderRadius: BorderRadius.circular(12),
-
                               ),
                             ),
                             child: Column(

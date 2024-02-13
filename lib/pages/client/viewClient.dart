@@ -61,7 +61,17 @@ class ViewClient extends GetWidget<ClientScreenController> {
                     ),
                   ),
                   SizedBox(height: 29.h),
-                  Container(
+
+                controller.loadClient.isEmpty? Column(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                    ),
+                    Text("No Client Found",style: TextStyle(
+                        color: Colors.grey
+                    ),),
+                  ],
+                ) :  Container(
                     height: Get.height * 0.58,
                     child: Obx(() => ListView.builder(
                       shrinkWrap: true,

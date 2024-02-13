@@ -179,7 +179,16 @@ class Inbox extends GetWidget<ChatController> {
                   //     },
                   //   ),
                   // ),
-                  Obx(() => SizedBox(
+                  controller.loadMessageList.isEmpty? Column(
+                    children: [
+                      SizedBox(
+                        height: 150,
+                      ),
+                      Text("No Chat Found",style: TextStyle(
+                          color: Colors.grey
+                      ),),
+                    ],
+                  ) :  Obx(() => SizedBox(
                     height: Get.height * 0.53,
                     child: ListView.builder(
                       shrinkWrap: true,

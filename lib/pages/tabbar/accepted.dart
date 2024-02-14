@@ -24,7 +24,7 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
           body: controller.reqList.isEmpty ||
                   !controller.reqList
                       .any((element) => element.requestStatus == 'Accepted')
-              ? Center(child: const Text('No Complated Data found'))
+              ? const Center(child: Text('No Complated Data found'))
               : Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -34,12 +34,12 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                           controller.reqList[index].returnDate;
                       DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
                       String formatedReturnTime =
-                          DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+                          DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
                       Timestamp? datestamp =
                           controller.reqList[index].recommendation.depDate;
                       DateTime date = datestamp?.toDate() ?? DateTime.now();
                       String depDate =
-                          DateFormat('yyyy-mm-dd hh:mm a').format(date);
+                          DateFormat('yyyy-MM-dd hh:mm a').format(date);
 
                       if (controller.reqList[index].requestStatus ==
                           "Accepted") {
@@ -249,36 +249,6 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                                   padding: const EdgeInsets.only(top: 15.0),
                                   child: Row(
                                     children: [
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(left: 8.0),
-                                      //   child: Text(
-                                      //     'Quantity:',
-                                      //     style: TextStyle(
-                                      //       color: Colors.white,
-                                      //       fontSize: 12,
-                                      //       fontFamily: 'SF Pro Text',
-                                      //       fontWeight: FontWeight.w500,
-                                      //       height: 0,
-                                      //       letterSpacing: 0.50,
-                                      //     ),
-                                      //   ),
-                                      // ),
-
-                                      // SizedBox(
-                                      //   width: 4,
-                                      // ),
-                                      // Text(
-                                      //   '2 x items',
-                                      //   style: TextStyle(
-                                      //     color: Color(0xFF6B7280),
-                                      //     fontSize: 12,
-                                      //     fontFamily: 'SF Pro Text',
-                                      //     fontWeight: FontWeight.w400,
-                                      //     height: 0,
-                                      //     letterSpacing: 0.50,
-                                      //   ),
-                                      // ),
-                                      // Spacer(),
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(

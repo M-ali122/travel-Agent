@@ -168,8 +168,9 @@ class RequestController extends GetxController {
       Get.snackbar(
         'Success',
         'Request added successfully',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white
       );
 
       update();
@@ -179,8 +180,9 @@ class RequestController extends GetxController {
       Get.snackbar(
         'Error.',
         'Failed to add request. Please try again.',
-        duration: const Duration(seconds: 3),
-        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white
       );
     }
   }
@@ -309,7 +311,7 @@ class RequestController extends GetxController {
           .set(requestData);
       Get.back();
       Get.snackbar('Success', 'Offers added successfully',
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 2),
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.white);
 
@@ -318,7 +320,7 @@ class RequestController extends GetxController {
       _toggle();
       Get.back();
       Get.snackbar('Error', 'Failed to add Offers. Please try again.',
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 2),
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.white);
     }
@@ -348,7 +350,7 @@ class RequestController extends GetxController {
           .set(requestData);
       Get.back();
       Get.snackbar('Success', 'Offers added successfully',
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 2),
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.white);
       update();
@@ -356,7 +358,7 @@ class RequestController extends GetxController {
       _toggle();
       Get.back();
       Get.snackbar('Error', 'Failed to add Offers. Please try again.',
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 2),
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.white);
     }

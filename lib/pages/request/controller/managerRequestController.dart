@@ -134,10 +134,13 @@ class ManagerRequestController extends GetxController {
     }).then((value) {
       if (status == 'Accepted') {
         Get.snackbar('Request Accepted', 'The request has been accepted.',
-            snackPosition: SnackPosition.BOTTOM);
+            snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white
+        );
       } else if (status == 'Cancelled') {
         Get.snackbar('Request Cancelled', 'The request has been cancelled.',
-            snackPosition: SnackPosition.BOTTOM);
+            snackPosition: SnackPosition.TOP,
+            backgroundColor: Colors.white);
       }
       loadrequest();
       print('Request Accepted');

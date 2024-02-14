@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/pages/client/controller/client_screen_controller.dart';
 
 import '../../res/String.dart';
@@ -12,9 +13,10 @@ import 'clientHistory.dart';
 class ViewClient extends GetWidget<ClientScreenController> {
   ViewClient({Key? key});
 
-
+  var box = GetStorage();
   @override
   Widget build(BuildContext context) {
+    var id = box.read("uid");
     return GetBuilder<ClientScreenController>(
       init: ClientScreenController(),
       builder: (controller) {
@@ -62,115 +64,98 @@ class ViewClient extends GetWidget<ClientScreenController> {
                   ),
                   SizedBox(height: 29.h),
 
-                controller.loadClient.isEmpty? Column(
-                  children: [
-                    SizedBox(
-                      height: 150,
-                    ),
-                    Text("No Client Found",style: TextStyle(
-                        color: Colors.grey
-                    ),),
-                  ],
-                ) :  Container(
-                    height: Get.height * 0.58,
-                    child: Obx(() => ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.loadClient.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            StreamBuilder(
-                              stream: FirebaseFirestore.instance
-                                  .collection(Strings().kUser)
-                                  .doc(controller.loadClient[index].uid)
-                                  .snapshots(),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Text("");
-                                } else if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
-                                }
-                                return ListTile(
-                                  onTap: () {
-                                    Get.toNamed(ClientHistory.route);
-                                  },
-                                  title: SizedBox(
-                                    width: 130.38,
-                                    child: Text(
-                                      "${snapshot.data!['name']}",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.06,
-                                      ),
-                                    ),
-                                  ),
-                                  subtitle: SizedBox(
-                                    width: 172,
-                                    child: Text(
-                                      '${snapshot.data!['email']}',
-                                      style: TextStyle(
-                                        color: Color(0xFF9CA3AF),
-                                        fontSize: 13,
-                                        fontFamily: 'SF Pro Text',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0.07,
-                                      ),
-                                    ),
-                                  ),
-                                  trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.only(right: 8.0),
-                                        child: Container(
-                                          width: 32,
-                                          height: 32,
-                                          decoration: const ShapeDecoration(
-                                            color: Color(0xFF242529),
-                                            shape: OvalBorder(),
-                                          ),
-                                          child: Center(
-                                            child: SvgPicture.string(
-                                                Svgs.chetIcon),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 16),
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.only(right: 8.0),
-                                        child: Container(
-                                          width: 32,
-                                          height: 32,
-                                          decoration: const ShapeDecoration(
-                                            color: Color(0xFF242529),
-                                            shape: OvalBorder(),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(
-                                              Icons.more_horiz,
-                                              color: Color(0xffFFFFFF),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(Strings().kUser)
+                        .where("managerId", isEqualTo: id.toString())
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.data == null ||
+                          snapshot.data!.docs.isEmpty) {
+                        return Text('No Data Available');
+                      } else {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              onTap: () {
+                                Get.toNamed(ClientHistory.route);
                               },
-                            ),
-                            const Divider(
-                                thickness: 1, color: Color(0xff24272D)),
-                          ],
+                              title: SizedBox(
+                                width: 130.38,
+                                child: Text(
+                                  "${snapshot.data!.docs[index]['name']}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.06,
+                                  ),
+                                ),
+                              ),
+                              subtitle: SizedBox(
+                                width: 172,
+                                child: Text(
+                                  '${snapshot.data!.docs[index]["email"]}',
+                                  style: TextStyle(
+                                    color: Color(0xFF9CA3AF),
+                                    fontSize: 13,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.07,
+                                  ),
+                                ),
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Container(
+                                      width: 32,
+                                      height: 32,
+                                      decoration: const ShapeDecoration(
+                                        color: Color(0xFF242529),
+                                        shape: OvalBorder(),
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.string(Svgs.chetIcon),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Container(
+                                      width: 32,
+                                      height: 32,
+                                      decoration: const ShapeDecoration(
+                                        color: Color(0xFF242529),
+                                        shape: OvalBorder(),
+                                      ),
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.more_horiz,
+                                          color: Color(0xffFFFFFF),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         );
-                      },
-                    ),)
+                      }
+                    },
                   ),
+
                 ],
               ),
             ),

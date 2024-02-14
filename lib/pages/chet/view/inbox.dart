@@ -2,16 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/clientScreen/clientChet/controller/message_controller.dart';
 import '../../../res/String.dart';
+import '../../../res/icons/svg.dart';
 import '../controller/message_controller.dart';
 import 'chatpage.dart';
 
 class Inbox extends GetWidget<ChatController> {
   Inbox({super.key});
   @override
+  var box = GetStorage();
   Widget build(BuildContext context) {
+    var id = box.read("uid");
     return GetBuilder<ChatController>(
       init: ChatController(),
       builder: (controller) {
@@ -57,231 +62,94 @@ class Inbox extends GetWidget<ChatController> {
                   SizedBox(
                     height: 26.h,
                   ),
-                  // SizedBox(
-                  //   height: Get.height * 0.53,
-                  //   child: ListView.builder(
-                  //     shrinkWrap: true,
-                  //     itemCount: controller.loadMessageList.length,
-                  //     itemBuilder: (context, index) {
-                  //       return ListView(
-                  //         scrollDirection: Axis.vertical,
-                  //         shrinkWrap: true,
-                  //         children: [
-                  //           StreamBuilder(
-                  //             stream: FirebaseFirestore.instance
-                  //                 .collection(Strings().kUser)
-                  //                 .doc(controller.loadMessageList[index].uid)
-                  //                 .snapshots(),
-                  //             builder: (context, snapshot) {
-                  //               if (snapshot.connectionState ==
-                  //                   ConnectionState.waiting) {
-                  //                 return const Text("");
-                  //               } else if (snapshot.hasError) {
-                  //                 return Text('Error: ${snapshot.error}');
-                  //               }
-                  //               return Row(
-                  //                 children: [
-                  //                   const CircleAvatar(
-                  //                     foregroundImage: AssetImage(
-                  //                         'assets/emoji/profile2.png'),
-                  //                   ),
-                  //                   Expanded(
-                  //                     child: ListTile(
-                  //                       onTap: () {
-                  //                         Get.toNamed(ChatScreen.route,
-                  //                             arguments: controller
-                  //                                 .loadMessageList[index]
-                  //                                 .uid
-                  //                                 .toString());
-                  //                       },
-                  //                       title: Padding(
-                  //                         padding: const EdgeInsets.only(left: 50.0),
-                  //                         child: Row(
-                  //                           children: [
-                  //                             Text(
-                  //                               '${snapshot.data!['name']}',
-                  //                               style: const TextStyle(
-                  //                                 color: Colors.white,
-                  //                                 fontSize: 16,
-                  //                                 fontFamily: 'SF Pro Text',
-                  //                                 fontWeight: FontWeight.w500,
-                  //                                 height: 0.06,
-                  //                               ),
-                  //                             ),
-                  //                             const Spacer(),
-                  //                             const Text(
-                  //                               '12:00 PM',
-                  //                               style: TextStyle(
-                  //                                 color: Color(0xFF9CA3AF),
-                  //                                 fontSize: 11,
-                  //                                 fontFamily: 'SF Pro Text',
-                  //                                 fontWeight: FontWeight.w400,
-                  //                                 height: 0.12,
-                  //                               ),
-                  //                             ),
-                  //                           ],
-                  //                         ),
-                  //                       ),
-                  //                       subtitle: Padding(
-                  //                         padding:  const EdgeInsets.only(
-                  //                             left: 50.0, top: 16),
-                  //                         child: Row(
-                  //                           children: [
-                  //                             Text(
-                  //                               // 'This is demo message text'
-                  //                               "${snapshot.data!['email']}",
-                  //                               style: const TextStyle(
-                  //                                 color: Colors.white,
-                  //                                 fontSize: 14,
-                  //                                 fontFamily: 'SF Pro Text',
-                  //                                 fontWeight: FontWeight.w400,
-                  //                                 height: 0.07,
-                  //                               ),
-                  //                             ),
-                  //                             const Spacer(),
-                  //                             // Container(
-                  //                             //   width: 20,
-                  //                             //   height: 20,
-                  //                             //   decoration:
-                  //                             //       const ShapeDecoration(
-                  //                             //     color: Color(0xFF30879B),
-                  //                             //     shape: OvalBorder(),
-                  //                             //   ),
-                  //                             //   child: const Center(
-                  //                             //     child: Text(
-                  //                             //       '1',
-                  //                             //       textAlign: TextAlign.center,
-                  //                             //       style: TextStyle(
-                  //                             //         color: Colors.white,
-                  //                             //         fontSize: 10.83,
-                  //                             //         fontFamily: 'SF Pro Text',
-                  //                             //         fontWeight:
-                  //                             //             FontWeight.w500,
-                  //                             //         height: 0.13,
-                  //                             //       ),
-                  //                             //     ),
-                  //                             //   ),
-                  //                             // )
-                  //                           ],
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                 ],
-                  //               );
-                  //             },
-                  //           ),
-                  //           SizedBox(
-                  //             height: 20.h,
-                  //           ),
-                  //         ],
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-                  controller.loadMessageList.isEmpty? Column(
-                    children: [
-                      SizedBox(
-                        height: 150,
-                      ),
-                      Text("No Chat Found",style: TextStyle(
-                          color: Colors.grey
-                      ),),
-                    ],
-                  ) :  Obx(() => SizedBox(
-                    height: Get.height * 0.53,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.loadMessageList.length,
-                      itemBuilder: (context, index) {
-                        return ListView(
-                          scrollDirection: Axis.vertical,
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection(Strings().kUser)
+                        .where("managerId", isEqualTo: id.toString())
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+                        return Text('No Data Available');
+                      } else {
+                        return ListView.builder(
                           shrinkWrap: true,
-                          children: [
-                            StreamBuilder(
-                              stream: FirebaseFirestore.instance
-                                  .collection(Strings().kUser)
-                                  .doc(controller.loadMessageList[index].uid)
-                                  .snapshots(),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return const Text("");
-                                } else if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
-                                }
-                                return Row(
-                                  children: [
-                                    const CircleAvatar(
-                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                    ),
-                                    Expanded(
-                                      child: ListTile(
-                                        onTap: () {
-                                          Get.toNamed(ChatScreen.route,
-                                              arguments: controller.loadMessageList[index].uid.toString());
-                                        },
-                                        title: Padding(
-                                          padding: const EdgeInsets.only(left: 50.0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                '${snapshot.data!['name']}',
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w500,
-                                                  height: 0.06,
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                              const Text(
-                                                '12:00 PM',
-                                                style: TextStyle(
-                                                  color: Color(0xFF9CA3AF),
-                                                  fontSize: 11,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0.12,
-                                                ),
-                                              ),
-                                            ],
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
+                                const CircleAvatar(
+                                  foregroundImage:
+                                      AssetImage('assets/emoji/profile2.png'),
+                                ),
+                                Expanded(
+                                  child: ListTile(
+                                    onTap: () {
+                                      Get.toNamed(ChatScreen.route,
+                                          arguments: snapshot.data!.docs[index]["uid"]
+                                              .toString());
+                                    },
+                                    title: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 50.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            '${snapshot.data!.docs[index]['name']}',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w500,
+                                              height: 0.06,
+                                            ),
                                           ),
-                                        ),
-                                        subtitle: Padding(
-                                          padding:  const EdgeInsets.only(
-                                              left: 50.0, top: 16),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                // 'This is demo message text'
-                                                "${snapshot.data!['email']}",
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w400,
-                                                  height: 0.07,
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                            ],
+                                          const Spacer(),
+                                          const Text(
+                                            '12:00 PM',
+                                            style: TextStyle(
+                                              color: Color(0xFF9CA3AF),
+                                              fontSize: 11,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0.12,
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 50.0, top: 16),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            // 'This is demo message text'
+                                            "${snapshot.data!.docs[index]['email']}",
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0.07,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         );
-                      },
-                    ),
-                  ),)
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

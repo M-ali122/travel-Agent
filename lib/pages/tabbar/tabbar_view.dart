@@ -53,32 +53,32 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                           height: 10.h,
                         ),
                         ListTile(
-                          // leading: SizedBox(
-                          //   width: 50,
-                          //   height: 50,
-                          //   child: StreamBuilder(
-                          //     stream: FirebaseFirestore.instance
-                          //         .collection(Strings().kUser)
-                          //         .doc(controller.reqList[index].uid.toString())
-                          //         .snapshots(),
-                          //     builder: (context, snapshot) {
-                          //       if (snapshot.hasError || !snapshot.hasData) {
-                          //         return const CircleAvatar(
-                          //           foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                          //         );
-                          //       }
-                          //       final data = snapshot.data;
-                          //       if (data == null || data['profile'] == null) {
-                          //         return const CircleAvatar(
-                          //           foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                          //         );
-                          //       }
-                          //       return CircleAvatar(
-                          //         foregroundImage: NetworkImage(data['profile'].toString()),
-                          //       );
-                          //     },
-                          //   ),
-                          // ),
+                          leading: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection(Strings().kUser)
+                                  .doc(controller.reqList[index].uid.toString())
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasError || !snapshot.hasData) {
+                                  return const CircleAvatar(
+                                    foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                  );
+                                }
+                                final data = snapshot.data;
+                                if (data == null || data['profile'] == null) {
+                                  return const CircleAvatar(
+                                    foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                  );
+                                }
+                                return CircleAvatar(
+                                  foregroundImage: NetworkImage(data['profile'].toString()),
+                                );
+                              },
+                            ),
+                          ),
                           title: Row(
                             children: [
                               Text(

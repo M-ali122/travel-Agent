@@ -9,24 +9,22 @@ import 'package:intl/intl.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
-
 import '../../../res/icons/svg.dart';
-
 class RequestDetail extends GetWidget<ManagerRequestController> {
   static const String route = 'RequestDetail';
 
   RequestDetail({super.key});
   var arg = Get.arguments;
-
   @override
   Widget build(BuildContext context) {
 
     Timestamp? timestamp = arg.returnDate;
     DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-    String formatedReturnTime = DateFormat('yyyy-mm-dd hh:mm a').format(dateTime);
+    String formatedReturnTime = DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
     Timestamp? datestamp = arg.returnDate;
     DateTime date = datestamp?.toDate() ?? DateTime.now();
-    String depdate = DateFormat('yyyy-mm-dd hh:mm a').format(date);
+    String depdate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
+
     return GetBuilder<ManagerRequestController>(
       init: ManagerRequestController(),
         builder: (controller) {
@@ -53,22 +51,6 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                 ),
               ),
               centerTitle: true,
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: const ShapeDecoration(
-                      color: Color(0xFF242529),
-                      shape: OvalBorder(),
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.more_horiz,color: Color(0xffFFFFFF),),
-                    ),
-                  ),
-                )
-              ],
             ),
             body: ListView(
               children: [
@@ -115,17 +97,19 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        child: Center(child: Text(
-                          '${arg.requestStatus}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(0xFFF2C94C),
-                            fontSize: 11,
-                            fontFamily: 'SF Pro Text',
-                            fontWeight: FontWeight.w500,
-                            height: 0.13,
+                        child: Center(
+                          child: Text(
+                            '${arg.requestStatus}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Color(0xFFF2C94C),
+                              fontSize: 11,
+                              fontFamily: 'SF Pro Text',
+                              fontWeight: FontWeight.w500,
+                              height: 0.13,
+                            ),
                           ),
-                        ),),
+                        ),
                       ),
                     ],
                   ),

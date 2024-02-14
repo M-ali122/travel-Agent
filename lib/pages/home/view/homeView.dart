@@ -3,49 +3,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:travelagentapp/pages/profile/controller/profileController.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
 import '../../../clientScreen/clientRequestScreen/model/requestModel.dart';
+import '../../../res/String.dart';
 
 class HomeView extends GetWidget <ManagerRequestController>{
   HomeView({super.key});
 
   var arrColor = [const Color(0xff9BCFDB), const Color(0xffFBE8AC), const Color(0xff82D6A6)];
-
   var arrTime = ['08:00', '10:00', '12:00', '14:00'];
-
   var arrScheduleText = [
     'Yoga Classes',
     'Lamborghini on Rent',
     'Dubai Tour Arrangement',
     'Dubai Tour Arrangement',
   ];
-
   var arrtext = ['Priority Today', 'To-do Tasks', 'Completed '];
-
-
-
   var arrNumbers = ['16', '122', '300'];
-
   var dateTime = [
     'Fri 15 Dec 08:00- 10:00 AM',
     'Fri 15 Dec 12:00',
     'Fri 15 Dec 14:00- 16:00 AM',
     'Fri 15 Dec 14:00- 16:00 AM',
   ];
-
   var arrIcon = [
     const Icon(Icons.keyboard_arrow_up, color: Color(0xff6FCF97), size: 0),
     const Icon(Icons.keyboard_arrow_up, color: Color(0xff6FCF97), size: 10),
     const Icon(Icons.keyboard_arrow_up, color: Colors.white, size: 10),
   ];
-
   var iconPercent = [' new tasks', '15%', '15%'];
 
+  ProfileController profileController = Get.put(ProfileController());
+
+   var box = GetStorage();
   @override
   Widget build(BuildContext context) {
+    var id = box.read('uid');
     return GetBuilder<ManagerRequestController>(
       init: ManagerRequestController(),
         builder: (controller) {
@@ -55,10 +53,13 @@ class HomeView extends GetWidget <ManagerRequestController>{
               title: Row(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 3.0,right: 35),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Icon(
                               CupertinoIcons.sun_max_fill,
@@ -69,30 +70,24 @@ class HomeView extends GetWidget <ManagerRequestController>{
                               width: 6.h,
                             ),
                             Text(
-                              "FRI 15 DEC",
-                              style:
-                              TextStyle(fontSize: 10.78, color: DarkTheme.primary),
+                              controller.getCurrentDayAndDate(),
+                              style: TextStyle(fontSize: 10.78, color: DarkTheme.primary),
                             )
                           ],
                         ),
                       ),
-                      const Text(
-                        "Hi, Zuhran",
-                        style: TextStyle(
+                      Text(
+                        "Hi, ${profileController.loadUserModel.value.name}",
+                        style: const TextStyle(
                           fontSize: 24,
                         ),
                       ),
                     ],
                   ),
                   const Spacer(),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 49.08),
-                    child: Icon(
-                      CupertinoIcons.circle_fill,
-                      color: Color(0xff7FE3F0),
-                      size: 9.92,
-                    ),
-                  ),
+                  CircleAvatar(
+                    foregroundImage: NetworkImage(profileController.loadUserModel.value.profile),
+                  )
                 ],
               ),
             ),
@@ -318,9 +313,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                   const SizedBox(
                     height: 24,
                   ),
-
-                controller.reqList.isEmpty ? Column(
-
+                controller.reqList.isEmpty ? const Column(
                   children: [
                     SizedBox(
                       height: 150,
@@ -340,6 +333,10 @@ class HomeView extends GetWidget <ManagerRequestController>{
                         Timestamp? timestamp = reqlist.recommendation.depDate;
                         DateTime today = DateTime.now();
                         DateTime? requestDate = timestamp?.toDate();
+                        Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
+                        DateTime date = datestamp?.toDate() ?? DateTime.now();
+                        String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
+
                         if(requestDate!.year == today.year
                            && requestDate.month == today.month
                            && requestDate.day == today.day){
@@ -380,8 +377,30 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                 ),
                                 Row(
                                   children: [
-                                    const CircleAvatar(
-                                      foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                    // const CircleAvatar(
+                                    //   foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                    // ),
+                                    StreamBuilder(
+                                      stream: FirebaseFirestore.instance
+                                          .collection(Strings().kUser)
+                                          .doc(controller.reqList[index].uid.toString())
+                                          .snapshots(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasError || !snapshot.hasData) {
+                                          return const CircleAvatar(
+                                            foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                          );
+                                        }
+                                        final data = snapshot.data;
+                                        if (data == null || data['profile'] == null) {
+                                          return const CircleAvatar(
+                                            foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                          );
+                                        }
+                                        return CircleAvatar(
+                                          foregroundImage: NetworkImage(data['profile'].toString()),
+                                        );
+                                      },
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 20.0),
@@ -397,7 +416,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 22,
                                               ),
                                               Text(
@@ -408,10 +427,9 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                                   fontFamily: 'SF Pro Text',
                                                   fontWeight: FontWeight.w500,
                                                   height: 0.14,
-
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 16,
                                               ),
                                               Row(
@@ -421,11 +439,11 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                                     color: Color(0xff6B7280),
                                                     size: 12,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 4,
                                                   ),
                                                   Text(
-                                                    '${timestamp?.toDate().toString()}', // Convert timestamp to date and then to string
+                                                    '${depDate}', // Convert timestamp to date and then to string
                                                     style: const TextStyle(
                                                       color: Color(0xFF6B7280),
                                                       fontSize: 11,
@@ -434,7 +452,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                                       height: 0.19,
                                                     ),
                                                   ),
-                                                  Spacer(),
+                                                  const Spacer(),
                                                   const Padding(
                                                     padding: EdgeInsets.only(right: 12.0, bottom: 10),
                                                     child: Icon(

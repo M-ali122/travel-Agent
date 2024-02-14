@@ -18,7 +18,7 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
       init: ManagerRequestController(),
       builder: (controller) {
           return DefaultTabController(
-            length: 5, // Number of tabs
+            length: 5,
             child: Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
@@ -40,15 +40,15 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                actions: const [
-                  Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                    child: Icon(
-                      Icons.add_circle_outline,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
+                actions: [
+                  // Padding(
+                  //   padding: EdgeInsets.only(right: 20.0),
+                  //   child: Icon(
+                  //     Icons.add_circle_outline,
+                  //     color: Colors.white,
+                  //     size: 24,
+                  //   ),
+                  // ),
                 ],
                 centerTitle: true,
               ),
@@ -56,14 +56,16 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                 padding: const EdgeInsets.only(left: 16.0, right: 16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const TabBar(
                       isScrollable: true,
                       labelColor: Color(0xff30889C),
                       indicatorColor: Color(0xff30889C),
                       //dividerHeight: 1,
-                      dividerColor: Color(0xff1E2026),
+                      dividerColor: Color(0xff1E2026), // Adjust this padding as needed
                       unselectedLabelColor: Color(0xff6B7280),
+                      labelPadding: EdgeInsets.symmetric(horizontal: 12.0),
                       tabs: [
                         Tab(text: 'All'),
                         Tab(text: 'Pending'),

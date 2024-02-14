@@ -143,7 +143,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   ),
                   SizedBox(height: 14.h,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -251,7 +251,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   ),
                   SizedBox(height: 26.h,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {

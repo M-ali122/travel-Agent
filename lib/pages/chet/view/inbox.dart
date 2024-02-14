@@ -1,20 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:travelagentapp/clientScreen/clientChet/controller/message_controller.dart';
 import '../../../res/String.dart';
-import '../../../res/icons/svg.dart';
 import '../controller/message_controller.dart';
 import 'chatpage.dart';
 
 class Inbox extends GetWidget<ChatController> {
+
   Inbox({super.key});
   @override
   var box = GetStorage();
+
+  @override
   Widget build(BuildContext context) {
     var id = box.read("uid");
     return Scaffold(
@@ -78,16 +77,28 @@ class Inbox extends GetWidget<ChatController> {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                             CircleAvatar(
+                            CircleAvatar(
                               backgroundColor: Get.theme.dividerColor,
-                              child: Icon(Icons.person,size: 25,color: Colors.black,),
+                              child: snapshot.data!.docs[index]["profile"] != null
+                                  ? ClipOval(
+                                   child: Image.network(
+                                   snapshot.data!.docs[index]["profile"],
+                                   width: 50,
+                                   height: 50,
+                                   fit: BoxFit.cover,
+                                   ),
+                              )
+                                  : Icon(
+                                Icons.person,
+                                size: 25,
+                                color: Colors.black,
+                              ),
                             ),
                             Expanded(
                               child: ListTile(
                                 onTap: () {
                                   Get.toNamed(ChatScreen.route,
-                                      arguments: snapshot.data!.docs[index]["uid"]
-                                          .toString());
+                                   arguments: snapshot.data!.docs[index]["uid"].toString());
                                 },
                                 title: Padding(
                                   padding:

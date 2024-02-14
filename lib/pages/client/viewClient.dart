@@ -137,24 +137,6 @@ class ViewClient extends GetWidget<ClientScreenController> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 16),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Container(
-                                      width: 32,
-                                      height: 32,
-                                      decoration: const ShapeDecoration(
-                                        color: Color(0xFF242529),
-                                        shape: OvalBorder(),
-                                      ),
-                                      child: const Center(
-                                        child: Icon(
-                                          Icons.more_horiz,
-                                          color: Color(0xffFFFFFF),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
                             );

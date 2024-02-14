@@ -133,7 +133,7 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                               ),
                             ],
                           ),
-                          subtitle: Row(
+                          subtitle:  Row(
                             children: [
                               const Text('Requested by',
                                 style: TextStyle(
@@ -145,34 +145,35 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                                   letterSpacing: 0.30,
                                 ),
                               ),
-                              // StreamBuilder(
-                              //   stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(
-                              //       controller.reqList[index].uid.toString()
-                              //   ).snapshots(),
-                              //   builder: (context, snapshot) {
-                              //
-                              //     if(snapshot.hasError){
-                              //       return const Text("");
-                              //     }
-                              //     if(!snapshot.hasData){
-                              //       return const Text("");
-                              //     }
-                              //     return  Padding(
-                              //       padding: const EdgeInsets.only(left: 4.0),
-                              //       child: Text(snapshot.data!['name'],
-                              //         style: const TextStyle(
-                              //           color: Color(0xFF30879B),
-                              //           fontSize: 12,
-                              //           fontFamily: 'SF Pro Text',
-                              //           fontWeight: FontWeight.w400,
-                              //           height: 0,
-                              //           letterSpacing: 0.30,
-                              //         ),
-                              //       ),
-                              //     );
-                              //
-                              //   },
-                              // )
+                              StreamBuilder(
+                                stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(
+                                    controller.reqList[index].uid.toString()
+                                ).snapshots(),
+                                builder: (context, snapshot) {
+
+                                  if(snapshot.hasError){
+                                    return const Text("");
+                                  }
+                                  if(!snapshot.hasData){
+                                    return const Text("");
+                                  }
+                                  return  Padding(
+                                    padding: const EdgeInsets.only(left: 4.0),
+                                    child: Text(
+                                      snapshot.data!['name'].toUpperCase(),
+                                      style: const TextStyle(
+                                        color: Color(0xFF30879B),
+                                        fontSize: 12,
+                                        fontFamily: 'SF Pro Text',
+                                        fontWeight: FontWeight.w400,
+                                        height: 0,
+                                        letterSpacing: 0.30,
+                                      ),
+                                    ),
+                                  );
+
+                                },
+                              )
                             ],
                           ),
 

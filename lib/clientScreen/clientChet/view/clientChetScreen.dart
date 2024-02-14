@@ -16,7 +16,8 @@ class ClientChatScreen extends GetWidget<MessageController> {
   // String arg = Get.arguments;
   ClientChatScreen({super.key});
 
-  ClientProfileController clientProfileController = Get.put(ClientProfileController());
+  ClientProfileController clientProfileController =
+      Get.put(ClientProfileController());
   @override
   Widget build(BuildContext context) {
     var managerId = clientProfileController.user.value.managerId;
@@ -94,65 +95,60 @@ class ClientChatScreen extends GetWidget<MessageController> {
               )
             ],
           ),
-          body: Column(
-            children: [
-              Container(
-                height: Get.height *0.77,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection(Strings().kMessage)
-                      .orderBy('dateTime', descending: true)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                          child:
-                              CircularProgressIndicator()); // Show a loader while waiting for data
-                    }
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    }
-                    if (!snapshot.hasData) {
-                      return const Text('Loading...');
-                    }
-                    var box = GetStorage();
-                    var id = box.read("uid");
-                    // Filter messages based on participants
-                    List filteredMessages = snapshot.data!.docs.where((doc) {
-                      List participants = doc['participants'];
-                      return participants.contains("$id") &&
-                          participants.contains(managerId);
-                    }).toList();
+          body: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection(Strings().kMessage)
+                .orderBy('dateTime', descending: true)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                    child:
+                        CircularProgressIndicator()); // Show a loader while waiting for data
+              }
+              if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              }
+              if (!snapshot.hasData) {
+                return const Text('Loading...');
+              }
+              var box = GetStorage();
+              var id = box.read("uid");
+              // Filter messages based on participants
+              List filteredMessages = snapshot.data!.docs.where((doc) {
+                List participants = doc['participants'];
+                return participants.contains("$id") &&
+                    participants.contains(managerId);
+              }).toList();
 
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      reverse: true,
-                      // controller: controller.scrollController,
-                      itemCount: filteredMessages.length,
-                      itemBuilder: (context, index) {
-                        var messageData = filteredMessages[index].data();
-                        Timestamp? timestamp = messageData?["dateTime"];
-                        DateTime dateTime = timestamp?.toDate() ?? DateTime.now(); // Use current time if timestamp is null
-                        String formattedDateTime = DateFormat('hh:mm a').format(dateTime);
-                        return MessageBubble(
-                            sender: "me",
-                            text: messageData['msg'],
-                            time: formattedDateTime,
-                            isMe: messageData['sendBy'] == id
-                                ? true
-                                : false); // Assuming 'message' is the key for message content
-                      },
-                    );
-                  },
-                ),
-              ),
-            ],
+              return ListView.builder(
+                shrinkWrap: true,
+                reverse: true,
+                // controller: controller.scrollController,
+                itemCount: filteredMessages.length,
+                itemBuilder: (context, index) {
+                  var messageData = filteredMessages[index].data();
+                  Timestamp? timestamp = messageData?["dateTime"];
+                  DateTime dateTime = timestamp?.toDate() ??
+                      DateTime.now(); // Use current time if timestamp is null
+                  String formattedDateTime =
+                      DateFormat('hh:mm a').format(dateTime);
+                  return MessageBubble(
+                      sender: "me",
+                      text: messageData['msg'],
+                      time: formattedDateTime,
+                      isMe: messageData['sendBy'] == id
+                          ? true
+                          : false); // Assuming 'message' is the key for message content
+                },
+              );
+            },
           ),
           bottomSheet: Container(
             height: 80,
             width: double.infinity,
             decoration: const BoxDecoration(
-              // color: Colors.transparent,
+                // color: Colors.transparent,
                 color: Color(0xff16171B),
                 border: Border(
                     top: BorderSide(width: 1, color: Color(0xff1E2026)))),
@@ -161,17 +157,13 @@ class ClientChatScreen extends GetWidget<MessageController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: SizedBox(
-                    height: 50,
+                    // height: 50,
                     width: 250,
                     child: TextField(
+
                       controller: controller.msgController,
                       decoration: InputDecoration(
-                          prefixIcon: Transform.rotate(
-                              angle: 12,
-                              child: const Icon(
-                                Icons.attachment_outlined,
-                                color: Color(0xff8A96B3),
-                              )),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15,horizontal: 8),
                           hintText: "Message",
                           hintStyle: const TextStyle(
                             color: Color(0xff8A96B3),

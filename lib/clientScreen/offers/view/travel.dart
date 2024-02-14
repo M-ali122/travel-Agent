@@ -22,7 +22,7 @@ class TravelScreen extends GetWidget<RequestController>{
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Book your $arg'),
+              title: Text('$arg'),
             ),
             body: ListView(
               children: [

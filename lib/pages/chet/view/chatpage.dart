@@ -159,11 +159,11 @@ class ChatScreen extends GetWidget<ChatController> {
               Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: SizedBox(
-                  height: 50,
                   width: 250,
                   child: TextField(
                     controller: controller.msgController,
                     decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 15,horizontal: 8),
                         prefixIcon: Transform.rotate(
                             angle: 12,
                             child: const Icon(

@@ -151,7 +151,7 @@ class ClientScreenTabbar extends GetWidget<RequestController> {
 
   @override
   Widget build(BuildContext context) {
-    // controller.loadrequest();
+    controller.loadrequest();
     return GetBuilder<RequestController>(
       init: RequestController(),
       builder: (controller) {

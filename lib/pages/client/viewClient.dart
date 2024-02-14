@@ -8,6 +8,7 @@ import 'package:travelagentapp/pages/client/controller/client_screen_controller.
 
 import '../../res/String.dart';
 import '../../res/icons/svg.dart';
+import '../chet/view/chatpage.dart';
 import 'clientHistory.dart';
 
 class ViewClient extends GetWidget<ClientScreenController> {
@@ -115,17 +116,24 @@ class ViewClient extends GetWidget<ClientScreenController> {
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: Container(
-                                      width: 32,
-                                      height: 32,
-                                      decoration: const ShapeDecoration(
-                                        color: Color(0xFF242529),
-                                        shape: OvalBorder(),
-                                      ),
-                                      child: Center(
-                                        child: SvgPicture.string(Svgs.chetIcon),
+                                  GestureDetector(
+                                    onTap: (){
+                                      Get.toNamed(ChatScreen.route,
+                                          arguments: snapshot.data!.docs[index]["uid"]
+                                              .toString());
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Container(
+                                        width: 32,
+                                        height: 32,
+                                        decoration: const ShapeDecoration(
+                                          color: Color(0xFF242529),
+                                          shape: OvalBorder(),
+                                        ),
+                                        child: Center(
+                                          child: SvgPicture.string(Svgs.chetIcon),
+                                        ),
                                       ),
                                     ),
                                   ),

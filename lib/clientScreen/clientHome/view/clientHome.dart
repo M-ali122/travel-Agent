@@ -66,32 +66,32 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       ),
                     ),
                   ),
-              title: Container(
-                width: 150,
-                height: 36,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF30879B),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                ),
-                child:  Center(
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(BecomMemeber.route);
-                    },
-                    child: const Text(
-                      'Become a Member',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: 'SF Pro Text',
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                        letterSpacing: 0.30,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // title: Container(
+              //   width: 150,
+              //   height: 36,
+              //   decoration: ShapeDecoration(
+              //     color: const Color(0xFF30879B),
+              //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              //   ),
+              //   child:  Center(
+              //     child: InkWell(
+              //       onTap: () {
+              //         Get.toNamed(BecomMemeber.route);
+              //       },
+              //       child: const Text(
+              //         'Become a Member',
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //           fontSize: 14,
+              //           fontFamily: 'SF Pro Text',
+              //           fontWeight: FontWeight.w500,
+              //           height: 0,
+              //           letterSpacing: 0.30,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(right: 17.0),

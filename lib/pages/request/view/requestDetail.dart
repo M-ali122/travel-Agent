@@ -282,9 +282,9 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                               width: 250,
                               child: TextField(
                                 decoration: InputDecoration(
-                                    prefixIcon: Transform.rotate(
-                                        angle: 12,
-                                        child: const Icon(Icons.attachment_outlined,color: Color(0xff8A96B3),)),
+                                    // prefixIcon: Transform.rotate(
+                                    //     angle: 12,
+                                    //     child: const Icon(Icons.attachment_outlined,color: Color(0xff8A96B3),)),
                                     hintText: "Message",
                                     hintStyle: const TextStyle(color:Color(0xff8A96B3),fontSize: 11,),
                                     suffixIcon: const Icon(Icons.emoji_emotions_outlined,color:Color(0xff8A96B3)),

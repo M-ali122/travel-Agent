@@ -41,8 +41,7 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                       String depDate =
                           DateFormat('yyyy-MM-dd hh:mm a').format(date);
 
-                      if (controller.reqList[index].requestStatus ==
-                          "Accepted") {
+                      if (controller.reqList[index].requestStatus == "Accepted") {
                         return Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Container(

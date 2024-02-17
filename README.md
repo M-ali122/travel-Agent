@@ -3,7 +3,8 @@
 A new Flutter project.
 
 ## Getting Started
-
+https://firebase.google.com/codelabs/firebase-fcm-flutter#3
+https://www.youtube.com/watch?v=MTGAFvF1qVI
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

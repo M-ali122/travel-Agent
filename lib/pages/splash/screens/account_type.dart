@@ -1,7 +1,9 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
+import 'package:travelagentapp/res/notification.dart';
 import '../../../clientScreen/clientAuth/view/clientLogin.dart';
 import '../../../res/icons/svg.dart';
 import '../../auth/view/loginscreen.dart';
@@ -12,6 +14,13 @@ class AccountTypeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // AwesomeNotifications().setListeners(
+    //     onActionReceivedMethod: NotificationController.onActionReceivedMethod,
+    //   onNotificationCreatedMethod: NotificationController.onNotificationCreatedMethod,
+    //   onDismissActionReceivedMethod: NotificationController.onDismissActionReceivedMethod,
+    //   onNotificationDisplayedMethod: NotificationController.onNotificationDisplayedMethod,
+    // );
+
     return Scaffold(
       body: Stack(
         children: [
@@ -34,9 +43,10 @@ class AccountTypeScreen extends StatelessWidget {
                 AppButton(
                   title: "Client",
                   onTap: () {
-                   // Get.toNamed(InterestScreen.route);
-                    Get.toNamed(ClientLogin.route);
-                    // Get.toNamed(OnboardScreen.route);
+
+                    AwesomeNotifications().createNotification(content: NotificationContent(id: 1, channelKey: "basic chennel",title: "Zain",body: "heool"));
+                    // Get.toNamed(ClientLogin.route);
+
                   },
                 ),
                 const SizedBox(

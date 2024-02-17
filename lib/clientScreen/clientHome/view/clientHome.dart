@@ -66,6 +66,14 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       ),
                     ),
                   ),
+              title: Column(
+                children: [
+                  Text("LifeStyle Manager",style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey
+                  ),),
+                ],
+              ),
               // title: Container(
               //   width: 150,
               //   height: 36,
@@ -98,7 +106,6 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   child: GestureDetector(
                     onTap: () {
                       Get.toNamed(ClientChatScreen.route);
-                      // Get.toNamed(ClientChatListScreen.route);
                     },
                     child: Container(
                       width: 40,

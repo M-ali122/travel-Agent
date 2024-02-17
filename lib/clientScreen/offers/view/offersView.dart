@@ -200,7 +200,7 @@ class OffersScreen extends GetWidget<RequestController>{
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(arg +' Explore offers'),
+              title: Text(arg),
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 17.0),

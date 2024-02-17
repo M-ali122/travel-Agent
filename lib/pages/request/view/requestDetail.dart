@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/pages/request/controller/managerRequestController.dart';
 import '../../../res/icons/svg.dart';
@@ -59,7 +58,11 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                   height: 240.52,
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.10000000149011612),
-                    image: DecorationImage(image: NetworkImage(arg.recommendation.image),fit: BoxFit.cover),
+                    image: arg.recommendation != null
+                        ? DecorationImage(
+                        image: NetworkImage(arg.recommendation.image),
+                        fit: BoxFit.cover)
+                        : null,
                   ),
                 ),
                 Padding(
@@ -77,8 +80,8 @@ class RequestDetail extends GetWidget<ManagerRequestController> {
                           child: SvgPicture.string(Svgs.worldIcon),),
                       ),
                       SizedBox(width: 8.w,),
-                       Text(
-                        '${arg.recommendation.title}',
+                      Text(
+                        '${arg.recommendation?.title ?? "${arg}"}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientHome/model/recomModel.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
+import 'package:travelagentapp/clientScreen/clientRequestScreen/model/requestModel.dart';
 
 import '../../../helpers/views/button.dart';
 import '../../clientPageSvgs/clientPageSvgs.dart';
@@ -14,6 +15,8 @@ class TravelScreen extends GetWidget<RequestController>{
 
   var arg = Get.arguments;
 
+   RecommandModel model = RecommandModel();
+
   TextEditingController offersMessage = TextEditingController();
 
   Widget build(BuildContext context){
@@ -22,7 +25,7 @@ class TravelScreen extends GetWidget<RequestController>{
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Book your $arg'),
+              title: const Text('Book your Request'),
             ),
             body: ListView(
               children: [
@@ -121,7 +124,7 @@ class TravelScreen extends GetWidget<RequestController>{
                                 visible: controller.departureTime != null,
                                 child: Obx(() => Text(
                                     controller.departureTime.value.format(context),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
                                     fontFamily: 'SF Pro Text',
@@ -331,8 +334,8 @@ class TravelScreen extends GetWidget<RequestController>{
                       onChanged: (value) {
                         controller.addDataFromTextField(value); // Call the function here
                       },
-                      decoration: InputDecoration(
-                        hintText: 'Plan your $arg offers',
+                      decoration: const InputDecoration(
+                        hintText: 'Plan your Request',
                       ),
                     ),
                   ),

@@ -40,7 +40,7 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                actions: [
+                actions: const [
                   // Padding(
                   //   padding: EdgeInsets.only(right: 20.0),
                   //   child: Icon(
@@ -58,24 +58,35 @@ class ViewRequest extends GetWidget<ManagerRequestController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TabBar(
-                      isScrollable: true,
-                      labelColor: Color(0xff30889C),
-                      indicatorColor: Color(0xff30889C),
-                      //dividerHeight: 1,
-                      dividerColor: Color(0xff1E2026), // Adjust this padding as needed
-                      unselectedLabelColor: Color(0xff6B7280),
-                      labelPadding: EdgeInsets.symmetric(horizontal: 12.0),
-                      tabs: [
-                        Tab(text: 'All'),
-                        Tab(text: 'Pending'),
-                        Tab(text: 'Completed'),
-                        Tab(text: 'Cancelled'),
-                        Tab(text: 'Accepted'),
-                      ],
+                    const Expanded(
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: -60,
+                            right: 0,
+                            child: TabBar(
+                              isScrollable: true,
+                              labelColor: Color(0xff30889C),
+                              indicatorColor: Color(0xff30889C),
+                              //dividerHeight: 1,
+                              dividerColor: Color(0xff1E2026), // Adjust this padding as needed
+                              unselectedLabelColor: Color(0xff6B7280),
+                              labelPadding: EdgeInsets.symmetric(horizontal: 12.0),
+                              tabs: [
+                                Tab(text: 'All'),
+                                Tab(text: 'Pending'),
+                                Tab(text: 'Completed'),
+                                Tab(text: 'Cancelled'),
+                                Tab(text: 'Accepted'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     // Add the TabBarView
                     Expanded(
+                      flex: 7,
                       child: TabBarView(
                         children: [
                           // Content for Tab 1

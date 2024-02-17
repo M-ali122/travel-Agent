@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 
 import '../clientRequestScreen/view/AddRequestScreen.dart';
+import '../offers/view/travel.dart';
 import 'cancelScreen.dart';
 import 'completed.dart';
 import 'panding.dart';
@@ -36,10 +38,10 @@ class ClientPageRequest extends GetWidget<RequestController> {
             ),
             actions:  [
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: IconButton(
                     onPressed: () {
-                      Get.toNamed(AddRequest.route);
+                      Get.toNamed(TravelScreen.route,);
                     },
                     icon: const Icon(
                       Icons.add_circle_outline,
@@ -56,19 +58,32 @@ class ClientPageRequest extends GetWidget<RequestController> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Add the TabBar
-                const TabBar(
-                  isScrollable: true,
-                  labelColor: Color(0xff30889C),
-                  indicatorColor: Color(0xff30889C),
-                  //dividerHeight: 1,
-                  dividerColor: Color(0xff1E2026),
-                  unselectedLabelColor: Color(0xff6B7280),
-                  tabs: [
-                    Tab(text: 'All'),
-                    Tab(text: 'Pending'),
-                    Tab(text: 'Completed'),
-                    Tab(text: 'Cancelled'),
-                  ],
+                Container(
+                  height: 40.h,
+                  width: Get.width,
+                  child: const Stack(
+                    children: [
+                      Positioned(
+                        left: -60,
+                        right: 0,
+                        child: TabBar(
+                          isScrollable: true,
+                          labelColor: Color(0xff30889C),
+                          indicatorColor: Color(0xff30889C),
+                          //dividerHeight: 1,
+                          dividerColor: Color(0xff1E2026),
+                          unselectedLabelColor: Color(0xff6B7280),
+                          // labelPadding: EdgeInsets.symmetric(horizontal: 7),
+                          tabs: [
+                            Tab(text: 'All'),
+                            Tab(text: 'Pending'),
+                            Tab(text: 'Completed'),
+                            Tab(text: 'Cancelled'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 // Add the TabBarView
                 Expanded(

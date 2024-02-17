@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../clientHome/controller/recomController.dart';
-
 class CancellScreen extends GetWidget<RequestController> {
   CancellScreen({super.key});
 
@@ -23,25 +21,34 @@ class CancellScreen extends GetWidget<RequestController> {
             onTap: () {
               // Get.toNamed(ClientPageSandRequest.route);
             },
-            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Cancelled') ? Center(child: Text('Cancel Data not found'),) :
-            ListView.builder(
+            child: controller.reqList.isEmpty ||
+                !controller.reqList.any((element) => element.requestStatus == 'Cancelled')
+                ? Center(child: Text('Cancel Data not found'),)
+                : ListView.builder(
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
 
-                Timestamp? timestamp = controller.reqList[index].returnDate;
-                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                String formatedReturnTime =
-                DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                final request = controller.reqList[index];
+                final recommendation = request.recommendation;
 
-                Timestamp? datestamp =
-                    controller.reqList[index].recommendation.depDate;
-                DateTime date = datestamp?.toDate() ?? DateTime.now();
-                String depDate =
-                DateFormat('yyyy-MM-dd hh:mm a').format(date);
+                final currentDate = request.currentTime != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    request.currentTime!.toDate())
+                    : 'Unknown';
+
+                final departureDate = request.departureDate != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    request.departureDate!.toDate())
+                    : '$currentDate';
+
+                final depDate = recommendation?.depDate != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    recommendation!.depDate!.toDate())
+                    : '$departureDate';
 
 
-                if(controller.reqList[index].recommendation.requestStatus == 'Cancelled'){
+                if(controller.reqList[index].requestStatus == 'Cancelled'){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(
@@ -60,8 +67,7 @@ class CancellScreen extends GetWidget<RequestController> {
                           height: 60,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    controller.reqList.value[index].recommendation.image),
+                                image: NetworkImage(recommendation?.image ?? ''),
                                 fit: BoxFit.cover
                             ),
                             color: Colors.black.withOpacity(0.10000000149011612),
@@ -71,10 +77,11 @@ class CancellScreen extends GetWidget<RequestController> {
                           ),
                         ),
                         title: Text(
-                          '${controller.reqList.value[index].recommendation.title}',
+                          '${recommendation?.title ??
+                              '${controller.reqList[index].type}'}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
+                            fontSize: 15,
                             fontFamily: 'SF Pro Text',
                             fontWeight: FontWeight.w500,
                             height: 0.10,
@@ -107,10 +114,10 @@ class CancellScreen extends GetWidget<RequestController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${controller.reqList.value[index].recommendation.requestStatus}',
+                              '${controller.reqList.value[index].requestStatus}',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
-                                color: Color(0xffF2994A),
+                                color: Colors.red,
                                 fontSize: 10,
                                 fontFamily: 'SF Pro Text',
                                 fontWeight: FontWeight.w500,

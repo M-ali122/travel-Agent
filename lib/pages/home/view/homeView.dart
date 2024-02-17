@@ -16,7 +16,7 @@ class HomeView extends GetWidget <ManagerRequestController>{
   HomeView({super.key});
 
   var arrColor = [const Color(0xff9BCFDB), const Color(0xffFBE8AC), const Color(0xff82D6A6)];
-  var arrTime = ['08:00', '10:00', '12:00', '14:00'];
+  var arrTime = ['08:00', '10:00', '12:00',];
   var arrScheduleText = [
     'Yoga Classes',
     'Lamborghini on Rent',
@@ -329,30 +329,50 @@ class HomeView extends GetWidget <ManagerRequestController>{
                       itemCount: controller.reqList.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        RequestModel reqlist = controller.reqList[index];
-                        Timestamp? timestamp = reqlist.recommendation.depDate;
-                        DateTime today = DateTime.now();
-                        DateTime? requestDate = timestamp?.toDate();
-                        Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
-                        DateTime date = datestamp?.toDate() ?? DateTime.now();
-                        String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
 
-                        if(requestDate!.year == today.year
-                           && requestDate.month == today.month
-                           && requestDate.day == today.day){
+                        RequestModel reqlist = controller.reqList[index];
+                        // Timestamp? timestamp = reqlist.recommendation.depDate;
+                        // DateTime today = DateTime.now();
+                        // DateTime? requestDate = timestamp?.toDate();
+                        // Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
+                        // DateTime date = datestamp?.toDate() ?? DateTime.now();
+                        // String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
+
+                        final request = controller.reqList[index];
+                        final recommendation = request.recommendation;
+
+                        final currentDate = request.currentTime != null
+                            ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                            request.currentTime!.toDate())
+                            : 'Unknown';
+
+                        final departureDate = request.departureDate != null
+                            ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                            request.departureDate!.toDate())
+                            : '$currentDate';
+
+                        final depDate = recommendation?.depDate != null
+                            ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                            recommendation!.depDate!.toDate())
+                            : '$departureDate';
+
+
+                        // if(requestDate!.year == today.year
+                        //    && requestDate.month == today.month
+                        //    && requestDate.day == today.day){
                           if (reqlist.requestStatus == "Accepted") {
                             return Column(
                               children: [
                                 Row(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10.0),
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 10.0),
                                       child: SizedBox(
                                         width: 38,
                                         height: 14,
                                         child: Text(
-                                          arrTime[index],
-                                          style: const TextStyle(
+                                          '08:00',
+                                          style: TextStyle(
                                             color: Color(0xFF9CA3AF),
                                             fontSize: 12,
                                             fontFamily: 'SF Pro Text',
@@ -377,9 +397,6 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                 ),
                                 Row(
                                   children: [
-                                    // const CircleAvatar(
-                                    //   foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                    // ),
                                     StreamBuilder(
                                       stream: FirebaseFirestore.instance
                                           .collection(Strings().kUser)
@@ -420,7 +437,9 @@ class HomeView extends GetWidget <ManagerRequestController>{
                                                 height: 22,
                                               ),
                                               Text(
-                                                '${reqlist.recommendation.title}',
+                                                '${recommendation?.title ??
+                                                    '${controller.reqList[index].type}'}',
+                                                // '${controller.reqList[index].title}',
                                                 style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 13,
@@ -476,11 +495,10 @@ class HomeView extends GetWidget <ManagerRequestController>{
                             return Container(
                             );
                           }
-                        }else {
-                          return Container(
-                          );
-                        }
-
+                        // }else {
+                        //   return Container(
+                        //   );
+                        // }
                       },
                     )),
                   ),

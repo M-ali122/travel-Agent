@@ -54,6 +54,8 @@ class DataCollectionController extends GetxController {
 
   void getLocation() async {
     ClientAuthController _controller = Get.put(ClientAuthController());
+
+
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -61,6 +63,7 @@ class DataCollectionController extends GetxController {
       showErrorMessage("Location Service Disabled");
       return Future.error('Location services are disabled.');
     }
+
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -72,9 +75,7 @@ class DataCollectionController extends GetxController {
 
     if (permission == LocationPermission.deniedForever) {
       showErrorMessage("Location permissions are permanently denied, we cannot request permissions.");
-      return Future.error(
-
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
     var loaction = await Geolocator.getCurrentPosition();
     print(loaction);
@@ -83,7 +84,9 @@ class DataCollectionController extends GetxController {
     _controller.clientModel.value.location = loaction.toString();
     _controller.clientModel.value.lat = loaction.latitude.toString();
     _controller.clientModel.value.lon = loaction.longitude.toString();
+
     _controller.firstTimeDataStore();
+
     Get.offAllNamed(ClientNavbar.route);
 
   }

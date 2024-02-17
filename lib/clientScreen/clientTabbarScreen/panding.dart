@@ -166,17 +166,35 @@ class PandingView extends GetWidget<RequestController> {
               itemCount: controller.reqList.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
+                //
+                // Timestamp? timestamp = controller.reqList[index].returnDate;
+                // DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
+                // String formatedReturnTime =
+                // DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                //
+                // Timestamp? datestamp =
+                //     controller.reqList[index].recommendation.depDate;
+                // DateTime date = datestamp?.toDate() ?? DateTime.now();
+                // String depDate =
+                // DateFormat('yyyy-MM-dd hh:mm a').format(date);
+                //
+                final request = controller.reqList[index];
+                final recommendation = request.recommendation;
 
-                Timestamp? timestamp = controller.reqList[index].returnDate;
-                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                String formatedReturnTime =
-                DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                final currentDate = request.currentTime != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    request.currentTime!.toDate())
+                    : 'Unknown';
 
-                Timestamp? datestamp =
-                    controller.reqList[index].recommendation.depDate;
-                DateTime date = datestamp?.toDate() ?? DateTime.now();
-                String depDate =
-                DateFormat('yyyy-MM-dd hh:mm a').format(date);
+                final departureDate = request.departureDate != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    request.departureDate!.toDate())
+                    : '$currentDate';
+
+                final depDate = recommendation?.depDate != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    recommendation!.depDate!.toDate())
+                    : '$departureDate';
 
                 if(controller.reqList[index].requestStatus == "Pending"){
                   return Padding(
@@ -197,8 +215,7 @@ class PandingView extends GetWidget<RequestController> {
                           height: 60,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    controller.reqList.value[index].recommendation.image),
+                                image: NetworkImage(recommendation?.image ?? ''),
                                 fit: BoxFit.cover
                             ),
                             color: Colors.black.withOpacity(0.10000000149011612),
@@ -208,7 +225,8 @@ class PandingView extends GetWidget<RequestController> {
                           ),
                         ),
                         title: Text(
-                          '${controller.reqList.value[index].recommendation.title}',
+                          '${recommendation?.title ??
+                              '${controller.reqList[index].type}'}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 13,

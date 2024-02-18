@@ -30,18 +30,31 @@ class PanddingView extends GetWidget<ManagerRequestController> {
         return Scaffold(
           body: controller.reqList.isEmpty ||
               !controller.reqList.any((element) => element.requestStatus == 'Pending')
-              ? Center(child: const Text('No Pending Data found')):
+              ? const Center(child: Text('No Pending Data found')):
           ListView.builder(
             shrinkWrap: true,
             itemCount: controller.reqList.length,
             itemBuilder: (context, index) {
 
-              Timestamp? timestamp = controller.reqList[index].returnDate;
-              DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-              String formatedReturnTime = DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
-              Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
-              DateTime date = datestamp?.toDate() ?? DateTime.now();
-              String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
+
+              final request = controller.reqList[index];
+              final recommendation = request.recommendation;
+
+              final currentDate = request.currentTime != null
+                  ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                  request.currentTime!.toDate())
+                  : 'Unknown';
+
+              final departureDate = request.departureDate != null
+                  ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                  request.departureDate!.toDate())
+                  : '$currentDate';
+
+              final depDate = recommendation?.depDate != null
+                  ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                  recommendation!.depDate!.toDate())
+                  : '$departureDate';
+
 
               if(controller.reqList[index].requestStatus == "Pending"){
                 return Padding(
@@ -92,7 +105,8 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                           title: Row(
                             children: [
                               Text(
-                                '${controller.reqList.value[index].recommendation.title}',
+                                '${recommendation?.title ??
+                                    '${controller.reqList[index].type}'}',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -259,8 +273,8 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 15.0),
                           child: Row(
                             children: [
                               // Padding(
@@ -293,7 +307,7 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                               //   ),
                               // ),
                               // Spacer(),
-                              const Padding(
+                              Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'Return Date:',
@@ -308,10 +322,10 @@ class PanddingView extends GetWidget<ManagerRequestController> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  formatedReturnTime,
-                                  style: const TextStyle(
+                                  'formatedReturnTime',
+                                  style: TextStyle(
                                     color: Color(0xFF6B7280),
                                     fontSize: 12,
                                     fontFamily: 'SF Pro Text',

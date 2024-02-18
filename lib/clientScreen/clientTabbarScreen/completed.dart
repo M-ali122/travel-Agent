@@ -21,23 +21,35 @@ class CompletedScreen extends GetWidget<RequestController> {
             onTap: () {
               // Get.toNamed(ClientPageSandRequest.route);
             },
-            child: controller.reqList.isEmpty || !controller.reqList.any((element) => element.requestStatus == 'Completed')? Center(child: Text('No Completed Resquest Found'))
+            child: controller.reqList.isEmpty ||
+                !controller.reqList.any((element) =>
+                element.requestStatus == 'Completed')?
+            Center(child: Text('No Completed Resquest Found'))
                 : ListView.builder(
-              itemCount: controller.reqList.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                Timestamp? timestamp = controller.reqList[index].returnDate;
-                DateTime dateTime = timestamp?.toDate() ?? DateTime.now();
-                String formatedReturnTime =
-                DateFormat('yyyy-MM-dd hh:mm a').format(dateTime);
+                itemCount: controller.reqList.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
 
-                Timestamp? datestamp =
-                    controller.reqList[index].recommendation.depDate;
-                DateTime date = datestamp?.toDate() ?? DateTime.now();
-                String depDate =
-                DateFormat('yyyy-MM-dd hh:mm a').format(date);
+                  final request = controller.reqList[index];
+                  final recommendation = request.recommendation;
 
-                if(controller.reqList[index].requestStatus == 'Accepted'){
+                  final currentDate = request.currentTime != null
+                      ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                      request.currentTime!.toDate())
+                      : 'Unknown';
+
+                  final departureDate = request.departureDate != null
+                      ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                      request.departureDate!.toDate())
+                      : '$currentDate';
+
+                  final depDate = recommendation?.depDate != null
+                      ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                      recommendation!.depDate!.toDate())
+                      : '$departureDate';
+
+
+                  if(controller.reqList[index].requestStatus == 'Completed'){
                   return Padding(
                     padding: const EdgeInsets.only(top:10.0),
                     child: Container(
@@ -56,8 +68,7 @@ class CompletedScreen extends GetWidget<RequestController> {
                           height: 60,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    controller.reqList.value[index].recommendation.image),
+                                image: NetworkImage(recommendation?.image ?? ''),
                                 fit: BoxFit.cover
                             ),
                             color: Colors.black.withOpacity(0.10000000149011612),
@@ -67,7 +78,8 @@ class CompletedScreen extends GetWidget<RequestController> {
                           ),
                         ),
                         title: Text(
-                          '${controller.reqList.value[index].recommendation.title}',
+                          '${recommendation?.title ??
+                              '${controller.reqList[index].type}'}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -103,7 +115,7 @@ class CompletedScreen extends GetWidget<RequestController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${controller.reqList.value[index].recommendation.requestStatus}',
+                              '${controller.reqList.value[index].requestStatus}',
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xff27AE60),

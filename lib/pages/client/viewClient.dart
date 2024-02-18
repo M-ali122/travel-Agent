@@ -72,12 +72,12 @@ class ViewClient extends GetWidget<ClientScreenController> {
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else if (snapshot.data == null ||
                           snapshot.data!.docs.isEmpty) {
-                        return Text('No Data Available');
+                        return const Text('No Data Available');
                       } else {
                         return ListView.builder(
                           shrinkWrap: true,
@@ -91,7 +91,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                                 width: 130.38,
                                 child: Text(
                                   "${snapshot.data!.docs[index]['name']}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontFamily: 'SF Pro Text',
@@ -104,7 +104,7 @@ class ViewClient extends GetWidget<ClientScreenController> {
                                 width: 172,
                                 child: Text(
                                   '${snapshot.data!.docs[index]["email"]}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF9CA3AF),
                                     fontSize: 13,
                                     fontFamily: 'SF Pro Text',

@@ -1,130 +1,16 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:get_storage/get_storage.dart';
-// import 'package:travelagentapp/clientScreen/clientRequestScreen/model/requestModel.dart';
-//
-// import '../../../res/String.dart';
-// import '../../clientHome/model/recomModel.dart';
-//
-//
-// class RequestController extends GetxController {
-//
-//   Rx<RequestModel>  request = RequestModel().obs;
-//   var firestore = FirebaseFirestore.instance;
-//
-//   Future<void> addRequest(RecommendedModel model) async {
-//     try {
-//       Map<String, dynamic> requestData = request.value.toJson();
-//       requestData['departureTime'] = '${departureTime.hour}:${departureTime.minute}';
-//       requestData['returnTime'] = '${returnTime.hour}:${returnTime.minute}';
-//
-//       requestData['departureDate'] = departureDate;
-//       requestData['returnDate'] = returnDate;
-//       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
-//       requestData['requestDetail'] = model.toJson();
-//
-//       await FirebaseFirestore.instance.collection(Strings().kRequest).add(requestData);
-//       print('request adding successfully');
-//       update();
-//     } catch (e) {
-//       print('Error adding request: $e');
-//     }
-//   }
-//
-//   Rx<DateTime> departureDate = DateTime.now().obs;
-//   Rx<TimeOfDay> departureTime = TimeOfDay.now().obs;
-//   Rx<DateTime> returnDate = DateTime.now().obs;
-//   Rx<TimeOfDay> returnTime = TimeOfDay.now().obs;
-//   RxInt selectedNumberOfPeople = 1.obs;
-//
-//   List<int> numberOfPeopleOptions = [1, 2, 3, 4, 5];
-//
-//   Future<void> selectDepartureDate(BuildContext context) async {
-//     final DateTime picked = (await showDatePicker(
-//       context: context,
-//       initialDate: departureDate,
-//       firstDate: DateTime.now(),
-//       lastDate: DateTime(2101),
-//     ))!;
-//     if (picked != null && picked != departureDate) {
-//       departureDate = picked;
-//       print('Departure date selected: $departureDate');
-//       update(); // Notify the UI about the change
-//     } else {
-//       print('Departure date selection canceled');
-//     }
-//   }
-//
-//
-//   Future<void> selectReturnDate(BuildContext context) async {
-//     final DateTime picked = (await showDatePicker(
-//       context: context,
-//       initialDate: returnDate,
-//       firstDate: DateTime.now(),
-//       lastDate: DateTime(2101),
-//     ))!;
-//     if (picked != null && picked != returnDate) {
-//       returnDate = picked;
-//       print('not work');
-//       update();
-//     }
-//     print('work');
-//   }
-//
-//   Future<void> selectDepartureTime(BuildContext context) async {
-//     final TimeOfDay picked = (await showTimePicker(
-//       context: context,
-//       initialTime: departureTime,
-//     ))!;
-//     if (picked != null && picked != departureTime) {
-//       departureTime = picked;
-//       update();
-//     }
-//   }
-//
-//   Future<void> selectReturnTime(BuildContext context) async {
-//     final TimeOfDay picked = (await showTimePicker(
-//       context: context,
-//       initialTime: returnTime,
-//     ))!;
-//     if (picked != null && picked != returnTime) {
-//       returnTime = picked;
-//       update();
-//     }
-//   }
-//
-//   void updateNumberOfPeople(int value) {
-//     int selectedIndex = numberOfPeopleOptions.indexOf(value);
-//     numberOfPeopleOptions.removeAt(selectedIndex);
-//     numberOfPeopleOptions.insert(0, value);
-//     selectedNumberOfPeople.value = value;
-//     print('Selected number of people: $selectedNumberOfPeople');
-//     update();
-//   }
-//
-//
-//
-// }
-//
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
-import 'package:travelagentapp/clientScreen/clientAuth/controller/clientAuthController.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/model/requestModel.dart';
-import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
-
 import '../../../res/String.dart';
-import '../../clientHome/model/recomModel.dart';
 
 class RequestController extends GetxController {
   ClientProfileController profileController =
       Get.put(ClientProfileController());
 
-  bool requestSent = false; // Track the state of request
+  bool requestSent = false;
 
 
   @override
@@ -155,6 +41,9 @@ class RequestController extends GetxController {
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = null;
       requestData['requestId'] = id;
+      requestData['type'] = null;
+
+
 
       var box = GetStorage();
       String uid = box.read("uid");
@@ -253,37 +142,112 @@ class RequestController extends GetxController {
 
   RxList<RequestModel> reqList = <RequestModel>[].obs;
 
+  // void loadrequest() async {
+  //   var box = GetStorage();
+  //   var id = box.read('uid');
+  //   reqList.clear();
+  //
+  //   var res = await firestore
+  //       .collection(Strings().kRequest)
+  //       .where("uid", isEqualTo: id.toString())
+  //       .get();
+  //
+  //
+  //    print('res is in model $res');
+  //
+  //   if (res.docs.isNotEmpty) {
+  //     res.docs.forEach((element) {
+  //       RequestModel requestModel = RequestModel.fromJson(element.data());
+  //       reqList.add(requestModel);
+  //     });
+  //     update();
+  //   } else {}
+  //
+  //
+  //
+  // }
+
+  // void loadrequest() async {
+  //   try {
+  //     var box = GetStorage();
+  //     var id = box.read('uid');
+  //     reqList.clear();
+  //
+  //     var res = await firestore
+  //         .collection(Strings().kRequest)
+  //         .where("uid", isEqualTo: id.toString())
+  //         .get();
+  //
+  //     print('res is in model ${res.docs.length}');
+  //
+  //     if (res.docs.isNotEmpty) {
+  //       res.docs.forEach((element) {
+  //         print('Request data by new: ${element.data()}');
+  //         RequestModel requestModel = RequestModel.fromJson(element.data());
+  //         reqList.add(requestModel);
+  //
+  //         print('new reqlist is ${reqList.length}');
+  //       });
+  //       update();
+  //     } else {
+  //       print('No requests found');
+  //     }
+  //   } catch (e) {
+  //     print('Error loading requests: $e');
+  //   }
+  // }
+
   void loadrequest() async {
-    var box = GetStorage();
-    var id = box.read('uid');
-    reqList.clear();
+    try {
+      var box = GetStorage();
+      var id = box.read('uid');
+      reqList.clear();
 
-    var res = await firestore
-        .collection(Strings().kRequest)
-        .where("uid", isEqualTo: id.toString())
-        .get();
+      var res = await firestore
+          .collection(Strings().kRequest)
+          .where("uid", isEqualTo: id.toString())
+          .get();
 
-    if (res.docs.isNotEmpty) {
-      res.docs.forEach((element) {
-        RequestModel requestModel = RequestModel.fromJson(element.data());
-        reqList.add(requestModel);
-      });
-      update();
-    } else {}
+      print('Number of documents received: ${res.docs.length}');
+
+      if (res.docs.isNotEmpty) {
+        // res.docs.forEach((element) {
+        //   try {
+        //     print('Request data by new: ${element.data()}');
+        //     RequestModel requestModel = RequestModel.fromJson(element.data());
+        //     reqList.add(requestModel);
+        //   } catch (e) {
+        //     print('Error parsing request data: $e');
+        //   }
+        // });
+        res.docs.forEach((element) {
+          final requestData = element.data();
+          if (requestData != null) {
+            try {
+              print('Request data by new: $requestData');
+              RequestModel requestModel = RequestModel.fromJson(requestData);
+              reqList.add(requestModel);
+            } catch (e) {
+              print('Error parsing request data: $e');
+            }
+          } else {
+            print('Document data is null');
+          }
+        });
+        print('Updated reqList length: ${reqList.length}');
+        update();
+      } else {
+        print('No requests found');
+      }
+    } catch (e) {
+      print('Error loading requests: $e');
+    }
   }
 
-  void addDataFromTextField(String text) {
-    // Example of adding data to the recommendation field
-    request.update((val) {
-      val!.recommendation['textFieldData'] = text;
-    });
-  }
 
   Rx<RequestModel> offeresRequest = RequestModel().obs;
 
-  Future<void> addOffersRequest(
-    String offersMessage,
-  ) async {
+  Future<void> addOffersRequest(String offersMessage) async {
     try {
       _toggle();
       var id = DateTime.now().microsecondsSinceEpoch;
@@ -293,20 +257,21 @@ class RequestController extends GetxController {
       requestData['returnTime'] =
           '${returnTime.value.hour}:${returnTime.value.minute}';
 
-      requestData['offersMessage'] = offersMessage;
       requestData['departureDate'] = departureDate.value;
       requestData['returnDate'] = returnDate.value;
       requestData['numberOfPeople'] = selectedNumberOfPeople.value;
       // requestData['requestDetail'] = model.toJson();
       requestData['requestStatus'] = 'Pending';
       requestData['accepterId'] = profileController.user.value.managerId;
-      requestData['requestId'] = id; // Adding text field data
+      requestData['requestId'] = id;
+      requestData['description'] = offersMessage;
+      requestData['type'] = 'TravelRequest';
 
       var box = GetStorage();
       String uid = box.read("uid");
       requestData['uid'] = uid.toString();
       await FirebaseFirestore.instance
-          .collection(Strings().kOfferRequest)
+          .collection(Strings().kRequest)
           .doc(id.toString())
           .set(requestData);
       Get.back();
@@ -336,16 +301,18 @@ class RequestController extends GetxController {
       var id = DateTime.now().microsecondsSinceEpoch;
       Map<String, dynamic> requestData = request.value.recommendation ?? {};
 
-      requestData['offersMessage'] = offersMessage;
       requestData['requestStatus'] = 'Pending';
-
+      requestData['description'] = offersMessage;
+      requestData['type'] = 'Custom';
       requestData['accepterId'] = profileController.user.value.managerId;
       requestData['requestId'] = id;
+      requestData['currentTime'] = DateTime.now();
+
       var box = GetStorage();
       String uid = box.read("uid");
       requestData['uid'] = uid.toString();
       await FirebaseFirestore.instance
-          .collection(Strings().kOfferRequest)
+          .collection(Strings().kRequest)
           .doc(id.toString())
           .set(requestData);
       Get.back();
@@ -369,6 +336,13 @@ class RequestController extends GetxController {
   void _toggle() {
     busy.toggle();
     update();
+  }
+
+
+  void addDataFromTextField(String text) {
+    request.update((val) {
+      val!.recommendation['textFieldData'] = text;
+    });
   }
 
 }

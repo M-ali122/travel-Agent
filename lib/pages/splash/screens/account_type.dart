@@ -44,8 +44,8 @@ class AccountTypeScreen extends StatelessWidget {
                   title: "Client",
                   onTap: () {
 
-                    AwesomeNotifications().createNotification(content: NotificationContent(id: 1, channelKey: "basic chennel",title: "Zain",body: "heool"));
-                    // Get.toNamed(ClientLogin.route);
+                    // AwesomeNotifications().createNotification(content: NotificationContent(id: 1, channelKey: "basic chennel",title: "Zain",body: "heool"));
+                    Get.toNamed(ClientLogin.route);
 
                   },
                 ),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,7 @@ import 'package:travelagentapp/res/dark_theme.dart';
 
 import '../../../clientScreen/clientRequestScreen/model/requestModel.dart';
 import '../../../res/String.dart';
+import '../../../res/icons/svg.dart';
 
 class HomeView extends GetWidget <ManagerRequestController>{
   HomeView({super.key});
@@ -85,8 +87,16 @@ class HomeView extends GetWidget <ManagerRequestController>{
                     ],
                   ),
                   const Spacer(),
+
                   CircleAvatar(
-                    foregroundImage: NetworkImage(profileController.loadUserModel.value.profile),
+                    backgroundColor: Color(0xff222326),
+                    child:SvgPicture.string(
+                      Svgs.defaultProfile, // Replace 'assets/person.svg' with your SVG file path
+                      width: 25,
+                      height: 25,
+                      // color: Color(0xff81868b),
+                    ) ,
+                    // foregroundImage: NetworkImage(profileController.loadUserModel.value.profile),
                   )
                 ],
               ),

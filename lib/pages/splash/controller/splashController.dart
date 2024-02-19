@@ -33,6 +33,7 @@ class SplashController extends GetxController {
 
         String userType = userData['userType'];
         bool active = userData['activeStatus'];
+        print(active);
         if (active == true) {
           if (userType == "LifeStyleManager") {
             Get.offAllNamed(BottomnavBar.route);

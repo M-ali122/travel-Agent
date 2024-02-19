@@ -56,14 +56,21 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                     child: Container(
                       width: 40,
                       height: 40,
-                      decoration: const ShapeDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                            'assets/emoji/profile2.png'),
-                        fit: BoxFit.cover
-                    ),
-                          shape: CircleBorder()
+                      child: SvgPicture.string(
+                        Svgs.defaultProfile,
+                        width: 25,
+                        height: 25,
+                        // Replace with your SVG file path
+                        // fit: BoxFit.cover,
                       ),
+                    //   decoration: const ShapeDecoration(
+                    // image: DecorationImage(
+                    //     image: AssetImage(
+                    //         'assets/emoji/profile2.png'),
+                    //     fit: BoxFit.cover
+                    // ),
+                    //       shape: CircleBorder()
+                    //   ),
                     ),
                   ),
               title: Column(
@@ -159,21 +166,25 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[0],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.meetandGreetIcon),
-                            SizedBox(height: 6.h,),
-                            const Text(
-                              'Meet & Greet',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.meetandGreetIcon),
+                              SizedBox(height: 6.h,),
+                              const Text(
+                                'Meet & Greet',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -183,24 +194,28 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[1],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.eventSvg),
-                            SizedBox(height: 6.h,),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                'Events',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.eventSvg),
+                              SizedBox(height: 6.h,),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  'Events',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -210,24 +225,28 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[2],
                           );
                       },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.travel),
-                            SizedBox(height: 6.h,),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                'Travel',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.travel),
+                              SizedBox(height: 6.h,),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  'Travel',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -237,21 +256,25 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[3],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.transportSvg),
-                            SizedBox(height: 6.h,),
-                            const Text(
-                              'Transport',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.transportSvg),
+                              SizedBox(height: 6.h,),
+                              const Text(
+                                'Transport',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -267,21 +290,25 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[4],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.plateSvg),
-                            SizedBox(height: 6.h,),
-                            const Text(
-                              'Dining',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.plateSvg),
+                              SizedBox(height: 6.h,),
+                              const Text(
+                                'Dining',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -291,24 +318,28 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[5],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.wellness),
-                            SizedBox(height: 6.h,),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                'Wellness',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.wellness),
+                              SizedBox(height: 6.h,),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  'Wellness',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -318,24 +349,28 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[6],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.gifiting),
-                            SizedBox(height: 6.h,),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 3.0),
-                              child: Text(
-                                'Gifting',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'SF Pro Text',
-                                  fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.gifiting),
+                              SizedBox(height: 6.h,),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  'Gifting',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'SF Pro Text',
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
@@ -345,21 +380,25 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                             arguments: offersTitle[7],
                           );
                         },
-                        child: Column(
-                          children: [
-                            SvgPicture.string(ClientSvgs.others),
-                            SizedBox(height: 6.h,),
-                            const Text(
-                              'Others',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'SF Pro Text',
-                                fontWeight: FontWeight.w400,
+                        child: Container(
+                          width:80,
+                          height: 80,
+                          child: Column(
+                            children: [
+                              SvgPicture.string(ClientSvgs.others),
+                              SizedBox(height: 6.h,),
+                              const Text(
+                                'Others',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'SF Pro Text',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],

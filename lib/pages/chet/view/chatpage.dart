@@ -150,7 +150,7 @@ class ChatScreen extends GetWidget<ChatController> {
           height: 80,
           width: double.infinity,
           decoration: const BoxDecoration(
-            // color: Colors.transparent,
+
               color: Color(0xff16171B),
               border: Border(
                   top: BorderSide(width: 1, color: Color(0xff1E2026)))),

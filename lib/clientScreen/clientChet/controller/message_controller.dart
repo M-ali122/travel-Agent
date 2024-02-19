@@ -14,7 +14,7 @@ class MessageController extends GetxController{
 
   TextEditingController msgController = TextEditingController();
 
-
+  FocusNode focusNode = FocusNode();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   void sendMessage(String sendToId)async{
     var id = DateTime.now().microsecondsSinceEpoch;
@@ -32,7 +32,9 @@ class MessageController extends GetxController{
     try{
     await firestore.collection(Strings().kMessage).doc(id.toString()).set(messageModel.toJson()).then((value) {
         msgController.clear();
+        update();
       });
+
 
     }catch(e){
       showErrorMessage("Error While Loading");
@@ -55,6 +57,11 @@ class MessageController extends GetxController{
 
     // Scroll to the bottom of the list
     scrollController.jumpTo(scrollController.position.maxScrollExtent);
+  }
+  var focusNodes = false.obs;
+  void updateFocus() {
+    // focusNodes.value = hasFocus;
+    update();
   }
 
 }

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/res/icons/svg.dart';
 import '../../../res/String.dart';
 import '../controller/message_controller.dart';
 import 'chatpage.dart';
@@ -78,7 +80,7 @@ class Inbox extends GetWidget<ChatController> {
                         return Row(
                           children: [
                             CircleAvatar(
-                              backgroundColor: Get.theme.dividerColor,
+                              backgroundColor: Color(0xff222326),
                               child: snapshot.data!.docs[index]["profile"] != null
                                   ? ClipOval(
                                    child: Image.network(
@@ -88,10 +90,11 @@ class Inbox extends GetWidget<ChatController> {
                                    fit: BoxFit.cover,
                                    ),
                               )
-                                  : Icon(
-                                Icons.person,
-                                size: 25,
-                                color: Colors.black,
+                                  : SvgPicture.string(
+                                Svgs.defaultProfile, // Replace 'assets/person.svg' with your SVG file path
+                                width: 25,
+                                height: 25,
+                                // color: Color(0xff81868b),
                               ),
                             ),
                             Expanded(

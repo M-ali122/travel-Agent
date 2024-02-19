@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import 'package:travelagentapp/clientScreen/ClientprofileScreen/Controller/client_profile_controller.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/view/sandRequest.dart';
+import 'package:travelagentapp/res/icons/svg.dart';
 import '../clientHome/controller/recomController.dart';
 import '../clientPageSvgs/clientPageSvgs.dart';
 import 'ClientProfileSetting.dart';
@@ -66,7 +67,7 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
               Container(
                 width: 375,
                 height: 260,
-                decoration: const BoxDecoration(color: Color(0xFF1B1C21)),
+                decoration:  BoxDecoration(color: Color(0xFF1B1C21)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -94,17 +95,26 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                             : Container(
                           width: 120,
                           height: 120,
-                          decoration: const ShapeDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/emoji/profile2.png'),fit: BoxFit.cover
-                            ),
-                            shape: OvalBorder(
-                              side: BorderSide(
-                                  width: 4.98, color: Color(0x304E7B86)
-                              ),
+                          child:  CircleAvatar(
+                            backgroundColor: Color(0xff222326),
+                            radius: 40,
+                            child: SvgPicture.string(
+                              Svgs.defaultProfile,
+                              width: 38,
+                              height: 38,
                             ),
                           ),
+                          // decoration: const ShapeDecoration(
+                          //   image: DecorationImage(
+                          //       image: AssetImage(
+                          //           'assets/emoji/profile2.png'),fit: BoxFit.cover
+                          //   ),
+                          //   shape: OvalBorder(
+                          //     side: BorderSide(
+                          //         width: 4.98, color: Color(0x304E7B86)
+                          //     ),
+                          //   ),
+                          // ),
                         ),
                         GestureDetector(
                           onTap: () {

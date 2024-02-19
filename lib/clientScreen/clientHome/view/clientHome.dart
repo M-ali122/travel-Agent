@@ -5,13 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
-import 'package:travelagentapp/clientScreen/clientHome/view/memberScreen.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
 
-import '../../../res/String.dart';
 import '../../ClientprofileScreen/Controller/client_profile_controller.dart';
 import '../../clientChet/view/clientChetScreen.dart';
-import '../../clientChet/view/client_chat_list.dart';
 import '../../clientPageSvgs/clientPageSvgs.dart';
 import '../../clientRequestScreen/view/sandRequest.dart';
 import '../../offers/view/offersView.dart';

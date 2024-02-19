@@ -93,8 +93,7 @@ class ChatScreen extends GetWidget<ChatController> {
         ),
         body: Column(
           children: [
-            Container(
-              height: Get.height *0.77,
+            Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection(Strings().kMessage)
@@ -144,70 +143,72 @@ class ChatScreen extends GetWidget<ChatController> {
                 },
               ),
             ),
-          ],
-        ),
-        bottomSheet: Container(
-          height: 80,
-          width: double.infinity,
-          decoration: const BoxDecoration(
 
-              color: Color(0xff16171B),
-              border: Border(
-                  top: BorderSide(width: 1, color: Color(0xff1E2026)))),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: SizedBox(
-                  width: 250,
-                  child: TextField(
-                    controller: controller.msgController,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(vertical: 15,horizontal: 8),
-                        prefixIcon: Transform.rotate(
-                            angle: 12,
-                            child: const Icon(
-                              Icons.attachment_outlined,
+            Container(
+              height: 80,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+
+                  color: Color(0xff16171B),
+                  border: Border(
+                      top: BorderSide(width: 1, color: Color(0xff1E2026)))),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: SizedBox(
+                      width: 250,
+                      child: TextField(
+                        controller: controller.msgController,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 15,horizontal: 8),
+                            prefixIcon: Transform.rotate(
+                                angle: 12,
+                                child: const Icon(
+                                  Icons.attachment_outlined,
+                                  color: Color(0xff8A96B3),
+                                )),
+                            hintText: "Message",
+                            hintStyle: const TextStyle(
                               color: Color(0xff8A96B3),
-                            )),
-                        hintText: "Message",
-                        hintStyle: const TextStyle(
-                          color: Color(0xff8A96B3),
-                          fontSize: 11,
-                        ),
-                        suffixIcon: const Icon(Icons.emoji_emotions_outlined,
-                            color: Color(0xff8A96B3)),
-                        fillColor: Colors.grey.withOpacity(0.2),
-                        filled: true),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0),
-                child: InkWell(
-                  onTap: () {
-                    controller.sendMessage(arg);
-                  },
-                  child: Container(
-                    width: 44.94,
-                    height: 44.94,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF30879B),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.97),
+                              fontSize: 11,
+                            ),
+                            suffixIcon: const Icon(Icons.emoji_emotions_outlined,
+                                color: Color(0xff8A96B3)),
+                            fillColor: Colors.grey.withOpacity(0.2),
+                            filled: true),
                       ),
                     ),
-                    child: const Icon(
-                      Icons.send,
-                      color: Colors.white,
-                      size: 19,
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: InkWell(
+                      onTap: () {
+                        controller.sendMessage(arg);
+                      },
+                      child: Container(
+                        width: 44.94,
+                        height: 44.94,
+                        decoration: ShapeDecoration(
+                          color: const Color(0xFF30879B),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.97),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                          size: 19,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+
+          ],
         ),
       );
     },);

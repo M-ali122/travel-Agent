@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+  import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +66,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       ),
                     ),
                   ),
-              title: Column(
+              title: const Column(
                 children: [
                   Text("LifeStyle Manager",style: TextStyle(
                     fontSize: 12,

@@ -141,40 +141,98 @@ class ManagerRequestController extends GetxController {
   int todoTask = 0;
   int complected = 0;
 
+  // void loadHomeTask() async {
+  //   var box = GetStorage();
+  //   var id = box.read('uid');
+  //   try {
+  //     var res = await firestore.collection(Strings().kRequest).where("accepterId",isEqualTo: id).get();
+  //     if (res.docs.isNotEmpty) {
+  //       DateTime today = DateTime.now();
+  //       res.docs.forEach((element) {
+  //         Timestamp timestamp = element.data()["requestDetail"]["depDate"]; // Assuming 'timestamp' is the field storing the server timestamp
+  //         DateTime requestDate = timestamp.toDate();
+  //
+  //         if (requestDate.year == today.year &&
+  //             requestDate.month == today.month &&
+  //             requestDate.day == today.day) {
+  //           element.reference.update({
+  //             "requestStatus": "Accepted"
+  //           });
+  //           priorityToday += 1;
+  //         } else if (requestDate.isAfter(today)) {
+  //           todoTask += 1;
+  //         } else {
+  //           element.reference.update({
+  //             "requestStatus": "Completed"
+  //           });
+  //           complected += 1;
+  //         }
+  //
+  //         update();
+  //       });
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
   void loadHomeTask() async {
     var box = GetStorage();
     var id = box.read('uid');
     try {
-      var res = await firestore.collection(Strings().kRequest).where("accepterId",isEqualTo: id).get();
+      var res = await firestore.collection(Strings().kRequest).where("accepterId", isEqualTo: id).get();
       if (res.docs.isNotEmpty) {
         DateTime today = DateTime.now();
         res.docs.forEach((element) {
-          Timestamp timestamp = element.data()["requestDetail"]["depDate"]; // Assuming 'timestamp' is the field storing the server timestamp
-          DateTime requestDate = timestamp.toDate();
+          // Fetching departureDate, recommendation.departureDate, and currentTime from Firestore
+          Timestamp? departureDateTimestamp = element.data()['departureDate'];
+          Timestamp? recommendationDepDateTimestamp = element.data()['requestDetail']['depDate'];
+          Timestamp? currentTimeTimestamp = element.data()['currentTime'];
 
-          if (requestDate.year == today.year &&
-              requestDate.month == today.month &&
-              requestDate.day == today.day) {
-            element.reference.update({
-              "requestStatus": "Accepted"
-            });
+          // Converting Timestamps to DateTime objects
+          DateTime departureDate = departureDateTimestamp?.toDate() ?? DateTime.now();
+          print('departure date is match with $departureDate');
+          DateTime recommendationDepDate = recommendationDepDateTimestamp?.toDate() ?? DateTime.now();
+          print('depDate date is match with ${recommendationDepDate.toString()}');
+          DateTime currentTime = currentTimeTimestamp?.toDate() ?? DateTime.now();
+          print('current date is match with $currentTime');
+          // Check if any of the dates match the current date
+          if (departureDate.year == today.year && departureDate.month == today.month && departureDate.day == today.day) {
+            // If departureDate matches today's date, increment priorityToday
+            element.reference.update({"requestStatus": "Accepted"});
             priorityToday += 1;
-          } else if (requestDate.isAfter(today)) {
-            todoTask += 1;
-          } else {
-            element.reference.update({
-              "requestStatus": "Completed"
-            });
-            complected += 1;
+          }
+          if (recommendationDepDate.year == today.year && recommendationDepDate.month == today.month && recommendationDepDate.day == today.day) {
+            // If recommendationDepDate matches today's date, increment priorityToday
+            element.reference.update({"requestStatus": "Accepted"});
+            priorityToday += 1;
+          }
+          if (currentTime.year == today.year && currentTime.month == today.month && currentTime.day == today.day) {
+            // If currentTime matches today's date, increment priorityToday
+            element.reference.update({"requestStatus": "Accepted"});
+            priorityToday += 1;
           }
 
-          update();
+          // If none of the dates match today's date, check if any of them are after today's date
+          if (priorityToday == 0) {
+            if (departureDate.isAfter(today) || recommendationDepDate.isAfter(today) || currentTime.isAfter(today)) {
+              // If any of the dates is after today's date, increment todoTask
+              todoTask += 1;
+            } else {
+              // If none of the above conditions match, increment complected
+              element.reference.update({"requestStatus": "Completed"});
+              complected += 1;
+            }
+          }
         });
+        update();
       }
     } catch (e) {
       print(e);
     }
   }
+
+
 
 
   List<RequestModel> beforeDate() {

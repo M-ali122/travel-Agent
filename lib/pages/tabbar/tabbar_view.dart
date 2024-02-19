@@ -24,17 +24,23 @@ class TabbarView extends GetWidget<ManagerRequestController> {
           body: controller.reqList.isEmpty
               ? const Center(child: Text('No Request found'))
               : ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.reqList.length,
-            itemBuilder: (context, index) {
+               shrinkWrap: true,
 
-              final request = controller.reqList[index];
-              final recommendation = request.recommendation;
+               itemCount: controller.reqList.length,
+               itemBuilder: (context, index) {
 
-              final currentDate = request.currentTime != null
-                  ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                final request = controller.reqList[index];
+                final recommendation = request.recommendation;
+
+                 final currentDate = request.currentTime != null
+                   ? DateFormat('yyyy-MM-dd hh:mm a').format(
                   request.currentTime!.toDate())
                   : 'Unknown';
+
+                final returnDate = request.returnDate != null
+                    ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                    request.returnDate!.toDate())
+                    : 'Unknown';
 
               final departureDate = request.departureDate != null
                   ? DateFormat('yyyy-MM-dd hh:mm a').format(
@@ -45,8 +51,6 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                   ? DateFormat('yyyy-MM-dd hh:mm a').format(
                   recommendation!.depDate!.toDate())
                   : '$departureDate';
-
-              if (controller.reqList[index].requestStatus == "Accepted") {
                 return Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Container(
@@ -253,8 +257,8 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: Row(
-                            children: const [
-                              Padding(
+                            children: [
+                              const Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   'Return Date:',
@@ -270,10 +274,10 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                               ),
                               Padding(
                                 padding:
-                                EdgeInsets.only(left: 8.0),
+                                const EdgeInsets.only(left: 8.0),
                                 child: Text(
-                                  'formatedReturnTime',
-                                  style: TextStyle(
+                                  returnDate,
+                                  style: const TextStyle(
                                     color: Color(0xFF6B7280),
                                     fontSize: 12,
                                     fontFamily: 'SF Pro Text',
@@ -290,9 +294,6 @@ class TabbarView extends GetWidget<ManagerRequestController> {
                     ),
                   ),
                 );
-              } else {
-                return Container();
-              }
             },
           ),
         );

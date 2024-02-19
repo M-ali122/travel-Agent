@@ -38,6 +38,13 @@ class CancellScreen extends GetWidget<ManagerRequestController> {
                       request.currentTime!.toDate())
                       : 'Unknown';
 
+
+                  final returnDate = request.returnDate != null
+                      ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                      request.returnDate!.toDate())
+                      : 'Unknown';
+
+
                   final departureDate = request.departureDate != null
                       ? DateFormat('yyyy-MM-dd hh:mm a').format(
                       request.departureDate!.toDate())
@@ -346,7 +353,7 @@ class CancellScreen extends GetWidget<ManagerRequestController> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
                                     child: Text(
-                                      'formatedReturnTime',
+                                      returnDate,
                                       style: const TextStyle(
                                         color: Color(0xFF6B7280),
                                         fontSize: 12,

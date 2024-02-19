@@ -38,6 +38,11 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                       request.currentTime!.toDate())
                       : 'Unknown';
 
+                  final returnDate = request.returnDate != null
+                      ? DateFormat('yyyy-MM-dd hh:mm a').format(
+                      request.returnDate!.toDate())
+                      : 'Unknown';
+
                   final departureDate = request.departureDate != null
                       ? DateFormat('yyyy-MM-dd hh:mm a').format(
                       request.departureDate!.toDate())
@@ -253,10 +258,10 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 15.0),
+                              padding:  const EdgeInsets.only(top: 15.0),
                               child: Row(
-                                children: const [
-                                  Padding(
+                                children:  [
+                                  const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       'Return Date:',
@@ -272,10 +277,10 @@ class AcceptedScreen extends GetWidget<ManagerRequestController> {
                                   ),
                                   Padding(
                                     padding:
-                                        EdgeInsets.only(left: 8.0),
+                                        const EdgeInsets.only(left: 8.0),
                                     child: Text(
-                                      'formatedReturnTime',
-                                      style: TextStyle(
+                                      returnDate,
+                                      style: const TextStyle(
                                         color: Color(0xFF6B7280),
                                         fontSize: 12,
                                         fontFamily: 'SF Pro Text',

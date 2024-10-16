@@ -93,12 +93,12 @@ class ClientProfileScreen extends GetWidget<ClientProfileController> {
                           ),
                         )
                             : Container(
-                          width: 120,
-                          height: 120,
-                          child:  CircleAvatar(
-                            backgroundColor: Color(0xff222326),
-                            radius: 40,
-                            child: SvgPicture.string(
+                             width: 120,
+                              height: 120,
+                             child:  CircleAvatar(
+                              backgroundColor: Color(0xff222326),
+                             radius: 40,
+                               child: SvgPicture.string(
                               Svgs.defaultProfile,
                               width: 38,
                               height: 38,

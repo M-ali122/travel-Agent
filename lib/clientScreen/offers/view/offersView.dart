@@ -185,7 +185,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
-import 'package:travelagentapp/res/dark_theme.dart';
 
 class OffersScreen extends GetWidget<RequestController>{
   static String route = "OffersScreen";
@@ -194,13 +193,23 @@ class OffersScreen extends GetWidget<RequestController>{
 
   TextEditingController offersMessage = TextEditingController();
 
+  OffersScreen({super.key});
+
   Widget build(BuildContext context){
     return GetBuilder<RequestController>(
       init: RequestController(),
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(arg),
+              title: const Text('Custom Request'),
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(CupertinoIcons.back)
+              ),
+              centerTitle: true,
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 17.0),
@@ -220,13 +229,13 @@ class OffersScreen extends GetWidget<RequestController>{
                       onChanged: (value) {
                         controller.addDataFromTextField(value); // Call the function here
                       },
-                      decoration: InputDecoration(
-                        hintText: 'Plan your $arg offers',
+                      decoration: const InputDecoration(
+                        hintText: 'Custom Request',
                       ),
                     ),
                   ),
                   SizedBox(height: 200.h,),
-                controller.isBusy()?Center(child: CircularProgressIndicator()) :  AppButton(
+                controller.isBusy()?const Center(child: CircularProgressIndicator()) :  AppButton(
                       title: 'Submit',
                       onTap: (){
                         controller.addMeetGreetOffers(offersMessage.text.toString(),
@@ -256,3 +265,76 @@ class OffersScreen extends GetWidget<RequestController>{
 
 
 
+
+
+// import 'dart:collection'; // Importing LinkedHashMap
+//
+// void main() {
+//   // Creating a Map using Map constructor
+//   var person = Map<String, dynamic>();
+//   person['name'] = 'John';
+//   person['age'] = 30;
+//
+//   // Accessing values
+//   print(person['name']); // Output: John
+//
+//   // Iterating over a Map using forEach loop
+//   print("Iterating over a Map using forEach loop:");
+//   person.forEach((key, value) {
+//     print('$key : $value');
+//   });
+//
+//   // Iterating over a Map using for loop
+//   print("\nIterating over a Map using for loop:");
+//   for (var key in person.keys) {
+//     print('$key : ${person[key]}');
+//   }
+//
+//   // Updating a Map
+//   person['name'] = 'Alice'; // Update existing value
+//   person['city'] = 'New York'; // Add new key-value pair
+//
+//   // Removing an item from Map
+//   person.remove('age'); // Removes 'age' key-value pair
+//
+//   // Checking if key exists
+//   print("\nChecking if key exists:");
+//   print(person.containsKey('name')); // Output: true
+//
+//   // Creating a LinkedHashMap
+//   var linkedMap = LinkedHashMap<String, int>();
+//   linkedMap['one'] = 1;
+//   linkedMap['two'] = 2;
+//   linkedMap['three'] = 3;
+//
+//   // Printing LinkedHashMap using forEach loop
+//   print("\nPrinting LinkedHashMap using forEach loop:");
+//   linkedMap.forEach((key, value) {
+//     print('$key : $value');
+//   });
+//
+//   // Printing LinkedHashMap using for loop
+//   print("\nPrinting LinkedHashMap using for loop:");
+//   for (var key in linkedMap.keys) {
+//     print('$key : ${linkedMap[key]}');
+//   }
+//
+//   // Using Map literals
+//   var colors = {
+//     'red': 0xFF0000,
+//     'green': 0x00FF00,
+//     'blue': 0x0000FF,
+//   };
+//
+//   // Printing colors Map using forEach loop
+//   print("\nPrinting colors Map using forEach loop:");
+//   colors.forEach((key, value) {
+//     print('$key : $value');
+//   });
+//
+//   // Printing colors Map using for loop
+//   print("\nPrinting colors Map using for loop:");
+//   for (var key in colors.keys) {
+//     print('$key : ${colors[key]}');
+//   }
+// }

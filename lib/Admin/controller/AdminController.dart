@@ -20,6 +20,7 @@ class AdminController extends GetxController {
 
       if (querySnapshot.docs.isNotEmpty) {
         userList.clear();
+
         /// load data in list here
         querySnapshot.docs.forEach((element) {
           userList.add(element.data());

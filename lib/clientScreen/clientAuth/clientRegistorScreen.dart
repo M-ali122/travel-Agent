@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/pages/auth/controller/auth_controller.dart';
 import '../../helpers/views/toast.dart';
 import '../../res/dark_theme.dart';
+import '../screens/interestScreen.dart';
 import 'controller/clientAuthController.dart';
 import 'view/clientLogin.dart';
 
@@ -240,6 +241,7 @@ class ClientregisterScreen extends GetWidget<AuthController> {
                  AppButton(
                       title: 'Create Account',
                       onTap: (){
+                        Get.toNamed(InterestScreen.route);
                         if(controller.isChecked.isTrue){
                           controller.registeredUser();
                           // Get.offAllNamed(ClientLogin.route);

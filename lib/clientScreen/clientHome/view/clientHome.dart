@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientHome/controller/recomController.dart';
+import 'package:travelagentapp/res/String.dart';
 import 'package:travelagentapp/res/icons/svg.dart';
 
 import '../../ClientprofileScreen/Controller/client_profile_controller.dart';
@@ -26,56 +27,147 @@ class ClientHomeSreen extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    var managerId = clientProfileController.user.value.managerId.toString();
     return GetBuilder<HomeController>(
       init: HomeController(),
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: const Color.fromRGBO(22, 23, 27, 1),
-              leading: clientProfileController.user.value.profile != null
-                  ? Padding(
-                    padding: const EdgeInsets.only(left: 13.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: ShapeDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image:
-                      NetworkImage(clientProfileController.user.value.profile),
-                    ),
-                    shape:  const CircleBorder()
-                      ),
-                    ),
-                  )
-                  : Padding(
-                    padding: const EdgeInsets.only(left: 13.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      child: SvgPicture.string(
-                        Svgs.defaultProfile,
-                        width: 25,
-                        height: 25,
-                        // Replace with your SVG file path
-                        // fit: BoxFit.cover,
-                      ),
-                    //   decoration: const ShapeDecoration(
-                    // image: DecorationImage(
-                    //     image: AssetImage(
-                    //         'assets/emoji/profile2.png'),
-                    //     fit: BoxFit.cover
-                    // ),
-                    //       shape: CircleBorder()
-                    //   ),
-                    ),
-                  ),
-              title: const Column(
+              // leading: StreamBuilder(
+              //   stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(managerId).snapshots(),
+              //   builder: (context, snapshot) {
+              //     if(snapshot.connectionState == ConnectionState.waiting){
+              //       return Container(); // or return a loading indicator
+              //     }
+              //     if(!snapshot.hasData || snapshot.data == null
+              //         || snapshot.data!['profile'] == null){
+              //       return Padding(
+              //         padding: const EdgeInsets.only(left: 13.0),
+              //         child: SizedBox(
+              //           width: 40,
+              //           height: 40,
+              //           child: SvgPicture.string(
+              //             Svgs.defaultProfile,
+              //             width: 25,
+              //             height: 25,
+              //             fit: BoxFit.cover,
+              //           ),
+              //         ),
+              //       );
+              //     }
+              //     String profileUrl = snapshot.data!['profile'] as String;
+              //     return Padding(
+              //       padding: const EdgeInsets.only(left: 13.0),
+              //       child: Container(
+              //         width: 40,
+              //         height: 40,
+              //         decoration: ShapeDecoration(
+              //           shape: const CircleBorder(),
+              //           image: DecorationImage(
+              //             image: NetworkImage(profileUrl),
+              //             fit: BoxFit.cover,
+              //           ),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
+              leading: StreamBuilder(
+                stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(managerId).snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text(""); // or return a loading indicator
+                  }
+                  if (!snapshot.hasData || snapshot.data == null) {
+                    return const Text(""); // Return empty widget if data doesn't exist
+                  }
+                  // Check if the entire document snapshot exists and contains data
+                  if (snapshot.data!.exists) {
+                    // Document snapshot exists, now check if the 'profile' field exists
+                    final data = snapshot.data!.data() as Map<String, dynamic>;
+                    if (data.containsKey("profile")) {
+                      // 'profile' field exists, retrieve its value
+                      String profileUrl = data["profile"].toString();
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 13.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: ShapeDecoration(
+                            shape: const CircleBorder(),
+                            image: DecorationImage(
+                              image: NetworkImage(profileUrl),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      // 'profile' field doesn't exist, handle accordingly
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 13.0),
+                        child: SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: SvgPicture.string(
+                            Svgs.defaultProfile,
+                            width: 25,
+                            height: 25,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }
+                  } else {
+                    // Document snapshot doesn't exist, handle accordingly
+                    return const Text("");
+                  }
+                },
+              ),
+
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("LifeStyle Manager",style: TextStyle(
+                  const Text("LifeStyle Manager",style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey
                   ),),
+                  // StreamBuilder(
+                  //     stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(managerId).snapshots(),
+                  //     builder: (context, snapshot) {
+                  //       if(snapshot.connectionState == ConnectionState.waiting){
+                  //         return const Text("");
+                  //       }if(!snapshot.hasData){
+                  //         return const Text("");
+                  //       }if(snapshot.hasError){
+                  //         return const Text("");
+                  //       }
+                  //       return Text(snapshot.data!['name'].toString());
+                  //     },
+                  // )
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance.collection(Strings().kUser).doc(managerId).snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text("");
+                      }
+                      if (!snapshot.hasData || snapshot.data == null) {
+                        return const Text("");
+                      }
+                      if (snapshot.data!.exists) {
+                        final data = snapshot.data!.data() as Map<String, dynamic>;
+                        if (data.containsKey("name")) {
+                          String name = data["name"].toString();
+                          return Text(name);
+                        } else {
+                          return const Text("Name not found");
+                        }
+                      } else {
+                        return const Text("");
+                      }
+                    },
+                  ),
                 ],
               ),
               // title: Container(
@@ -152,7 +244,7 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                       height: 0.07,
                     ),
                   ),
-                  SizedBox(height: 14.h,),
+                  SizedBox(height: 15.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -409,12 +501,19 @@ class ClientHomeSreen extends GetWidget<HomeController> {
                   const SizedBox(height: 16.03,),
                   const Text(
                     'Recommended Feed',
+                    // style: TextStyle(
+                    //   color: Colors.white,
+                    //   fontSize: 16,
+                    //   fontFamily: 'SF Pro Text',
+                    //   fontWeight: FontWeight.w600,
+                    //   height: 0.09,
+                    // ),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 18,
                       fontFamily: 'SF Pro Text',
                       fontWeight: FontWeight.w600,
-                      height: 0.09,
+                      height: 0.07,
                     ),
                   ),
                   SizedBox(height: 16.h,),

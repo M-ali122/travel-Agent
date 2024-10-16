@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travelagentapp/clientScreen/clientAuth/controller/clientAuthController.dart';
 import 'package:travelagentapp/clientScreen/screens/controller/DataCollectionController.dart';
 import 'package:travelagentapp/helpers/views/button.dart';
 import 'package:travelagentapp/res/dark_theme.dart';
 
+import '../../helpers/views/toast.dart';
 import '../../res/icons/svg.dart';
 import '../clientScreenNavbar/view/ClientScreenNavbar.dart';
 
 class LocationDetail extends GetWidget<DataCollectionController> {
   static String route = 'LocationDetail';
+   LocationDetail({Key? key}) : super(key: key);
 
-  const LocationDetail({Key? key}) : super(key: key);
+  ClientAuthController authController = Get.put(ClientAuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class LocationDetail extends GetWidget<DataCollectionController> {
                   height: 20.h,
                 ),
                 const Text(
-                  'Useful for location-based recommendations or services\nlike transportation and local events.',
+                  'Useful for location-based recommendations or services like transportation and local events.',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 13,
@@ -117,7 +120,14 @@ class LocationDetail extends GetWidget<DataCollectionController> {
                 ),
                 AppButton(title: 'Use my location', onTap: () {
 
-                  controller.getLocation();
+                  if(authController.isChecked.isTrue){
+                    authController.registeredUser();
+                    // Get.offAllNamed(ClientLogin.route);
+                    controller.getLocation();
+                  }else{
+                    showErrorMessage("agree the Terms & Conditions");
+                  }
+
 
                 }),
                 SizedBox(
@@ -126,7 +136,13 @@ class LocationDetail extends GetWidget<DataCollectionController> {
                 TextButton(
                   onPressed: () {
                     // controller.dataModel.value.location = "Skip";
-                    Get.offAllNamed(ClientNavbar.route);
+                    // Get.offAllNamed(ClientNavbar.route);
+                    if(authController.isChecked.isTrue){
+                      authController.registeredUser();
+                      // Get.offAllNamed(ClientLogin.route);
+                    }else{
+                      showErrorMessage("agree the Terms & Conditions");
+                    }
                   },
                   child: const Text(
                     'Skip for now',

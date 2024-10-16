@@ -39,13 +39,14 @@ class HomeView extends GetWidget <ManagerRequestController>{
     const Icon(Icons.keyboard_arrow_up, color: Colors.white, size: 10),
   ];
   var iconPercent = [' new tasks', '15%', '15%'];
-
   ProfileController profileController = Get.put(ProfileController());
 
    var box = GetStorage();
+
+
+
   @override
   Widget build(BuildContext context) {
-    var id = box.read('uid');
     return GetBuilder<ManagerRequestController>(
       init: ManagerRequestController(),
         builder: (controller) {
@@ -339,15 +340,8 @@ class HomeView extends GetWidget <ManagerRequestController>{
                       itemCount: controller.reqList.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-
+                        DateTime today = DateTime.now();
                         RequestModel reqlist = controller.reqList[index];
-                        // Timestamp? timestamp = reqlist.recommendation.depDate;
-                        // DateTime today = DateTime.now();
-                        // DateTime? requestDate = timestamp?.toDate();
-                        // Timestamp? datestamp = controller.reqList[index].recommendation.depDate;
-                        // DateTime date = datestamp?.toDate() ?? DateTime.now();
-                        // String depDate = DateFormat('yyyy-MM-dd hh:mm a').format(date);
-
                         final request = controller.reqList[index];
                         final recommendation = request.recommendation;
 
@@ -366,149 +360,432 @@ class HomeView extends GetWidget <ManagerRequestController>{
                             recommendation!.depDate!.toDate())
                             : '$departureDate';
 
-
-                        // if(requestDate!.year == today.year
-                        //    && requestDate.month == today.month
-                        //    && requestDate.day == today.day){
                           if (reqlist.requestStatus == "Accepted") {
-                            return Column(
-                              children: [
-                                Row(
+
+                            if(reqlist.type == 'RecomdationRequest'){
+
+                              Timestamp timestamp = reqlist.recommendation.depDate;
+                              DateTime requestDate = timestamp.toDate();
+
+                              if(requestDate.year  == today.year &&
+                                 requestDate.month == today.month &&
+                              requestDate.day == today.day){
+                                return Column(
                                   children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 10.0),
-                                      child: SizedBox(
-                                        width: 38,
-                                        height: 14,
-                                        child: Text(
-                                          '08:00',
-                                          style: TextStyle(
-                                            color: Color(0xFF9CA3AF),
-                                            fontSize: 12,
-                                            fontFamily: 'SF Pro Text',
-                                            fontWeight: FontWeight.w400,
-                                            height: 0.18,
-                                            letterSpacing: 0.30,
+                                    Row(
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 10.0),
+                                          child: SizedBox(
+                                            width: 38,
+                                            height: 14,
+                                            child: Text(
+                                              '08:00',
+                                              style: TextStyle(
+                                                color: Color(0xFF9CA3AF),
+                                                fontSize: 12,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0.18,
+                                                letterSpacing: 0.30,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 6,
-                                    ),
-                                    Container(
-                                      width: 282,
-                                      height: 1,
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFF21262F),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection(Strings().kUser)
-                                          .doc(controller.reqList[index].uid.toString())
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.hasError || !snapshot.hasData) {
-                                          return const CircleAvatar(
-                                            foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                          );
-                                        }
-                                        final data = snapshot.data;
-                                        if (data == null || data['profile'] == null) {
-                                          return const CircleAvatar(
-                                            foregroundImage: AssetImage('assets/emoji/profile2.png'),
-                                          );
-                                        }
-                                        return CircleAvatar(
-                                          foregroundImage: NetworkImage(data['profile'].toString()),
-                                        );
-                                      },
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0),
-                                      child: Container(
-                                        width: 261,
-                                        height: 80,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xff23262D),
-                                          borderRadius: BorderRadius.all(Radius.circular(14)),
+                                        const SizedBox(
+                                          width: 6,
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 12.0),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              const SizedBox(
-                                                height: 22,
-                                              ),
-                                              Text(
-                                                '${recommendation?.title ??
-                                                    '${controller.reqList[index].type}'}',
-                                                // '${controller.reqList[index].title}',
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 13,
-                                                  fontFamily: 'SF Pro Text',
-                                                  fontWeight: FontWeight.w500,
-                                                  height: 0.14,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 16,
-                                              ),
-                                              Row(
+                                        Container(
+                                          width: 282,
+                                          height: 1,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xFF21262F),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        StreamBuilder(
+                                          stream: FirebaseFirestore.instance
+                                              .collection(Strings().kUser)
+                                              .doc(controller.reqList[index].uid.toString())
+                                              .snapshots(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasError || !snapshot.hasData) {
+                                              return const CircleAvatar(
+                                                foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                              );
+                                            }
+                                            final data = snapshot.data;
+                                            if (data == null || data['profile'] == null) {
+                                              return const CircleAvatar(
+                                                foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                              );
+                                            }
+                                            return CircleAvatar(
+                                              foregroundImage: NetworkImage(data['profile'].toString()),
+                                            );
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Container(
+                                            width: 261,
+                                            height: 80,
+                                            decoration: const BoxDecoration(
+                                              color: Color(0xff23262D),
+                                              borderRadius: BorderRadius.all(Radius.circular(14)),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left: 12.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  const Icon(
-                                                    CupertinoIcons.clock,
-                                                    color: Color(0xff6B7280),
-                                                    size: 12,
-                                                  ),
                                                   const SizedBox(
-                                                    width: 4,
+                                                    height: 22,
                                                   ),
                                                   Text(
-                                                    '${depDate}', // Convert timestamp to date and then to string
+                                                    '${recommendation?.title ??
+                                                        '${controller.reqList[index].type}'}',
+                                                    // '${controller.reqList[index].title}',
                                                     style: const TextStyle(
-                                                      color: Color(0xFF6B7280),
-                                                      fontSize: 11,
+                                                      color: Colors.white,
+                                                      fontSize: 13,
                                                       fontFamily: 'SF Pro Text',
-                                                      fontWeight: FontWeight.w400,
-                                                      height: 0.19,
+                                                      fontWeight: FontWeight.w500,
+                                                      height: 0.14,
                                                     ),
                                                   ),
-                                                  const Spacer(),
-                                                  const Padding(
-                                                    padding: EdgeInsets.only(right: 12.0, bottom: 10),
-                                                    child: Icon(
-                                                      Icons.circle_outlined,
-                                                      color: Color(0xffFFFFFF),
-                                                      size: 24,
-                                                    ),
-                                                  )
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const Icon(
+                                                        CupertinoIcons.clock,
+                                                        color: Color(0xff6B7280),
+                                                        size: 12,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Text(
+                                                        '${depDate}', // Convert timestamp to date and then to string
+                                                        style: const TextStyle(
+                                                          color: Color(0xFF6B7280),
+                                                          fontSize: 11,
+                                                          fontFamily: 'SF Pro Text',
+                                                          fontWeight: FontWeight.w400,
+                                                          height: 0.19,
+                                                        ),
+                                                      ),
+                                                      const Spacer(),
+                                                      const Padding(
+                                                        padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                                                        child: Icon(
+                                                          Icons.circle_outlined,
+                                                          color: Color(0xffFFFFFF),
+                                                          size: 24,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
-                                            ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              }
+
+                            }else if(reqlist.type == 'Custom'){
+
+                              Timestamp timestamp = reqlist.currentTime;
+                              DateTime currentDate = timestamp.toDate();
+
+                              if(currentDate.year  == today.year &&
+                                  currentDate.month == today.month &&
+                                  currentDate.day == today.day){
+                                return Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 10.0),
+                                          child: SizedBox(
+                                            width: 38,
+                                            height: 14,
+                                            child: Text(
+                                              '08:00',
+                                              style: TextStyle(
+                                                color: Color(0xFF9CA3AF),
+                                                fontSize: 12,
+                                                fontFamily: 'SF Pro Text',
+                                                fontWeight: FontWeight.w400,
+                                                height: 0.18,
+                                                letterSpacing: 0.30,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 6,
+                                        ),
+                                        Container(
+                                          width: 282,
+                                          height: 1,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xFF21262F),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        StreamBuilder(
+                                          stream: FirebaseFirestore.instance
+                                              .collection(Strings().kUser)
+                                              .doc(controller.reqList[index].uid.toString())
+                                              .snapshots(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasError || !snapshot.hasData) {
+                                              return const CircleAvatar(
+                                                foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                              );
+                                            }
+                                            final data = snapshot.data;
+                                            if (data == null || data['profile'] == null) {
+                                              return const CircleAvatar(
+                                                foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                              );
+                                            }
+                                            return CircleAvatar(
+                                              foregroundImage: NetworkImage(data['profile'].toString()),
+                                            );
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Container(
+                                            width: 261,
+                                            height: 80,
+                                            decoration: const BoxDecoration(
+                                              color: Color(0xff23262D),
+                                              borderRadius: BorderRadius.all(Radius.circular(14)),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left: 12.0),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  const SizedBox(
+                                                    height: 22,
+                                                  ),
+                                                  Text(
+                                                    '${recommendation?.title ??
+                                                        '${controller.reqList[index].type}'}',
+                                                    // '${controller.reqList[index].title}',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13,
+                                                      fontFamily: 'SF Pro Text',
+                                                      fontWeight: FontWeight.w500,
+                                                      height: 0.14,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const Icon(
+                                                        CupertinoIcons.clock,
+                                                        color: Color(0xff6B7280),
+                                                        size: 12,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Text(
+                                                        '${depDate}', // Convert timestamp to date and then to string
+                                                        style: const TextStyle(
+                                                          color: Color(0xFF6B7280),
+                                                          fontSize: 11,
+                                                          fontFamily: 'SF Pro Text',
+                                                          fontWeight: FontWeight.w400,
+                                                          height: 0.19,
+                                                        ),
+                                                      ),
+                                                      const Spacer(),
+                                                      const Padding(
+                                                        padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                                                        child: Icon(
+                                                          Icons.circle_outlined,
+                                                          color: Color(0xffFFFFFF),
+                                                          size: 24,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              }
+
+                            }
+                          }
+                          else if(reqlist.type == 'TravelRequest'){
+
+                            Timestamp timestamp = reqlist.departureDate;
+                            DateTime departureDate = timestamp.toDate();
+
+                            if(departureDate.year  == today.year &&
+                                departureDate.month == today.month &&
+                                departureDate.day == today.day){
+                              return Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 10.0),
+                                        child: SizedBox(
+                                          width: 38,
+                                          height: 14,
+                                          child: Text(
+                                            '08:00',
+                                            style: TextStyle(
+                                              color: Color(0xFF9CA3AF),
+                                              fontSize: 12,
+                                              fontFamily: 'SF Pro Text',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0.18,
+                                              letterSpacing: 0.30,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            );
-                          } else {
-                            return Container(
-                            );
+                                      const SizedBox(
+                                        width: 6,
+                                      ),
+                                      Container(
+                                        width: 282,
+                                        height: 1,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF21262F),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection(Strings().kUser)
+                                            .doc(controller.reqList[index].uid.toString())
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.hasError || !snapshot.hasData) {
+                                            return const CircleAvatar(
+                                              foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                            );
+                                          }
+                                          final data = snapshot.data;
+                                          if (data == null || data['profile'] == null) {
+                                            return const CircleAvatar(
+                                              foregroundImage: AssetImage('assets/emoji/profile2.png'),
+                                            );
+                                          }
+                                          return CircleAvatar(
+                                            foregroundImage: NetworkImage(data['profile'].toString()),
+                                          );
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20.0),
+                                        child: Container(
+                                          width: 261,
+                                          height: 80,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xff23262D),
+                                            borderRadius: BorderRadius.all(Radius.circular(14)),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 12.0),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                const SizedBox(
+                                                  height: 22,
+                                                ),
+                                                Text(
+                                                  '${recommendation?.title ??
+                                                      '${controller.reqList[index].type}'}',
+                                                  // '${controller.reqList[index].title}',
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 13,
+                                                    fontFamily: 'SF Pro Text',
+                                                    fontWeight: FontWeight.w500,
+                                                    height: 0.14,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 16,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    const Icon(
+                                                      CupertinoIcons.clock,
+                                                      color: Color(0xff6B7280),
+                                                      size: 12,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 4,
+                                                    ),
+                                                    Text(
+                                                      '${depDate}', // Convert timestamp to date and then to string
+                                                      style: const TextStyle(
+                                                        color: Color(0xFF6B7280),
+                                                        fontSize: 11,
+                                                        fontFamily: 'SF Pro Text',
+                                                        fontWeight: FontWeight.w400,
+                                                        height: 0.19,
+                                                      ),
+                                                    ),
+                                                    const Spacer(),
+                                                    const Padding(
+                                                      padding: EdgeInsets.only(right: 12.0, bottom: 10),
+                                                      child: Icon(
+                                                        Icons.circle_outlined,
+                                                        color: Color(0xffFFFFFF),
+                                                        size: 24,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            }
+                          }{
+                            return Container();
                           }
-                        // }else {
-                        //   return Container(
-                        //   );
-                        // }
                       },
                     )),
                   ),

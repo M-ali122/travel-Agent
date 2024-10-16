@@ -197,11 +197,58 @@ class RequestController extends GetxController {
   //   }
   // }
 
+  // void loadrequest() async {
+  //   try {
+  //     var box = GetStorage();
+  //     var id = box.read('uid');
+  //     reqList.clear();
+  //
+  //     var res = await firestore
+  //         .collection(Strings().kRequest)
+  //         .where("uid", isEqualTo: id.toString())
+  //         .get();
+  //
+  //     print('Number of documents received: ${res.docs.length}');
+  //
+  //     if (res.docs.isNotEmpty) {
+  //       // res.docs.forEach((element) {
+  //       //   try {
+  //       //     print('Request data by new: ${element.data()}');
+  //       //     RequestModel requestModel = RequestModel.fromJson(element.data());
+  //       //     reqList.add(requestModel);
+  //       //   } catch (e) {
+  //       //     print('Error parsing request data: $e');
+  //       //   }
+  //       // });
+  //       res.docs.forEach((element) {
+  //         final requestData = element.data();
+  //         if (requestData != null) {
+  //           try {
+  //             print('Request data by new: $requestData');
+  //             RequestModel requestModel = RequestModel.fromJson(requestData);
+  //             reqList.add(requestModel);
+  //           } catch (e) {
+  //             print('Error parsing request data: $e');
+  //           }
+  //         } else {
+  //           print('Document data is null');
+  //         }
+  //       });
+  //       print('Updated reqList length: ${reqList.length}');
+  //       update();
+  //     } else {
+  //       print('No requests found');
+  //     }
+  //   } catch (e) {
+  //     print('Error loading requests: $e');
+  //   }
+  // }
+
   void loadrequest() async {
     try {
       var box = GetStorage();
       var id = box.read('uid');
-      reqList.clear();
+      reqList.clear(); // Clear reqList before populating new data
 
       var res = await firestore
           .collection(Strings().kRequest)
@@ -211,15 +258,6 @@ class RequestController extends GetxController {
       print('Number of documents received: ${res.docs.length}');
 
       if (res.docs.isNotEmpty) {
-        // res.docs.forEach((element) {
-        //   try {
-        //     print('Request data by new: ${element.data()}');
-        //     RequestModel requestModel = RequestModel.fromJson(element.data());
-        //     reqList.add(requestModel);
-        //   } catch (e) {
-        //     print('Error parsing request data: $e');
-        //   }
-        // });
         res.docs.forEach((element) {
           final requestData = element.data();
           if (requestData != null) {
@@ -243,7 +281,6 @@ class RequestController extends GetxController {
       print('Error loading requests: $e');
     }
   }
-
 
   Rx<RequestModel> offeresRequest = RequestModel().obs;
 

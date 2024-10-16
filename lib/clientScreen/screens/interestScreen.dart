@@ -29,7 +29,7 @@ class InterestScreen extends GetWidget<DataCollectionController> {
           padding: const EdgeInsets.only(left: 16.0,right: 16),
           child: ListView(
             children: [
-              SizedBox(height: 24.h,),
+              SizedBox(height: 10.h,),
               const Text(
                 'Interest',
                 style: TextStyle(
@@ -39,9 +39,9 @@ class InterestScreen extends GetWidget<DataCollectionController> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: 14.h,),
+              SizedBox(height: 10.h,),
               const Text(
-                'Select the services that interest you the most. This will \nhelp us curate recommendations tailored just for you.',
+                'Select the services that interest you the most. This will help us curate recommendations tailored just for you.',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 13,

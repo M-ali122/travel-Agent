@@ -153,7 +153,7 @@ class _ClientNavbarState extends State<ClientNavbar> {
             width: Get.width,
             child: Padding(
               padding: const EdgeInsets.only(top: 28),
-              child: SvgPicture.string(Svgs.bottomNabbar),
+              child: SvgPicture.string(Svgs.bottomNabbar,fit: BoxFit.cover,),
             ),
           ),
           Padding(
@@ -223,8 +223,8 @@ class _ClientNavbarState extends State<ClientNavbar> {
               _currentIndex = index;
             });
           },
-          child: SvgPicture.string(Svgs.image),
           shape: const CircleBorder(),
+          child: SvgPicture.string(Svgs.image),
         ),
       );
     } else {

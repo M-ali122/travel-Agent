@@ -31,12 +31,12 @@ class DarkTheme {
         ),
       ),
       textTheme: const TextTheme(
-          bodyText2: TextStyle(
+          bodySmall: TextStyle(
               color: Colors.white,
               fontFamily: 'SF Pro Text',
               fontSize: 16,
               fontWeight: FontWeight.w600),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
               color: Colors.white,
               fontFamily: 'SF Pro Text',
               fontSize: 16,
@@ -57,8 +57,7 @@ class DarkTheme {
           borderRadius: BorderRadius.circular(40.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent)
-        ),
+            borderSide: BorderSide(color: Colors.transparent)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40.0),
           borderSide: const BorderSide(

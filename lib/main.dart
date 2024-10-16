@@ -1,16 +1,14 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:travelagentapp/pages/splash/screens/splash_view.dart';
-import 'package:travelagentapp/res/light_theme.dart';
-import 'package:travelagentapp/res/route.dart';
-import 'package:travelagentapp/res/dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:travelagentapp/pages/splash/screens/splash_view.dart';
+import 'package:travelagentapp/res/dark_theme.dart';
+import 'package:travelagentapp/res/light_theme.dart';
+import 'package:travelagentapp/res/route.dart';
+
 import 'firebase_options.dart';
-import 'pages/splash/screens/account_type.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,7 +76,6 @@ class MyApp extends StatelessWidget {
             darkTheme: DarkTheme.darkTheme,
             routes: AppRoute().routes,
             initialRoute: SplashView.route,
-
           ),
         );
       },

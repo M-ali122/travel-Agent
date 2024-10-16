@@ -4,17 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LightTheme {
   final Color mainColor = const Color(0xff30889C);
   static MaterialColor get primary => const MaterialColor(0xff30889C, {
-    50: Color(0xff93e8fc),
-    100: Color(0xff74e1fa),
-    200: Color(0xff5dd3e7),
-    300: Color(0xff50cce1),
-    400: Color(0xff45bfd3),
-    500: Color(0xff30889C),
-    600: Color(0xff156979),
-    700: Color(0xff22616c),
-    800: Color(0xff1c555e),
-    900: Color(0xff12434b),
-  });
+        50: Color(0xff93e8fc),
+        100: Color(0xff74e1fa),
+        200: Color(0xff5dd3e7),
+        300: Color(0xff50cce1),
+        400: Color(0xff45bfd3),
+        500: Color(0xff30889C),
+        600: Color(0xff156979),
+        700: Color(0xff22616c),
+        800: Color(0xff1c555e),
+        900: Color(0xff12434b),
+      });
 
   static ThemeData lightTheme = ThemeData(
       primarySwatch: primary,
@@ -31,12 +31,12 @@ class LightTheme {
         ),
       ),
       textTheme: const TextTheme(
-          bodyText2: TextStyle(
+          bodyLarge: TextStyle(
               color: Colors.white,
               fontFamily: 'SF Pro Text',
               fontSize: 16,
               fontWeight: FontWeight.w600),
-          bodyText1: TextStyle(
+          bodyMedium: TextStyle(
               color: Colors.white,
               fontFamily: 'SF Pro Text',
               fontSize: 16,
@@ -58,8 +58,7 @@ class LightTheme {
         ),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30)
-        ),
+            borderRadius: BorderRadius.circular(30)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(40.0),
           borderSide: const BorderSide(
@@ -75,8 +74,8 @@ class LightTheme {
       ),
       textButtonTheme: const TextButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: MaterialStatePropertyAll(Color(0xff30889C)),
-          )),
+        foregroundColor: MaterialStatePropertyAll(Color(0xff30889C)),
+      )),
       checkboxTheme: CheckboxThemeData(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5.0))),

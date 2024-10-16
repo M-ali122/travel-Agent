@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:travelagentapp/clientScreen/clientRequestScreen/controller/requestController.dart';
 
 import '../clientRequestScreen/view/AddRequestScreen.dart';
+import '../offers/view/offersView.dart';
 import '../offers/view/travel.dart';
 import 'cancelScreen.dart';
 import 'completed.dart';
@@ -41,7 +42,8 @@ class ClientPageRequest extends GetWidget<RequestController> {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: IconButton(
                     onPressed: () {
-                      Get.toNamed(TravelScreen.route,);
+                      // Get.toNamed(TravelScreen.route,);
+                      Get.toNamed(OffersScreen.route);
                     },
                     icon: const Icon(
                       Icons.add_circle_outline,

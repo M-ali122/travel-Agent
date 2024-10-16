@@ -25,249 +25,268 @@ class TravelScreen extends GetWidget<RequestController>{
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Book your Request'),
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(CupertinoIcons.back)
+              ),
+              centerTitle: true,
+              title:  const Text('Custom Request'),
             ),
-            body: ListView(
-              children: [
-                SizedBox(height: 50.h,),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        'Departure Date',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 95.0),
-                      child: Text(
-                        'Departure Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15.h,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: () => controller.selectDepartureDate(context),
-                      child: Container(
-                        width: 150,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF1B1C21),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 1, color: Color(0x1919151C)),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                        ),
-                        child:  Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Visibility(
-                               visible: controller.departureDate.value != null,
-                                child: Obx(() =>  Text(
-                                  "${controller.departureDate}".split(' ')[0],
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.11,
-                                  ),
-                                ),)
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: ListView(
+                children: [
+                  SizedBox(height: 25.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Departure Date',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(right: 15.0),
-                              child: Icon(Icons.calendar_month, color: Color(0xFF6B7280),),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => controller.selectDepartureTime(context),
-                      child: Container(
-                        width: 150,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF1B1C21),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 1, color: Color(0x1919151C)),
-                            borderRadius: BorderRadius.circular(40),
                           ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Visibility(
-                                visible: controller.departureTime != null,
-                                child: Obx(() => Text(
-                                    controller.departureTime.value.format(context),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.11,
-                                  ),
-                                ),)
+                          SizedBox(height: 7.h,),
+                          GestureDetector(
+                            onTap: () => controller.selectDepartureDate(context),
+                            child: Container(
+                              width: 150,
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFF1B1C21),
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(width: 1, color: Color(0x1919151C)),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
                               ),
-                            ),
-                            const Padding(
-                              padding:  EdgeInsets.only(right: 16.0),
-                              child:  Icon(CupertinoIcons.clock, color: Color(0xFF6B7280),),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50,),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        'Return Date',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(right: 90.0),
-                      child: Text(
-                        'Return Time',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'SF Pro Text',
-                          fontWeight: FontWeight.w500,
-                          height: 0.11,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15.h,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: () => controller.selectReturnDate(context),
-                      child: Container(
-                        width: 150,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF1B1C21),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 1, color: Color(0x1919151C)),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                        ),
-                        child:  Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Visibility(
-                                  visible: controller.returnDate.value != null,
-                                  child: Obx(() => Text(
-                                    "${controller.returnDate}".split(' ')[0],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontFamily: 'SF Pro Text',
-                                      fontWeight: FontWeight.w500,
-                                      height: 0.11,
+                              child:  Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: Visibility(
+                                     visible: controller.departureDate.value != null,
+                                      child: Obx(() =>  Text(
+                                        "${controller.departureDate}".split(' ')[0],
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Text',
+                                          fontWeight: FontWeight.w500,
+                                          height: 0.11,
+                                        ),
+                                      ),)
                                     ),
-                                  ),)
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(right: 15.0),
-                              child: Icon(Icons.calendar_month, color: Color(0xFF6B7280),),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => controller.selectReturnTime(context),
-                      child: Container(
-                        width: 150,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF1B1C21),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 1, color: Color(0x1919151C)),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Visibility(
-                                visible: controller.returnTime.value != null,
-                                child: Obx(() => Text(
-                                  controller.returnTime.value.format(context),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: 'SF Pro Text',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.11,
                                   ),
-                                ),
-                                ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 15.0),
+                                    child: Icon(Icons.calendar_month, color: Color(0xFF6B7280),),
+                                  ),
+                                ],
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(right: 15.0),
-                              child: Icon(CupertinoIcons.clock, color: Color(0xFF6B7280),),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 40.h,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Align(
+                      Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Departure Time',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 7,),
+                          GestureDetector(
+                            onTap: () => controller.selectDepartureTime(context),
+                            child: Container(
+                              width: 150,
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFF1B1C21),
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(width: 1, color: Color(0x1919151C)),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: Visibility(
+                                      visible: controller.departureTime != null,
+                                      child: Obx(() => Text(
+                                          controller.departureTime.value.format(context),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Text',
+                                          fontWeight: FontWeight.w500,
+                                          height: 0.11,
+                                        ),
+                                      ),)
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding:  EdgeInsets.only(right: 16.0),
+                                    child:  Icon(CupertinoIcons.clock, color: Color(0xFF6B7280),),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Return Date',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 7,),
+                          GestureDetector(
+                            onTap: () => controller.selectReturnDate(context),
+                            child: Container(
+                              width: 150,
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFF1B1C21),
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(width: 1, color: Color(0x1919151C)),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                              child:  Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: Visibility(
+                                        visible: controller.returnDate.value != null,
+                                        child: Obx(() => Text(
+                                          "${controller.returnDate}".split(' ')[0],
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontFamily: 'SF Pro Text',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0.11,
+                                          ),
+                                        ),)
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 15.0),
+                                    child: Icon(Icons.calendar_month, color: Color(0xFF6B7280),),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              'Return Time',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'SF Pro Text',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 7,),
+                          GestureDetector(
+                            onTap: () => controller.selectReturnTime(context),
+                            child: Container(
+                              width: 150,
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                color: const Color(0xFF1B1C21),
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(width: 1, color: Color(0x1919151C)),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: Visibility(
+                                      visible: controller.returnTime.value != null,
+                                      child: Obx(() => Text(
+                                        controller.returnTime.value.format(context),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontFamily: 'SF Pro Text',
+                                          fontWeight: FontWeight.w500,
+                                          height: 0.11,
+                                        ),
+                                      ),
+                                      ),
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 15.0),
+                                    child: Icon(CupertinoIcons.clock, color: Color(0xFF6B7280),),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h,),
+                  Align(
                     alignment: Alignment.topLeft,
                     child: Container(
-                      width: 343,
+                      width: Get.width,
                       height: 50,
                       decoration: ShapeDecoration(
                         color: const Color(0xFF1B1C21),
@@ -318,11 +337,8 @@ class TravelScreen extends GetWidget<RequestController>{
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Container(
+                  const SizedBox(height: 20,),
+                  Container(
                     height: 160.h,
                     width: Get.width,
                     decoration: BoxDecoration(
@@ -335,24 +351,24 @@ class TravelScreen extends GetWidget<RequestController>{
                         controller.addDataFromTextField(value); // Call the function here
                       },
                       decoration: const InputDecoration(
-                        hintText: 'Plan your Request',
+                        hintText: 'Custom Request',
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 100.h,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: AppButton(
-                      title: 'Submit',
-                      onTap: (){
-                        controller.addOffersRequest(offersMessage.text.toString(),
-                        );
-                      }
+                  SizedBox(height: 60.h,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: AppButton(
+                        title: 'Submit',
+                        onTap: (){
+                          controller.addOffersRequest(offersMessage.text.toString(),
+                          );
+                        }
+                    ),
                   ),
-                ),
-                SizedBox(height: 30.h,),
-              ],
+                  SizedBox(height: 30.h,),
+                ],
+              ),
             ),
           );
         },

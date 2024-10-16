@@ -25,8 +25,60 @@ class ClientAuthController extends GetxController {
     loadUserDataStream();
   }
   final box = GetStorage();
-  void login() async {
+  // void login() async {
+  //   try {
+  //     _toggle();
+  //     QuerySnapshot querySnapshot = await firestore
+  //         .collection(Strings().kUser)
+  //         .where('email', isEqualTo: clientModel.value.email)
+  //         .where('password', isEqualTo: clientModel.value.password)
+  //         .get();
+  //     if (querySnapshot.docs.isNotEmpty) {
+  //       print("doc is not empty");
+  //       for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+  //         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //         clientModel.value =ClientModel.fromJson(data);
+  //         var interest = data['interest'];
+  //         var languagePreference = data['languagePreference'];
+  //         var location = data['location'];
+  //         String uid = data['uid'];
+  //         clientModel.value.uid = uid;
+  //         String userType = data['userType'];
+  //         clientModel.value.userType = userType;
+  //
+  //         bool active = data["activeStatus"];
+  //         print(doc.data());
+  //        if(active == true){
+  //          if (interest == null ||
+  //              languagePreference == null ||
+  //              location == null) {
+  //            box.write("uid", uid.toString());
+  //            //Get.toNamed(InterestScreen.route);
+  //          } else {
+  //            box.write("uid", uid.toString());
+  //            Get.offAllNamed(ClientNavbar.route);
+  //
+  //          }
+  //        }else{
+  //          box.write("uid", uid.toString());
+  //          Fluttertoast.showToast(
+  //              msg:
+  //              "Your Request Has Been Submitted And Review By The Traveler After Complete Your Process",
+  //              toastLength: Toast.LENGTH_LONG);
+  //        }
+  //       }
+  //       _toggle();
+  //       update();
+  //     } else {
+  //       _toggle();
+  //       showErrorMessage("Invalid Email & Password");
+  //     }
+  //   } catch (e) {
+  //     showErrorMessage("Login Fail");
+  //   }
+  // }
 
+  void login() async {
     try {
       _toggle();
       QuerySnapshot querySnapshot = await firestore
@@ -38,7 +90,7 @@ class ClientAuthController extends GetxController {
         print("doc is not empty");
         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-          clientModel.value =ClientModel.fromJson(data);
+          clientModel.value = ClientModel.fromJson(data);
           var interest = data['interest'];
           var languagePreference = data['languagePreference'];
           var location = data['location'];
@@ -49,25 +101,25 @@ class ClientAuthController extends GetxController {
 
           bool active = data["activeStatus"];
           print(doc.data());
-         if(active == true){
-
-           if (interest == null ||
-               languagePreference == null ||
-               location == null) {
-             box.write("uid", uid.toString());
-             Get.toNamed(InterestScreen.route);
-           } else {
-             box.write("uid", uid.toString());
-             Get.offAllNamed(ClientNavbar.route);
-
-           }
-         }else{
-           box.write("uid", uid.toString());
-           Fluttertoast.showToast(
-               msg:
-               "Your Request Has Been Submitted And Review By The Traveler After Complete Your Process",
-               toastLength: Toast.LENGTH_LONG);
-         }
+          if (active == true) {
+            // if (interest == null ||
+            //     languagePreference == null ||
+            //     location == null) {
+            //   box.write("uid", uid.toString());
+            //   Get.toNamed(InterestScreen.route); // Navigate to InterestScreen
+            // } else {
+            //   box.write("uid", uid.toString());
+            //   Get.offAllNamed(ClientNavbar.route); // Navigate to ClientNavbar
+            // }
+            box.write("uid", uid.toString());
+            Get.offAllNamed(ClientNavbar.route);
+          } else {
+            box.write("uid", uid.toString());
+            Fluttertoast.showToast(
+              msg: "Your Request Has Been Submitted And Review By The Traveler After Complete Your Process",
+              toastLength: Toast.LENGTH_LONG,
+            );
+          }
         }
         _toggle();
         update();
@@ -79,6 +131,7 @@ class ClientAuthController extends GetxController {
       showErrorMessage("Login Fail");
     }
   }
+
 
   void firstTimeDataStore() async {
     _toggle();

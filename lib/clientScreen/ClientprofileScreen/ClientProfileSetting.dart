@@ -163,70 +163,70 @@ class CLientProfileSetting extends StatelessWidget {
 
           // Communication Preferences
 
-          SizedBox(height: 32.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'COMMUNICATION PREFERENCE',
-              style: TextStyle(
-                color: Color(0xFF9CA3AF),
-                fontSize: 14,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                height: 0.08,
-              ),
-            ),
-          ),
-          SizedBox(height: 11.h,),
-          Container(
-            width: 375.w,
-            height: 76.h,
-            decoration: const BoxDecoration(
-              color: Color(0xFF1B1C21),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0,right: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 1.h,),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Notification Settings',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
-                  ),
-                  const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Language Settings ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // SizedBox(height: 32.h,),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 16.0),
+          //   child: Text(
+          //     'COMMUNICATION PREFERENCE',
+          //     style: TextStyle(
+          //       color: Color(0xFF9CA3AF),
+          //       fontSize: 14,
+          //       fontFamily: 'SF Pro Display',
+          //       fontWeight: FontWeight.w400,
+          //       height: 0.08,
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 11.h,),
+          // Container(
+          //   width: 375.w,
+          //   height: 76.h,
+          //   decoration: const BoxDecoration(
+          //     color: Color(0xFF1B1C21),
+          //   ),
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(left: 16.0,right: 16),
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         SizedBox(height: 1.h,),
+          //         const Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             Text(
+          //               'Notification Settings',
+          //               style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 14,
+          //                 fontFamily: 'SF Pro Display',
+          //                 fontWeight: FontWeight.w400,
+          //                 height: 0.07,
+          //               ),
+          //             ),
+          //             Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+          //           ],
+          //         ),
+          //         const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
+          //         const Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             Text(
+          //               'Language Settings ',
+          //               style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 14,
+          //                 fontFamily: 'SF Pro Display',
+          //                 fontWeight: FontWeight.w400,
+          //                 height: 0.07,
+          //               ),
+          //             ),
+          //             Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
 
           //Preferences Management
 
@@ -296,70 +296,70 @@ class CLientProfileSetting extends StatelessWidget {
           ),
 
           // Notification Management
-          SizedBox(height: 32.h,),
-          const Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: Text(
-              'NOTIFICATION MANAGEMENT',
-              style: TextStyle(
-                color: Color(0xFF9CA3AF),
-                fontSize: 14,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-                height: 0.08,
-              ),
-            ),
-          ),
-          SizedBox(height: 11.h,),
-          Container(
-            width: 375.w,
-            height: 76.h,
-            decoration: const BoxDecoration(
-              color: Color(0xFF1B1C21),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0,right: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 1.h,),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Notification Preferences',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
-                  ),
-                  const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Customization Options',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontFamily: 'SF Pro Display',
-                          fontWeight: FontWeight.w400,
-                          height: 0.07,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // SizedBox(height: 32.h,),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 16.0),
+          //   child: Text(
+          //     'NOTIFICATION MANAGEMENT',
+          //     style: TextStyle(
+          //       color: Color(0xFF9CA3AF),
+          //       fontSize: 14,
+          //       fontFamily: 'SF Pro Display',
+          //       fontWeight: FontWeight.w400,
+          //       height: 0.08,
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 11.h,),
+          // Container(
+          //   width: 375.w,
+          //   height: 76.h,
+          //   decoration: const BoxDecoration(
+          //     color: Color(0xFF1B1C21),
+          //   ),
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(left: 16.0,right: 16),
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         SizedBox(height: 1.h,),
+          //         const Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             Text(
+          //               'Notification Preferences',
+          //               style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 14,
+          //                 fontFamily: 'SF Pro Display',
+          //                 fontWeight: FontWeight.w400,
+          //                 height: 0.07,
+          //               ),
+          //             ),
+          //             Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+          //           ],
+          //         ),
+          //         const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
+          //         const Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             Text(
+          //               'Customization Options',
+          //               style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 14,
+          //                 fontFamily: 'SF Pro Display',
+          //                 fontWeight: FontWeight.w400,
+          //                 height: 0.07,
+          //               ),
+          //             ),
+          //             Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
 
 
           // Privacy
@@ -543,23 +543,61 @@ class CLientProfileSetting extends StatelessWidget {
                     ],
                   ),
                   const Divider(thickness: 1,color: Color.fromRGBO(174, 176, 180, 0.2)),
-                  GestureDetector(
-                    onTap: (){
+                  // GestureDetector(
+                  //   onTap: (){
+                  //     final box = GetStorage();
+                  //     Get.defaultDialog(
+                  //       title: 'Log Out',
+                  //       titleStyle: const TextStyle(
+                  //         color: Colors.white,
+                  //         fontWeight: FontWeight.w300
+                  //       ),
+                  //       content: const Text('Are you sure to log Out'),
+                  //       confirmTextColor: Colors.white,
+                  //       cancelTextColor: Colors.white,
+                  //       onConfirm: () {
+                  //         box.remove('uid');
+                  //         Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
+                  //
+                  //       },
+                  //       backgroundColor: const Color(0xFF1B1C21),
+                  //       onCancel: () {
+                  //         Get.back();
+                  //       },
+                  //     );
+                  //   },
+                  //   child: const Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Text(
+                  //         'Logout',
+                  //         style: TextStyle(
+                  //           color: Color(0xFFEB5757),
+                  //           fontSize: 14,
+                  //           fontFamily: 'SF Pro Display',
+                  //           fontWeight: FontWeight.w400,
+                  //           height: 0.07,
+                  //         ),
+                  //       ),
+                  //       Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                  //     ],
+                  //   ),
+                  // ),
+                  InkWell(
+                    onTap: () {
                       final box = GetStorage();
-
                       Get.defaultDialog(
                         title: 'Log Out',
                         titleStyle: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300
                         ),
-                        content: const Text('Are you sure to log Out'),
+                        content: const Text('Are you sure you want to log out?'),
                         confirmTextColor: Colors.white,
                         cancelTextColor: Colors.white,
                         onConfirm: () {
                           box.remove('uid');
                           Get.offAll(Get.offAllNamed(AccountTypeScreen.route));
-
                         },
                         backgroundColor: const Color(0xFF1B1C21),
                         onCancel: () {
@@ -580,7 +618,7 @@ class CLientProfileSetting extends StatelessWidget {
                             height: 0.07,
                           ),
                         ),
-                        Icon(Icons.arrow_forward_ios,size: 12,color: Colors.white,)
+                        Icon(Icons.arrow_forward_ios, size: 12, color: Colors.white,)
                       ],
                     ),
                   ),
